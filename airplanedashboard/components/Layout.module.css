@@ -15,7 +15,7 @@
   }
   
   .headerText {
-    margin: 0; /* Remove default margin */
+    margin: 0; 
   }
   .main {
     display: flex;
