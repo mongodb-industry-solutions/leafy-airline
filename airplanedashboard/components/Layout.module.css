@@ -1,0 +1,39 @@
+/* components/Layout.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+  }
+  
+  .headerText {
+    margin: 0; /* Remove default margin */
+  }
+  .main {
+    display: flex;
+    flex: 1;
+  }
+  
+  .sidebar {
+    background-color: #f8f9fa;
+    width: 200px;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  }
+  
+  .content {
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  .logo {
+    width: 100px; 
+  }
