@@ -5,13 +5,13 @@ FROM node:14
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY leafy_airline/airplanedashboard/package*.json ./
+COPY airplanedashboard/package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy the rest of the application code
-COPY leafy_airline/airplanedashboard/ .
+COPY airplanedashboard/ .
 
 # Expose the port the app runs on
 EXPOSE 8080
