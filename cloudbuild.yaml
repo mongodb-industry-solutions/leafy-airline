@@ -17,3 +17,11 @@ steps:
          '--platform', 'managed',
          '--allow-unauthenticated']
   id: Deploy
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'services', 'add-iam-policy-binding', 'airplanedashboard',
+         '--region', 'europe-west1',
+         '--member', 'allUsers',
+         '--role', 'roles/run.invoker']
+  id: SetIAMPolicy
+  
