@@ -7,6 +7,8 @@ import os
 import json
 #from google.cloud import pubsub_v1
 
+# DINAMYC PRICING GITHUB
+
 
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
@@ -36,7 +38,7 @@ docs = []
 def publish_data(simulator : DataSimulator):
 
     (finished, data )= simulator.generate_data()
-    
+
     docs.append(data)
         
     # Uncomment when using pubsub
