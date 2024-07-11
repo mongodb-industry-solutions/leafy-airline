@@ -112,6 +112,8 @@ class DataSimulator:
         return {
                 "flight_id": self.FID,
                 "ts": self.timestamp.isoformat(),
+                "disrupted" : True,
+                "current_delay" : 150,
                 "location": {
                     "lat": new_loc[1],
                     "long": new_loc[0]

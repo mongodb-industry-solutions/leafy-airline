@@ -4,6 +4,7 @@ from path_finder import find_path
 from apscheduler.schedulers.background import BackgroundScheduler
 import logging
 import os
+import json
 #from google.cloud import pubsub_v1
 
 
@@ -30,11 +31,13 @@ logging.basicConfig(
 # SCHEDULER : Calls my function (simulator) every x seconds
 measurement_interval = 5
 scheduler = BackgroundScheduler()
+docs = []
 
 def publish_data(simulator : DataSimulator):
 
     data = simulator.generate_data()
-
+    docs.append(data)
+        
     # Uncomment when using pubsub
     #publisher.publish(topic_name, data)
     #logging.info("Measurement published")
@@ -48,18 +51,26 @@ def publish_data(simulator : DataSimulator):
 # Eventually, the simulation should be triggered by using fetch('http://localhost:8000/start-scheduler')
 # in our next.js app
 
+def log_info(dic:dict):
+    
+    for key in dic.keys():
+        logging.info(dic[key])
+    return
+
+
+
 @app.post("/start-scheduler")
-async def start_scheduler(flight_info):
+async def start_scheduler(flight_info:dict):
     '''
     This function will trigger the start of the data simulator using the data
     for the selected flight.
     This data will be provided in the POST call that will trigger this function
     and it will be a dictionary containing:
         - flight_id
-        -
-        -
-        - departure_location
-        - arrival_location
+        - dep_code
+        - arr_code
+        - dep_loc
+        - arr_loc
 
     This data will be the one from the flight that we had selected in our tab
 
@@ -69,22 +80,29 @@ async def start_scheduler(flight_info):
     anf finally will start the scheduler that will begin to produce data
     calling the generate_data function from our simulator every 5 seconds
     '''
+    logging.info("Data received")
+    log_info(flight_info)
 
     # Find the path between the departure and arrival locations
     path_points = find_path(flight_info)
 
+    logging.info("Path generated")
+    logging.info(path_points)
+
     # Create our Data Simulator for this flight
     simulator = DataSimulator(flight_info["flight_id"],
-                              path = path_points)
+                            path = path_points)
     
+    logging.info("Simulator created")
+
     # Start the scheduler that will get the data every second
     if not scheduler.running:
         scheduler.add_job(publish_data, 'interval', 
-                          seconds = measurement_interval ,
-                          args = simulator) 
+                        seconds = measurement_interval ,
+                        args = (simulator,)) 
         scheduler.start()
         logging.info("Scheduler started")
-    
+
     return {"status": "Scheduler already running"}
 
 
@@ -100,7 +118,15 @@ async def stop_scheduler():
     if scheduler.running:
         scheduler.shutdown()
         logging.info("Scheduler stopped")
+
+        # Create json doc with all the records
+        logging.info(f"Docs recorded {len(docs)}")
+
+        with open(f'sim_data/flight_telemetry_data.json', 'w') as f:
+            json.dump(docs, f, indent=4)
+        
         return {"status": "Scheduler stopped"}
+    
     
     return {"status": "Scheduler already stopped"}
 
