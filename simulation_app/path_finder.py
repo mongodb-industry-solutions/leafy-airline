@@ -56,15 +56,13 @@ def find_shortest_path(G, source, target):
     try:
         shortest_path = nx.shortest_path(G, source=source, target=target, weight='weight')
         shortest_path_length = nx.shortest_path_length(G, source=source, target=target, weight='weight')
-        print(f"The shortest path from {source} to {target}: {shortest_path}")
-        print(f"The length of the shortest path: {shortest_path_length} km")
         return shortest_path, shortest_path_length
     except nx.NetworkXNoPath:
         print(f"No path found between {source} and {target}.")
         return None, None
 
 def simulate_disruption(G, disrupted_edge):
-    print(f"\nDisruption in the path: {disrupted_edge}")
+
     G.remove_edge(*disrupted_edge)
 
 def create_path_points(airports, path):
@@ -109,8 +107,8 @@ def find_path(flight_info):
     initial_path, initial_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
     initial_path_points = create_path_points(airports, initial_path)
 
-    paths["initial_path"] = initial_path_points
-    paths["initial_length"] = initial_path_length
+    paths["path"] = initial_path_points
+    paths["extra_length"] = 0
 
     # 4. Include a disruption between our source and end airports randomly
     if np.random.randint(0,10) >= 5:
@@ -122,8 +120,8 @@ def find_path(flight_info):
 
         # Compute the coordinates for this new path points so the simulator can follow the new directions
         new_path_points = create_path_points(airports, shortest_path)
-        paths["new_path"] = new_path_points
-        paths["new_length"] = shortest_path_length
+        paths["path"] = new_path_points
+        paths["extra_length"] = shortest_path_length - initial_path_length
 
 
     return (disrupted, paths)

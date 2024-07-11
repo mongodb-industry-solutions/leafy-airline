@@ -5,21 +5,13 @@ from datetime import datetime
 
 class DataSimulator:
 
-    def __init__(self, flight_ID : str, disruption : bool,  paths: dict):
+    def __init__(self, flight_ID : str, disruption : bool,  path_atrib: dict):
         
         self.FID = flight_ID
         self.disruption = disruption
+        self.path = path_atrib["path"]
+        self.extra_length = path_atrib["extra_length"]
         self.arrived = False
-
-        # Create attributes
-        if disruption:
-            self.path = paths["new_path"]
-            self.path_length = paths["new_length"]
-            self.disrupted_length = paths["new_length"] - paths["initial_length"]
-        else:
-            self.path = paths["initial_path"]
-            self.length = paths["initial_length"]
-            self.disrupted_length = 0
         
         # Get the initial headed point
         self.headed_point = np.array(self.path[1])
@@ -132,7 +124,7 @@ class DataSimulator:
                 "flight_id": self.FID,
                 "ts": self.timestamp.isoformat(),
                 "disrupted" : self.disruption,
-                "extra_length" : self.disrupted_length,
+                "extra_length" : self.extra_length,
                 "location": {
                     "lat": new_loc[1],
                     "long": new_loc[0]
