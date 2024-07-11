@@ -35,7 +35,8 @@ docs = []
 
 def publish_data(simulator : DataSimulator):
 
-    data = simulator.generate_data()
+    (finished, data )= simulator.generate_data()
+    
     docs.append(data)
         
     # Uncomment when using pubsub

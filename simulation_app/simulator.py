@@ -1,6 +1,7 @@
 import os
 import numpy as np 
 from datetime import datetime
+import math
 
 
 class DataSimulator:
@@ -15,6 +16,7 @@ class DataSimulator:
         
         # Get the initial headed point
         self.headed_point = np.array(self.path[1])
+        self.path_idx = 1
 
         self.prev_speed = 0
         self.prev_location = np.array(self.path[0])
@@ -30,20 +32,38 @@ class DataSimulator:
         # Example: 10 = maximum coverage of 10 meters/iteration
         self.location_update_rate = 2
 
+    def get_real_distance(self, loc1, loc2) :
+        '''
+        Haversine function to calculate distance between two points in the earth
+        '''
+        (lat1, lon1) = loc1
+        (lat2, lon2) = loc2
+        lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+        a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+        c = 2 * math.asin(math.sqrt(a))
+        km = 6371 * c
+        return km
 
-    def get_real_distance(self, loc1, loc2):
-        """
-        Calculate the great-circle distance between two points on the Earth.
-        """
-        R = 6371e3  # Earth radius in meters
-        phi1, lambda1 = np.radians(loc1)
-        phi2, lambda2 = np.radians(loc2)
-        delta_phi = phi2 - phi1
-        delta_lambda = lambda2 - lambda1
+    def dist_to_arrival(self, loc):
+        '''
+        This function computes the distance to arrival based on the 
+        followed route. If it has been a disruption, this distance will
+        be computed using the new path
+        '''
+        # Get the idx of the current headed point in the path
+        path_idx = self.path_idx
 
-        a = np.sin(delta_phi / 2.0)**2 + np.cos(phi1) * np.cos(phi2) * np.sin(delta_lambda / 2.0)**2
-        c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
-        return R * c
+        if len(self.path) == 2:
+            return self.get_real_distance(loc, self.path[-1])
+        else:
+            total_length = 0
+            for i in range(path_idx, len(self.path)):
+                total_length += self.get_real_distance(loc, self.path[i])
+                loc = self.path[i]
+
+            return total_length
 
     def new_headed_point(self, last_point):
         '''
@@ -51,7 +71,7 @@ class DataSimulator:
         heading next
         '''
         path = self.path
-        i = path.index(last_point)
+        i = self.path_idx
 
         # First we check if the point to which we are arriving is the final goal
         if i == (len(path)-1):
@@ -65,26 +85,30 @@ class DataSimulator:
         else:
             self.headed_point = path[i+1]
 
-        return self.arrived
+        return 
 
     def generate_data(self):
         '''
         This function will generate real-time simulated data based on the route that
         the aircraft is following (path)
-        The appearance of the simulated data would be a dict contining:
-        - flight_id
-        - ts 
-        - disrupted : Boolean that shows if the route was disrupted
-        - extra_length : Extra length to cover because of disruption (in km)
-        - location (lat , long)
-        - velocity : speed: new_speed,
-                     heading: new_heading
+
+        Returns:
+        1. finished : Boolean that states if we've reached our arrival point
+        2. Simulated data : dict containing
+            - flight_id
+            - ts 
+            - disrupted : Boolean that shows if the route was disrupted
+            - extra_length : Extra length to cover because of disruption (in km)
+            - distance_to_arrival : Distance to arrival location based on route (in km)
+            - location (lat , long)
+            - velocity : speed: new_speed,
+                        heading: new_heading
         '''
-        
+
         # 1. Compute direction vector from current position to headed point so we know
         # in which direction the airplane should move
         direction_vector = self.headed_point - self.prev_location
-        distance_to_arrival = self.get_real_distance(self.prev_location, self.headed_point)
+        distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
         
         # 2. Normalize the vector so we have its unitary 
         unit_vector = direction_vector / np.linalg.norm(direction_vector)
@@ -99,9 +123,12 @@ class DataSimulator:
         
         # 4. If the distance to arrival is less than the threshold, we assume that the next point it's 
         # been reached and we have to get the new headed point
-        if distance_to_arrival < self.loc_th :
+        if distance_to_headed < self.loc_th :
             new_loc = self.headed_point
-            finished = self.new_headed_point()
+            self.new_headed_point()
+
+            # Add 1 to the idx because we've changed to the next point of the path
+            self.path_idx += 1
 
         else:
             step_distance = np.random.randint(1,self.location_update_rate)
@@ -111,8 +138,10 @@ class DataSimulator:
         # Maintain it the same for now
         new_speed = self.prev_speed
         
-        # 6. Compute new heading direction
+        # 6. Compute new heading direction and new distance to arrival
         new_heading = (np.degrees(np.arctan2(noisy_vector[1], noisy_vector[0])) + 360) % 360
+
+        distance_to_dest = self.dist_to_arrival(new_loc)
 
         # 7. Update every measurement
         self.prev_location = new_loc
@@ -120,11 +149,12 @@ class DataSimulator:
         self.timestamp = datetime.now()
 
 
-        return {
+        return (self.arrived, {
                 "flight_id": self.FID,
                 "ts": self.timestamp.isoformat(),
                 "disrupted" : self.disruption,
                 "extra_length" : self.extra_length,
+                "distance_to_arrival" : distance_to_dest,
                 "location": {
                     "lat": new_loc[1],
                     "long": new_loc[0]
@@ -133,7 +163,7 @@ class DataSimulator:
                     "speed": new_speed,
                     "heading": new_heading
                 }
-            }
+            })
 
 
 
