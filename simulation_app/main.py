@@ -84,14 +84,12 @@ async def start_scheduler(flight_info:dict):
     log_info(flight_info)
 
     # Find the path between the departure and arrival locations
-    path_points = find_path(flight_info)
-
-    logging.info("Path generated")
-    logging.info(path_points)
+    (disrupted, paths) = find_path(flight_info)
 
     # Create our Data Simulator for this flight
     simulator = DataSimulator(flight_info["flight_id"],
-                            path = path_points)
+                              disruption = disrupted,
+                              paths = paths)
     
     logging.info("Simulator created")
 

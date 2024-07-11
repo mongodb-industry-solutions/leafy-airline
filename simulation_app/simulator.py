@@ -5,17 +5,27 @@ from datetime import datetime
 
 class DataSimulator:
 
-    def __init__(self, flight_ID : str, path: list):
+    def __init__(self, flight_ID : str, disruption : bool,  paths: dict):
         
         self.FID = flight_ID
-        self.path = path
+        self.disruption = disruption
         self.arrived = False
 
-        # The point that we're heading to
-        self.headed_point = np.array(path[1])
+        # Create attributes
+        if disruption:
+            self.path = paths["new_path"]
+            self.path_length = paths["new_length"]
+            self.disrupted_length = paths["new_length"] - paths["initial_length"]
+        else:
+            self.path = paths["initial_path"]
+            self.length = paths["initial_length"]
+            self.disrupted_length = 0
+        
+        # Get the initial headed point
+        self.headed_point = np.array(self.path[1])
 
         self.prev_speed = 0
-        self.prev_location = np.array(path[0])
+        self.prev_location = np.array(self.path[0])
         self.timestamp = datetime.now()
 
         # THRESHOLDING 
@@ -27,6 +37,7 @@ class DataSimulator:
         # It will determine how much can the plane cover in the time between measurements
         # Example: 10 = maximum coverage of 10 meters/iteration
         self.location_update_rate = 2
+
 
     def get_real_distance(self, loc1, loc2):
         """
@@ -68,6 +79,14 @@ class DataSimulator:
         '''
         This function will generate real-time simulated data based on the route that
         the aircraft is following (path)
+        The appearance of the simulated data would be a dict contining:
+        - flight_id
+        - ts 
+        - disrupted : Boolean that shows if the route was disrupted
+        - extra_length : Extra length to cover because of disruption (in km)
+        - location (lat , long)
+        - velocity : speed: new_speed,
+                     heading: new_heading
         '''
         
         # 1. Compute direction vector from current position to headed point so we know
@@ -112,8 +131,8 @@ class DataSimulator:
         return {
                 "flight_id": self.FID,
                 "ts": self.timestamp.isoformat(),
-                "disrupted" : True,
-                "current_delay" : 150,
+                "disrupted" : self.disruption,
+                "extra_length" : self.disrupted_length,
                 "location": {
                     "lat": new_loc[1],
                     "long": new_loc[0]

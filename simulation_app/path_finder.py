@@ -1,6 +1,7 @@
 import math
 import networkx as nx
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Previously added data
 # Define a list of airports with their coordinates (latitude, longitude)
@@ -86,9 +87,7 @@ def find_path(flight_info):
     taking into account any disruptions that may appear 
 
     Returns:
-    - path_points = [(lat, long), (lat,long) ...] -> List of tuples
-                    with the lat and long coordinates for each of the points 
-                    that will determine the final route
+    - paths = 
     '''
 
     # 1. Check if the selected airports are in the airports list and 
@@ -99,18 +98,32 @@ def find_path(flight_info):
     for airport in new_airports.keys():
         if airport not in airports.keys():
             airports[airport] = new_airports[airport]
+    
+    disrupted = False
+    paths = {}
 
     # 2. Create the graph and the edges between airports
     G = create_graph(airports)
 
-    # 3. Include a disruption between our source and end airports
-    simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
+    # 3. Get initial path without disruption
+    initial_path, initial_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
+    initial_path_points = create_path_points(airports, initial_path)
 
-    # 4. Find the shortest path between the departure and arrival airports
-    shortest_path, shortest_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
+    paths["initial_path"] = initial_path_points
+    paths["initial_length"] = initial_path_length
 
-    # 5. Return the coordinates for this new path points so the simulator can
-    # follow the new directions
-    path_points = create_path_points(airports, shortest_path)
+    # 4. Include a disruption between our source and end airports randomly
+    if np.random.randint(0,10) >= 5:
+        simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
+        disrupted = True
 
-    return path_points
+        # 5. Find the shortest path between the departure and arrival airports
+        shortest_path, shortest_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
+
+        # Compute the coordinates for this new path points so the simulator can follow the new directions
+        new_path_points = create_path_points(airports, shortest_path)
+        paths["new_path"] = new_path_points
+        paths["new_length"] = shortest_path_length
+
+
+    return (disrupted, paths)
