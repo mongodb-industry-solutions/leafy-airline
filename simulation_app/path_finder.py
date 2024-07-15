@@ -2,16 +2,11 @@ import math
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
+from airports import airports
+
 
 # Previously added data
 # Define a list of airports with their coordinates (latitude, longitude)
-airports = {
-    'JFK': (40.6413, -73.7781),
-    'LAX': (34.052235, -118.243683),
-    'ORD': (41.9742, -87.9073),
-    'DFW': (32.8998, -97.0403),
-    'DEN': (39.8561, -104.6737),
-}
 
 def haversine(lat1, lon1, lat2, lon2):
     '''
@@ -111,17 +106,17 @@ def find_path(flight_info):
     paths["extra_length"] = 0
 
     # 4. Include a disruption between our source and end airports randomly
-    if np.random.randint(0,10) >= 5:
-        simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
-        disrupted = True
+    # if np.random.randint(0,10) >= 5:
+    #     simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
+    #     disrupted = True
 
-        # 5. Find the shortest path between the departure and arrival airports
-        shortest_path, shortest_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
+    #     # 5. Find the shortest path between the departure and arrival airports
+    #     shortest_path, shortest_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
 
-        # Compute the coordinates for this new path points so the simulator can follow the new directions
-        new_path_points = create_path_points(airports, shortest_path)
-        paths["path"] = new_path_points
-        paths["extra_length"] = shortest_path_length - initial_path_length
+    #     # Compute the coordinates for this new path points so the simulator can follow the new directions
+    #     new_path_points = create_path_points(airports, shortest_path)
+    #     paths["path"] = new_path_points
+    #     paths["extra_length"] = shortest_path_length - initial_path_length
 
 
     return (disrupted, paths)

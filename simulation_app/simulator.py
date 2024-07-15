@@ -18,7 +18,7 @@ class SpeedSimulator:
         '''
 
         self.prev_speed = 0
-        self.avg_plane_speed = 245 # m/s -> 885 km/h
+        self.avg_plane_speed = 245 #245 # m/s -> 885 km/h
         self.speed_descent_rate = 1 # m/s (18 km/h)-> 4 min to go back to 0 m/s
         self.approach_dist = 170 # km (Based on 0.245 km/s advance, we would need 11.56 min to descend)
 
@@ -59,7 +59,7 @@ class DataSimulator:
         # it will depend on how much can an aircraft move forward per second
         # Avg aircraft speed is usually between 880 - 930 km/h -> 247,22 m/s
         self.SpController = SpeedSimulator()
-        self.location_th = 0.245
+        self.location_th = 0.245     #0.245
 
     def get_real_distance(self, loc1, loc2) :
         '''
@@ -102,20 +102,20 @@ class DataSimulator:
         Function that will check which point of the path we're
         heading next
         '''
-        path = self.path
+        path_len = len(self.path)
         i = self.path_idx
 
         # First we check if the point to which we are arriving is the final goal
-        if i == (len(path)-1):
+        if i == path_len:
             self.arrived = True
             self.headed_point = None
         
         # If not, we can see if there are more than two main points in our path
-        elif len(path) == 2:
-            self.headed_point = path[-1]
+        elif path_len == 2:
+            self.headed_point = self.path[-1]
         
         else:
-            self.headed_point = path[i+1]
+            self.headed_point = self.path[i+1]
 
         self.path_idx += 1
 
@@ -133,8 +133,8 @@ class DataSimulator:
         R = 6371.0
 
         # Previous location in radians
-        prev_lat_rad = np.radians(self.prev_location[1])
-        prev_lon_rad = np.radians(self.prev_location[0])
+        prev_lat_rad = np.radians(self.prev_location[0])
+        prev_lon_rad = np.radians(self.prev_location[1])
 
         # Speed in km/h to km/s
         speed_km_s = self.prev_speed / 3600
@@ -154,7 +154,7 @@ class DataSimulator:
         new_lat = np.degrees(new_lat_rad)
         new_lon = np.degrees(new_lon_rad)
 
-        return np.array([new_lon, new_lat])
+        return np.array([new_lat, new_lon])
 
     def generate_data(self):
         '''
@@ -176,6 +176,8 @@ class DataSimulator:
 
         # 1. Compute direction vector from current position to headed point so we know
         # in which direction the airplane should move
+        print('Headed', self.headed_point)
+        print('Prev', self.prev_location)
         direction_vector = self.headed_point - self.prev_location
         distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
         
@@ -199,7 +201,8 @@ class DataSimulator:
             # If the headed point is not reached, we just compute new location based of previous speed
             new_loc = self.compute_new_location(noisy_vector)
 
-
+        print('Dist_head', distance_to_headed)
+        print('new loc: ', new_loc)
         # 5. Compute new heading direction and new distance to arrival (using the described path)
         new_heading = (np.degrees(np.arctan2(noisy_vector[1], noisy_vector[0])) + 360) % 360
         distance_to_dest = self.dist_to_arrival(new_loc)
@@ -222,8 +225,8 @@ class DataSimulator:
                 "extra_length" : self.extra_length,
                 "distance_to_arrival" : distance_to_dest,
                 "location": {
-                    "lat": new_loc[1],
-                    "long": new_loc[0]
+                    "lat": new_loc[0],
+                    "long": new_loc[1]
                 },
                 "velocity": {
                     "speed": new_speed,
