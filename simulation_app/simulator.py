@@ -1,221 +1,257 @@
-
-import matplotlib.pyplot as plt
 import os
-
 import numpy as np 
-from datetime import datetime, timedelta
-import matplotlib.pyplot as plt
-import json
-import os
+from datetime import datetime
+import math
+from pyproj import CRS, Transformer
+
+# Define the WGS84 projection (latitude and longitude)
+wgs84 = CRS.from_epsg(4326)
+# Define the Mercator projection (x, y)
+mercator = CRS.from_epsg(3857)
+
+
+class SpeedSimulator:
+    def __init__(self):
+        '''
+        Class that will smimulate the speed controls from a plane based on distance 
+        to arrival.
+
+        Using the 3:1 nautic rule, this class will compute the speed at which the
+        aircraft should fly in each instant. 
+
+        Assumed limit altitude : 30.000 feet (=9200m)
+        3:1 calculated distance to limit altitude : 170 km
+
+        '''
+
+        self.prev_speed = 0
+        self.avg_plane_speed = 245 #245 # m/s -> 885 km/h
+        self.speed_descent_rate = 0.01 # m/s (18 km/h)-> 4 min to go back to 0 m/s
+        self.approach_dist = 170 # km (Based on 0.245 km/s advance, we would need 11.56 min to descend)
+
+
+    def get_new_speed(self, new_dist):
+
+        # If the distance to arrival is equal or less than the approach_dist
+        # we start the "descent"
+        speed = self.prev_speed
+
+        if new_dist <= self.approach_dist:
+            if speed > 100:
+                speed -= self.speed_descent_rate
+            else:
+                speed = 100
+        else:
+            # We add a slight noise to our speed calculations
+            speed = self.avg_plane_speed + np.random.uniform(-5, 5)
+
+        return speed
+
+class CoordinateTransformer:
+
+    def __init__(self, ):
+
+        self.to_2d_transformer = Transformer.from_crs(wgs84, mercator)
+        self.to_latlon_transformer = Transformer.from_crs(mercator, wgs84)
+
+        return
+    
+    def latlon_to_2d(self, lat, lon):
+        x, y = self.to_2d_transformer.transform(lat, lon)
+        return x, y
+
+    def _2d_to_latlon(self, x, y):
+        lat, lon = self.to_latlon_transformer.transform(x, y)
+        return lat, lon
+
+    def unit_vector(self, origin, destination):
+        # Calculate the vector from origin to destination
+        vector = (destination[0] - origin[0], destination[1] - origin[1])
+        # Calculate the magnitude of the vector
+        magnitude = math.sqrt(vector[0]**2 + vector[1]**2)
+        # Normalize the vector
+        if magnitude == 0:
+            return (0, 0)
+        unit = (vector[0] / magnitude, vector[1] / magnitude)
+        return unit
+    
+    def compute_new_loc(self, origin_lat, origin_lon, dest_lat, dest_lon, advancement):
+        #Transform the coordinates from lat/lon to 2D
+        origin_2d = self.latlon_to_2d(origin_lat, origin_lon)
+        destination_2d = self.latlon_to_2d(dest_lat, dest_lon)
+        
+        # Calculate the unit vector from origin to destination
+        unit = self.unit_vector(origin_2d, destination_2d)
+        
+        # Calculate the displacement vector for 1 km
+        displacement = (unit[0] * advancement, unit[1] * advancement)
+        
+        # Add the displacement vector to the origin
+        new_2d = (origin_2d[0] + displacement[0], origin_2d[1] + displacement[1])
+        
+        # Transform the new 2D coordinates back to lat/lon
+        new_lat, new_lon =self._2d_to_latlon(new_2d[0], new_2d[1])
+        
+        return (new_lat, new_lon)
 
 class DataSimulator:
-    def __init__(self, flight_ID, dep_location, arr_location, gen_period):
-        
-        # INITIALIZATION
-        self.FID = flight_ID
-        self.dep_loc = np.array(dep_location)
-        self.arriv_loc = np.array(arr_location)
-        self.t = gen_period
-        
-        # THRESHOLDING 
-        # We're going to use thresholds that will allow us to limit the measurements
-        # and make sure that they are adequate
 
-        # Maximum speed variation between iterations
-        self.sp_th = 5
-        # Maximum location distance between one point and the next one
-        self.loc_th = 1
+    def __init__(self, flight_ID : str, disruption : bool,  path_atrib: dict, seconds_per_iter: int):
         
-        # It will determine how much can the plane cover in the time between measurements
-        # Example: 10 = maximum coverage of 10 meters/iteration
-        self.location_update_rate = 2
+        self.FID = flight_ID
+        self.disruption = disruption
+        self.path = path_atrib["path"]
+        self.extra_length = path_atrib["extra_length"]
+        self.arrived = False
         
-        # STORED DATA 
-        # It will allow the program to access previous data so that measurements are
-        # coherent 
+        # Get the initial headed point
+        self.headed_point = np.array(self.path[1])
+        self.path_idx = 1
+
         self.prev_speed = 0
-        self.prev_location = np.array(dep_location)
+        self.prev_location = np.array(self.path[0])
         self.timestamp = datetime.now()
 
-    def generate_data(self):
-        
-        # 1. Compute direction vector from current position to arrival location so we know
-        # in which direction the airplane should move
-        direction_vector = self.arriv_loc - self.prev_location
-        distance_to_arrival = np.linalg.norm(direction_vector)
-        
-        # 2. Normalize the vector so we have its unitary 
-        unit_vector = direction_vector / distance_to_arrival
-        
-        # 3. Add some noise to the vector so the path is not a straight line to the arrival point
-        noise = np.random.normal(0, 0.15, 2)
-        noisy_vector = unit_vector + noise
+        # Avg aircraft speed is usually between 880 - 930 km/h -> 247,22 m/s
+        self.SpController = SpeedSimulator()
+        self.location_th = 1 # If the plane is at a 1km or less distance from the headed point, it is considered as reached
+        self.advancement_rate = 245*seconds_per_iter # Indicates the meters that the plane can cover per iteration
+        # Coordinate transformer
+        self.CoordTransformer = CoordinateTransformer()
 
-        # Ensure the noisy vector still points roughly towards the arrival location
-        if np.dot(noisy_vector, unit_vector) < 0:
-            noisy_vector = -noisy_vector
-        
-        # 4. If the distance to arrival is less than the threshold, we assume that the next point is 
-        # the arrival
-        if distance_to_arrival < self.loc_th :
-            new_loc = self.arriv_loc
+    def get_real_distance(self, loc1, loc2) :
+        '''
+        Haversine function to calculate distance between two points in the earth
+        '''
+        (lat1, lon1) = loc1
+        (lat2, lon2) = loc2
+        lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+        a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+        c = 2 * math.asin(math.sqrt(a))
+        km = 6371 * c
+        return km
+
+    def dist_to_arrival(self, loc):
+        '''
+        This function computes the distance to arrival based on the 
+        followed route. If it has been a disruption, this distance will
+        be computed using the new path
+        '''
+        # Get the idx of the current headed point in the path
+        path_idx = self.path_idx
+
+        # If we're just going from A to B, get real straight-line distance to arrival
+        if len(self.path) == 2:
+            return self.get_real_distance(loc, self.path[-1])
         else:
-            step_distance = np.random.randint(1,self.location_update_rate)
-            new_loc = self.prev_location + step_distance * noisy_vector
+            # If there are more than 1 points in our route, iterate through them
+            # so we get the real distance that we have to cover using the extended path
+            total_length = 0
+            for i in range(path_idx, len(self.path)):
+                total_length += self.get_real_distance(loc, self.path[i])
+                loc = self.path[i]
+
+            return total_length
+
+    def new_headed_point(self):
+        '''
+        Function that will check which point of the path we're
+        heading next
+        '''
+        path_len = len(self.path)
+        i = self.path_idx
+
+        # First we check if the point to which we are arriving is the final goal
+        if i == path_len:
+            self.arrived = True
+            self.headed_point = None
         
+        # If not, we can see if there are more than two main points in our path
+        elif path_len == 2:
+            self.headed_point = self.path[-1]
         
-        # 5. Compute new speed randomly according to previous values
-        new_speed = self.prev_speed + np.random.uniform(-self.sp_th*0.5, self.sp_th)
-        if new_speed < 0:
-            new_speed = self.prev_speed
+        else:
+            self.headed_point = self.path[i+1]
+
+        self.path_idx += 1
+
+        return 
+
+    def generate_data(self):
+        '''
+        This function will generate real-time simulated data based on the route that
+        the aircraft is following (path)
+
+        Returns:
+        1. finished : Boolean that states if we've reached our arrival point
+        2. Simulated data : dict containing
+            - flight_id
+            - ts 
+            - disrupted : Boolean that shows if the route was disrupted
+            - extra_length : Extra length to cover because of disruption (in km)
+            - distance_to_arrival : Distance to arrival location based on route (in km)
+            - location (lat , long)
+            - velocity : speed: new_speed,
+                        heading: new_heading
+        '''
+
+        # 1. Compute direction vector from current position to headed point so we know
+        # in which direction the airplane should move
+        print('\nNew measurements: ')
+        print('Headed', self.headed_point)
+        print('Prev', self.prev_location)
+
+        # Distance to next point in km
+        distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
+
+        # Compute next location
+        if distance_to_headed < self.location_th :
+            new_loc = self.headed_point
+            self.new_headed_point()
+
+        else:
+            # If the headed point is not reached, we just compute new location based of previous speed
+            new_loc = self.CoordTransformer.compute_new_loc(self.prev_location[0],
+                                                            self.prev_location[1],
+                                                            self.headed_point[0],
+                                                            self.headed_point[1], 
+                                                            self.advancement_rate )
+
+        print('Distance to headed: ', distance_to_headed)
+        print('Heading to:', self.headed_point)
+        print('From : ', new_loc)
+
+        # 5. Compute new heading direction and new distance to arrival (using the described path)
+        # new_heading = (np.degrees(np.arctan2(unit_vector[1], unit_vector[0])) + 360) % 360
+        distance_to_dest = self.dist_to_arrival(new_loc)
+
+        # Compute new speed 
+        new_speed = self.SpController.get_new_speed(distance_to_dest)
+        print('Speed:', new_speed)
         
-        new_heading = (np.degrees(np.arctan2(noisy_vector[1], noisy_vector[0])) + 360) % 360
+
+        # Update every measurement
         self.prev_location = new_loc
         self.prev_speed = new_speed
-        self.timestamp += timedelta(seconds=self.t)
+        self.timestamp = datetime.now()
 
 
-        return {
-            "FlightID": self.FID,
-            "Timestamp": self.timestamp.isoformat(),
-            "Location": {
-                "Latitude": new_loc[1],
-                "Longitude": new_loc[0]
-            },
-            "Velocity": {
-                "Speed": new_speed,
-                "Heading": new_heading
-            }
-        }
-
-    def create_doc(self):
-        data = self.generate_data()
-        return data
-
-class Plotter:
-
-    def __init__(self, ts, speeds , dep, arriv, locations):
-
-        self.ts = ts
-        self.speeds = speeds
-        self.dep_loc = dep
-        self.arriv_loc = arriv
-        self.locations = locations
-
-    def plot_speed_evolution(self):
-
-        plt.figure(figsize=(10, 6))
-        plt.plot(self.ts, self.speeds, 'bo-', label='Speed evolution', markersize=5, linewidth=1)
-        plt.xlabel('Timestamp')
-        plt.ylabel('Speed')
-        plt.title('Flight Speed over time')
-        plt.legend()
-        plt.grid(True)
-
-        # Format x-axis timestamps to simplify
-        plt.xticks(rotation=45)
-
-        if not os.path.exists('sim_imgs'):
-            os.makedirs('sim_imgs')
-
-        plt.savefig(f'sim_imgs/flight_speed.png')
-        plt.show()
-
-        return
-
-    def plot_flight_path(self):
-
-        # Unpack the departure and arrival locations
-        dep_lon, dep_lat =  self.dep_loc
-        arr_lon, arr_lat = self.arriv_loc
-
-        # Unpack the flight path locations
-        lons, lats = zip(*self.locations)
-
-        # Create the plot
-        plt.figure(figsize=(10, 6))
-        plt.plot(lons, lats, 'bo-', label='Flight Path', markersize=5, linewidth=1)
-        plt.plot(dep_lon, dep_lat, 'go', label='Departure', markersize=10)
-        plt.plot(arr_lon, arr_lat, 'ro', label='Arrival', markersize=10)
-
-        # Annotate the departure and arrival points
-        plt.text(dep_lon, dep_lat, ' Departure', horizontalalignment='right', verticalalignment='bottom')
-        plt.text(arr_lon, arr_lat, ' Arrival', horizontalalignment='left', verticalalignment='bottom')
-
-        # Set labels and title
-        plt.xlabel('Longitude')
-        plt.ylabel('Latitude')
-        plt.title('Flight Path from Departure to Arrival')
-        plt.legend()
-        plt.grid(True)
-
-        if not os.path.exists('sim_imgs'):
-            os.makedirs('sim_imgs')
-
-        plt.savefig(f'sim_imgs/flight_path.png')
-        plt.show()
-
-        return
-    
-    def create_plots(self):
-
-        self.plot_flight_path()
-        self.plot_speed_evolution()
-
-        return
+        return (self.arrived, {
+                "flight_id": self.FID,
+                "ts": self.timestamp.isoformat(),
+                "disrupted" : self.disruption,
+                "extra_length" : self.extra_length,
+                "distance_to_arrival" : distance_to_dest,
+                "location": {
+                    "lat": new_loc[0],
+                    "long": new_loc[1]
+                },
+                "velocity": {
+                    "speed": new_speed,
+                    "heading": 'tbd'
+                }
+            })
 
 
-def run_script():
-
-    # FLIGHT INITIAL PARAMETERS
-    dep = (0,0)
-    arriv = (20.0,20.0)   # Important: MUST BE FLOAT
-    flightID = "9786AE"
-    generation_period = 60
-
-    # STOP CONDITION
-    arrived = False
-
-    # SIMULATION
-    simulator = DataSimulator(flight_ID=flightID,
-                               dep_location=dep,
-                               arr_location=arriv,
-                               gen_period=generation_period)
-    locations = [dep]
-    speeds = [0]
-    ts = [datetime.now()]
-    docs = []
-
-    # MAIN LOOP AND DATA STORAGE
-    if not os.path.exists('sim_data'):
-        os.makedirs('sim_data')
-
-    with open(f'sim_data/flight_telemetry_data.json', 'w') as f:
-
-        while not arrived:
-            doc = simulator.create_doc()
-            new_loc = (doc["Location"]["Longitude"], doc["Location"]["Latitude"])
-
-            if new_loc == arriv:
-                arrived = True
-
-            speeds.append(doc["Velocity"]["Speed"])
-            ts.append(doc["Timestamp"])
-            locations.append(new_loc)
-            docs.append(doc)
-
-        json.dump(docs, f, indent=4)
-    
-    # CREATE PLOTTER AND REPRESENTATIONS
-    #plotter = Plotter(ts,speeds, simulator.dep_loc, simulator.arriv_loc, locations)
-    #plotter.create_plots()
-
-    return "Path and images were created"
-
-    
-        
-        
-
-        
-        
-        
