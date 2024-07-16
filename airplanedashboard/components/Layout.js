@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>Header</h1>
+        <h1>Leafy Airline Dashboard</h1>
         <Logo className={styles.logo} />
       </header>
       <div className={styles.main}>
