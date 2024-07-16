@@ -1,4967 +1,1457 @@
 [
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:06.542844",
+        "ts": "2024-07-16T16:15:41.608793",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 294.94338212872253,
+        "distance_to_arrival": 291.22170366055457,
         "location": {
-            "lat": 40.4983,
-            "long": -3.5676
+            "lat": 40.48532197555584,
+            "long": -3.5270251738005025
         },
         "velocity": {
-            "speed": 244.6145338175246,
-            "heading": 112.93699857748027
+            "speed": 244.0087836688688,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:06.630696",
+        "ts": "2024-07-16T16:15:42.611487",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 294.9840923510508,
+        "distance_to_arrival": 287.4992900405724,
         "location": {
-            "lat": 40.49871729285893,
-            "long": -3.567899189501596
+            "lat": 40.47234144123649,
+            "long": -3.486450347601004
         },
         "velocity": {
-            "speed": 242.2269410863881,
-            "heading": 118.5993550852312
+            "speed": 245.7841511898758,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:06.737628",
+        "ts": "2024-07-16T16:15:43.609216",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.0406853061474,
+        "distance_to_arrival": 283.7761415228262,
         "location": {
-            "lat": 40.49950321188623,
-            "long": -3.5682067858449633
+            "lat": 40.459358397222914,
+            "long": -3.4458755214015055
         },
         "velocity": {
-            "speed": 247.81780761244087,
-            "heading": 106.57371466955232
+            "speed": 242.4864585710632,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:06.900957",
+        "ts": "2024-07-16T16:15:44.608528",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.1035916390692,
+        "distance_to_arrival": 280.05225836138766,
         "location": {
-            "lat": 40.50012064350119,
-            "long": -3.5686832647331426
+            "lat": 40.44637284369665,
+            "long": -3.4053006952020075
         },
         "velocity": {
-            "speed": 243.1645216292482,
-            "heading": 120.404934988896
+            "speed": 243.3252844490447,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:06.933011",
+        "ts": "2024-07-16T16:15:45.605897",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.14638610569347,
+        "distance_to_arrival": 276.32764081035026,
         "location": {
-            "lat": 40.50073250293302,
-            "long": -3.568906366150241
+            "lat": 40.433384780839795,
+            "long": -3.364725869002509
         },
         "velocity": {
-            "speed": 240.6226481882108,
-            "heading": 105.49670739186985
+            "speed": 240.960385653568,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.033081",
+        "ts": "2024-07-16T16:15:46.609154",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.18143088817243,
+        "distance_to_arrival": 272.60228912382655,
         "location": {
-            "lat": 40.50125270298034,
-            "long": -3.569078884003017
+            "lat": 40.420394208834935,
+            "long": -3.324151042803011
         },
         "velocity": {
-            "speed": 244.3426818939259,
-            "heading": 104.15343078696299
+            "speed": 242.09696932285513,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.129109",
+        "ts": "2024-07-16T16:15:47.608966",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.20481890883565,
+        "distance_to_arrival": 268.8762035559518,
         "location": {
-            "lat": 40.5017791821954,
-            "long": -3.5690994696654674
+            "lat": 40.40740112786527,
+            "long": -3.283576216603513
         },
         "velocity": {
-            "speed": 244.58914611092578,
-            "heading": 91.70298983535696
+            "speed": 248.37177190361936,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.233519",
+        "ts": "2024-07-16T16:15:48.607454",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.28497892190677,
+        "distance_to_arrival": 265.1493843608827,
         "location": {
-            "lat": 40.50305631418732,
-            "long": -3.569447423895444
+            "lat": 40.39440553811453,
+            "long": -3.243001390404015
         },
         "velocity": {
-            "speed": 244.70682145173768,
-            "heading": 101.7040601806849
+            "speed": 245.21608177893182,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.334064",
+        "ts": "2024-07-16T16:15:49.609676",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.34622255825604,
+        "distance_to_arrival": 261.42183179279635,
         "location": {
-            "lat": 40.50372955029375,
-            "long": -3.569872595305394
+            "lat": 40.381407439767,
+            "long": -3.202426564204517
         },
         "velocity": {
-            "speed": 241.45458002953205,
-            "heading": 115.65010488556175
+            "speed": 241.1836313623385,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.433004",
+        "ts": "2024-07-16T16:15:50.605304",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.3584376015524,
+        "distance_to_arrival": 257.69354610589136,
         "location": {
-            "lat": 40.50413520645155,
-            "long": -3.569814064571005
+            "lat": 40.36840683300751,
+            "long": -3.161851738005019
         },
         "velocity": {
-            "speed": 244.88814864411384,
-            "heading": 83.73915094912826
+            "speed": 241.0307291801581,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.532972",
+        "ts": "2024-07-16T16:15:51.610795",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.3903081048067,
+        "distance_to_arrival": 253.96452755438784,
         "location": {
-            "lat": 40.5046544265116,
-            "long": -3.569945982098637
+            "lat": 40.355403718021456,
+            "long": -3.1212769118055204
         },
         "velocity": {
-            "speed": 240.58726328165432,
-            "heading": 100.93381274999706
+            "speed": 246.11138971356345,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.632801",
+        "ts": "2024-07-16T16:15:52.608488",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.4299927899767,
+        "distance_to_arrival": 250.23477639252653,
         "location": {
-            "lat": 40.50535769304076,
-            "long": -3.570080095568811
+            "lat": 40.34239809499476,
+            "long": -3.0807020856060223
         },
         "velocity": {
-            "speed": 243.56131136709863,
-            "heading": 98.25030455714182
+            "speed": 245.62764919893746,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.731282",
+        "ts": "2024-07-16T16:15:53.606031",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.489847595375,
+        "distance_to_arrival": 246.50429287456987,
         "location": {
-            "lat": 40.50619441959895,
-            "long": -3.570400544276345
+            "lat": 40.32938996411393,
+            "long": -3.040127259406524
         },
         "velocity": {
-            "speed": 244.68862950387157,
-            "heading": 106.23519389395233
+            "speed": 247.43192970729174,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.831563",
+        "ts": "2024-07-16T16:15:54.607223",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.5383166727424,
+        "distance_to_arrival": 242.77307725480094,
         "location": {
-            "lat": 40.50666189989655,
-            "long": -3.5707710863205837
+            "lat": 40.31637932556599,
+            "long": -2.999552433207026
         },
         "velocity": {
-            "speed": 240.72999967968443,
-            "heading": 121.07588709971725
+            "speed": 248.4197690309924,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:07.932099",
+        "ts": "2024-07-16T16:15:55.610693",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.55921346997985,
+        "distance_to_arrival": 239.0411297875254,
         "location": {
-            "lat": 40.507038839552614,
-            "long": -3.570837951051475
+            "lat": 40.30336617953856,
+            "long": -2.9589776070075273
         },
         "velocity": {
-            "speed": 247.54671991407463,
-            "heading": 97.68129172720313
+            "speed": 246.1031145149422,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.033543",
+        "ts": "2024-07-16T16:15:56.609217",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.58564286638966,
+        "distance_to_arrival": 235.30845072706916,
         "location": {
-            "lat": 40.507553605154186,
-            "long": -3.5709022879625185
+            "lat": 40.29035052621978,
+            "long": -2.9184027808080293
         },
         "velocity": {
-            "speed": 245.42239800538516,
-            "heading": 95.42834480275656
+            "speed": 240.64528732152746,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.133508",
+        "ts": "2024-07-16T16:15:57.607399",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.62256833970315,
+        "distance_to_arrival": 231.57504032777902,
         "location": {
-            "lat": 40.50800509209218,
-            "long": -3.5711339100453894
+            "lat": 40.27733236579836,
+            "long": -2.8778279546085312
         },
         "velocity": {
-            "speed": 249.29666634281577,
-            "heading": 111.30860539603987
+            "speed": 240.20640789260665,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.233606",
+        "ts": "2024-07-16T16:15:58.609604",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.67387492523,
+        "distance_to_arrival": 227.84089884402425,
         "location": {
-            "lat": 40.508484860348474,
-            "long": -3.571533880747178
+            "lat": 40.26431169846355,
+            "long": -2.8372531284090328
         },
         "velocity": {
-            "speed": 244.67934638655944,
-            "heading": 122.36856186252459
+            "speed": 247.55405457447006,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.335169",
+        "ts": "2024-07-16T16:15:59.608088",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.71268346584645,
+        "distance_to_arrival": 224.10602653019447,
         "location": {
-            "lat": 40.50896484259603,
-            "long": -3.5717742827950474
+            "lat": 40.251288524405176,
+            "long": -2.7966783022095347
         },
         "velocity": {
-            "speed": 245.05951881342887,
-            "heading": 110.84696295016641
+            "speed": 246.78925563980226,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.433222",
+        "ts": "2024-07-16T16:16:00.607853",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.7443661354193,
+        "distance_to_arrival": 220.37042364070118,
         "location": {
-            "lat": 40.509577911930364,
-            "long": -3.571853089580864
+            "lat": 40.238262843813594,
+            "long": -2.7561034760100367
         },
         "velocity": {
-            "speed": 243.9185679292844,
-            "heading": 95.58191352707536
+            "speed": 241.30095249072502,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.533012",
+        "ts": "2024-07-16T16:16:01.608834",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.8140506650692,
+        "distance_to_arrival": 216.6340904299772,
         "location": {
-            "lat": 40.510362637613134,
-            "long": -3.572325346559204
+            "lat": 40.225234656879735,
+            "long": -2.7155286498105387
         },
         "velocity": {
-            "speed": 240.15982248013864,
-            "heading": 114.58650085021713
+            "speed": 247.39889944854204,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.634596",
+        "ts": "2024-07-16T16:16:02.608429",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.8550033976956,
+        "distance_to_arrival": 212.89702715247662,
         "location": {
-            "lat": 40.51089315894617,
-            "long": -3.572565957134473
+            "lat": 40.21220396379508,
+            "long": -2.6749538236110406
         },
         "velocity": {
-            "speed": 246.57045173173682,
-            "heading": 109.0249759094724
+            "speed": 248.29770834125452,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.732750",
+        "ts": "2024-07-16T16:16:03.610130",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.90303701991803,
+        "distance_to_arrival": 209.15923406267402,
         "location": {
-            "lat": 40.511672081852765,
-            "long": -3.5727647532084297
+            "lat": 40.19917076475165,
+            "long": -2.6343789974115426
         },
         "velocity": {
-            "speed": 241.81820506565816,
-            "heading": 100.98102511779553
+            "speed": 247.67270792523473,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.835157",
+        "ts": "2024-07-16T16:16:04.606484",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.9477950986803,
+        "distance_to_arrival": 205.42071141506685,
         "location": {
-            "lat": 40.51215775007116,
-            "long": -3.5730775411549436
+            "lat": 40.18613505994204,
+            "long": -2.5938041712120445
         },
         "velocity": {
-            "speed": 248.46661278201958,
-            "heading": 116.08819897680542
+            "speed": 240.70935518202057,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:08.932432",
+        "ts": "2024-07-16T16:16:05.608483",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 295.9917672351816,
+        "distance_to_arrival": 201.68145946417332,
         "location": {
-            "lat": 40.51264441444435,
-            "long": -3.573379704612667
+            "lat": 40.1730968495594,
+            "long": -2.553229345012547
         },
         "velocity": {
-            "speed": 245.4385201232459,
-            "heading": 115.26901047999155
+            "speed": 240.10122701339162,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.030722",
+        "ts": "2024-07-16T16:16:06.608836",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.02851925496316,
+        "distance_to_arrival": 197.9414784645324,
         "location": {
-            "lat": 40.51312622541869,
-            "long": -3.5735922467241856
+            "lat": 40.160056133797426,
+            "long": -2.512654518813049
         },
         "velocity": {
-            "speed": 249.0237972734809,
-            "heading": 108.54006988882855
+            "speed": 244.4923293964653,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.132244",
+        "ts": "2024-07-16T16:16:07.610446",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.0740046845336,
+        "distance_to_arrival": 194.20076867070532,
         "location": {
-            "lat": 40.51375370080287,
-            "long": -3.573838585952594
+            "lat": 40.14701291285037,
+            "long": -2.472079692613551
         },
         "velocity": {
-            "speed": 240.52736060168203,
-            "heading": 106.61851786896256
+            "speed": 241.579650617297,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.233442",
+        "ts": "2024-07-16T16:16:08.610113",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.10907315361595,
+        "distance_to_arrival": 190.4593303372744,
         "location": {
-            "lat": 40.514380337098586,
-            "long": -3.573952279964756
+            "lat": 40.133967186913054,
+            "long": -2.4315048664140533
         },
         "velocity": {
-            "speed": 242.41405092559552,
-            "heading": 97.85353677113977
+            "speed": 244.96001607453755,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.333854",
+        "ts": "2024-07-16T16:16:09.605793",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.145420873158,
+        "distance_to_arrival": 186.71716371884312,
         "location": {
-            "lat": 40.514922526291215,
-            "long": -3.5741271782582467
+            "lat": 40.12091895618084,
+            "long": -2.3909300402145557
         },
         "velocity": {
-            "speed": 244.4247561166922,
-            "heading": 103.77902901808966
+            "speed": 240.79234031760944,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.433449",
+        "ts": "2024-07-16T16:16:10.608610",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.1929537440322,
+        "distance_to_arrival": 182.97426907003646,
         "location": {
-            "lat": 40.51555042830848,
-            "long": -3.5743990260463483
+            "lat": 40.10786822084964,
+            "long": -2.350355214015058
         },
         "velocity": {
-            "speed": 248.1180669638704,
-            "heading": 108.21836600701573
+            "speed": 249.51049810034738,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.538204",
+        "ts": "2024-07-16T16:16:11.609445",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.25107995337544,
+        "distance_to_arrival": 179.2306466455022,
         "location": {
-            "lat": 40.51616340132224,
-            "long": -3.5748139541412693
+            "lat": 40.09481498111598,
+            "long": -2.30978038781556
         },
         "velocity": {
-            "speed": 246.89780584756116,
-            "heading": 117.23047279927437
+            "speed": 240.95826712608837,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.635578",
+        "ts": "2024-07-16T16:16:12.606813",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.29270373837335,
+        "distance_to_arrival": 175.48629669990746,
         "location": {
-            "lat": 40.51678049192931,
-            "long": -3.575015885171808
+            "lat": 40.081759237176875,
+            "long": -2.269205561616062
         },
         "velocity": {
-            "speed": 240.1358843080384,
-            "heading": 103.96967684441125
+            "speed": 245.06942768501256,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.735375",
+        "ts": "2024-07-16T16:16:13.610227",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.32018180810445,
+        "distance_to_arrival": 171.74121948794183,
         "location": {
-            "lat": 40.51718332106991,
-            "long": -3.575151543770469
+            "lat": 40.068700989229924,
+            "long": -2.2286307354165644
         },
         "velocity": {
-            "speed": 248.86452176689505,
-            "heading": 104.3599711313405
+            "speed": 245.65681246066129,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.834499",
+        "ts": "2024-07-16T16:16:14.612173",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.35377618352385,
+        "distance_to_arrival": 167.99541526431656,
         "location": {
-            "lat": 40.51757752571954,
-            "long": -3.575369853723647
+            "lat": 40.05564023747329,
+            "long": -2.1880559092170664
         },
         "velocity": {
-            "speed": 247.69045919234415,
-            "heading": 112.83111515285395
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:09.937424",
+        "ts": "2024-07-16T16:16:15.610192",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.3755764218848,
+        "distance_to_arrival": 164.24888428376445,
         "location": {
-            "lat": 40.51791235734626,
-            "long": -3.5754692513043653
+            "lat": 40.04257698210569,
+            "long": -2.1474810830175683
         },
         "velocity": {
-            "speed": 245.66921079539944,
-            "heading": 102.7170316669185
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.036571",
+        "ts": "2024-07-16T16:16:16.606391",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.42481216456565,
+        "distance_to_arrival": 160.50162680103935,
         "location": {
-            "lat": 40.51850870064306,
-            "long": -3.5757791089705995
+            "lat": 40.029511223326395,
+            "long": -2.1069062568180708
         },
         "velocity": {
-            "speed": 245.5592251241753,
-            "heading": 111.55376101431028
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.133393",
+        "ts": "2024-07-16T16:16:17.607600",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.4529471175034,
+        "distance_to_arrival": 156.75364307091724,
         "location": {
-            "lat": 40.518875007690184,
-            "long": -3.5759424598603733
+            "lat": 40.01644296133525,
+            "long": -2.0663314306185727
         },
         "velocity": {
-            "speed": 246.31505548097397,
-            "heading": 108.7266148250983
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.231307",
+        "ts": "2024-07-16T16:16:18.607713",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.4688696143859,
+        "distance_to_arrival": 153.00493334819495,
         "location": {
-            "lat": 40.51936275428238,
-            "long": -3.575884784754071
+            "lat": 40.00337219633264,
+            "long": -2.025756604419075
         },
         "velocity": {
-            "speed": 248.87001189893536,
-            "heading": 84.8634582274845
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.331155",
+        "ts": "2024-07-16T16:16:19.610163",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.50380140976785,
+        "distance_to_arrival": 149.25549788769126,
         "location": {
-            "lat": 40.51967124876026,
-            "long": -3.576165791494255
+            "lat": 39.99029892851952,
+            "long": -1.985181778219577
         },
         "velocity": {
-            "speed": 248.9177514450471,
-            "heading": 124.70051655754753
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.429812",
+        "ts": "2024-07-16T16:16:20.610175",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.52381754586906,
+        "distance_to_arrival": 145.50533694424644,
         "location": {
-            "lat": 40.51994062866736,
-            "long": -3.576277204940857
+            "lat": 39.977223158097395,
+            "long": -1.944606952020079
         },
         "velocity": {
-            "speed": 245.56068450592173,
-            "heading": 107.45333687018058
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.535509",
+        "ts": "2024-07-16T16:16:21.607438",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.5846443659016,
+        "distance_to_arrival": 141.75445077272224,
         "location": {
-            "lat": 40.52059840349805,
-            "long": -3.5767018219194435
+            "lat": 39.96414488526834,
+            "long": -1.9040321258205815
         },
         "velocity": {
-            "speed": 245.76565183756205,
-            "heading": 116.13802582056417
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.636361",
+        "ts": "2024-07-16T16:16:22.610153",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.6008269596339,
+        "distance_to_arrival": 138.00283962800262,
         "location": {
-            "lat": 40.52093481605907,
-            "long": -3.5767282552481072
+            "lat": 39.951064110234995,
+            "long": -1.8634572996210834
         },
         "velocity": {
-            "speed": 242.48845189066375,
-            "heading": 93.41818569063395
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.736537",
+        "ts": "2024-07-16T16:16:23.611325",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.65761559429154,
+        "distance_to_arrival": 134.25050376499192,
         "location": {
-            "lat": 40.521624467120134,
-            "long": -3.5770839891583135
+            "lat": 39.93798083320054,
+            "long": -1.8228824734215854
         },
         "velocity": {
-            "speed": 249.920492149467,
-            "heading": 111.41035239050751
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.832540",
+        "ts": "2024-07-16T16:16:24.608956",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.7020285250663,
+        "distance_to_arrival": 130.49744343861758,
         "location": {
-            "lat": 40.52223070022006,
-            "long": -3.5773262133230768
+            "lat": 39.92489505436874,
+            "long": -1.7823076472220873
         },
         "velocity": {
-            "speed": 240.77215820395259,
-            "heading": 106.89479863358588
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:10.935052",
+        "ts": "2024-07-16T16:16:25.607701",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.73148115407787,
+        "distance_to_arrival": 126.74365890382788,
         "location": {
-            "lat": 40.52280644641589,
-            "long": -3.5773935147292346
+            "lat": 39.911806773943916,
+            "long": -1.7417328210225895
         },
         "velocity": {
-            "speed": 249.36219554012823,
-            "heading": 95.07778501495932
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.032724",
+        "ts": "2024-07-16T16:16:26.605728",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.80895373457514,
+        "distance_to_arrival": 122.98915041559235,
         "location": {
-            "lat": 40.52394769393861,
-            "long": -3.5777705041240124
+            "lat": 39.898715992130924,
+            "long": -1.7011579948230915
         },
         "velocity": {
-            "speed": 243.91855846223694,
-            "heading": 104.09537798589076
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.134622",
+        "ts": "2024-07-16T16:16:27.610681",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.84018283699703,
+        "distance_to_arrival": 119.23391822890326,
         "location": {
-            "lat": 40.524338735466976,
-            "long": -3.5779594310848544
+            "lat": 39.88562270913522,
+            "long": -1.6605831686235937
         },
         "velocity": {
-            "speed": 247.26667907784946,
-            "heading": 110.16560146527598
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.232836",
+        "ts": "2024-07-16T16:16:28.605191",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.8899522887744,
+        "distance_to_arrival": 115.47796259877309,
         "location": {
-            "lat": 40.52517187985459,
-            "long": -3.578147475134582
+            "lat": 39.87252692516279,
+            "long": -1.6200083424240956
         },
         "velocity": {
-            "speed": 249.49040971682183,
-            "heading": 99.73503527148944
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.332754",
+        "ts": "2024-07-16T16:16:29.610393",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.9365829562012,
+        "distance_to_arrival": 111.7212837802369,
         "location": {
-            "lat": 40.52585028951155,
-            "long": -3.5783784359180717
+            "lat": 39.859428640420184,
+            "long": -1.5794335162245976
         },
         "velocity": {
-            "speed": 241.40187693713554,
-            "heading": 104.50852091367415
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.436127",
+        "ts": "2024-07-16T16:16:30.606905",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 296.9653628390083,
+        "distance_to_arrival": 107.96388202835156,
         "location": {
-            "lat": 40.52641361388524,
-            "long": -3.5784430068524262
+            "lat": 39.84632785511454,
+            "long": -1.5388586900250996
         },
         "velocity": {
-            "speed": 245.2561592089202,
-            "heading": 94.97943576864475
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.539175",
+        "ts": "2024-07-16T16:16:31.610268",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.00904510623377,
+        "distance_to_arrival": 104.20575759819562,
         "location": {
-            "lat": 40.52695372956599,
-            "long": -3.5787104919052855
+            "lat": 39.833224569453535,
+            "long": -1.4982838638256013
         },
         "velocity": {
-            "speed": 248.15209535657522,
-            "heading": 110.62780271943524
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.636200",
+        "ts": "2024-07-16T16:16:32.610233",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.06094384958317,
+        "distance_to_arrival": 100.44691074486958,
         "location": {
-            "lat": 40.52762500760662,
-            "long": -3.5790122280659906
+            "lat": 39.820118783645434,
+            "long": -1.457709037626103
         },
         "velocity": {
-            "speed": 249.33991400767613,
-            "heading": 108.86314154725585
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.733659",
+        "ts": "2024-07-16T16:16:33.610212",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.155575663567,
+        "distance_to_arrival": 96.68734172349447,
         "location": {
-            "lat": 40.52847878728272,
-            "long": -3.5797618288394624
+            "lat": 39.80701049789903,
+            "long": -1.4171342114266048
         },
         "velocity": {
-            "speed": 241.37081423671128,
-            "heading": 123.71667362408311
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.831275",
+        "ts": "2024-07-16T16:16:34.609447",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.22462522936354,
+        "distance_to_arrival": 92.92705078921455,
         "location": {
-            "lat": 40.529245966772216,
-            "long": -3.580230841480778
+            "lat": 39.7938997124237,
+            "long": -1.3765593852271065
         },
         "velocity": {
-            "speed": 248.65755722930788,
-            "heading": 114.92284659528138
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:11.933565",
+        "ts": "2024-07-16T16:16:35.610742",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.28136138614326,
+        "distance_to_arrival": 89.16603819719455,
         "location": {
-            "lat": 40.5298441444266,
-            "long": -3.580633480608689
+            "lat": 39.78078642742938,
+            "long": -1.3359845590276085
         },
         "velocity": {
-            "speed": 249.33639415566788,
-            "heading": 117.09466722732753
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.035815",
+        "ts": "2024-07-16T16:16:36.608560",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.31424565333486,
+        "distance_to_arrival": 85.40430420262224,
         "location": {
-            "lat": 40.53054627962573,
-            "long": -3.5806747414891698
+            "lat": 39.767670643126586,
+            "long": -1.2954097328281104
         },
         "velocity": {
-            "speed": 244.11029998547048,
-            "heading": 92.55740636567288
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.133108",
+        "ts": "2024-07-16T16:16:37.610223",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.35918466646683,
+        "distance_to_arrival": 81.64184906070645,
         "location": {
-            "lat": 40.53116642727307,
-            "long": -3.5809143434246264
+            "lat": 39.75455235972636,
+            "long": -1.2548349066286124
         },
         "velocity": {
-            "speed": 240.6510357821916,
-            "heading": 106.36519033155878
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.233002",
+        "ts": "2024-07-16T16:16:38.610906",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.4287723561433,
+        "distance_to_arrival": 77.87867302667732,
         "location": {
-            "lat": 40.532110771393945,
-            "long": -3.5812937385874815
+            "lat": 39.74143157744034,
+            "long": -1.2142600804291146
         },
         "velocity": {
-            "speed": 246.68143305635422,
-            "heading": 106.98012923076942
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.331276",
+        "ts": "2024-07-16T16:16:39.604104",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.4676011020508,
+        "distance_to_arrival": 74.11477635578795,
         "location": {
-            "lat": 40.53257344717791,
-            "long": -3.581540092974613
+            "lat": 39.72830829648071,
+            "long": -1.1736852542296166
         },
         "velocity": {
-            "speed": 248.63697910425773,
-            "heading": 112.03245402522015
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.432408",
+        "ts": "2024-07-16T16:16:40.610867",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.4973998551056,
+        "distance_to_arrival": 70.35015930331346,
         "location": {
-            "lat": 40.53300567205732,
-            "long": -3.5816873277031465
+            "lat": 39.71518251706026,
+            "long": -1.1331104280301187
         },
         "velocity": {
-            "speed": 244.4204666589761,
-            "heading": 104.51514936471955
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.530131",
+        "ts": "2024-07-16T16:16:41.610137",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.545180369114,
+        "distance_to_arrival": 66.58482212454885,
         "location": {
-            "lat": 40.5335020556607,
-            "long": -3.582029842624527
+            "lat": 39.70205423939229,
+            "long": -1.092535601830621
         },
         "velocity": {
-            "speed": 241.07225497535444,
-            "heading": 117.67399586771052
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.630474",
+        "ts": "2024-07-16T16:16:42.605914",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.59679591694595,
+        "distance_to_arrival": 62.81876507481267,
         "location": {
-            "lat": 40.53414584314542,
-            "long": -3.582341468626768
+            "lat": 39.68892346369068,
+            "long": -1.051960775631123
         },
         "velocity": {
-            "speed": 247.8721781761119,
-            "heading": 110.19795771734977
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.733073",
+        "ts": "2024-07-16T16:16:43.606030",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.62858826240154,
+        "distance_to_arrival": 59.05198840944493,
         "location": {
-            "lat": 40.53471191003564,
-            "long": -3.582441403654026
+            "lat": 39.675790190169884,
+            "long": -1.011385949431625
         },
         "velocity": {
-            "speed": 248.0454987824644,
-            "heading": 97.64199968588946
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.836723",
+        "ts": "2024-07-16T16:16:44.610209",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.67174385349733,
+        "distance_to_arrival": 55.28449238380763,
         "location": {
-            "lat": 40.53512076489659,
-            "long": -3.582771966432001
+            "lat": 39.66265441904494,
+            "long": -0.9708111232321269
         },
         "velocity": {
-            "speed": 242.31110062991849,
-            "heading": 121.5695405927691
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:12.932662",
+        "ts": "2024-07-16T16:16:45.610918",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.746837027561,
+        "distance_to_arrival": 51.516277253284905,
         "location": {
-            "lat": 40.53592227399207,
-            "long": -3.5832981706237836
+            "lat": 39.64951615053143,
+            "long": -0.9302362970326287
         },
         "velocity": {
-            "speed": 248.00706759717778,
-            "heading": 116.51701002756909
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.029545",
+        "ts": "2024-07-16T16:16:46.605630",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.81772670966586,
+        "distance_to_arrival": 47.74734327328216,
         "location": {
-            "lat": 40.53685445884156,
-            "long": -3.5836993933916035
+            "lat": 39.6363753848455,
+            "long": -0.8896614708331307
         },
         "velocity": {
-            "speed": 240.6329151744265,
-            "heading": 108.11333643526211
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.135076",
+        "ts": "2024-07-16T16:16:47.606408",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.86564631076584,
+        "distance_to_arrival": 43.97769069922699,
         "location": {
-            "lat": 40.53765265532157,
-            "long": -3.583879076379336
+            "lat": 39.623232122203866,
+            "long": -0.8490866446336328
         },
         "velocity": {
-            "speed": 247.5294834521892,
-            "heading": 99.7081784995662
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.231661",
+        "ts": "2024-07-16T16:16:48.611469",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.9054262575303,
+        "distance_to_arrival": 40.20731978656917,
         "location": {
-            "lat": 40.53817571029132,
-            "long": -3.5841039741415086
+            "lat": 39.610086362823814,
+            "long": -0.8085118184341349
         },
         "velocity": {
-            "speed": 244.20302671303065,
-            "heading": 108.09558243837529
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.333673",
+        "ts": "2024-07-16T16:16:49.610445",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.9403070034411,
+        "distance_to_arrival": 36.43623079077995,
         "location": {
-            "lat": 40.538708790171846,
-            "long": -3.584260588067414
+            "lat": 39.5969381069232,
+            "long": -0.7679369922346374
         },
         "velocity": {
-            "speed": 241.59431988480623,
-            "heading": 102.58606387326097
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.433468",
+        "ts": "2024-07-16T16:16:50.607962",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.9664131209281,
+        "distance_to_arrival": 32.66442396735319,
         "location": {
-            "lat": 40.53918609949717,
-            "long": -3.584335088816504
+            "lat": 39.58378735472043,
+            "long": -0.7273621660351394
         },
         "velocity": {
-            "speed": 241.51433482960059,
-            "heading": 96.7647229016743
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.535761",
+        "ts": "2024-07-16T16:16:51.608848",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 297.99738738357274,
+        "distance_to_arrival": 28.89189957180425,
         "location": {
-            "lat": 40.539704138741484,
-            "long": -3.584449660693884
+            "lat": 39.570634106434504,
+            "long": -0.6867873398356416
         },
         "velocity": {
-            "speed": 246.3650006799825,
-            "heading": 99.54082015592417
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.632894",
+        "ts": "2024-07-16T16:16:52.610347",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.03206403459797,
+        "distance_to_arrival": 25.118657859670968,
         "location": {
-            "lat": 40.54038175102255,
-            "long": -3.5845245796745338
+            "lat": 39.55747836228497,
+            "long": -0.6462125136361438
         },
         "velocity": {
-            "speed": 244.06221837346217,
-            "heading": 94.80284346291796
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.730399",
+        "ts": "2024-07-16T16:16:53.606186",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.07917880758595,
+        "distance_to_arrival": 21.344699086512552,
         "location": {
-            "lat": 40.54081231431261,
-            "long": -3.5848933652901764
+            "lat": 39.544320122491946,
+            "long": -0.6056376874366463
         },
         "velocity": {
-            "speed": 240.78868878152727,
-            "heading": 123.06027516421233
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.833454",
+        "ts": "2024-07-16T16:16:54.612105",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.13662760635316,
+        "distance_to_arrival": 17.570023507910953,
         "location": {
-            "lat": 40.54146973139858,
-            "long": -3.585270753311844
+            "lat": 39.53115938727613,
+            "long": -0.5650628612371484
         },
         "velocity": {
-            "speed": 240.78706840679507,
-            "heading": 113.56868240197139
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:13.931733",
+        "ts": "2024-07-16T16:16:55.607719",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.1904478578497,
+        "distance_to_arrival": 13.794631379469921,
         "location": {
-            "lat": 40.54222865411951,
-            "long": -3.585546120472339
+            "lat": 39.51799615685879,
+            "long": -0.5244880350376514
         },
         "velocity": {
-            "speed": 249.14871145637503,
-            "heading": 105.41522855069667
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.031587",
+        "ts": "2024-07-16T16:16:56.606334",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.2237270504841,
+        "distance_to_arrival": 10.018522956814822,
         "location": {
-            "lat": 40.54291684157788,
-            "long": -3.585596724108398
+            "lat": 39.504830431461734,
+            "long": -0.4839132088381554
         },
         "velocity": {
-            "speed": 249.80643297991216,
-            "heading": 93.19826084523982
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.134363",
+        "ts": "2024-07-16T16:16:57.608000",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.25864457685003,
+        "distance_to_arrival": 6.241698495593402,
         "location": {
-            "lat": 40.543443651200924,
-            "long": -3.5857563213116865
+            "lat": 39.49166221130736,
+            "long": -0.443338382638659
         },
         "velocity": {
-            "speed": 249.9270510335,
-            "heading": 102.96451108444126
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.237405",
+        "ts": "2024-07-16T16:16:58.610265",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.31786531439,
+        "distance_to_arrival": 2.464158251476002,
         "location": {
-            "lat": 40.54416532945291,
-            "long": -3.5861207257408734
+            "lat": 39.47849149661864,
+            "long": -0.4027635564391618
         },
         "velocity": {
-            "speed": 242.26472051440032,
-            "heading": 110.9921511510218
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.331115",
+        "ts": "2024-07-16T16:16:59.607780",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.37419012790264,
+        "distance_to_arrival": 1.3140975198457747,
         "location": {
-            "lat": 40.544872794032045,
-            "long": -3.586455630846362
+            "lat": 39.46531828761911,
+            "long": -0.3621887302396614
         },
         "velocity": {
-            "speed": 247.47195047918166,
-            "heading": 109.7849870916009
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.429549",
+        "ts": "2024-07-16T16:17:00.608375",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.4280164732516,
+        "distance_to_arrival": 2.4641582514756166,
         "location": {
-            "lat": 40.545548089059686,
-            "long": -3.586775964416534
+            "lat": 39.47849149661864,
+            "long": -0.4027635564391569
         },
         "velocity": {
-            "speed": 243.84285346658635,
-            "heading": 109.82230153476019
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.536184",
+        "ts": "2024-07-16T16:17:01.610220",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.49202147904435,
+        "distance_to_arrival": 1.3140975198463476,
         "location": {
-            "lat": 40.54642191382695,
-            "long": -3.587117884124183
+            "lat": 39.465318287619105,
+            "long": -0.36218873023965764
         },
         "velocity": {
-            "speed": 245.74160662301026,
-            "heading": 106.55902960305195
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.635836",
+        "ts": "2024-07-16T16:17:02.610321",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.5573377186803,
+        "distance_to_arrival": 2.464158251475177,
         "location": {
-            "lat": 40.54696707480456,
-            "long": -3.5876565179365008
+            "lat": 39.47849149661863,
+            "long": -0.40276355643915485
         },
         "velocity": {
-            "speed": 244.84045564737036,
-            "heading": 126.8982762190771
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.733504",
+        "ts": "2024-07-16T16:17:03.610826",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.6109430698832,
+        "distance_to_arrival": 1.3140975198468354,
         "location": {
-            "lat": 40.54783313502326,
-            "long": -3.587868974191231
+            "lat": 39.465318287619105,
+            "long": -0.3621887302396515
         },
         "velocity": {
-            "speed": 243.40383844161414,
-            "heading": 100.55904120624723
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.834223",
+        "ts": "2024-07-16T16:17:04.610587",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.6427018676614,
+        "distance_to_arrival": 2.464158251474898,
         "location": {
-            "lat": 40.54815036241273,
-            "long": -3.588102182066782
+            "lat": 39.47849149661863,
+            "long": -0.4027635564391513
         },
         "velocity": {
-            "speed": 244.71136968233648,
-            "heading": 119.18794505439212
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:14.935720",
+        "ts": "2024-07-16T16:17:05.610765",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.67550290264444,
+        "distance_to_arrival": 1.3140975198470517,
         "location": {
-            "lat": 40.548820782510944,
-            "long": -3.5881548818676023
+            "lat": 39.465318287619105,
+            "long": -0.36218873023964876
         },
         "velocity": {
-            "speed": 247.7314423509298,
-            "heading": 93.41820638144776
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.034745",
+        "ts": "2024-07-16T16:17:06.607665",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.737664920693,
+        "distance_to_arrival": 2.46415825147478,
         "location": {
-            "lat": 40.54960423409351,
-            "long": -3.5885218608314413
+            "lat": 39.47849149661863,
+            "long": -0.4027635564391498
         },
         "velocity": {
-            "speed": 249.28237923728466,
-            "heading": 109.59170842150655
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.133548",
+        "ts": "2024-07-16T16:17:07.607019",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.7922103949623,
+        "distance_to_arrival": 1.3140975198471383,
         "location": {
-            "lat": 40.5505372317776,
-            "long": -3.5887087421416397
+            "lat": 39.465318287619105,
+            "long": -0.36218873023964765
         },
         "velocity": {
-            "speed": 248.84061500026405,
-            "heading": 98.65380028027272
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.235153",
+        "ts": "2024-07-16T16:17:08.608023",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.85892816960563,
+        "distance_to_arrival": 2.464158251474729,
         "location": {
-            "lat": 40.55156968969933,
-            "long": -3.588996710711817
+            "lat": 39.47849149661863,
+            "long": -0.4027635564391492
         },
         "velocity": {
-            "speed": 242.90057031613,
-            "heading": 101.96545912135144
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.332997",
+        "ts": "2024-07-16T16:17:09.608143",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.9289567082424,
+        "distance_to_arrival": 1.3140975198471734,
         "location": {
-            "lat": 40.55233606196078,
-            "long": -3.589473298774245
+            "lat": 39.465318287619105,
+            "long": -0.3621887302396472
         },
         "velocity": {
-            "speed": 248.1717680382235,
-            "heading": 115.29115564546589
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.433521",
+        "ts": "2024-07-16T16:17:10.610215",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 298.9819262345588,
+        "distance_to_arrival": 2.4641582514747093,
         "location": {
-            "lat": 40.55312115375825,
-            "long": -3.589720519761285
+            "lat": 39.47849149661863,
+            "long": -0.4027635564391489
         },
         "velocity": {
-            "speed": 240.62497283095786,
-            "heading": 103.45553450194177
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.535661",
+        "ts": "2024-07-16T16:17:11.610318",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 299.0082741870372,
+        "distance_to_arrival": 1.3140975198471971,
         "location": {
-            "lat": 40.55370414034277,
-            "long": -3.5897373151910488
+            "lat": 39.465318287619105,
+            "long": -0.3621887302396469
         },
         "velocity": {
-            "speed": 249.94952341767055,
-            "heading": 91.2539588929572
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.635833",
+        "ts": "2024-07-16T16:17:12.606297",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 299.09138870817475,
+        "distance_to_arrival": 2.464158251474694,
         "location": {
-            "lat": 40.55493032226024,
-            "long": -3.5901276509488422
+            "lat": 39.47849149661863,
+            "long": -0.40276355643914874
         },
         "velocity": {
-            "speed": 248.29394929199674,
-            "heading": 103.59678335490759
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.730461",
+        "ts": "2024-07-16T16:17:13.606425",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 299.15765053406227,
+        "distance_to_arrival": 1.314097519847205,
         "location": {
-            "lat": 40.55563166884498,
-            "long": -3.5905909971508456
+            "lat": 39.465318287619105,
+            "long": -0.3621887302396468
         },
         "velocity": {
-            "speed": 244.84007842682513,
-            "heading": 116.65423051406685
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.836925",
+        "ts": "2024-07-16T16:17:14.610337",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 299.1977890676489,
+        "distance_to_arrival": 2.464158251474686,
         "location": {
-            "lat": 40.55616368386658,
-            "long": -3.590812410408897
+            "lat": 39.47849149661863,
+            "long": -0.40276355643914863
         },
         "velocity": {
-            "speed": 243.84924148642352,
-            "heading": 107.54691899753936
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:15.935495",
+        "ts": "2024-07-16T16:17:15.603932",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 299.243703712738,
+        "distance_to_arrival": 1.314097519847217,
         "location": {
-            "lat": 40.55662883068316,
-            "long": -3.5911448378154858
+            "lat": 39.465318287619105,
+            "long": -0.36218873023964665
         },
         "velocity": {
-            "speed": 249.43044314451856,
-            "heading": 118.50111619107605
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.033984",
+        "ts": "2024-07-16T16:17:16.608616",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 299.29278908928546,
+        "distance_to_arrival": 2.464158251474682,
         "location": {
-            "lat": 40.5573337521176,
-            "long": -3.5913853561214006
+            "lat": 39.47849149661863,
+            "long": -0.4027635564391486
         },
         "velocity": {
-            "speed": 245.67265023922204,
-            "heading": 104.53276659426331
+            "speed": 100,
+            "heading": "tbd"
         }
     },
     {
         "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.133492",
+        "ts": "2024-07-16T16:17:17.604503",
         "disrupted": false,
         "extra_length": 0,
-        "distance_to_arrival": 299.34223882985,
+        "distance_to_arrival": 1.314097519847217,
         "location": {
-            "lat": 40.557922195490974,
-            "long": -3.5916948199175964
+            "lat": 39.465318287619105,
+            "long": -0.36218873023964665
         },
         "velocity": {
-            "speed": 244.97786923664444,
-            "heading": 111.77935903857616
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.236355",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.36842595055884,
-        "location": {
-            "lat": 40.558176120802614,
-            "long": -3.59189058579567
-        },
-        "velocity": {
-            "speed": 246.8068665823463,
-            "heading": 120.35881826346292
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.335402",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.3795280927915,
-        "location": {
-            "lat": 40.558413700036276,
-            "long": -3.5919016778293087
-        },
-        "velocity": {
-            "speed": 243.92295955042533,
-            "heading": 92.03146352666118
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.436218",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.40464671346814,
-        "location": {
-            "lat": 40.55888915493253,
-            "long": -3.5919610495933654
-        },
-        "velocity": {
-            "speed": 247.23089819188118,
-            "heading": 95.41949465526011
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.535149",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.4706944378488,
-        "location": {
-            "lat": 40.55951631980103,
-            "long": -3.592461939197841
-        },
-        "velocity": {
-            "speed": 249.051318475821,
-            "heading": 121.24786820765894
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.632017",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.5228909725818,
-        "location": {
-            "lat": 40.56015556651424,
-            "long": -3.592778140611647
-        },
-        "velocity": {
-            "speed": 246.04919568963763,
-            "heading": 110.59596431981925
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.729714",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.58393969743594,
-        "location": {
-            "lat": 40.560735321243115,
-            "long": -3.5932409084810026
-        },
-        "velocity": {
-            "speed": 240.06299594054113,
-            "heading": 121.23327524626797
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.838856",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.652348967328,
-        "location": {
-            "lat": 40.56158709601864,
-            "long": -3.59364725593362
-        },
-        "velocity": {
-            "speed": 244.8220603938538,
-            "heading": 109.92185392481508
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:16.929552",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.69536316423194,
-        "location": {
-            "lat": 40.56217642196877,
-            "long": -3.593872808641277
-        },
-        "velocity": {
-            "speed": 245.00109801457262,
-            "heading": 106.21232536717133
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.036065",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.7760718014931,
-        "location": {
-            "lat": 40.56306432970323,
-            "long": -3.5944167313738364
-        },
-        "velocity": {
-            "speed": 249.02463291546457,
-            "heading": 114.95628322865605
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.131675",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.8357600315564,
-        "location": {
-            "lat": 40.56385255760393,
-            "long": -3.5947457258639113
-        },
-        "velocity": {
-            "speed": 249.2002353621659,
-            "heading": 107.59278353797123
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.236121",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.89414170208727,
-        "location": {
-            "lat": 40.564535249976714,
-            "long": -3.595116420365667
-        },
-        "velocity": {
-            "speed": 244.3548497935697,
-            "heading": 112.41588797003749
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.333759",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 299.95331401648286,
-        "location": {
-            "lat": 40.56540060023165,
-            "long": -3.595395496945244
-        },
-        "velocity": {
-            "speed": 240.5667198079827,
-            "heading": 103.76592819198038
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.436171",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.01951893888815,
-        "location": {
-            "lat": 40.566415570940194,
-            "long": -3.595681376029136
-        },
-        "velocity": {
-            "speed": 247.1756359668094,
-            "heading": 102.07725407221824
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.530711",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.05027172971796,
-        "location": {
-            "lat": 40.566818408758515,
-            "long": -3.5958522821113537
-        },
-        "velocity": {
-            "speed": 249.74372636242046,
-            "heading": 107.86330739394384
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.632969",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.09640155463075,
-        "location": {
-            "lat": 40.56754868573074,
-            "long": -3.5960382919413476
-        },
-        "velocity": {
-            "speed": 240.3821338740834,
-            "heading": 100.95078314007122
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.733210",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.1290722102586,
-        "location": {
-            "lat": 40.568160667139054,
-            "long": -3.5961170403465608
-        },
-        "velocity": {
-            "speed": 242.77796948563042,
-            "heading": 95.58280475369202
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.836148",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.16976249415325,
-        "location": {
-            "lat": 40.568624785558264,
-            "long": -3.596381288446982
-        },
-        "velocity": {
-            "speed": 243.9283039830274,
-            "heading": 113.38833974191732
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:17.935835",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.21493280259966,
-        "location": {
-            "lat": 40.56905354837671,
-            "long": -3.5967228244049902
-        },
-        "velocity": {
-            "speed": 249.39942835214902,
-            "heading": 121.17749974217105
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.034411",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.2410119934648,
-        "location": {
-            "lat": 40.56942520454554,
-            "long": -3.5968506921135623
-        },
-        "velocity": {
-            "speed": 240.67736480615338,
-            "heading": 104.64637495182973
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.135685",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.2589269185844,
-        "location": {
-            "lat": 40.569978405957904,
-            "long": -3.596772087574775
-        },
-        "velocity": {
-            "speed": 242.22147830287204,
-            "heading": 83.83971602968273
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.235107",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.2997977223839,
-        "location": {
-            "lat": 40.570506272795164,
-            "long": -3.5970027629863393
-        },
-        "velocity": {
-            "speed": 249.65979242513396,
-            "heading": 108.36328612090779
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.335630",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.3287032517724,
-        "location": {
-            "lat": 40.57117559537264,
-            "long": -3.5970003220797295
-        },
-        "velocity": {
-            "speed": 249.9627851843994,
-            "heading": 89.84128370545324
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.436338",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.37153776084483,
-        "location": {
-            "lat": 40.57180830354805,
-            "long": -3.597197367669362
-        },
-        "velocity": {
-            "speed": 246.90633247681717,
-            "heading": 103.3092839799595
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.535811",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.40347155890373,
-        "location": {
-            "lat": 40.57236979507472,
-            "long": -3.5972938992544976
-        },
-        "velocity": {
-            "speed": 247.68905058666527,
-            "heading": 97.44002560815107
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.635715",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.423445154289,
-        "location": {
-            "lat": 40.57281928321057,
-            "long": -3.5972991569786354
-        },
-        "velocity": {
-            "speed": 244.46361177588804,
-            "heading": 90.50905382795202
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.735217",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.44718994181585,
-        "location": {
-            "lat": 40.573231115333,
-            "long": -3.5973739534967755
-        },
-        "velocity": {
-            "speed": 242.61380862548052,
-            "heading": 97.85455130385276
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.835741",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.5052438492548,
-        "location": {
-            "lat": 40.57386531233953,
-            "long": -3.5977655354611118
-        },
-        "velocity": {
-            "speed": 248.43625609684648,
-            "heading": 115.12618354867288
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:18.936187",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.56098083963576,
-        "location": {
-            "lat": 40.57439553527656,
-            "long": -3.5981855067733526
-        },
-        "velocity": {
-            "speed": 247.99502168117658,
-            "heading": 121.03204325028366
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.036982",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.5956855503089,
-        "location": {
-            "lat": 40.57492299452361,
-            "long": -3.598336270207907
-        },
-        "velocity": {
-            "speed": 240.73903418008481,
-            "heading": 102.24902082830101
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.134393",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.6184496345547,
-        "location": {
-            "lat": 40.575440556825484,
-            "long": -3.598338794719668
-        },
-        "velocity": {
-            "speed": 244.67153103020172,
-            "heading": 90.21227146202341
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.231463",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.68231764786356,
-        "location": {
-            "lat": 40.576123089059124,
-            "long": -3.5987776614741422
-        },
-        "velocity": {
-            "speed": 249.84263188025386,
-            "heading": 116.03015038150329
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.334287",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.6915750817027,
-        "location": {
-            "lat": 40.57660572062121,
-            "long": -3.5986256922064976
-        },
-        "velocity": {
-            "speed": 240.14764656941236,
-            "heading": 76.54978555487173
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.434980",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.7474721725055,
-        "location": {
-            "lat": 40.57735412988377,
-            "long": -3.598924643893366
-        },
-        "velocity": {
-            "speed": 249.2323630225504,
-            "heading": 106.87745743276042
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.535291",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.7864354615645,
-        "location": {
-            "lat": 40.57794550877197,
-            "long": -3.5990937123515825
-        },
-        "velocity": {
-            "speed": 247.97467020169574,
-            "heading": 102.25094225299546
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.635838",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.82983945055355,
-        "location": {
-            "lat": 40.57840796147881,
-            "long": -3.5993924001017295
-        },
-        "velocity": {
-            "speed": 240.96810752948596,
-            "heading": 116.13043097255985
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.733698",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.8817430336193,
-        "location": {
-            "lat": 40.57898828039261,
-            "long": -3.5997341312446465
-        },
-        "velocity": {
-            "speed": 240.4971416039285,
-            "heading": 114.09661380188203
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.833860",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.94673248527835,
-        "location": {
-            "lat": 40.57962164364426,
-            "long": -3.6002144235202573
-        },
-        "velocity": {
-            "speed": 247.65937152143374,
-            "heading": 119.93962572688821
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:19.936290",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 300.97522570784247,
-        "location": {
-            "lat": 40.58004569506966,
-            "long": -3.6003425015911534
-        },
-        "velocity": {
-            "speed": 248.99438846050083,
-            "heading": 102.9197860361773
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.031969",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.0152188764833,
-        "location": {
-            "lat": 40.58048998674822,
-            "long": -3.600607232262289
-        },
-        "velocity": {
-            "speed": 244.05859500155418,
-            "heading": 114.34875478939898
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.133414",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.06707205551504,
-        "location": {
-            "lat": 40.581100536853995,
-            "long": -3.6009309316078273
-        },
-        "velocity": {
-            "speed": 246.31746984206737,
-            "heading": 111.93274722536228
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.233748",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.09546865112816,
-        "location": {
-            "lat": 40.581610401959196,
-            "long": -3.601009146827981
-        },
-        "velocity": {
-            "speed": 245.35234242424158,
-            "heading": 96.64539992881686
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.331444",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.17028204412236,
-        "location": {
-            "lat": 40.58233828615185,
-            "long": -3.6015622115962906
-        },
-        "velocity": {
-            "speed": 244.8757587395841,
-            "heading": 119.98778180601016
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.431366",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.21445953042695,
-        "location": {
-            "lat": 40.58276831281182,
-            "long": -3.601888621492203
-        },
-        "velocity": {
-            "speed": 247.40349414066856,
-            "heading": 119.9621149919426
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.535916",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.27640505550806,
-        "location": {
-            "lat": 40.58339027552205,
-            "long": -3.602335517943435
-        },
-        "velocity": {
-            "speed": 248.41502706536377,
-            "heading": 118.62092029939322
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.633126",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.34861378844727,
-        "location": {
-            "lat": 40.584068802848556,
-            "long": -3.6028826084645162
-        },
-        "velocity": {
-            "speed": 249.87509541496513,
-            "heading": 121.48077418069255
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.736052",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.4100371597914,
-        "location": {
-            "lat": 40.58474488723368,
-            "long": -3.6032919828155623
-        },
-        "velocity": {
-            "speed": 248.62317932814798,
-            "heading": 114.69531473243632
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.834716",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.55331465756785,
-        "location": {
-            "lat": 40.586295935616256,
-            "long": -3.60426113576132
-        },
-        "velocity": {
-            "speed": 246.5464967465803,
-            "heading": 115.38533895214584
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:20.934351",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.6053047216167,
-        "location": {
-            "lat": 40.58708792741285,
-            "long": -3.6044828456821674
-        },
-        "velocity": {
-            "speed": 247.7147204522148,
-            "heading": 102.00191339406399
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.034116",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.63850774268377,
-        "location": {
-            "lat": 40.58765329276499,
-            "long": -3.6045905629600323
-        },
-        "velocity": {
-            "speed": 248.46468850357357,
-            "heading": 98.23289054932718
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.133497",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.6835111678872,
-        "location": {
-            "lat": 40.588142221395884,
-            "long": -3.604893644643183
-        },
-        "velocity": {
-            "speed": 246.93642569771464,
-            "heading": 115.2085719707564
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.231074",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.72387010398273,
-        "location": {
-            "lat": 40.58874356806665,
-            "long": -3.6050730117865633
-        },
-        "velocity": {
-            "speed": 247.68973976588524,
-            "heading": 102.76272173213567
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.334597",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.79001284979597,
-        "location": {
-            "lat": 40.58936287496406,
-            "long": -3.6055745552205924
-        },
-        "velocity": {
-            "speed": 243.59495906530927,
-            "heading": 121.59111837048408
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.435880",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.86264780377434,
-        "location": {
-            "lat": 40.59015520568672,
-            "long": -3.6060615060775314
-        },
-        "velocity": {
-            "speed": 243.5128077539867,
-            "heading": 115.01857128281267
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.535375",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.8988420212237,
-        "location": {
-            "lat": 40.590655170954214,
-            "long": -3.6062443697767206
-        },
-        "velocity": {
-            "speed": 240.4983116494872,
-            "heading": 105.52232254478145
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.636035",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.9386099419276,
-        "location": {
-            "lat": 40.59099180439982,
-            "long": -3.6065660526805945
-        },
-        "velocity": {
-            "speed": 248.16822839983223,
-            "heading": 125.96637150092488
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.734897",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 301.994663491469,
-        "location": {
-            "lat": 40.59157702714445,
-            "long": -3.6069564982427913
-        },
-        "velocity": {
-            "speed": 245.45591048892433,
-            "heading": 116.86812737903847
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.834165",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.0486292972511,
-        "location": {
-            "lat": 40.59218839114525,
-            "long": -3.6073050595447227
-        },
-        "velocity": {
-            "speed": 240.8310652059211,
-            "heading": 113.40967521817629
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:21.935485",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.09261190661505,
-        "location": {
-            "lat": 40.59282228705794,
-            "long": -3.6075119015917747
-        },
-        "velocity": {
-            "speed": 248.2169456408437,
-            "heading": 103.91641384092225
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.041450",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.1320786433127,
-        "location": {
-            "lat": 40.593394746880776,
-            "long": -3.607695311323536
-        },
-        "velocity": {
-            "speed": 242.30730178991473,
-            "heading": 103.67361787192806
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.133784",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.14786148984945,
-        "location": {
-            "lat": 40.59365420419527,
-            "long": -3.6077512436847394
-        },
-        "velocity": {
-            "speed": 244.8764051120481,
-            "heading": 99.29655705620314
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.231206",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.18133301868687,
-        "location": {
-            "lat": 40.5941094006937,
-            "long": -3.607923918187799
-        },
-        "velocity": {
-            "speed": 246.99293440631834,
-            "heading": 106.06890857993335
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.332512",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.2114878208995,
-        "location": {
-            "lat": 40.59454429820698,
-            "long": -3.6080652894450367
-        },
-        "velocity": {
-            "speed": 247.54969681529818,
-            "heading": 103.8654192127616
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.435479",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.25580853172914,
-        "location": {
-            "lat": 40.59517722278509,
-            "long": -3.608276532347841
-        },
-        "velocity": {
-            "speed": 241.73874307988837,
-            "heading": 104.22107187589575
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.530713",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.36071214799153,
-        "location": {
-            "lat": 40.59625841923973,
-            "long": -3.6090138763864807
-        },
-        "velocity": {
-            "speed": 243.47415327749056,
-            "heading": 117.37652767618727
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.628010",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.40525709051053,
-        "location": {
-            "lat": 40.59697261804171,
-            "long": -3.6091812816565625
-        },
-        "velocity": {
-            "speed": 247.05368047262277,
-            "heading": 100.09173293682596
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.731117",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.46656779241914,
-        "location": {
-            "lat": 40.59761049967512,
-            "long": -3.6096085338819326
-        },
-        "velocity": {
-            "speed": 243.0748426578583,
-            "heading": 116.9568338696381
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.836320",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.5215418549926,
-        "location": {
-            "lat": 40.59823811536102,
-            "long": -3.6099597377942647
-        },
-        "velocity": {
-            "speed": 247.06311483059721,
-            "heading": 113.02002890072959
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:22.931780",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.56728602909277,
-        "location": {
-            "lat": 40.59894703699538,
-            "long": -3.6101451712106702
-        },
-        "velocity": {
-            "speed": 248.02570433107508,
-            "heading": 101.23315117803236
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.037478",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.60563367094045,
-        "location": {
-            "lat": 40.599470706411616,
-            "long": -3.6103408781426607
-        },
-        "velocity": {
-            "speed": 243.65663615496618,
-            "heading": 105.84174677120376
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.135508",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.65864753844204,
-        "location": {
-            "lat": 40.59997537177125,
-            "long": -3.6107367694543107
-        },
-        "velocity": {
-            "speed": 244.8047335843097,
-            "heading": 120.77885576501592
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.236852",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.71232522584904,
-        "location": {
-            "lat": 40.60074288267726,
-            "long": -3.6109907098128815
-        },
-        "velocity": {
-            "speed": 244.87925618703994,
-            "heading": 104.1015636997393
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.330333",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.7766551694239,
-        "location": {
-            "lat": 40.601632831197556,
-            "long": -3.6113118950813172
-        },
-        "velocity": {
-            "speed": 240.61030422850394,
-            "heading": 105.32389086195843
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.436646",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.8007174558376,
-        "location": {
-            "lat": 40.60212950933975,
-            "long": -3.6113380822503505
-        },
-        "velocity": {
-            "speed": 241.1062883453809,
-            "heading": 92.2923827214911
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.532360",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.8445211712265,
-        "location": {
-            "lat": 40.602781758229945,
-            "long": -3.6115299873657567
-        },
-        "velocity": {
-            "speed": 247.40726282706862,
-            "heading": 102.59222930196495
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.631903",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.8851576558676,
-        "location": {
-            "lat": 40.60328834855983,
-            "long": -3.611764399210202
-        },
-        "velocity": {
-            "speed": 248.26127004306684,
-            "heading": 109.35718581117055
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.731575",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 302.94955658121614,
-        "location": {
-            "lat": 40.60397067848867,
-            "long": -3.612204896080932
-        },
-        "velocity": {
-            "speed": 246.7360297502768,
-            "heading": 116.11129192702418
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.834137",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.0064390479539,
-        "location": {
-            "lat": 40.60441670781095,
-            "long": -3.6126838399231214
-        },
-        "velocity": {
-            "speed": 240.49289758442862,
-            "heading": 129.18848063000053
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:23.933193",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.03376520734923,
-        "location": {
-            "lat": 40.604924995175594,
-            "long": -3.6127450443506235
-        },
-        "velocity": {
-            "speed": 241.27585044641532,
-            "heading": 95.22342455428486
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.033209",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.07471614950947,
-        "location": {
-            "lat": 40.605494275636296,
-            "long": -3.6129471773817126
-        },
-        "velocity": {
-            "speed": 246.01973180608627,
-            "heading": 105.0866281487211
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.135392",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.1282852261111,
-        "location": {
-            "lat": 40.606008093138115,
-            "long": -3.613344178062268
-        },
-        "velocity": {
-            "speed": 243.68891752835162,
-            "heading": 120.395748055132
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.231200",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.19090566659673,
-        "location": {
-            "lat": 40.60674460151414,
-            "long": -3.613730031270276
-        },
-        "velocity": {
-            "speed": 243.51809562964107,
-            "heading": 111.6896304875076
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.333298",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.25648647481916,
-        "location": {
-            "lat": 40.607321776326444,
-            "long": -3.614245692614013
-        },
-        "velocity": {
-            "speed": 245.24272090378795,
-            "heading": 124.1480818589256
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.432533",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.2869528269485,
-        "location": {
-            "lat": 40.60773765659079,
-            "long": -3.614400186632179
-        },
-        "velocity": {
-            "speed": 246.79888100938038,
-            "heading": 105.7498388927342
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.532708",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.32892991820813,
-        "location": {
-            "lat": 40.60828951701761,
-            "long": -3.6146251362142565
-        },
-        "velocity": {
-            "speed": 247.99157787256976,
-            "heading": 107.19499012996243
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.633341",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.3569642188743,
-        "location": {
-            "lat": 40.608727439764756,
-            "long": -3.6147353553640396
-        },
-        "velocity": {
-            "speed": 241.07826352259573,
-            "heading": 100.81728887808384
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.731673",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.3953748608738,
-        "location": {
-            "lat": 40.60921091868155,
-            "long": -3.6149534199062336
-        },
-        "velocity": {
-            "speed": 247.03856787715142,
-            "heading": 108.90162426087261
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.833823",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.4265658690579,
-        "location": {
-            "lat": 40.60950253406001,
-            "long": -3.6151886601797854
-        },
-        "velocity": {
-            "speed": 241.36742756156508,
-            "heading": 121.48329736174787
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:24.935354",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.45162546094724,
-        "location": {
-            "lat": 40.609913301667945,
-            "long": -3.6152758934143843
-        },
-        "velocity": {
-            "speed": 243.80064649663703,
-            "heading": 99.15839496853266
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.031019",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.5152675004304,
-        "location": {
-            "lat": 40.610537745690955,
-            "long": -3.615738771394828
-        },
-        "velocity": {
-            "speed": 245.63138989535122,
-            "heading": 119.367831542781
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.133333",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.5445464771977,
-        "location": {
-            "lat": 40.610944580802744,
-            "long": -3.615882705495292
-        },
-        "velocity": {
-            "speed": 240.41763846777025,
-            "heading": 105.03360808601275
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.235265",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.620311188371,
-        "location": {
-            "lat": 40.61178214418629,
-            "long": -3.616379177217003
-        },
-        "velocity": {
-            "speed": 247.93954157214762,
-            "heading": 114.22702100835221
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.333697",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.65297565326074,
-        "location": {
-            "lat": 40.61231672968891,
-            "long": -3.616492953706975
-        },
-        "velocity": {
-            "speed": 245.34703744869816,
-            "heading": 99.17778326288908
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.432953",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.71251889435365,
-        "location": {
-            "lat": 40.61303325946477,
-            "long": -3.6168491943349967
-        },
-        "velocity": {
-            "speed": 243.2804363133779,
-            "heading": 110.67736972272832
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.532842",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.75007487827617,
-        "location": {
-            "lat": 40.61363370900644,
-            "long": -3.6169879363755224
-        },
-        "velocity": {
-            "speed": 248.0064602316658,
-            "heading": 99.94871273422899
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.633075",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.7878684299385,
-        "location": {
-            "lat": 40.61416439833394,
-            "long": -3.6171699795040033
-        },
-        "velocity": {
-            "speed": 246.3509897249746,
-            "heading": 104.59560221696893
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.731002",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.8140525262291,
-        "location": {
-            "lat": 40.61452074913133,
-            "long": -3.6173025983741214
-        },
-        "velocity": {
-            "speed": 246.04808671588154,
-            "heading": 105.77536020294428
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.831454",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.85017458676657,
-        "location": {
-            "lat": 40.61498752077096,
-            "long": -3.617499857440316
-        },
-        "velocity": {
-            "speed": 241.01884052999588,
-            "heading": 107.78613207425406
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:25.930378",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.9273074146867,
-        "location": {
-            "lat": 40.61587058078546,
-            "long": -3.6179866870732975
-        },
-        "velocity": {
-            "speed": 243.47954229199397,
-            "heading": 112.7086488126721
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.029674",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 303.949714696465,
-        "location": {
-            "lat": 40.61628530759388,
-            "long": -3.6180364051381284
-        },
-        "velocity": {
-            "speed": 248.57549872110354,
-            "heading": 95.199609570105
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.133099",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.02914467330373,
-        "location": {
-            "lat": 40.61723551804724,
-            "long": -3.6185136899409227
-        },
-        "velocity": {
-            "speed": 248.03141609411276,
-            "heading": 110.87083470700287
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.233439",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.0882823734644,
-        "location": {
-            "lat": 40.61781324303629,
-            "long": -3.61894413835687
-        },
-        "velocity": {
-            "speed": 242.29633139106565,
-            "heading": 119.49088065882972
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.329018",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.13303489633256,
-        "location": {
-            "lat": 40.61835794879673,
-            "long": -3.61920743572138
-        },
-        "velocity": {
-            "speed": 246.44902418747114,
-            "heading": 110.14869254973178
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.430374",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.16668767442684,
-        "location": {
-            "lat": 40.61893191052143,
-            "long": -3.619309942703795
-        },
-        "velocity": {
-            "speed": 244.71038153462524,
-            "heading": 97.7201807640372
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.532467",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.2214853568219,
-        "location": {
-            "lat": 40.61968847599544,
-            "long": -3.61958003684607
-        },
-        "velocity": {
-            "speed": 245.7402110454138,
-            "heading": 105.16192492156097
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.632845",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.30036520259006,
-        "location": {
-            "lat": 40.620546575821855,
-            "long": -3.620102787999521
-        },
-        "velocity": {
-            "speed": 241.04961686546633,
-            "heading": 114.81599235099867
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.733299",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.34866317211566,
-        "location": {
-            "lat": 40.62124109000898,
-            "long": -3.6203244138265775
-        },
-        "velocity": {
-            "speed": 241.54404818894793,
-            "heading": 103.61559244895977
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.833862",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.3988270714927,
-        "location": {
-            "lat": 40.621652004210304,
-            "long": -3.6207350822183004
-        },
-        "velocity": {
-            "speed": 248.48194969145345,
-            "heading": 127.18283786108373
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:26.933419",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.44656620535187,
-        "location": {
-            "lat": 40.622080192051506,
-            "long": -3.621104260760649
-        },
-        "velocity": {
-            "speed": 246.5301879020609,
-            "heading": 123.20141821942389
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.033288",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.4854447079968,
-        "location": {
-            "lat": 40.62248205804284,
-            "long": -3.6213739483015646
-        },
-        "velocity": {
-            "speed": 247.62845894067934,
-            "heading": 116.99272567121068
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.132990",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.5164795074635,
-        "location": {
-            "lat": 40.62290620556033,
-            "long": -3.621529009865667
-        },
-        "velocity": {
-            "speed": 248.10502794256033,
-            "heading": 105.50837079096584
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.238078",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.5497236199528,
-        "location": {
-            "lat": 40.623266374132314,
-            "long": -3.621749904482762
-        },
-        "velocity": {
-            "speed": 242.0146289384945,
-            "heading": 114.96219761533314
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.333433",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.5774279773687,
-        "location": {
-            "lat": 40.623711052884374,
-            "long": -3.62184974939475
-        },
-        "velocity": {
-            "speed": 244.1572010799927,
-            "heading": 99.6714610681181
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.435516",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.63285539930075,
-        "location": {
-            "lat": 40.62447511711222,
-            "long": -3.622122524360465
-        },
-        "velocity": {
-            "speed": 241.60464902219852,
-            "heading": 105.16108909349629
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.533455",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.6694707507389,
-        "location": {
-            "lat": 40.624906560264314,
-            "long": -3.622345367979781
-        },
-        "velocity": {
-            "speed": 240.27723742328462,
-            "heading": 111.40629821813894
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.629865",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.7405354440938,
-        "location": {
-            "lat": 40.62567455067561,
-            "long": -3.6228182081755493
-        },
-        "velocity": {
-            "speed": 249.63923769029677,
-            "heading": 115.04634341774062
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.733421",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.7691067192005,
-        "location": {
-            "lat": 40.626130446906714,
-            "long": -3.6229223795829326
-        },
-        "velocity": {
-            "speed": 247.82560804982919,
-            "heading": 99.83860501791344
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.835398",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.82378659737617,
-        "location": {
-            "lat": 40.626568766122936,
-            "long": -3.6233751341341214
-        },
-        "velocity": {
-            "speed": 242.5215846318459,
-            "heading": 128.09512748945042
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:27.932168",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.8552709418427,
-        "location": {
-            "lat": 40.626963597184,
-            "long": -3.623552609961676
-        },
-        "velocity": {
-            "speed": 241.9777566192805,
-            "heading": 108.8372143308323
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.033076",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.9140843271003,
-        "location": {
-            "lat": 40.62754853146959,
-            "long": -3.6239732040422936
-        },
-        "velocity": {
-            "speed": 240.68935080835308,
-            "heading": 118.62239086907499
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.131594",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 304.9690155387254,
-        "location": {
-            "lat": 40.628327389516365,
-            "long": -3.6242300102941893
-        },
-        "velocity": {
-            "speed": 244.17497795978812,
-            "heading": 104.0493068691282
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.235089",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.0150259696035,
-        "location": {
-            "lat": 40.62893286726048,
-            "long": -3.6244723882945378
-        },
-        "velocity": {
-            "speed": 244.3389863903968,
-            "heading": 106.89937091989458
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.335942",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.06806906588923,
-        "location": {
-            "lat": 40.62949488364914,
-            "long": -3.6248312727202157
-        },
-        "velocity": {
-            "speed": 245.93056779995706,
-            "heading": 115.85623208524441
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.433318",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.1262566294165,
-        "location": {
-            "lat": 40.630018721984214,
-            "long": -3.625279136348652
-        },
-        "velocity": {
-            "speed": 241.30914961768949,
-            "heading": 122.97784801211492
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.535448",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.15379606261496,
-        "location": {
-            "lat": 40.63030965466418,
-            "long": -3.625465903366135
-        },
-        "velocity": {
-            "speed": 240.31259523649797,
-            "heading": 115.9752986704932
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.635548",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.1945156108929,
-        "location": {
-            "lat": 40.63079437793676,
-            "long": -3.6257100621862404
-        },
-        "velocity": {
-            "speed": 245.40286944295798,
-            "heading": 110.92055941027252
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.732582",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.2460667475338,
-        "location": {
-            "lat": 40.63130575347439,
-            "long": -3.6260790106382603
-        },
-        "velocity": {
-            "speed": 246.11338424013437,
-            "heading": 118.70262229147033
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.835375",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.2962321177463,
-        "location": {
-            "lat": 40.63184471025574,
-            "long": -3.6264137578879043
-        },
-        "velocity": {
-            "speed": 242.39695261129845,
-            "heading": 115.23730857599219
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:28.932335",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.32963155134684,
-        "location": {
-            "lat": 40.63221760958086,
-            "long": -3.6266283374919905
-        },
-        "velocity": {
-            "speed": 249.76623025198117,
-            "heading": 113.59090699070163
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.031091",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.3487193494697,
-        "location": {
-            "lat": 40.632582095977384,
-            "long": -3.626662174998232
-        },
-        "velocity": {
-            "speed": 240.42415840574927,
-            "heading": 94.03001788968152
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.136278",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.4004270837781,
-        "location": {
-            "lat": 40.63321692226072,
-            "long": -3.62696048444446
-        },
-        "velocity": {
-            "speed": 248.47773178873965,
-            "heading": 109.62672767806532
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.231545",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.46972770974344,
-        "location": {
-            "lat": 40.6340485075295,
-            "long": -3.6273713951107425
-        },
-        "velocity": {
-            "speed": 243.11857297380416,
-            "heading": 110.55541888069718
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.335730",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.5151050413827,
-        "location": {
-            "lat": 40.634571017524806,
-            "long": -3.6276532713477194
-        },
-        "velocity": {
-            "speed": 243.40885328254515,
-            "heading": 112.26363029629522
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.433780",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.5804340097994,
-        "location": {
-            "lat": 40.635506653735064,
-            "long": -3.6279511591743336
-        },
-        "velocity": {
-            "speed": 248.38516066358528,
-            "heading": 103.5828634562676
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.536557",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.6174075743623,
-        "location": {
-            "lat": 40.636015468851774,
-            "long": -3.628131803487035
-        },
-        "velocity": {
-            "speed": 249.8732910116925,
-            "heading": 105.07849353465332
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.634205",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.6701189347025,
-        "location": {
-            "lat": 40.6367392672603,
-            "long": -3.62839012975934
-        },
-        "velocity": {
-            "speed": 241.30879459841387,
-            "heading": 105.15430897070411
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.734390",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.68893173238627,
-        "location": {
-            "lat": 40.637023542204815,
-            "long": -3.628467012936269
-        },
-        "velocity": {
-            "speed": 243.21121616763932,
-            "heading": 101.59795704512248
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.835631",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.735706427645,
-        "location": {
-            "lat": 40.637654212792924,
-            "long": -3.6287028750196924
-        },
-        "velocity": {
-            "speed": 240.13788510790368,
-            "heading": 105.84378103142382
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:29.937080",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.7973974961289,
-        "location": {
-            "lat": 40.638205524561506,
-            "long": -3.6291789947565394
-        },
-        "velocity": {
-            "speed": 243.53016811257757,
-            "heading": 123.23844778493685
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.035459",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.8891314203085,
-        "location": {
-            "lat": 40.63921666160436,
-            "long": -3.6297740919919623
-        },
-        "velocity": {
-            "speed": 247.88998762729716,
-            "heading": 114.06565408636027
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.135932",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 305.9563969747991,
-        "location": {
-            "lat": 40.63999552365963,
-            "long": -3.630188212127023
-        },
-        "velocity": {
-            "speed": 246.96815860259483,
-            "heading": 111.97222576146635
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.236006",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.0037028233221,
-        "location": {
-            "lat": 40.640567783533115,
-            "long": -3.6304648875478494
-        },
-        "velocity": {
-            "speed": 241.04876635918345,
-            "heading": 110.14648904218063
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.332568",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.072236788149,
-        "location": {
-            "lat": 40.64138021927473,
-            "long": -3.630875362505296
-        },
-        "velocity": {
-            "speed": 243.24737987449637,
-            "heading": 110.97567878992982
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.435842",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.13409079285185,
-        "location": {
-            "lat": 40.64230906558464,
-            "long": -3.6311301114476255
-        },
-        "velocity": {
-            "speed": 247.54784283881983,
-            "heading": 101.75598500324043
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.535256",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.1623282957539,
-        "location": {
-            "lat": 40.642700753605155,
-            "long": -3.631265426964054
-        },
-        "velocity": {
-            "speed": 245.49947966992153,
-            "heading": 104.68876505322868
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.632478",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.21995749179547,
-        "location": {
-            "lat": 40.643259089470256,
-            "long": -3.6316839693181744
-        },
-        "velocity": {
-            "speed": 249.97636876606794,
-            "heading": 119.63119348677611
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.736810",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.29843112699194,
-        "location": {
-            "lat": 40.64391182588463,
-            "long": -3.632317401844638
-        },
-        "velocity": {
-            "speed": 243.43523166973267,
-            "heading": 126.36540031575794
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.833789",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.32725445630575,
-        "location": {
-            "lat": 40.6442587968314,
-            "long": -3.6324866129869062
-        },
-        "velocity": {
-            "speed": 244.28087809050623,
-            "heading": 110.30629283420575
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:30.933793",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.36650424485885,
-        "location": {
-            "lat": 40.644669360213896,
-            "long": -3.632753622141472
-        },
-        "velocity": {
-            "speed": 242.33375409210765,
-            "heading": 116.26447839129844
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.032944",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.42399036712914,
-        "location": {
-            "lat": 40.6454051540742,
-            "long": -3.633064997014449
-        },
-        "velocity": {
-            "speed": 242.47311906643824,
-            "heading": 107.80140926947155
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.134195",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.4777526922708,
-        "location": {
-            "lat": 40.64609120289876,
-            "long": -3.633357284799035
-        },
-        "velocity": {
-            "speed": 248.23653669245238,
-            "heading": 107.91398897402394
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.232911",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.54808694295747,
-        "location": {
-            "lat": 40.64688204839277,
-            "long": -3.63380268590309
-        },
-        "velocity": {
-            "speed": 245.0810966574827,
-            "heading": 113.13793802367638
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.332658",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.5935098680056,
-        "location": {
-            "lat": 40.64736244928688,
-            "long": -3.6341082331304464
-        },
-        "velocity": {
-            "speed": 241.78268616005508,
-            "heading": 115.76069676729765
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.429618",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.6649007905948,
-        "location": {
-            "lat": 40.64801767658143,
-            "long": -3.634647556414186
-        },
-        "velocity": {
-            "speed": 244.40452270763188,
-            "heading": 121.98533072287967
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.535812",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.7445637666998,
-        "location": {
-            "lat": 40.64866343228535,
-            "long": -3.6352999427665034
-        },
-        "velocity": {
-            "speed": 240.5766083077823,
-            "heading": 127.47045900156297
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.635730",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.8012368928987,
-        "location": {
-            "lat": 40.64935492842356,
-            "long": -3.635626234413624
-        },
-        "velocity": {
-            "speed": 242.18209964428095,
-            "heading": 109.69776119144996
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.735547",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.8217183786941,
-        "location": {
-            "lat": 40.6495595198579,
-            "long": -3.6357710279122486
-        },
-        "velocity": {
-            "speed": 242.84815969290656,
-            "heading": 118.23362602532973
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.834058",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.8835668887425,
-        "location": {
-            "lat": 40.65029486032516,
-            "long": -3.6361383845273623
-        },
-        "velocity": {
-            "speed": 243.06979003607924,
-            "heading": 110.75803799663129
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:31.929783",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.92219376125405,
-        "location": {
-            "lat": 40.65061485933463,
-            "long": -3.636450487047322
-        },
-        "velocity": {
-            "speed": 243.58207846920564,
-            "heading": 126.50039191154144
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.031751",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 306.9880918893076,
-        "location": {
-            "lat": 40.65127654613503,
-            "long": -3.6369140850381743
-        },
-        "velocity": {
-            "speed": 248.7886672324281,
-            "heading": 117.99333841261978
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.134460",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.04111034138987,
-        "location": {
-            "lat": 40.65175726797072,
-            "long": -3.6373177082351007
-        },
-        "velocity": {
-            "speed": 246.04284589309836,
-            "heading": 122.49728170851586
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.235945",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.0692099229805,
-        "location": {
-            "lat": 40.6522010336027,
-            "long": -3.6374191977496624
-        },
-        "velocity": {
-            "speed": 240.76234970725892,
-            "heading": 99.84338965894517
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.331088",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.094489417275,
-        "location": {
-            "lat": 40.652606899924315,
-            "long": -3.637506491076095
-        },
-        "velocity": {
-            "speed": 246.1633235085313,
-            "heading": 99.26753339915422
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.432292",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.1607071509185,
-        "location": {
-            "lat": 40.653270561440635,
-            "long": -3.63797273575522
-        },
-        "velocity": {
-            "speed": 246.62420549033834,
-            "heading": 118.0570963026866
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.533426",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.21020677680895,
-        "location": {
-            "lat": 40.653753302366816,
-            "long": -3.638329159146173
-        },
-        "velocity": {
-            "speed": 249.93767204371457,
-            "heading": 119.25505614834952
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.633011",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.249844090957,
-        "location": {
-            "lat": 40.65423556322856,
-            "long": -3.638557521857183
-        },
-        "velocity": {
-            "speed": 248.29710593033437,
-            "heading": 109.7604101539892
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.732868",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.2772980820036,
-        "location": {
-            "lat": 40.65476269976028,
-            "long": -3.638600571776198
-        },
-        "velocity": {
-            "speed": 249.7839871172238,
-            "heading": 93.54533790629415
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.829294",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.33701400892323,
-        "location": {
-            "lat": 40.65537246841377,
-            "long": -3.63901399049823
-        },
-        "velocity": {
-            "speed": 247.5079969132127,
-            "heading": 117.21917987769825
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:32.935838",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.40716971228136,
-        "location": {
-            "lat": 40.65608723036012,
-            "long": -3.6395005315753504
-        },
-        "velocity": {
-            "speed": 248.97939996665224,
-            "heading": 117.31205415224406
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.032935",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.4628851610599,
-        "location": {
-            "lat": 40.65671110154604,
-            "long": -3.639853284440108
-        },
-        "velocity": {
-            "speed": 246.9108554464262,
-            "heading": 113.21676744454845
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.133779",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.4909584308387,
-        "location": {
-            "lat": 40.65702578417912,
-            "long": -3.6400307871996715
-        },
-        "velocity": {
-            "speed": 247.15575656643034,
-            "heading": 113.16679884422075
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.233849",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.52870339255236,
-        "location": {
-            "lat": 40.65754105712105,
-            "long": -3.6402143588902627
-        },
-        "velocity": {
-            "speed": 244.61770319110144,
-            "heading": 105.12375706102665
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.333510",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.57472694315544,
-        "location": {
-            "lat": 40.65801269798778,
-            "long": -3.6405316579085567
-        },
-        "velocity": {
-            "speed": 248.20891252076197,
-            "heading": 117.03793113380607
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.435854",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.64188190268567,
-        "location": {
-            "lat": 40.65881693089246,
-            "long": -3.6409251939279463
-        },
-        "velocity": {
-            "speed": 247.62270749507047,
-            "heading": 110.36533998341451
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.533642",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.66642548367537,
-        "location": {
-            "lat": 40.65918771998991,
-            "long": -3.641023024582698
-        },
-        "velocity": {
-            "speed": 249.52690460220674,
-            "heading": 101.31828802246758
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.635410",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.7108861818102,
-        "location": {
-            "lat": 40.65975984410486,
-            "long": -3.641259675821466
-        },
-        "velocity": {
-            "speed": 241.69486981348754,
-            "heading": 107.4208645834882
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.735933",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.7467312332223,
-        "location": {
-            "lat": 40.66031110328667,
-            "long": -3.6413965405535373
-        },
-        "velocity": {
-            "speed": 244.6510035353088,
-            "heading": 100.66608664972978
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.834628",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.78902379080324,
-        "location": {
-            "lat": 40.66077872931175,
-            "long": -3.641667312288712
-        },
-        "velocity": {
-            "speed": 249.41034731702914,
-            "heading": 113.7131880468587
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:33.937026",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.8651838427711,
-        "location": {
-            "lat": 40.66148336196533,
-            "long": -3.6422370986928385
-        },
-        "velocity": {
-            "speed": 240.33901221023996,
-            "heading": 121.52510406808426
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.033760",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.88471722871975,
-        "location": {
-            "lat": 40.66184268691341,
-            "long": -3.642276240323083
-        },
-        "velocity": {
-            "speed": 243.64062585397954,
-            "heading": 94.72370336189385
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.136230",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.94128554740087,
-        "location": {
-            "lat": 40.66256269599177,
-            "long": -3.642581486880459
-        },
-        "velocity": {
-            "speed": 247.61674154829157,
-            "heading": 107.82729523485142
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.230422",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 307.9924128408798,
-        "location": {
-            "lat": 40.6632411365789,
-            "long": -3.642840635690776
-        },
-        "velocity": {
-            "speed": 240.51254850938642,
-            "heading": 106.15893599607523
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.335576",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.0620457038247,
-        "location": {
-            "lat": 40.66425344183303,
-            "long": -3.6431403576315877
-        },
-        "velocity": {
-            "speed": 249.1605513426459,
-            "heading": 102.65793751985439
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.435902",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.1215225860523,
-        "location": {
-            "lat": 40.66509805556266,
-            "long": -3.6434081277187262
-        },
-        "velocity": {
-            "speed": 249.10007446986467,
-            "heading": 103.52171066583287
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.535269",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.1643125637291,
-        "location": {
-            "lat": 40.66549871757282,
-            "long": -3.6437249742949294
-        },
-        "velocity": {
-            "speed": 248.165759875228,
-            "heading": 120.95732613641758
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.635830",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.2106718149975,
-        "location": {
-            "lat": 40.66596907644561,
-            "long": -3.6440464152723933
-        },
-        "velocity": {
-            "speed": 244.40549882187364,
-            "heading": 117.40082566547295
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.738832",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.251960921718,
-        "location": {
-            "lat": 40.666312494273626,
-            "long": -3.64437803487984
-        },
-        "velocity": {
-            "speed": 240.4166434805608,
-            "heading": 126.22114481705881
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.835911",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.2969701905955,
-        "location": {
-            "lat": 40.66676020110203,
-            "long": -3.64469541841945
-        },
-        "velocity": {
-            "speed": 243.83649612355086,
-            "heading": 118.26761478263563
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:34.933794",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.3691891170534,
-        "location": {
-            "lat": 40.6676275123368,
-            "long": -3.645114981885738
-        },
-        "velocity": {
-            "speed": 245.2276108997751,
-            "heading": 110.14948641406443
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.037506",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.4282316148524,
-        "location": {
-            "lat": 40.66845356719141,
-            "long": -3.6453874220438833
-        },
-        "velocity": {
-            "speed": 247.0858461178255,
-            "heading": 104.04476955460433
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.135968",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.46899723037853,
-        "location": {
-            "lat": 40.66905793537898,
-            "long": -3.6455549069886666
-        },
-        "velocity": {
-            "speed": 243.05623235273677,
-            "heading": 101.87046622612746
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.234324",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.50169137956834,
-        "location": {
-            "lat": 40.669589486327105,
-            "long": -3.6456609161460567
-        },
-        "velocity": {
-            "speed": 244.8163919161016,
-            "heading": 98.60171653858902
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.334444",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.55261021832774,
-        "location": {
-            "lat": 40.6701650993637,
-            "long": -3.6459778635452875
-        },
-        "velocity": {
-            "speed": 249.10062205069167,
-            "heading": 112.66712179496903
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.434816",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.5891141471756,
-        "location": {
-            "lat": 40.67063283117079,
-            "long": -3.6461718256236897
-        },
-        "velocity": {
-            "speed": 246.32451964318136,
-            "heading": 107.45972879944833
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.532092",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.6461884489834,
-        "location": {
-            "lat": 40.67127477502316,
-            "long": -3.6465288590843006
-        },
-        "velocity": {
-            "speed": 241.6718143210585,
-            "heading": 112.87183922575122
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.630586",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.69787633908106,
-        "location": {
-            "lat": 40.67186404328918,
-            "long": -3.6468473305580185
-        },
-        "velocity": {
-            "speed": 244.4429882603061,
-            "heading": 112.28913478676981
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.730085",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.7219391998522,
-        "location": {
-            "lat": 40.6722510867872,
-            "long": -3.6469275246199016
-        },
-        "velocity": {
-            "speed": 241.0851218800592,
-            "heading": 98.93087396739884
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.837230",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.77784550686647,
-        "location": {
-            "lat": 40.67286321446788,
-            "long": -3.647287042599674
-        },
-        "velocity": {
-            "speed": 247.4478324302471,
-            "heading": 114.01070359153118
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:35.930799",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.8233339191825,
-        "location": {
-            "lat": 40.67359152140567,
-            "long": -3.6474403842490295
-        },
-        "velocity": {
-            "speed": 247.14487351751472,
-            "heading": 99.07268158759541
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.033001",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.89129088553307,
-        "location": {
-            "lat": 40.6743647700211,
-            "long": -3.647859461345547
-        },
-        "velocity": {
-            "speed": 247.0231913823294,
-            "heading": 112.34482048397297
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.132929",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.9518558105017,
-        "location": {
-            "lat": 40.675101802972435,
-            "long": -3.6482038465287294
-        },
-        "velocity": {
-            "speed": 246.3742420063513,
-            "heading": 109.51318570093594
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.229092",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 308.9900476845612,
-        "location": {
-            "lat": 40.67561211020356,
-            "long": -3.6483933763683885
-        },
-        "velocity": {
-            "speed": 242.29758023000176,
-            "heading": 105.731278497022
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.333799",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.0191391280357,
-        "location": {
-            "lat": 40.67609116092444,
-            "long": -3.648483002283468
-        },
-        "velocity": {
-            "speed": 245.87934251982608,
-            "heading": 98.07582429381898
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.433569",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.056869274658,
-        "location": {
-            "lat": 40.676501214074044,
-            "long": -3.648727052318143
-        },
-        "velocity": {
-            "speed": 249.33006899886914,
-            "heading": 114.2932101524035
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.533487",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.1152445132669,
-        "location": {
-            "lat": 40.67704764037281,
-            "long": -3.6491578642077536
-        },
-        "velocity": {
-            "speed": 249.83416687117486,
-            "heading": 120.87652211433158
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.633545",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.1885660656259,
-        "location": {
-            "lat": 40.67771126005639,
-            "long": -3.6497126572289873
-        },
-        "velocity": {
-            "speed": 248.80524114634926,
-            "heading": 122.37551188468359
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.730934",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.2458141273611,
-        "location": {
-            "lat": 40.678322518899186,
-            "long": -3.6500893209665266
-        },
-        "velocity": {
-            "speed": 246.3825062354188,
-            "heading": 115.04770006784571
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.833698",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.2784353496264,
-        "location": {
-            "lat": 40.678752989141586,
-            "long": -3.650254087654441
-        },
-        "velocity": {
-            "speed": 241.9050460634466,
-            "heading": 106.18671304854661
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:36.933789",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.3089179057602,
-        "location": {
-            "lat": 40.67914280003744,
-            "long": -3.650415544526105
-        },
-        "velocity": {
-            "speed": 240.1419229485729,
-            "heading": 107.43810461800695
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.036020",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.35283139709475,
-        "location": {
-            "lat": 40.67960843866797,
-            "long": -3.650706271103466
-        },
-        "velocity": {
-            "speed": 247.0839666882013,
-            "heading": 115.3372575106547
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.136162",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.4072682448194,
-        "location": {
-            "lat": 40.68025740013657,
-            "long": -3.651023043940813
-        },
-        "velocity": {
-            "speed": 246.4620297885789,
-            "heading": 110.31315281095851
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.235144",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.51261902259336,
-        "location": {
-            "lat": 40.68129924349597,
-            "long": -3.651765816765991
-        },
-        "velocity": {
-            "speed": 244.64158244342843,
-            "heading": 118.39823335007685
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.333102",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.5474890858348,
-        "location": {
-            "lat": 40.68172849138229,
-            "long": -3.6519603238327654
-        },
-        "velocity": {
-            "speed": 241.79684436285814,
-            "heading": 108.96428678540832
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.433021",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.59532161448135,
-        "location": {
-            "lat": 40.68239837639309,
-            "long": -3.6521777617359006
-        },
-        "velocity": {
-            "speed": 247.06118101297508,
-            "heading": 103.82832669278946
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.531706",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.65694923351015,
-        "location": {
-            "lat": 40.68291529446651,
-            "long": -3.652668253540307
-        },
-        "velocity": {
-            "speed": 249.11095128099396,
-            "heading": 125.73726519586455
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.633025",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.723139559002,
-        "location": {
-            "lat": 40.6835604176733,
-            "long": -3.6531402960059047
-        },
-        "velocity": {
-            "speed": 241.2386365017467,
-            "heading": 119.02459452654318
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.733088",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.7698914436768,
-        "location": {
-            "lat": 40.68418080348888,
-            "long": -3.6533734031425578
-        },
-        "velocity": {
-            "speed": 248.20100144294733,
-            "heading": 105.90400885678855
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.835451",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.8462826025294,
-        "location": {
-            "lat": 40.684912482225585,
-            "long": -3.6539257949748696
-        },
-        "velocity": {
-            "speed": 249.9168955856258,
-            "heading": 119.79090327360643
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:37.936174",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.8778144108745,
-        "location": {
-            "lat": 40.685560429693325,
-            "long": -3.6539430315671377
-        },
-        "velocity": {
-            "speed": 244.42697938367417,
-            "heading": 91.15562175308264
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.035637",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.93172440830847,
-        "location": {
-            "lat": 40.6860354811643,
-            "long": -3.65435786328514
-        },
-        "velocity": {
-            "speed": 247.99636752790067,
-            "heading": 123.51121787312621
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.133442",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 309.9864984983541,
-        "location": {
-            "lat": 40.686546864245614,
-            "long": -3.654761793904832
-        },
-        "velocity": {
-            "speed": 240.3076959197744,
-            "heading": 120.91967598320093
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.235045",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.0363595412331,
-        "location": {
-            "lat": 40.68711962128428,
-            "long": -3.65506404257087
-        },
-        "velocity": {
-            "speed": 240.5960592237874,
-            "heading": 111.80886444511236
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.331095",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.0783919129854,
-        "location": {
-            "lat": 40.68764743622905,
-            "long": -3.655291319049142
-        },
-        "velocity": {
-            "speed": 249.56774469249325,
-            "heading": 108.08248191632015
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.433930",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.1173913489341,
-        "location": {
-            "lat": 40.68828660119044,
-            "long": -3.6554109056949713
-        },
-        "velocity": {
-            "speed": 242.3935975106095,
-            "heading": 98.07469808427129
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.536907",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.16618075620414,
-        "location": {
-            "lat": 40.6888457538255,
-            "long": -3.6557071657287143
-        },
-        "velocity": {
-            "speed": 240.1325679898407,
-            "heading": 111.88804027319031
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.635969",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.19279663382764,
-        "location": {
-            "lat": 40.68934081123629,
-            "long": -3.65575266485446
-        },
-        "velocity": {
-            "speed": 248.43529838454975,
-            "heading": 93.98642723642604
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.735018",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.2478825517438,
-        "location": {
-            "lat": 40.690002332707174,
-            "long": -3.6560684912797496
-        },
-        "velocity": {
-            "speed": 248.85944164650667,
-            "heading": 109.90056387842645
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.832712",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.29760312762784,
-        "location": {
-            "lat": 40.69054697319002,
-            "long": -3.6563855209154887
-        },
-        "velocity": {
-            "speed": 240.33131695288952,
-            "heading": 113.81495564556622
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:38.929955",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.36759932546397,
-        "location": {
-            "lat": 40.69126983585503,
-            "long": -3.656858546480913
-        },
-        "velocity": {
-            "speed": 244.95829068589833,
-            "heading": 116.38931027887821
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:39.033466",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.40235248017666,
-        "location": {
-            "lat": 40.691864663952884,
-            "long": -3.656948980066143
-        },
-        "velocity": {
-            "speed": 246.9554439566903,
-            "heading": 96.57578070715721
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:39.136499",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.4584410905372,
-        "location": {
-            "lat": 40.69252850062304,
-            "long": -3.6572760268248437
-        },
-        "velocity": {
-            "speed": 240.36705878605798,
-            "heading": 110.4829475746734
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:39.235251",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.5052093534528,
-        "location": {
-            "lat": 40.69309884127503,
-            "long": -3.6575383333122
-        },
-        "velocity": {
-            "speed": 245.601151933695,
-            "heading": 109.22422524841943
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:39.335851",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.60952912254487,
-        "location": {
-            "lat": 40.69414840491398,
-            "long": -3.65825956680162
-        },
-        "velocity": {
-            "speed": 249.62019236342528,
-            "heading": 117.52031729187757
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:39.431649",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.66906739327953,
-        "location": {
-            "lat": 40.6949069588771,
-            "long": -3.6585732429549678
-        },
-        "velocity": {
-            "speed": 247.45705775987238,
-            "heading": 107.40760853363179
-        }
-    },
-    {
-        "flight_id": "ABC1234",
-        "ts": "2024-07-15T10:15:39.531101",
-        "disrupted": false,
-        "extra_length": 0,
-        "distance_to_arrival": 310.7240093668095,
-        "location": {
-            "lat": 40.69534730117452,
-            "long": -3.6590218596999313
-        },
-        "velocity": {
-            "speed": 244.54192136858325,
-            "heading": 127.6836592908756
+            "speed": 100,
+            "heading": "tbd"
         }
     }
 ]
