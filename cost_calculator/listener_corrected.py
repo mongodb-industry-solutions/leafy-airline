@@ -6,11 +6,25 @@ from datetime import datetime
 import math
 import os
 import sys
+from pymongo import MongoClient
+import configparser
+import certifi
+import pandas as pd
+from IPython.display import clear_output
+from config.config import MONGO_URI, DATABASE_NAME, COLLECTION_NAME1
 
 # Global variables to keep track of the previous speed and fuel consumption rate
 prev_speed = None
 prev_fcr = None
 delay_cost_per_minute = 105
+
+#MongoDB setup
+# Connect to the MongoDB server
+client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
+# Select the database and collection
+db = client[DATABASE_NAME]
+collection = db[COLLECTION_NAME1]
+
 # Function to process received messages
 def callback(message):
     data = message.data.decode('utf-8')
@@ -105,6 +119,21 @@ def process_message(message_data):
         total_cost = calculate_cost(speed, distance_to_destination, delay_cost_per_minute, delay_time, prev_speed, prev_fcr)
         delay_cost = delay_time * delay_cost_per_minute
         fuel_cost = total_cost - delay_cost
+
+        # Prepare the data to be inserted into MongoDB
+        document = {
+            "Timestamp": current_entry['Timestamp'],
+            "Distance_to_Destination": distance_to_destination,
+            "Estimated_Time_Left": estimated_time_left,
+            "Delay_Time": delay_time,
+            "Delay_Cost": delay_cost,
+            "Fuel_Cost_per_Hour": fuel_cost,
+            "Total_Cost_per_Hour": total_cost
+        }
+
+        # Insert the document into MongoDB
+        collection.insert_one(document)
+        print(f"Inserted document: {document}")
 
         # Display the results
         print(f"Timestamp: {current_entry['Timestamp']}")
