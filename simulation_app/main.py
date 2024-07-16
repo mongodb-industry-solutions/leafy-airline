@@ -12,6 +12,9 @@ from google.cloud import pubsub_v1
 # https://www.youtube.com/watch?v=ML6P1ksHcqo&list=PLIivdWyY5sqKwVLe4BLJ-vlh9r9zCdOse&index=4 
 
 
+# MongoDB connection : Data API - Custom endpoints
+
+
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
 
@@ -24,7 +27,7 @@ logging.basicConfig(
 )
 
 # SCHEDULER : Calls my function (simulator) every x seconds
-measurement_interval = 0.1
+measurement_interval = 1
 scheduler = BackgroundScheduler()
 docs = []
 
@@ -36,19 +39,23 @@ service_account_file = "json-keys-for-connect-aircraft-ist/connected-aircraft-is
 publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
 topic_path = publisher.topic_path(project_id, topic_id)
 
+# GENERAL LIMITS
+doc_limit = 200
+
+
 # FUNCTIONS
 def publish_data(simulator : DataSimulator):
 
     (finished, data )= simulator.generate_data()
 
-    docs.append(data)
+    if len(docs) <= doc_limit:
+        docs.append(data)
 
     if finished:
         logging.info("ARRIVED TO DESTINATION")
         scheduler.shutdown()
         logging.info("Scheduler stopped due to finished flight")
 
-        
     # Uncomment when using pubsub
     data = json.dumps(data).encode("utf-8")
     future = publisher.publish(topic_path, data)
@@ -57,20 +64,9 @@ def publish_data(simulator : DataSimulator):
     return {"status": "New data published"}
 
 
-# ENDPOINTS FOR FAST API APP
+# ENDPOINTS FOR FAST API APP 
 # Eventually, the simulation should be triggered by using fetch('http://localhost:8000/start-scheduler')
 # in our next.js app
-
-@app.post("/prueba")
-async def prueba_msg(msg:dict):
-    
-    logging.info("Start parsing and publishing")
-    data = json.dumps(msg).encode("utf-8")
-    future = publisher.publish(topic_path, data)
-    logging.info("Data published")
-
-    return {"Mensaje" : msg}
-
 
 @app.post("/start-scheduler")
 async def start_scheduler(flight_info:dict):
@@ -101,7 +97,8 @@ async def start_scheduler(flight_info:dict):
     # Create our Data Simulator for this flight
     simulator = DataSimulator(flight_info["flight_id"],
                               disruption = disrupted,
-                              path_atrib = path_data)
+                              path_atrib = path_data, 
+                              seconds_per_iter= 10)
     
     logging.info("Simulator created")
 

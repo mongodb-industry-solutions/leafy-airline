@@ -2,6 +2,13 @@ import os
 import numpy as np 
 from datetime import datetime
 import math
+from pyproj import CRS, Transformer
+
+# Define the WGS84 projection (latitude and longitude)
+wgs84 = CRS.from_epsg(4326)
+# Define the Mercator projection (x, y)
+mercator = CRS.from_epsg(3857)
+
 
 class SpeedSimulator:
     def __init__(self):
@@ -19,7 +26,7 @@ class SpeedSimulator:
 
         self.prev_speed = 0
         self.avg_plane_speed = 245 #245 # m/s -> 885 km/h
-        self.speed_descent_rate = 1 # m/s (18 km/h)-> 4 min to go back to 0 m/s
+        self.speed_descent_rate = 0.01 # m/s (18 km/h)-> 4 min to go back to 0 m/s
         self.approach_dist = 170 # km (Based on 0.245 km/s advance, we would need 11.56 min to descend)
 
 
@@ -30,16 +37,66 @@ class SpeedSimulator:
         speed = self.prev_speed
 
         if new_dist <= self.approach_dist:
-            speed -= self.speed_descent_rate
+            if speed > 100:
+                speed -= self.speed_descent_rate
+            else:
+                speed = 100
         else:
             # We add a slight noise to our speed calculations
             speed = self.avg_plane_speed + np.random.uniform(-5, 5)
 
         return speed
 
+class CoordinateTransformer:
+
+    def __init__(self, ):
+
+        self.to_2d_transformer = Transformer.from_crs(wgs84, mercator)
+        self.to_latlon_transformer = Transformer.from_crs(mercator, wgs84)
+
+        return
+    
+    def latlon_to_2d(self, lat, lon):
+        x, y = self.to_2d_transformer.transform(lat, lon)
+        return x, y
+
+    def _2d_to_latlon(self, x, y):
+        lat, lon = self.to_latlon_transformer.transform(x, y)
+        return lat, lon
+
+    def unit_vector(self, origin, destination):
+        # Calculate the vector from origin to destination
+        vector = (destination[0] - origin[0], destination[1] - origin[1])
+        # Calculate the magnitude of the vector
+        magnitude = math.sqrt(vector[0]**2 + vector[1]**2)
+        # Normalize the vector
+        if magnitude == 0:
+            return (0, 0)
+        unit = (vector[0] / magnitude, vector[1] / magnitude)
+        return unit
+    
+    def compute_new_loc(self, origin_lat, origin_lon, dest_lat, dest_lon, advancement):
+        #Transform the coordinates from lat/lon to 2D
+        origin_2d = self.latlon_to_2d(origin_lat, origin_lon)
+        destination_2d = self.latlon_to_2d(dest_lat, dest_lon)
+        
+        # Calculate the unit vector from origin to destination
+        unit = self.unit_vector(origin_2d, destination_2d)
+        
+        # Calculate the displacement vector for 1 km
+        displacement = (unit[0] * advancement, unit[1] * advancement)
+        
+        # Add the displacement vector to the origin
+        new_2d = (origin_2d[0] + displacement[0], origin_2d[1] + displacement[1])
+        
+        # Transform the new 2D coordinates back to lat/lon
+        new_lat, new_lon =self._2d_to_latlon(new_2d[0], new_2d[1])
+        
+        return (new_lat, new_lon)
+
 class DataSimulator:
 
-    def __init__(self, flight_ID : str, disruption : bool,  path_atrib: dict):
+    def __init__(self, flight_ID : str, disruption : bool,  path_atrib: dict, seconds_per_iter: int):
         
         self.FID = flight_ID
         self.disruption = disruption
@@ -55,11 +112,12 @@ class DataSimulator:
         self.prev_location = np.array(self.path[0])
         self.timestamp = datetime.now()
 
-        # Maximum location distance between one point and the next one (km) so
-        # it will depend on how much can an aircraft move forward per second
         # Avg aircraft speed is usually between 880 - 930 km/h -> 247,22 m/s
         self.SpController = SpeedSimulator()
-        self.location_th = 0.245     #0.245
+        self.location_th = 1 # If the plane is at a 1km or less distance from the headed point, it is considered as reached
+        self.advancement_rate = 245*seconds_per_iter # Indicates the meters that the plane can cover per iteration
+        # Coordinate transformer
+        self.CoordTransformer = CoordinateTransformer()
 
     def get_real_distance(self, loc1, loc2) :
         '''
@@ -121,41 +179,6 @@ class DataSimulator:
 
         return 
 
-    def compute_new_location(self, noisy_vector):
-        """
-        Compute the new location of the aircraft based on the previous speed,
-        new direction vector, and previous location considering Earth coordinates.
-
-        Returns:
-        - new_loc (np.ndarray): The new location of the aircraft as (longitude, latitude).
-        """
-        # Earth's radius in kilometers
-        R = 6371.0
-
-        # Previous location in radians
-        prev_lat_rad = np.radians(self.prev_location[0])
-        prev_lon_rad = np.radians(self.prev_location[1])
-
-        # Speed in km/h to km/s
-        speed_km_s = self.prev_speed / 3600
-
-        # Distance covered in the direction of the noisy vector
-        distance_km = speed_km_s * np.linalg.norm(noisy_vector)
-
-        # Calculate new latitude
-        new_lat_rad = np.arcsin(np.sin(prev_lat_rad) * np.cos(distance_km / R) +
-                                np.cos(prev_lat_rad) * np.sin(distance_km / R) * noisy_vector[1])
-
-        # Calculate new longitude
-        new_lon_rad = prev_lon_rad + np.arctan2(noisy_vector[0] * np.sin(distance_km / R) * np.cos(prev_lat_rad),
-                                                np.cos(distance_km / R) - np.sin(prev_lat_rad) * np.sin(new_lat_rad))
-
-        # Convert back to degrees
-        new_lat = np.degrees(new_lat_rad)
-        new_lon = np.degrees(new_lon_rad)
-
-        return np.array([new_lat, new_lon])
-
     def generate_data(self):
         '''
         This function will generate real-time simulated data based on the route that
@@ -176,43 +199,40 @@ class DataSimulator:
 
         # 1. Compute direction vector from current position to headed point so we know
         # in which direction the airplane should move
+        print('\nNew measurements: ')
         print('Headed', self.headed_point)
         print('Prev', self.prev_location)
-        direction_vector = self.headed_point - self.prev_location
-        distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
-        
-        # 2. Normalize the vector so we have its unitary 
-        unit_vector = direction_vector / np.linalg.norm(direction_vector)
-        
-        # 3. Add some noise to the vector so the path is not a straight line to the arrival point
-        noise = np.random.normal(0, 0.15, 2)
-        noisy_vector = unit_vector + noise
 
-        # Ensure the noisy vector still points roughly towards the arrival location
-        if np.dot(noisy_vector, unit_vector) < 0:
-            noisy_vector = -noisy_vector
-        
-        # 4. If the distance to arrival is less than the threshold, we assume that the next point it's 
-        # been reached and we have to get the new headed point
+        # Distance to next point in km
+        distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
+
+        # Compute next location
         if distance_to_headed < self.location_th :
             new_loc = self.headed_point
             self.new_headed_point()
+
         else:
             # If the headed point is not reached, we just compute new location based of previous speed
-            new_loc = self.compute_new_location(noisy_vector)
+            new_loc = self.CoordTransformer.compute_new_loc(self.prev_location[0],
+                                                            self.prev_location[1],
+                                                            self.headed_point[0],
+                                                            self.headed_point[1], 
+                                                            self.advancement_rate )
 
-        print('Dist_head', distance_to_headed)
-        print('new loc: ', new_loc)
+        print('Distance to headed: ', distance_to_headed)
+        print('Heading to:', self.headed_point)
+        print('From : ', new_loc)
+
         # 5. Compute new heading direction and new distance to arrival (using the described path)
-        new_heading = (np.degrees(np.arctan2(noisy_vector[1], noisy_vector[0])) + 360) % 360
+        # new_heading = (np.degrees(np.arctan2(unit_vector[1], unit_vector[0])) + 360) % 360
         distance_to_dest = self.dist_to_arrival(new_loc)
 
-        # 6. Compute new speed randomly according to previous values
-        # Maintain it the same for now
+        # Compute new speed 
         new_speed = self.SpController.get_new_speed(distance_to_dest)
+        print('Speed:', new_speed)
         
 
-        # 7. Update every measurement
+        # Update every measurement
         self.prev_location = new_loc
         self.prev_speed = new_speed
         self.timestamp = datetime.now()
@@ -230,16 +250,8 @@ class DataSimulator:
                 },
                 "velocity": {
                     "speed": new_speed,
-                    "heading": new_heading
+                    "heading": 'tbd'
                 }
             })
 
 
-
-    
-        
-        
-
-        
-        
-        
