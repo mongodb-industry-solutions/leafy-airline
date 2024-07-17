@@ -2,14 +2,15 @@
 import React from 'react';
 import styles from './Layout.module.css';
 import Logo from '@leafygreen-ui/logo';
+import Icon from "@leafygreen-ui/icon";
 
 const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div class="icon-container">
-            {/* <img src="path_to_icon/person_icon.png" alt="Person Icon" /> */}
-            <span>Nombre</span>
+        <div className={styles.icon_container}>
+            <Icon glyph='Person' fill="black" size='xlarge'/>
+            <span>Flight Operations Manager</span>
         </div>
         <h1>Leafy Airline Dashboard</h1>
         <Logo className={styles.logo} />
