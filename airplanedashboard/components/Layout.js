@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.icon_container}>
-            <Icon glyph='Person' fill="black" size='xlarge'/>
+            <Icon glyph='Person' fill="#00684A" size='xlarge'/>
             <span>Flight Operations Manager</span>
         </div>
         <h1>Leafy Airline Dashboard</h1>
