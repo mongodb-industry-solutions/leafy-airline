@@ -58,6 +58,38 @@
   .subHeader {
     font-family: 'Lexend Deca', sans-serif;
     color: black;
-    margin-top: -0.5rem; 
+    margin-top: 0.2rem; 
     font-size: 1.2rem; 
+  }
+
+  .nav {
+    margin-top: 0.1rem;
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+  }
+  
+  .navList {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navItem {
+    margin-right: 1rem;
+  }
+  
+  .navLink {
+    text-decoration: none;
+    color: #00684A;
+    font-family: 'Lexend Deca', sans-serif;
+    padding-left: 7px;
+  }
+  
+  .navLink:hover {
+    text-decoration: underline;
+  }
+
+  .activeLink {
+    text-decoration: underline;
   }
