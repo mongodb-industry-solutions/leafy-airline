@@ -1,9 +1,9 @@
-// components/Layout.js
+// components/Layout1.js
 import React from 'react';
 import styles from './Layout.module.css';
 import Logo from '@leafygreen-ui/logo';
 
-const Layout = ({ children }) => {
+const Layout1 = ({ children }) => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -19,4 +19,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default Layout1;
