@@ -35,6 +35,19 @@ const Layout1 = ({ children }) => {
       </nav>
       <div className={styles.main}>
         <div className={styles.content}>
+          {/* Flight Overview Box */}
+          <div className={styles.flightOverviewBox}>
+            <h3>Flight Overview</h3>
+            <div className={styles.innerBox}>
+                <h4>MAD - VLC</h4>
+                <p>10:30-12:30</p>
+            </div>
+            <div className={styles.innerBox1}>
+                <h4>MAD - VLC</h4>
+                <p>10:30-12:30</p>
+            </div>
+          </div>
+          {/* Main Content */}
           {children}
         </div>
       </div>
