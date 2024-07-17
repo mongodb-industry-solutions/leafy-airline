@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
@@ -6,6 +6,20 @@ import Logo from '@leafygreen-ui/logo';
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
+  const [flightData, setFlightData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch('/api/flights');
+        const data = await res.json();
+        setFlightData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -38,14 +52,17 @@ const Layout1 = ({ children }) => {
           {/* Flight Overview Box */}
           <div className={styles.flightOverviewBox}>
             <h3>Flight Overview</h3>
-            <div className={styles.innerBox}>
-                <h4>MAD - VLC</h4>
-                <p>10:30-12:30</p>
-            </div>
-            <div className={styles.innerBox1}>
-                <h4>MAD - VLC</h4>
-                <p>10:30-12:30</p>
-            </div>
+            {flightData.map((flight, index) => (
+              <div key={index} className={styles.innerBox}>
+                <h4>{`${flight.dep_arp.city} - ${flight.arr_arp.city}`}</h4>
+                <p>{`${new Date(flight.dep_time).toLocaleTimeString()} - ${new Date(flight.arr_time).toLocaleTimeString()}`}</p>
+              </div>
+            ))}
+            {flightData.map((flight, index) => (
+              <div key={index} className={styles.innerBox1}>
+                <p>Delay: {flight.delay_time ? `${flight.delay_time} minutes` : 'No delay'}</p>
+              </div>
+            ))}
           </div>
           {/* Main Content */}
           {children}
@@ -56,3 +73,4 @@ const Layout1 = ({ children }) => {
 };
 
 export default Layout1;
+
