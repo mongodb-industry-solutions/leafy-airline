@@ -7,6 +7,10 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
+        <div class="icon-container">
+            {/* <img src="path_to_icon/person_icon.png" alt="Person Icon" /> */}
+            <span>Nombre</span>
+        </div>
         <h1>Leafy Airline Dashboard</h1>
         <Logo className={styles.logo} />
       </header>
