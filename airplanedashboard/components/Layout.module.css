@@ -1,5 +1,7 @@
 /* components/Layout.module.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
 .container {
     display: flex;
     flex-direction: column;
@@ -14,6 +16,11 @@
     background-color: #f8f9fa;
   }
   
+  .flightInfo {
+    display: flex;
+    flex-direction: column;
+  }
+
   .headerText {
     margin: 0; 
   }
@@ -36,4 +43,21 @@
   
   .logo {
     width: 100px; 
+  }
+
+  .flightIdGreen {
+    color: #00684A; /* MongoDB green */
+    font-family: 'Lexend Deca', sans-serif;
+  }
+  
+  .flightIdBlack {
+    color: black;
+    font-family: 'Lexend Deca', sans-serif;
+  }
+
+  .subHeader {
+    font-family: 'Lexend Deca', sans-serif;
+    color: black;
+    margin-top: -0.5rem; 
+    font-size: 1.2rem; 
   }

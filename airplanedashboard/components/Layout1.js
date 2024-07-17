@@ -7,7 +7,13 @@ const Layout1 = ({ children }) => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>Flight ID: 991345</h1>
+        <div className={styles.flightInfo}>
+          <h1>
+            <span className={styles.flightIdGreen}>Flight ID: </span>
+            <span className={styles.flightIdBlack}>991345</span>
+          </h1>
+          <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
+        </div>
         <Logo className={styles.logo} />
       </header>
       <div className={styles.main}>
