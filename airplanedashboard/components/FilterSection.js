@@ -98,7 +98,7 @@ const SeparationBar = () => {
   return <hr className={styles.separationBar} />;
 };
 
-const FilterSection = (response, setResponse) => {
+const FilterSection = ({response, setResponse}) => {
 
   const [filters, setFilters] = useState({});
 
@@ -125,7 +125,6 @@ const FilterSection = (response, setResponse) => {
       const data = await response.json();
       setResults(data);
       setResponse(data);
-      console.log(data)
 
     } catch (error) {
       setError(error.message);
@@ -150,6 +149,7 @@ const FilterSection = (response, setResponse) => {
     fetchResults(params);
 
     // Update general state
+    console.log(response);
     console.log('New response setted from FilterSelection');
 
   };
@@ -236,4 +236,5 @@ const FilterSection = (response, setResponse) => {
     </div>
   );
 };
+
 export default FilterSection;

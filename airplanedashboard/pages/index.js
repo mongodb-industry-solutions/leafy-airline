@@ -16,11 +16,11 @@ export default function Home() {
     <Layout>
       {/* Integrate the SearchBar component here */}
       <aside className={styles.sidebar}>
-        <FilterSection state={flights} setter={setFlights} />
+        <FilterSection response={flights} setResponse={setFlights} />
       </aside>
       <div className={styles.content}>
         {/* <SearchBar /> */}
-        <SearchBar2 state={flights} setter={setFlights}/>
+        <SearchBar2 response={flights} setResponse={setFlights}/>
       </div>
     </Layout>
   );

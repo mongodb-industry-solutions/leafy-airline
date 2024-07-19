@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'; // Import useRouter from next/router
 import styles from './Layout.module.css';
 
-function SearchBar2(response, setResponse) {
+function SearchBar2({response, setResponse}) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
