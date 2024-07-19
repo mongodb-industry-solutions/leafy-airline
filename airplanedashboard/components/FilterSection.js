@@ -98,7 +98,7 @@ const SeparationBar = () => {
   return <hr className={styles.separationBar} />;
 };
 
-const FilterSection = () => {
+const FilterSection = (response, setResponse) => {
 
   const [filters, setFilters] = useState({});
 
@@ -124,6 +124,7 @@ const FilterSection = () => {
       }
       const data = await response.json();
       setResults(data);
+      setResponse(data);
       console.log(data)
 
     } catch (error) {
@@ -137,16 +138,20 @@ const FilterSection = () => {
     console.log('Applying filters')
 
     // Get the parsed time
-    const dep_time = convertTimeToISO(departureTime)
-    const arr_time = convertTimeToISO(arrivalTime)
+    const dep_time = convertTimeToISO(departureTime);
+    const arr_time = convertTimeToISO(arrivalTime);
     const params = {
       // 'dep_time' : dep_time,
       // 'arr_time' : arr_time,
       'dep_arp._id' : selectedDeparture,
       'arr_arp._id' : selectedArrival
-    }
-    setFilters(params)
-    fetchResults(params)
+    };
+    setFilters(params);
+    fetchResults(params);
+
+    // Update general state
+    console.log('New response setted from FilterSelection');
+
   };
 
   const resetFilters = () => {
