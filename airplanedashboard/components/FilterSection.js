@@ -60,7 +60,7 @@ const airports_dict = {
 const airports_list = Object.values(airports_dict);
 
 const TimeSlider = ({label, state, setter}) => {
-  // const [departureTime, setDepartureTime] = useState("00:00");
+  
   // Function to generate time values in 10-minute intervals
   const generateTimeValues = () => {
     let times = [];
@@ -110,10 +110,7 @@ const FilterSection = () => {
   const [arrivalTime, setArrivalTime] = useState('00:00');
   const [selectedDeparture, setSelectedDeparture] = useState([]);
   const [selectedArrival, setSelectedArrival] = useState([]);
-  const initial_filters = {'dep_time' : '00:00',
-                          'arr_time' : '00:00',
-                          'dep_arp._id' : [],
-                          'arr_arp._id' : []}
+  const initial_filters = {}
 
   
   const fetchResults = async (params) => {
@@ -138,13 +135,18 @@ const FilterSection = () => {
 
   const applyFilters = () => {
     console.log('Applying filters')
-    const new_filters = {'dep_time' : departureTime,
-                   'arr_time' : arrivalTime,
-                   'dep_arp._id' : selectedDeparture,
-                   'arr_arp._id' : selectedArrival
+
+    // Get the parsed time
+    const dep_time = convertTimeToISO(departureTime)
+    const arr_time = convertTimeToISO(arrivalTime)
+    const params = {
+      // 'dep_time' : dep_time,
+      // 'arr_time' : arr_time,
+      'dep_arp._id' : selectedDeparture,
+      'arr_arp._id' : selectedArrival
     }
-    setFilters(new_filters)
-    fetchResults(new_filters)
+    setFilters(params)
+    fetchResults(params)
   };
 
   const resetFilters = () => {
@@ -163,6 +165,22 @@ const FilterSection = () => {
     setter(new_val)
     return
   }
+
+  const convertTimeToISO = (timeString) => {
+    
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Meses en JavaScript son de 0-11
+    const day = String(today.getDate()).padStart(2, '0');
+  
+    const [hours, minutes] = timeString.split(':');
+  
+    const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
+  
+    const isoString = date.toISOString();
+  
+    return isoString;
+  };
 
 
   return (
