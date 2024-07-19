@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
+import {Combobox, ComboboxOption} from '@leafygreen-ui/combobox'
 
 const airports_list = [
   "LHR - London Heathrow Airport",
@@ -55,13 +56,11 @@ const airports_list = [
   "CTA - Catania Fontanarossa Airport"
 ]
 
-
 const renderOptions = (list) => {
   return list.map((opt, index) => {
     return <option key={index} value={opt}>{opt}</option>;
   });
 }
-
 
 const Dropdown = ({ options, label, onChange }) => (
   <div className={styles.filterDropdown}>
@@ -87,10 +86,19 @@ const FilterSection = () => {
   const [selectedDeparture, setSelectedDeparture] = useState(airports_list[0]);
   const [selectedArrival, setSelectedArrival] = useState(airports_list[0]);
 
+  const [selectedOption, setSelectedOption] = useState('');
+
   const initial_filters = {'dep_time' : 0, 
                           'arr_time' : 0,
                           'dep_loc' : airports_list[0],
                           'arr_loc' : airports_list[0]}
+
+  const defaultOptions = ['hola', 'comida']
+
+
+  const handleSelectionChange= () => {
+    console.log()
+  }
 
   const applyFilters = () => {
 
@@ -110,8 +118,8 @@ const FilterSection = () => {
 
       setDepartureTime(0)
       setArrivalTime(0)
-      setSelectedDeparture(airports_list[0])
-      setSelectedArrival(airports_list[0])
+      setSelectedDeparture([])
+      setSelectedArrival([])
 
       setFilters(initial_filters)
     
@@ -127,16 +135,34 @@ const FilterSection = () => {
 
       <SeparationBar />
 
-      <Dropdown 
-        options={airports_list} 
-        label="Departure Location" 
-        onChange={(e) => setSelectedDeparture(e.target.value)} 
-      />
-      <Dropdown 
-        options={airports_list} 
-        label="Arrival Location" 
-        onChange={(e) => setSelectedArrival(e.target.value)} 
-      />
+      <Combobox
+        className={styles.filterCombobox}
+        label="Departure Location"
+        placeholder="Select departure airport"
+        initialValue={[]}
+        multiselect={true}
+        overflow={"expand-y"}
+        onChange={(e) => setSelectedDeparture(e)} 
+      >
+        {airports_list.map((option) => (
+          <ComboboxOption key={option} value={option} />
+        ))}
+      </Combobox>
+
+
+      <Combobox
+        className={styles.filterCombobox}
+        label="Arrival Location"
+        placeholder="Select arrival airport"
+        initialValue={[]}
+        multiselect={true}
+        overflow={"expand-y"}
+        onChange={(e) => setSelectedArrival(e)}
+      >
+        {airports_list.map((option) => (
+          <ComboboxOption key={option} value={option} />
+        ))}
+      </Combobox>
 
       <div className={styles.filterbuttonSection}>
         <Button className={styles.filterButton} onClick={applyFilters} >Apply Filters</Button>
