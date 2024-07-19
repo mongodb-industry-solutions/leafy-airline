@@ -145,10 +145,8 @@ const FilterSection = () => {
     <div className={styles.filterSelection}>
       <h2>Filter Selection</h2>
 
-
       <SeparationBar />
 
-      
       <TimeSlider 
         label = 'Departure Time: '
         state={departureTime}
@@ -162,7 +160,6 @@ const FilterSection = () => {
         setter={setArrivalTime}
 
       ></TimeSlider>
-
 
       <SeparationBar />
 
@@ -179,7 +176,6 @@ const FilterSection = () => {
           <ComboboxOption key={option} value={option} />
         ))}
       </Combobox>
-
 
       <Combobox
         className={styles.filterCombobox}
