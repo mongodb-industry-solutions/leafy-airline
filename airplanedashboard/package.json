@@ -15,7 +15,8 @@
     "mongodb": "^6.5.0",
     "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.25.1"
   },
   "devDependencies": {
     "@types/node": "18.7.5",

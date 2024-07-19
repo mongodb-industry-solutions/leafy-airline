@@ -267,3 +267,49 @@ margin-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* components/Layout.module.css */
+.resultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Space between boxes */
+}
+
+.resultItem {
+  background: #f4f4f4; /* Background color of the box */
+  border: 1px solid #ddd; /* Border color */
+  border-radius: 10px; /* Rounded edges */
+  padding: 15px; /* Padding inside the box */
+  width: calc(33% - 10px); /* Adjust width for responsiveness (33% width minus gap) */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.resultItem div {
+  margin-bottom: 10px; /* Space between fields */
+}
+
+.resultItem strong {
+  display: inline-block; /* Align labels and values */
+  width: 200px; /* Fixed width for labels */
+  color: #333; /* Label color */
+}
+
+.viewFlightButton {
+  background-color: #00684A; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded edges */
+  padding: 10px 15px; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size */
+  margin-top: 10px; /* Space above the button */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.viewFlightButton:hover {
+  background-color: #00684A; /* Darker color on hover */
+}
+
+
