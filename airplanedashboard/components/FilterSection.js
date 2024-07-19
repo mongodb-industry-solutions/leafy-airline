@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import styles from './Layout.module.css';
-// import airports_list from '../resources/airports.py'
+import Button from '@leafygreen-ui/button';
 
-
-airports_list = [
+const airports_list = [
   "LHR - London Heathrow Airport",
   "CDG - Charles de Gaulle Airport (Paris)",
   "FRA - Frankfurt Airport",
@@ -80,11 +79,43 @@ const SeparationBar = () => {
 
 const FilterSection = () => {
 
+  const [filters, setFilters] = useState({}); 
+
   const [departureTime, setDepartureTime] = useState(12); // Default value set to 12
   const [arrivalTime, setArrivalTime] = useState(12); // Default value set to 12
 
   const [selectedDeparture, setSelectedDeparture] = useState(airports_list[0]);
   const [selectedArrival, setSelectedArrival] = useState(airports_list[0]);
+
+  const initial_filters = {'dep_time' : 0, 
+                          'arr_time' : 0,
+                          'dep_loc' : airports_list[0],
+                          'arr_loc' : airports_list[0]}
+
+  const applyFilters = () => {
+
+    const new_filters = {'dep_time' : departureTime, 
+                   'arr_time' : arrivalTime,
+                   'dep_loc' : selectedDeparture,
+                   'arr_loc' : selectedArrival
+    }
+    setFilters(new_filters)
+
+    // now filters has the values for the search -> To be used in the api call
+
+  };
+
+  const resetFilters = () => {
+      // Reset the filters after applying the previous ones
+
+      setDepartureTime(0)
+      setArrivalTime(0)
+      setSelectedDeparture(airports_list[0])
+      setSelectedArrival(airports_list[0])
+
+      setFilters(initial_filters)
+    
+  };
 
   return (
     <div className={styles.filterSelection}>
@@ -106,6 +137,12 @@ const FilterSection = () => {
         label="Arrival Location" 
         onChange={(e) => setSelectedArrival(e.target.value)} 
       />
+
+      <div className={styles.filterbuttonSection}>
+        <Button className={styles.filterButton} onClick={applyFilters} >Apply Filters</Button>
+        <Button className={styles.filterButton} onClick={resetFilters} >Reset Filters</Button>
+      </div>
+
     </div>
   );
 };
