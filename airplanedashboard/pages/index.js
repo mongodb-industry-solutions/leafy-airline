@@ -2,7 +2,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import FlightList from '../components/FlightList';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/searchbar';
 import FilterSection from '../components/FilterSection';
 import styles from '../components/Layout.module.css';
 import { useState, useEffect } from 'react';
