@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@leafygreen-ui/button": "^21.2.1",
     "@leafygreen-ui/icon": "^12.5.4",
     "@leafygreen-ui/logo": "^9.1.1",
     "@leafygreen-ui/search-input": "^3.1.2",
