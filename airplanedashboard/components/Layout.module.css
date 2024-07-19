@@ -242,6 +242,7 @@ margin-bottom: 1rem;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
+    margin-right:20px;
 
   }
 
@@ -315,3 +316,19 @@ margin-bottom: 1rem;
 }
 
 
+.mapContainer {
+  background-color: #ffffff; /* Example background color */
+  margin-top: 100px;
+  width: 60%; /* Adjust width as needed */
+  height: 400px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  flex-shrink: 0; /* Prevent shrinking */
+  float: right;
+}
+
+.containersecond{
+  display: flex; /* Aligns child elements horizontally */
+  flex: 1;
+  gap: 20px; /* Space between the flight overview and map */
+  box-sizing: border-box;
+}

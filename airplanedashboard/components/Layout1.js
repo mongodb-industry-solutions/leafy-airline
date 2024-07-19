@@ -2,8 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import styles from './Layout.module.css';
+import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
+import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
+
+const api_key = process.env.Google_Maps_API_key;
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
@@ -19,7 +22,6 @@ const Layout1 = ({ children }) => {
         setFlightData(data);
 
         if (flightId) {
-          console.log('Flight ID from query:', flightId);
           const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
           if (flight) {
             setSelectedFlight(flight);
@@ -33,6 +35,23 @@ const Layout1 = ({ children }) => {
     }
     fetchData();
   }, [flightId]); // Re-fetch data when flightId changes
+
+  // Assuming you have latitude and longitude in selectedFlight data
+  const mapContainerStyle = {
+    width: '100%',
+    height: '400px'
+  };
+
+  // Coordinates for the departure and arrival points
+  const depCoords = {
+    lat: selectedFlight ? selectedFlight.dep_arp.geo_loc.lat : 0,
+    lng: selectedFlight ? selectedFlight.dep_arp.geo_loc.long : 0
+  };
+
+  const arrCoords = {
+    lat: selectedFlight ? selectedFlight.arr_arp.geo_loc.lat : 0,
+    lng: selectedFlight ? selectedFlight.arr_arp.geo_loc.long : 0
+  };
 
   return (
     <div className={styles.container}>
@@ -61,7 +80,7 @@ const Layout1 = ({ children }) => {
         </ul>
       </nav>
       <div className={styles.main}>
-        <div className={styles.content}>
+        <div className={styles.containersecond}>
           {/* Flight Overview Box */}
           <div className={styles.flightOverviewBox}>
             <h3>Flight Overview</h3>
@@ -77,9 +96,43 @@ const Layout1 = ({ children }) => {
               <p>Loading flight details...</p>
             )}
           </div>
-          {/* Main Content */}
-          {children}
+
+          {/* Google Map Component */}
+          <div className={styles.mapContainer}>
+            <LoadScript googleMapsApiKey={api_key}>
+              <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                center={depCoords} // Center map on departure point
+                zoom={5}
+              >
+                {/* Departure Marker */}
+                {selectedFlight && (
+                  <>
+                    <Marker
+                      position={depCoords}
+                      label={`Departure: ${selectedFlight.dep_arp.city}`}
+                    />
+                    <Marker
+                      position={arrCoords}
+                      label={`Arrival: ${selectedFlight.arr_arp.city}`}
+                    />
+                    {/* Line between departure and arrival */}
+                    <Polyline
+                      path={[depCoords, arrCoords]}
+                      options={{
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                      }}
+                    />
+                  </>
+                )}
+              </GoogleMap>
+            </LoadScript>
+          </div>
         </div>
+        {/* Main Content */}
+        {children}
       </div>
     </div>
   );
