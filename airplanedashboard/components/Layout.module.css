@@ -268,11 +268,13 @@ margin-bottom: 1rem;
     margin-right: auto;
   }
 
-  /* components/Layout.module.css */
+
 .resultsContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 10px; /* Space between boxes */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .resultItem {
@@ -280,7 +282,7 @@ margin-bottom: 1rem;
   border: 1px solid #ddd; /* Border color */
   border-radius: 10px; /* Rounded edges */
   padding: 15px; /* Padding inside the box */
-  width: calc(33% - 10px); /* Adjust width for responsiveness (33% width minus gap) */
+  width: calc(33% - 10px);  /*Adjust width for responsiveness (33% width minus gap) */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
   box-sizing: border-box; /* Ensure padding is included in the width */
 }
