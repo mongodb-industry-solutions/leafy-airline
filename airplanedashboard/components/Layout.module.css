@@ -6,90 +6,312 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    font-family: 'Lexend Deca', sans-serif;
   }
   
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #f8f9fa;
-  }
-  
-  .flightInfo {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+
+.icon_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 0.9rem; 
+}
+
+.flightInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerText {
+  margin: 0; 
+}
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  background-color: #f8f9fa;
+  width: 20%;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar .filterSelection {
+  width: 90%;
+  padding: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.logo {
+  width: 100px; 
+}
+
+.flightIdGreen {
+  color: #00684A; /* MongoDB green */
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.flightIdBlack {
+  color: black;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.subHeader {
+  font-family: 'Lexend Deca', sans-serif;
+  color: black;
+  margin-top: 0.2rem; 
+  font-size: 1.2rem; 
+}
+
+.nav {
+  margin-top: 0.1rem;
+  background-color: #f8f9fa;
+  padding: 0.5rem;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  margin-right: 1rem;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #00684A;
+  font-family: 'Lexend Deca', sans-serif;
+  padding-left: 7px;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.activeLink {
+  text-decoration: underline;
+}
+
+
+.filterGroup {
+margin-bottom: 1rem;
+}
+
+
+.filterTimeSlider{
+  margin-top: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+.filterTimeSlider div{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.filterTimeSlider input {
+  width: 100%;
+}
+
+.filterCombobox {
+  width: 95%;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.filterCombobox label{
+  font-family: 'Lexend Deca', sans-serif;
+  font-size : 20px;
+  padding: 5px;
+}
+
+.filterbuttonSection{
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+  width: 100%; 
+  padding-top: 50px;
+}
+
+.filterButton {
+  width: 25%;
+  align-self: center;
+  justify-content: center;
+}
+
+.filterButton :hover{
+  background-color : #00684A;
+  color: white;
+}
+
+.separationBar {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 1rem 0;
+}
+
+.slider {
+  position: relative;
+  width: 200px;
+}
+
+  /* SearchBar.module.css */
+  .searchBar {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Center horizontally */
+    margin: 20px; /* Add margin for spacing */
   }
-
-  .headerText {
-    margin: 0; 
-  }
-  .main {
+  
+  .searchBar form {
     display: flex;
-    flex: 1;
+    flex-direction: center;
+    align-items: center;
+    width: 100%; /* Make the form take the full width of its container */
+    max-width: 600px; /* Set a maximum width for the search bar */
+    margin: 0 auto; /* Center the form */
   }
   
-  .sidebar {
-    background-color: #f8f9fa;
-    width: 200px;
-    padding: 1rem;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  .searchBar input {
+    padding: 10px;
+    width: 100%; /* Make the input take the full width of its container */
+    border-radius: 25px; /* Round the edges */
+    border: 1px solid #ccc; /* Add a border */
+    margin-bottom: 10px; /* Space between input and button */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
   }
   
-  .content {
-    flex: 1;
-    padding: 1rem;
+  .searchBar button {
+    padding: 10px 20px;
+    border-radius: 25px; /* Round the edges */
+    border: none; /* Remove default border */
+    background-color: #00684A; /* Set background color */
+    color: white; /* Set text color */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px;
+    margin-left: 5px;
+    margin-bottom: 10px;
   }
   
-  .logo {
-    width: 100px; 
-  }
-
-  .flightIdGreen {
-    color: #00684A; /* MongoDB green */
-    font-family: 'Lexend Deca', sans-serif;
+  .searchBar button:disabled {
+    background-color: #6c757d; /* Change background color when disabled */
   }
   
-  .flightIdBlack {
-    color: black;
-    font-family: 'Lexend Deca', sans-serif;
-  }
-
-  .subHeader {
-    font-family: 'Lexend Deca', sans-serif;
-    color: black;
-    margin-top: 0.2rem; 
-    font-size: 1.2rem; 
-  }
-
-  .nav {
-    margin-top: 0.1rem;
-    background-color: #f8f9fa;
-    padding: 0.5rem;
-  }
-  
-  .navList {
-    display: flex;
-    list-style: none;
+  .searchBar ul {
+    list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 20px 0; /* Add margin around the results list */
+    width: 100%; /* Make the results list take the full width of its container */
+    max-width: 600px; /* Set a maximum width for the results list */
   }
   
-  .navItem {
-    margin-right: 1rem;
-  }
-  
-  .navLink {
-    text-decoration: none;
-    color: #00684A;
-    font-family: 'Lexend Deca', sans-serif;
-    padding-left: 7px;
-  }
-  
-  .navLink:hover {
-    text-decoration: underline;
+  .searchBar li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Add a border between items */
+    border-radius: 5px; /* Round the edges of list items */
+    margin-bottom: 5px; /* Space between list items */
   }
 
-  .activeLink {
-    text-decoration: underline;
+  .flightOverviewBox {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    width: 30%;
+    min-width: 200px;
+    /*margin-right: 40rem;*/
+    height: 65vh;
+    font-family: 'Lexend Deca', sans-serif;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+
   }
+
+  .innerBox {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 1rem;
+    flex: 1; /* Make the inner boxes expand to fill the available space */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 90%;
+  }
+
+  .innerBox1 {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 1rem;
+    margin: 1rem 0;
+    flex: 1; /* Make the inner boxes expand to fill the available space */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+.resultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Space between boxes */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.resultItem {
+  background: #f4f4f4; /* Background color of the box */
+  border: 1px solid #ddd; /* Border color */
+  border-radius: 10px; /* Rounded edges */
+  padding: 15px; /* Padding inside the box */
+  width: calc(33% - 10px);  /*Adjust width for responsiveness (33% width minus gap) */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.resultItem div {
+  margin-bottom: 10px; /* Space between fields */
+}
+
+.resultItem strong {
+  display: inline-block; /* Align labels and values */
+  width: 200px; /* Fixed width for labels */
+  color: #333; /* Label color */
+}
+
+.viewFlightButton {
+  background-color: #00684A; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded edges */
+  padding: 10px 15px; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size */
+  margin-top: 10px; /* Space above the button */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.viewFlightButton:hover {
+  background-color: #00684A; /* Darker color on hover */
+}
+
+
