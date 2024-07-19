@@ -3,60 +3,65 @@ import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
 import { Combobox, ComboboxOption } from '@leafygreen-ui/combobox'
 
-const airports_list = [
-  "LHR - London Heathrow Airport",
-  "CDG - Charles de Gaulle Airport (Paris)",
-  "FRA - Frankfurt Airport",
-  "AMS - Amsterdam Schiphol Airport",
-  "MAD - Adolfo Suárez Madrid-Barajas Airport",
-  "BCN - Barcelona-El Prat Airport",
-  "FCO - Leonardo da Vinci–Fiumicino Airport (Rome)",
-  "MUC - Munich Airport",
-  "LGW - London Gatwick Airport",
-  "ZRH - Zurich Airport",
-  "VIE - Vienna International Airport",
-  "CPH - Copenhagen Airport",
-  "DUB - Dublin Airport",
-  "HEL - Helsinki Airport",
-  "BRU - Brussels Airport",
-  "OSL - Oslo Gardermoen Airport",
-  "ARN - Stockholm Arlanda Airport",
-  "MXP - Milan Malpensa Airport",
-  "ATH - Athens International Airport",
-  "LIS - Lisbon Humberto Delgado Airport",
-  "ORY - Paris Orly Airport",
-  "SVO - Sheremetyevo International Airport (Moscow)",
-  "DME - Domodedovo International Airport (Moscow)",
-  "LED - Pulkovo Airport (Saint Petersburg)",
-  "WAW - Warsaw Chopin Airport",
-  "PRG - Václav Havel Airport Prague",
-  "BUD - Budapest Ferenc Liszt International Airport",
-  "TXL - Berlin Tegel Airport (closed, but historically significant)",
-  "BER - Berlin Brandenburg Airport",
-  "SXF - Berlin Schönefeld Airport (now part of Brandenburg)",
-  "MAN - Manchester Airport",
-  "STN - London Stansted Airport",
-  "DUS - Düsseldorf Airport",
-  "HAM - Hamburg Airport",
-  "PMI - Palma de Mallorca Airport",
-  "AGP - Málaga Airport",
-  "VCE - Venice Marco Polo Airport",
-  "NAP - Naples International Airport",
-  "NCE - Nice Côte d'Azur Airport",
-  "GVA - Geneva Airport",
-  "LUX - Luxembourg Airport",
-  "LJU - Ljubljana Jože Pučnik Airport",
-  "SOF - Sofia Airport",
-  "OTP - Henri Coandă International Airport (Bucharest)",
-  "BTS - Bratislava Airport",
-  "ZAG - Zagreb Airport",
-  "BEG - Belgrade Nikola Tesla Airport",
-  "SKG - Thessaloniki Airport",
-  "TSF - Treviso Airport",
-  "CTA - Catania Fontanarossa Airport"
-]
+const airports_dict = {
+  "LHR": "LHR - London Heathrow Airport",
+  "CDG": "CDG - Charles de Gaulle Airport (Paris)",
+  "FRA": "FRA - Frankfurt Airport",
+  "AMS": "AMS - Amsterdam Schiphol Airport",
+  "MAD": "MAD - Adolfo Suárez Madrid-Barajas Airport",
+  "BCN": "BCN - Barcelona-El Prat Airport",
+  "FCO": "FCO - Leonardo da Vinci–Fiumicino Airport (Rome)",
+  "MUC": "MUC - Munich Airport",
+  "LGW": "LGW - London Gatwick Airport",
+  "ZRH": "ZRH - Zurich Airport",
+  "VIE": "VIE - Vienna International Airport",
+  "CPH": "CPH - Copenhagen Airport",
+  "DUB": "DUB - Dublin Airport",
+  "HEL": "HEL - Helsinki Airport",
+  "BRU": "BRU - Brussels Airport",
+  "OSL": "OSL - Oslo Gardermoen Airport",
+  "ARN": "ARN - Stockholm Arlanda Airport",
+  "MXP": "MXP - Milan Malpensa Airport",
+  "ATH": "ATH - Athens International Airport",
+  "LIS": "LIS - Lisbon Humberto Delgado Airport",
+  "ORY": "ORY - Paris Orly Airport",
+  "SVO": "SVO - Sheremetyevo International Airport (Moscow)",
+  "DME": "DME - Domodedovo International Airport (Moscow)",
+  "LED": "LED - Pulkovo Airport (Saint Petersburg)",
+  "WAW": "WAW - Warsaw Chopin Airport",
+  "PRG": "PRG - Václav Havel Airport Prague",
+  "BUD": "BUD - Budapest Ferenc Liszt International Airport",
+  "TXL": "TXL - Berlin Tegel Airport (closed, but historically significant)",
+  "BER": "BER - Berlin Brandenburg Airport",
+  "SXF": "SXF - Berlin Schönefeld Airport (now part of Brandenburg)",
+  "MAN": "MAN - Manchester Airport",
+  "STN": "STN - London Stansted Airport",
+  "DUS": "DUS - Düsseldorf Airport",
+  "HAM": "HAM - Hamburg Airport",
+  "PMI": "PMI - Palma de Mallorca Airport",
+  "AGP": "AGP - Málaga Airport",
+  "VCE": "VCE - Venice Marco Polo Airport",
+  "NAP": "NAP - Naples International Airport",
+  "NCE": "NCE - Nice Côte d'Azur Airport",
+  "GVA": "GVA - Geneva Airport",
+  "LUX": "LUX - Luxembourg Airport",
+  "LJU": "LJU - Ljubljana Jože Pučnik Airport",
+  "SOF": "SOF - Sofia Airport",
+  "OTP": "OTP - Henri Coandă International Airport (Bucharest)",
+  "BTS": "BTS - Bratislava Airport",
+  "ZAG": "ZAG - Zagreb Airport",
+  "BEG": "BEG - Belgrade Nikola Tesla Airport",
+  "SKG": "SKG - Thessaloniki Airport",
+  "TSF": "TSF - Treviso Airport",
+  "CTA": "CTA - Catania Fontanarossa Airport",
+  "NYC": "NYC - New York City",
+  "LAX": "LAX - Los Angeles Airport"
+};
+
+const airports_list = Object.values(airports_dict);
+
 const TimeSlider = ({label, state, setter}) => {
-  // const [departureTime, setDepartureTime] = useState("00:00");
+  
   // Function to generate time values in 10-minute intervals
   const generateTimeValues = () => {
     let times = [];
@@ -89,28 +94,67 @@ const TimeSlider = ({label, state, setter}) => {
     </div>
   );
 };
+
 const SeparationBar = () => {
   return <hr className={styles.separationBar} />;
 };
-const FilterSection = () => {
+
+const FilterSection = ({response, setResponse}) => {
+
   const [filters, setFilters] = useState({});
+
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const [departureTime, setDepartureTime] = useState('00:00');
   const [arrivalTime, setArrivalTime] = useState('00:00');
   const [selectedDeparture, setSelectedDeparture] = useState([]);
   const [selectedArrival, setSelectedArrival] = useState([]);
-  const initial_filters = {'dep_time' : '00:00',
-                          'arr_time' : '00:00',
-                          'dep_loc' : [],
-                          'arr_loc' : []}
-  const applyFilters = () => {
-    const new_filters = {'dep_time' : departureTime,
-                   'arr_time' : arrivalTime,
-                   'dep_loc' : selectedDeparture,
-                   'arr_loc' : selectedArrival
+  const initial_filters = {}
+
+  
+  const fetchResults = async (params) => {
+    try {
+      const queryString = new URLSearchParams(params).toString();
+      console.log(queryString)
+      const response = await fetch(`/api/filters?${queryString}`);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setResults(data);
+      setResponse(data);
+
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
-    setFilters(new_filters)
-    // now filters has the values for the search -> To be used in the api call
   };
+
+  const applyFilters = () => {
+    console.log('Applying filters')
+
+    // Get the parsed time
+    const dep_time = convertTimeToISO(departureTime);
+    const arr_time = convertTimeToISO(arrivalTime);
+    const params = {
+      // 'dep_time' : dep_time,
+      // 'arr_time' : arr_time,
+      'dep_arp._id' : selectedDeparture,
+      'arr_arp._id' : selectedArrival
+    };
+    setFilters(params);
+    fetchResults(params);
+
+    // Update general state
+    console.log(response);
+    console.log('New response setted from FilterSelection');
+
+  };
+
   const resetFilters = () => {
       // Reset the filters after applying the previous ones
       setDepartureTime('00:00')
@@ -119,6 +163,32 @@ const FilterSection = () => {
       setSelectedArrival([])
       setFilters(initial_filters)
   };
+
+  const handleAirportChanges = (setter, value) => {
+
+    value = String(value)
+    const new_val = value.substring(0, 3);
+    setter(new_val)
+    return
+  }
+
+  const convertTimeToISO = (timeString) => {
+    
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Meses en JavaScript son de 0-11
+    const day = String(today.getDate()).padStart(2, '0');
+  
+    const [hours, minutes] = timeString.split(':');
+  
+    const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
+  
+    const isoString = date.toISOString();
+  
+    return isoString;
+  };
+
+
   return (
     <div className={styles.filterSelection}>
       <h2>Filter Selection</h2>
@@ -141,7 +211,7 @@ const FilterSection = () => {
         initialValue={[]}
         multiselect={true}
         overflow={"expand-y"}
-        onChange={(e) => setSelectedDeparture(e)}
+        onChange={(e) => handleAirportChanges(setSelectedDeparture, e)}
       >
         {airports_list.map((option) => (
           <ComboboxOption key={option} value={option} />
@@ -154,17 +224,18 @@ const FilterSection = () => {
         initialValue={[]}
         multiselect={true}
         overflow={"expand-y"}
-        onChange={(e) => setSelectedArrival(e)}
+        onChange={(e) => handleAirportChanges(setSelectedArrival, e)}
       >
         {airports_list.map((option) => (
           <ComboboxOption key={option} value={option} />
         ))}
       </Combobox>
       <div className={styles.filterbuttonSection}>
-        <Button className={styles.filterButton} onClick={applyFilters} >Apply Filters</Button>
-        <Button className={styles.filterButton} onClick={resetFilters} >Reset Filters</Button>
+        <Button className={styles.filterButton} children = 'Apply Filters' onClick={applyFilters} ></Button>
+        <Button className={styles.filterButton} children = 'Reset Filters' onClick={resetFilters} ></Button>
       </div>
     </div>
   );
 };
+
 export default FilterSection;

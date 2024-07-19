@@ -1,36 +1,33 @@
-import { MongoClient } from 'mongodb';
+import client from '../../lib/mongodb'; // Import the MongoClient instance
 
-const uri = process.env.MONGO_URI;
-
-let cachedClient = null;
-let cachedDb = null;
-
-async function connectToDatabase() {
-  if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
+export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    res.status(405).end(); // Method Not Allowed
+    return;
   }
 
-  const client = new MongoClient(uri);
-  await client.connect();
-  const db = client.db('leafy_airline'); // Replace with your database name
+  const query = req.query || {};
 
-  cachedClient = client;
-  cachedDb = db;
-  return { client, db };
-}
-
-export default async function applyfilters(filters, res) {
   try {
-    const { db } = await connectToDatabase();
+    const db = client.db('leafy_airline');
+    const collection = db.collection('flights');
 
-    const flightsCollection = db.collection('flights');
+    let results;
 
-    const filteredFlights = await flightsCollection.find({filters}).toArray();
+    if (Object.keys(query).length > 0) {
+      const filter = {};
+      for (const [key, value] of Object.entries(query)) {
+        filter[key] = value;
+      }
 
-    res.status(200).json(filteredFlights);
-  } 
-  catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-    res.status(500).json({ error: 'Failed to fetch data' });
+      results = await collection.find(filter).toArray();
+    } else {
+      results = {'not query found':req.query}; 
+    }
+
+    res.status(200).json(results);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
   }
 }

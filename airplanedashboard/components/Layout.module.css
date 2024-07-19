@@ -33,10 +33,17 @@
 .headerText {
   margin: 0; 
 }
-.main {
+.main .content{
   display: flex;
   flex: 1;
+  gap: 20px;
 }
+
+.searchList {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .sidebar {
   background-color: #f8f9fa;
@@ -150,10 +157,11 @@ margin-bottom: 1rem;
 }
 
 .filterButton {
-  width: 25%;
+  width: 35%;
   align-self: center;
   justify-content: center;
 }
+
 
 .filterButton :hover{
   background-color : #00684A;
@@ -242,6 +250,7 @@ margin-bottom: 1rem;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
+    margin-right:20px;
 
   }
 
@@ -283,6 +292,7 @@ margin-bottom: 1rem;
   border-radius: 10px; /* Rounded edges */
   padding: 15px; /* Padding inside the box */
   width: calc(33% - 10px);  /*Adjust width for responsiveness (33% width minus gap) */
+  min-width: 350px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
   box-sizing: border-box; /* Ensure padding is included in the width */
 }
@@ -314,4 +324,20 @@ margin-bottom: 1rem;
   background-color: #00684A; /* Darker color on hover */
 }
 
+.mapContainer {
+  background-color: #ffffff; /* Example background color */
+  margin-top: 100px;
+  width: 60%; /* Adjust width as needed */
+  height: 400px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  flex-shrink: 0; /* Prevent shrinking */
+  float: right;
+}
+
+.containersecond{
+  display: flex; /* Aligns child elements horizontally */
+  flex: 1;
+  gap: 20px; /* Space between the flight overview and map */
+  box-sizing: border-box;
+}
 

@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Layout.module.css';
 import Logo from '@leafygreen-ui/logo';
 import Icon from "@leafygreen-ui/icon";
-import FilterSection from './FilterSection';
 
 const Layout = ({ children }) => {
   return (
@@ -16,9 +15,6 @@ const Layout = ({ children }) => {
         <Logo className={styles.logo} />
       </header>
       <div className={styles.main}>
-        <aside className={styles.sidebar}>
-          <FilterSection />
-        </aside>
         <div className={styles.content}>
           {children}
         </div>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'; // Import useRouter from next/router
 import styles from './Layout.module.css';
 
-function SearchBar() {
+function SearchBar({response, setResponse}) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,6 +20,7 @@ function SearchBar() {
       }
       const data = await response.json();
       setResults(data);
+      setResponse(data);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -34,7 +35,11 @@ function SearchBar() {
   const handleSearch = async (event) => {
     event.preventDefault();
     fetchResults(query); // Fetch results based on query
+
+    // Update general response state
+    console.log('New response setted from SearchBar2')
   };
+
 
   const handleViewFlight = (flightId) => {
     router.push(`/index1?flightId=${flightId}`); // Navigate to /index1 with the flightId query parameter
