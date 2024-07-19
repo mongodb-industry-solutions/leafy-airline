@@ -225,8 +225,8 @@ const FilterSection = () => {
         ))}
       </Combobox>
       <div className={styles.filterbuttonSection}>
-        <Button className={styles.filterButton} onClick={applyFilters} >Apply Filters</Button>
-        <Button className={styles.filterButton} onClick={resetFilters} >Reset Filters</Button>
+        <Button className={styles.filterButton} children = 'Apply Filters' onClick={applyFilters} ></Button>
+        <Button className={styles.filterButton} children = 'Reset Filters' onClick={resetFilters} ></Button>
       </div>
     </div>
   );
