@@ -41,6 +41,10 @@ function SearchBar({response, setResponse}) {
   };
 
 
+  const handleViewFlight = (flightId) => {
+    router.push(`/index1?flightId=${flightId}`); // Navigate to /index1 with the flightId query parameter
+  };
+
   return (
     <div className={styles.searchBar}>
       <form onSubmit={handleSearch}>
@@ -57,6 +61,20 @@ function SearchBar({response, setResponse}) {
 
       {error && <p className={styles.error}>Error: {error}</p>}
 
+      <div className={styles.resultsContainer}>
+        {results.map((result, index) => (
+          <div key={index} className={styles.resultItem}>
+            <div><strong>Airline:</strong> {result.airline}</div>
+            <div><strong>Plane:</strong> {result.plane}</div>
+            <div><strong>Departure Airport City:</strong> {result.dep_arp?.city || 'N/A'}</div>
+            <div><strong>Departure Airport Country:</strong> {result.dep_arp?.country || 'N/A'}</div>
+            <div><strong>Arrival Airport City:</strong> {result.arr_arp?.city || 'N/A'}</div>
+            <div><strong>Arrival Airport Country:</strong> {result.arr_arp?.country || 'N/A'}</div>
+            {/* Add more fields as needed */}
+            <button onClick={() => handleViewFlight(result._id)} className={styles.viewFlightButton}>View flight</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

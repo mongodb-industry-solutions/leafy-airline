@@ -324,7 +324,6 @@ margin-bottom: 1rem;
   background-color: #00684A; /* Darker color on hover */
 }
 
-
 .mapContainer {
   background-color: #ffffff; /* Example background color */
   margin-top: 100px;
@@ -341,3 +340,4 @@ margin-bottom: 1rem;
   gap: 20px; /* Space between the flight overview and map */
   box-sizing: border-box;
 }
+

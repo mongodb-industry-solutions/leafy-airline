@@ -22,6 +22,8 @@ const Layout1 = ({ children }) => {
         setFlightData(data);
 
         if (flightId) {
+          console.log('Flight ID from query:', flightId);
+
           const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
           if (flight) {
             setSelectedFlight(flight);
