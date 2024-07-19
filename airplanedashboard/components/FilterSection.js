@@ -56,49 +56,65 @@ const airports_list = [
   "CTA - Catania Fontanarossa Airport"
 ]
 
-const renderOptions = (list) => {
-  return list.map((opt, index) => {
-    return <option key={index} value={opt}>{opt}</option>;
-  });
-}
+const TimeSlider = ({label, state, setter}) => {
+  // const [departureTime, setDepartureTime] = useState("00:00");
 
-const Dropdown = ({ options, label, onChange }) => (
-  <div className={styles.filterDropdown}>
-    <label>{label}</label>
-    <select onChange={onChange} className={styles.filterDropdown}>
-      {renderOptions(options)}
-    </select>
-  </div>
-);
+  // Function to generate time values in 10-minute intervals
+  const generateTimeValues = () => {
+    let times = [];
+    for (let h = 0; h < 24; h++) {
+      for (let m = 0; m < 60; m += 10) {
+        let hours = h.toString().padStart(2, '0');
+        let minutes = m.toString().padStart(2, '0');
+        times.push(`${hours}:${minutes}`);
+      }
+    }
+    return times;
+  };
+
+  // List of time values
+  const timeValues = generateTimeValues();
+
+  const handleSliderChange = (e) => {
+    setter(timeValues[e.target.value]);
+  };
+
+
+  return (
+    <div className = {styles.filterTimeSlider}>
+      <div>{label}</div>
+      <input
+        type="range"
+        min="0"
+        max={timeValues.length - 1}
+        step="1"
+        value={timeValues.indexOf(state)}
+        onChange={handleSliderChange}
+      />
+      <label>Selected Time: {state}</label>
+    </div>
+  );
+};
 
 const SeparationBar = () => {
   return <hr className={styles.separationBar} />;
 };
 
-
 const FilterSection = () => {
 
   const [filters, setFilters] = useState({}); 
 
-  const [departureTime, setDepartureTime] = useState(12); // Default value set to 12
-  const [arrivalTime, setArrivalTime] = useState(12); // Default value set to 12
+  const [departureTime, setDepartureTime] = useState('00:00'); 
+  const [arrivalTime, setArrivalTime] = useState('00:00'); 
 
-  const [selectedDeparture, setSelectedDeparture] = useState(airports_list[0]);
-  const [selectedArrival, setSelectedArrival] = useState(airports_list[0]);
+  const [selectedDeparture, setSelectedDeparture] = useState([]);
+  const [selectedArrival, setSelectedArrival] = useState([]);
 
-  const [selectedOption, setSelectedOption] = useState('');
+  const initial_filters = {'dep_time' : '00:00', 
+                          'arr_time' : '00:00',
+                          'dep_loc' : [],
+                          'arr_loc' : []}
 
-  const initial_filters = {'dep_time' : 0, 
-                          'arr_time' : 0,
-                          'dep_loc' : airports_list[0],
-                          'arr_loc' : airports_list[0]}
-
-  const defaultOptions = ['hola', 'comida']
-
-
-  const handleSelectionChange= () => {
-    console.log()
-  }
 
   const applyFilters = () => {
 
@@ -116,8 +132,8 @@ const FilterSection = () => {
   const resetFilters = () => {
       // Reset the filters after applying the previous ones
 
-      setDepartureTime(0)
-      setArrivalTime(0)
+      setDepartureTime('00:00')
+      setArrivalTime('00:00')
       setSelectedDeparture([])
       setSelectedArrival([])
 
@@ -131,6 +147,21 @@ const FilterSection = () => {
 
 
       <SeparationBar />
+
+      
+      <TimeSlider 
+        label = 'Departure Time: '
+        state={departureTime}
+        setter={setDepartureTime}
+
+      ></TimeSlider>
+
+      <TimeSlider 
+        label = 'Arrival Time: '
+        state={arrivalTime}
+        setter={setArrivalTime}
+
+      ></TimeSlider>
 
 
       <SeparationBar />
@@ -163,6 +194,7 @@ const FilterSection = () => {
           <ComboboxOption key={option} value={option} />
         ))}
       </Combobox>
+
 
       <div className={styles.filterbuttonSection}>
         <Button className={styles.filterButton} onClick={applyFilters} >Apply Filters</Button>

@@ -113,14 +113,31 @@
 margin-bottom: 1rem;
 }
 
-.filterCombobox {
+
+.filterTimeSlider{
+  margin-top: 5px;
+  padding: 5px;
   width: 100%;
+}
+
+.filterTimeSlider div{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.filterTimeSlider input {
+  width: 100%;
+}
+
+.filterCombobox {
+  width: 95%;
   margin-top: 5px;
   padding: 5px;
 }
 
 .filterCombobox label{
-  font-size : 15px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-size : 20px;
   padding: 5px;
 }
 
