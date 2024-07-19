@@ -21,6 +21,7 @@ const Layout = ({ children }) => {
       <div className={styles.main}>
         
         <aside className={styles.sidebar}>
+          <FilterSection/>
         </aside>
 
         <div className={styles.content}>
