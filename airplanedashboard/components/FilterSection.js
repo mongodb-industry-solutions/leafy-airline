@@ -54,7 +54,8 @@ const airports_dict = {
   "SKG": "SKG - Thessaloniki Airport",
   "TSF": "TSF - Treviso Airport",
   "CTA": "CTA - Catania Fontanarossa Airport",
-  "NYC": "NYC - New York City"
+  "NYC": "NYC - New York City",
+  "LAX": "LAX - Los Angeles Airport"
 };
 
 const airports_list = Object.values(airports_dict);
