@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
 
