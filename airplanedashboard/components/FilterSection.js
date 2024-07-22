@@ -140,12 +140,27 @@ const FilterSection = ({response, setResponse}) => {
     // Get the parsed time
     const dep_time = convertTimeToISO(departureTime);
     const arr_time = convertTimeToISO(arrivalTime);
-    const params = {
-      // 'dep_time' : dep_time,
-      // 'arr_time' : arr_time,
-      'dep_arp._id' : selectedDeparture,
-      'arr_arp._id' : selectedArrival
-    };
+
+    console.log(dep_time)
+
+    // Checking if the params have to be included or not
+    const params = {};
+
+    if (selectedDeparture.length > 0) {
+      params['dep_arp._id'] = selectedDeparture
+    }
+
+    if (selectedArrival.length > 0) {
+      params['arr_arp._id'] = selectedArrival
+    }
+
+    if (dep_time) {
+      params['dep_time'] = dep_time;
+    }
+    if (arr_time) {
+        params['arr_time'] = arr_time;
+    }
+
     setFilters(params);
     fetchResults(params);
 
