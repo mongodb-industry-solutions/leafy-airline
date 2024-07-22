@@ -6,7 +6,7 @@ import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 
-const api_key = process.env.Google_Maps_API_key;
+const api_key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
