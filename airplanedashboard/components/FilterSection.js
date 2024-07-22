@@ -67,6 +67,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
         console.log('Params detected')
         const queryString = new URLSearchParams(params).toString();
         const response = await fetch(`/api/filters?${queryString}`);
+        console.log(queryString)
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -107,12 +108,10 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
         params['arr_time'] = arr_time;
     }
 
+    console.log(params)
+
     setFilters(params);
     fetchResults(params);
-
-    // Update general state
-    console.log(response);
-    console.log('New response setted from FilterSelection');
 
   };
 
@@ -134,12 +133,17 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
 
     value = String(value)
     const new_val = value.substring(0, 3);
-    setter(new_val)
+    setter(new_val);
     return
   }
 
   const handleDateChange = (setter, value) => {
-    setter(value)
+    if (value == null) {
+      setter(dates_list[0])
+    }
+    else {
+      setter(value)
+    }
     return
   }
 
@@ -193,7 +197,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
         label="Departure Location"
         placeholder="Select departure airport"
         initialValue={[]}
-        multiselect={true}
+        multiselect={false}
         overflow={"expand-y"}
         onChange={(e) => handleAirportChanges(setSelectedDeparture, e)}
       >
@@ -206,7 +210,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
         label="Arrival Location"
         placeholder="Select arrival airport"
         initialValue={[]}
-        multiselect={true}
+        multiselect={false}
         overflow={"expand-y"}
         onChange={(e) => handleAirportChanges(setSelectedArrival, e)}
       >
