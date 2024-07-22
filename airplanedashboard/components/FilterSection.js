@@ -131,9 +131,15 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
 
   const handleAirportChanges = (setter, value) => {
 
-    value = String(value)
-    const new_val = value.substring(0, 3);
-    setter(new_val);
+    if (value == null){
+      setter([])
+    }
+    else{
+      value = String(value)
+      const new_val = value.substring(0, 3);
+      setter(new_val);
+    }
+    
     return
   }
 
