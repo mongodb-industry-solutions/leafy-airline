@@ -44,7 +44,7 @@ export default async function handler(req, res) {
 
       results = await collection.find(filter).toArray();
     } else {
-      results = {'not query found':req.query}; 
+      results = await collection.find({}).toArray();
     }
 
     res.status(200).json(results);

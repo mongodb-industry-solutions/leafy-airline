@@ -28,10 +28,14 @@ function FlightList({flights}) {
         }
 
     return <div className={styles.resultsContainer}>
-          {flights.map((flight_info, index) => (
-          <FlightCard key={index} index={index} flight_info={flight_info} />
-        ))}
-          </div>
+              {flights.length === 0 ? (
+                <p>Error: No flights available</p>
+              ) : (
+                flights.map((flight_info, index) => (
+                  <FlightCard key={index} index={index} flight_info={flight_info} />
+                ))
+              )}
+            </div>
   
   }
   

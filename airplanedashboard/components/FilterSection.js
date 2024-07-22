@@ -45,6 +45,8 @@ const SeparationBar = () => {
 
 const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
 
+  dates_list.sort((a, b) => new Date(b) - new Date(a));
+
   const [filters, setFilters] = useState({});
 
   const [results, setResults] = useState([]);
@@ -61,9 +63,10 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
   
   const fetchResults = async (params) => {
     try {
-      const queryString = new URLSearchParams(params).toString();
-      console.log(queryString)
-      const response = await fetch(`/api/filters?${queryString}`);
+
+        console.log('Params detected')
+        const queryString = new URLSearchParams(params).toString();
+        const response = await fetch(`/api/filters?${queryString}`);
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -85,8 +88,6 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
     // Get the parsed time
     const dep_time = convertTimeToISO(departureTime);
     const arr_time = convertTimeToISO(arrivalTime);
-
-    console.log(dep_time)
 
     // Checking if the params have to be included or not
     const params = {};
@@ -117,11 +118,16 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
 
   const resetFilters = () => {
       // Reset the filters after applying the previous ones
+
+      setSelectedDate(dates_list[0])
       setDepartureTime('00:00')
       setArrivalTime('00:00')
       setSelectedDeparture([])
       setSelectedArrival([])
       setFilters(initial_filters)
+
+      // Fetch data without params
+      fetchResults(initial_filters)
   };
 
   const handleAirportChanges = (setter, value) => {
@@ -138,8 +144,6 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
   }
 
   const convertTimeToISO = (timeString) => {
-
-    console.log(timeString)
 
     // Create the timestamp value for the filtering based on the selected date
 
@@ -161,7 +165,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       <Combobox
         className={styles.filterCombobox}
         label="Flight date"
-        placeholder="Select date of the desired flight"
+        placeholder= {"Current date : " + String(selectedDate)}
         initialValue={[]}
         multiselect={false}
         overflow={"expand-y"}

@@ -16,6 +16,7 @@ export default async function handler(req, res) {
   
     // Get unique dates
     const uniqueDates = [...new Set(dates)];
+
     res.json(uniqueDates);
   
 
