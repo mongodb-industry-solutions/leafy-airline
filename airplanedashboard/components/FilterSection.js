@@ -3,6 +3,8 @@ import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
 import { Combobox, ComboboxOption } from '@leafygreen-ui/combobox'
 
+
+// AIRPORTS (TO BE CHANGED INTO QUERY)
 const airports_dict = {
   "LHR": "LHR - London Heathrow Airport",
   "CDG": "CDG - Charles de Gaulle Airport (Paris)",
@@ -57,8 +59,8 @@ const airports_dict = {
   "NYC": "NYC - New York City",
   "LAX": "LAX - Los Angeles Airport"
 };
-
 const airports_list = Object.values(airports_dict);
+
 
 const TimeSlider = ({label, state, setter}) => {
   
@@ -99,7 +101,7 @@ const SeparationBar = () => {
   return <hr className={styles.separationBar} />;
 };
 
-const FilterSection = ({response, setResponse}) => {
+const FilterSection = ({response, setResponse, dates_list}) => {
 
   const [filters, setFilters] = useState({});
 
@@ -107,6 +109,7 @@ const FilterSection = ({response, setResponse}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [selectedDate, setSelectedDate] = useState(dates_list[0]);
   const [departureTime, setDepartureTime] = useState('00:00');
   const [arrivalTime, setArrivalTime] = useState('00:00');
   const [selectedDeparture, setSelectedDeparture] = useState([]);
@@ -187,26 +190,46 @@ const FilterSection = ({response, setResponse}) => {
     return
   }
 
+  const handleDateChange = (setter, value) => {
+    setter(value)
+    return
+  }
+
   const convertTimeToISO = (timeString) => {
-    
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Meses en JavaScript son de 0-11
-    const day = String(today.getDate()).padStart(2, '0');
-  
+
+    console.log(timeString)
+
+    // Create the timestamp value for the filtering based on the selected date
+
+    const [year, month, day] = String(selectedDate).split('-');
     const [hours, minutes] = timeString.split(':');
-  
     const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
-  
     const isoString = date.toISOString();
   
     return isoString;
   };
 
 
+
   return (
     <div className={styles.filterSelection}>
       <h2>Filter Selection</h2>
+      <SeparationBar />
+
+      <Combobox
+        className={styles.filterCombobox}
+        label="Flight date"
+        placeholder="Select date of the desired flight"
+        initialValue={[]}
+        multiselect={false}
+        overflow={"expand-y"}
+        onChange={(e) => handleDateChange(setSelectedDate, e)}
+      >
+        {dates_list.map((option) => (
+          <ComboboxOption key={option} value={option} />
+        ))}
+      </Combobox>
+
       <SeparationBar />
       <TimeSlider
         label = 'Departure Time: '
