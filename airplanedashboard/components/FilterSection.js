@@ -4,64 +4,6 @@ import Button from '@leafygreen-ui/button';
 import { Combobox, ComboboxOption } from '@leafygreen-ui/combobox'
 
 
-// AIRPORTS (TO BE CHANGED INTO QUERY)
-const airports_dict = {
-  "LHR": "LHR - London Heathrow Airport",
-  "CDG": "CDG - Charles de Gaulle Airport (Paris)",
-  "FRA": "FRA - Frankfurt Airport",
-  "AMS": "AMS - Amsterdam Schiphol Airport",
-  "MAD": "MAD - Adolfo Suárez Madrid-Barajas Airport",
-  "BCN": "BCN - Barcelona-El Prat Airport",
-  "FCO": "FCO - Leonardo da Vinci–Fiumicino Airport (Rome)",
-  "MUC": "MUC - Munich Airport",
-  "LGW": "LGW - London Gatwick Airport",
-  "ZRH": "ZRH - Zurich Airport",
-  "VIE": "VIE - Vienna International Airport",
-  "CPH": "CPH - Copenhagen Airport",
-  "DUB": "DUB - Dublin Airport",
-  "HEL": "HEL - Helsinki Airport",
-  "BRU": "BRU - Brussels Airport",
-  "OSL": "OSL - Oslo Gardermoen Airport",
-  "ARN": "ARN - Stockholm Arlanda Airport",
-  "MXP": "MXP - Milan Malpensa Airport",
-  "ATH": "ATH - Athens International Airport",
-  "LIS": "LIS - Lisbon Humberto Delgado Airport",
-  "ORY": "ORY - Paris Orly Airport",
-  "SVO": "SVO - Sheremetyevo International Airport (Moscow)",
-  "DME": "DME - Domodedovo International Airport (Moscow)",
-  "LED": "LED - Pulkovo Airport (Saint Petersburg)",
-  "WAW": "WAW - Warsaw Chopin Airport",
-  "PRG": "PRG - Václav Havel Airport Prague",
-  "BUD": "BUD - Budapest Ferenc Liszt International Airport",
-  "TXL": "TXL - Berlin Tegel Airport (closed, but historically significant)",
-  "BER": "BER - Berlin Brandenburg Airport",
-  "SXF": "SXF - Berlin Schönefeld Airport (now part of Brandenburg)",
-  "MAN": "MAN - Manchester Airport",
-  "STN": "STN - London Stansted Airport",
-  "DUS": "DUS - Düsseldorf Airport",
-  "HAM": "HAM - Hamburg Airport",
-  "PMI": "PMI - Palma de Mallorca Airport",
-  "AGP": "AGP - Málaga Airport",
-  "VCE": "VCE - Venice Marco Polo Airport",
-  "NAP": "NAP - Naples International Airport",
-  "NCE": "NCE - Nice Côte d'Azur Airport",
-  "GVA": "GVA - Geneva Airport",
-  "LUX": "LUX - Luxembourg Airport",
-  "LJU": "LJU - Ljubljana Jože Pučnik Airport",
-  "SOF": "SOF - Sofia Airport",
-  "OTP": "OTP - Henri Coandă International Airport (Bucharest)",
-  "BTS": "BTS - Bratislava Airport",
-  "ZAG": "ZAG - Zagreb Airport",
-  "BEG": "BEG - Belgrade Nikola Tesla Airport",
-  "SKG": "SKG - Thessaloniki Airport",
-  "TSF": "TSF - Treviso Airport",
-  "CTA": "CTA - Catania Fontanarossa Airport",
-  "NYC": "NYC - New York City",
-  "LAX": "LAX - Los Angeles Airport"
-};
-const airports_list = Object.values(airports_dict);
-
-
 const TimeSlider = ({label, state, setter}) => {
   
   // Function to generate time values in 10-minute intervals
@@ -101,7 +43,7 @@ const SeparationBar = () => {
   return <hr className={styles.separationBar} />;
 };
 
-const FilterSection = ({response, setResponse, dates_list}) => {
+const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
 
   const [filters, setFilters] = useState({});
 

@@ -12,21 +12,33 @@ export default function Home() {
   // New state for the flights
   const [flights, setFlights] = useState([]);
   const [dates, setDates] = useState([]);
+  const [airports , setAirports] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchDates = async () => {
+  const fetchData = async () => {
     try {
-      const response = await fetch('/api/dates');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      // Fetch dates
+      const datesResponse = await fetch('/api/dates');
+      if (!datesResponse.ok) {
+        throw new Error('Network response was not ok for dates');
       }
-      const data = await response.json();
-      setDates(data);
-      console.log('Dates fetched:', data);
+      const datesData = await datesResponse.json();
+      setDates(datesData);
+      console.log('Dates fetched:', datesData);
+
+      // Fetch airports
+      const airportsResponse = await fetch('/api/airports');
+      if (!airportsResponse.ok) {
+        throw new Error('Network response was not ok for airports');
+      }
+      const airportsData = await airportsResponse.json();
+      setAirports(airportsData);
+      console.log('Airports fetched:', airportsData);
+
     } catch (error) {
-      console.error('Error fetching dates:', error);
+      console.error('Error fetching data:', error);
       setError(error.message);
     } finally {
       setLoading(false);
@@ -34,21 +46,22 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchDates();
-    }, []); // Empty dependency array ensures this runs only once
+    fetchData();
+  }, []); // Empty dependency array ensures this runs only once
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-    if (error) {
-      return <div>Error: {error}</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <Layout>
       {/* Integrate the SearchBar component here */}
       <aside className={styles.sidebar}>
-        <FilterSection response={flights} setResponse={setFlights} dates_list={dates} />
+        <FilterSection response={flights} setResponse={setFlights} dates_list={dates} airports_list = {airports}/>
       </aside>
       <div className={styles.searchList}>
         {/* <SearchBar /> */}
