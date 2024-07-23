@@ -168,6 +168,25 @@ margin-bottom: 1rem;
   color: white;
 }
 
+.simulationbuttonSection{
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+  width: 100%; 
+  padding-top: 50px;
+}
+
+.simulationButton {
+  width: 25%;
+  align-self: center;
+  justify-content: center;
+}
+
+.simulationButton :hover{
+  background-color : #00684A;
+  color: white;
+}
+
 .separationBar {
   border: 0;
   height: 1px;

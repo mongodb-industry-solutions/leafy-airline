@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
+import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 
 const Layout1 = ({ children }) => {
@@ -79,6 +80,8 @@ const Layout1 = ({ children }) => {
         </div>
         <Logo className={styles.logo} />
       </header>
+
+
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
@@ -93,6 +96,7 @@ const Layout1 = ({ children }) => {
           </li>
         </ul>
       </nav>
+
       <div className={styles.main}>
         <div className={styles.containersecond}>
           {/* Flight Overview Box */}
