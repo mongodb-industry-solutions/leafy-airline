@@ -6,8 +6,6 @@ import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
-
-const api_key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const app_url = "http://127.0.0.1:8000/"
 
 const Layout1 = ({ children }) => {
