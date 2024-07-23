@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from simulator import DataSimulator
 from path_finder import find_path
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -17,6 +18,21 @@ from google.cloud import pubsub_v1
 
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
+
+# Include de origins from which to allow calls to the app
+# origins = [
+#     "http://localhost:3000",  # Next.js app address
+#     # Add other origins if needed
+# ]
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 
 
 # LOGGING CONFIG TO ANALYZE DATA

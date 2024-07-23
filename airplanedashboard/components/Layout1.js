@@ -7,6 +7,9 @@ import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 
+const api_key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+const app_url = "http://127.0.0.1:8000/"
+
 const Layout1 = ({ children }) => {
   const router = useRouter();
   const { flightId } = router.query; // Get flightId from query parameters
@@ -50,6 +53,42 @@ const Layout1 = ({ children }) => {
     }
     fetchData();
   }, [flightId]); // Re-fetch data when flightId changes
+
+
+  const startSimulation = () => {
+    console.log('Starting sim');
+
+    const app_data = {'flight_id' : flightId,
+             'dep_code': selectedFlight.dep_arp._id ,
+             'arr_code' : selectedFlight.arr_arp._id ,
+             'dep_loc' : [selectedFlight.dep_arp.geo_loc.lat, selectedFlight.dep_arp.geo_loc.long],
+             'arr_loc' : [selectedFlight.arr_arp.geo_loc.lat, selectedFlight.arr_arp.geo_loc.long]}
+
+    const start_url = app_url + "start-scheduler"
+
+    console.log(app_data)
+
+    return
+  }
+
+  const stopSimulation = async () => {
+    const stop_url = app_url + "stop-scheduler"
+
+    try {
+      const response = await fetch(stop_url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error starting process:', error);
+    }
+
+    return
+  }
 
   // Assuming you have latitude and longitude in selectedFlight data
   const mapContainerStyle = {
