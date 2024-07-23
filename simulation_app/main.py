@@ -158,7 +158,6 @@ async def pause_scheduler():
 
     if scheduler_active:
 
-        # scheduler.shutdown()
         scheduler.pause()
         scheduler_active = False
         resume_needed = True
@@ -170,10 +169,9 @@ async def pause_scheduler():
         with open(f'sim_data/flight_telemetry_data.json', 'w') as f:
             json.dump(docs, f, indent=4)
         
-        return {"status": "Scheduler stopped"}
+        return {"status": "Scheduler paused"}
     
-    
-    return {"status": "Scheduler already stopped"}
+    return {"status": "Scheduler was already not active"}
 
 
 
