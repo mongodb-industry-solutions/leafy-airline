@@ -1,4 +1,5 @@
 // pages/index1.js
+"use client"
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
