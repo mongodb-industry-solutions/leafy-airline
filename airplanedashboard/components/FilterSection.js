@@ -3,62 +3,6 @@ import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
 import { Combobox, ComboboxOption } from '@leafygreen-ui/combobox'
 
-const airports_dict = {
-  "LHR": "LHR - London Heathrow Airport",
-  "CDG": "CDG - Charles de Gaulle Airport (Paris)",
-  "FRA": "FRA - Frankfurt Airport",
-  "AMS": "AMS - Amsterdam Schiphol Airport",
-  "MAD": "MAD - Adolfo Suárez Madrid-Barajas Airport",
-  "BCN": "BCN - Barcelona-El Prat Airport",
-  "FCO": "FCO - Leonardo da Vinci–Fiumicino Airport (Rome)",
-  "MUC": "MUC - Munich Airport",
-  "LGW": "LGW - London Gatwick Airport",
-  "ZRH": "ZRH - Zurich Airport",
-  "VIE": "VIE - Vienna International Airport",
-  "CPH": "CPH - Copenhagen Airport",
-  "DUB": "DUB - Dublin Airport",
-  "HEL": "HEL - Helsinki Airport",
-  "BRU": "BRU - Brussels Airport",
-  "OSL": "OSL - Oslo Gardermoen Airport",
-  "ARN": "ARN - Stockholm Arlanda Airport",
-  "MXP": "MXP - Milan Malpensa Airport",
-  "ATH": "ATH - Athens International Airport",
-  "LIS": "LIS - Lisbon Humberto Delgado Airport",
-  "ORY": "ORY - Paris Orly Airport",
-  "SVO": "SVO - Sheremetyevo International Airport (Moscow)",
-  "DME": "DME - Domodedovo International Airport (Moscow)",
-  "LED": "LED - Pulkovo Airport (Saint Petersburg)",
-  "WAW": "WAW - Warsaw Chopin Airport",
-  "PRG": "PRG - Václav Havel Airport Prague",
-  "BUD": "BUD - Budapest Ferenc Liszt International Airport",
-  "TXL": "TXL - Berlin Tegel Airport (closed, but historically significant)",
-  "BER": "BER - Berlin Brandenburg Airport",
-  "SXF": "SXF - Berlin Schönefeld Airport (now part of Brandenburg)",
-  "MAN": "MAN - Manchester Airport",
-  "STN": "STN - London Stansted Airport",
-  "DUS": "DUS - Düsseldorf Airport",
-  "HAM": "HAM - Hamburg Airport",
-  "PMI": "PMI - Palma de Mallorca Airport",
-  "AGP": "AGP - Málaga Airport",
-  "VCE": "VCE - Venice Marco Polo Airport",
-  "NAP": "NAP - Naples International Airport",
-  "NCE": "NCE - Nice Côte d'Azur Airport",
-  "GVA": "GVA - Geneva Airport",
-  "LUX": "LUX - Luxembourg Airport",
-  "LJU": "LJU - Ljubljana Jože Pučnik Airport",
-  "SOF": "SOF - Sofia Airport",
-  "OTP": "OTP - Henri Coandă International Airport (Bucharest)",
-  "BTS": "BTS - Bratislava Airport",
-  "ZAG": "ZAG - Zagreb Airport",
-  "BEG": "BEG - Belgrade Nikola Tesla Airport",
-  "SKG": "SKG - Thessaloniki Airport",
-  "TSF": "TSF - Treviso Airport",
-  "CTA": "CTA - Catania Fontanarossa Airport",
-  "NYC": "NYC - New York City",
-  "LAX": "LAX - Los Angeles Airport"
-};
-
-const airports_list = Object.values(airports_dict);
 
 const TimeSlider = ({label, state, setter}) => {
   
@@ -99,7 +43,9 @@ const SeparationBar = () => {
   return <hr className={styles.separationBar} />;
 };
 
-const FilterSection = ({response, setResponse}) => {
+const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
+
+  dates_list.sort((a, b) => new Date(b) - new Date(a));
 
   const [filters, setFilters] = useState({});
 
@@ -107,6 +53,7 @@ const FilterSection = ({response, setResponse}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [selectedDate, setSelectedDate] = useState(dates_list[0]);
   const [departureTime, setDepartureTime] = useState('00:00');
   const [arrivalTime, setArrivalTime] = useState('00:00');
   const [selectedDeparture, setSelectedDeparture] = useState([]);
@@ -116,9 +63,11 @@ const FilterSection = ({response, setResponse}) => {
   
   const fetchResults = async (params) => {
     try {
-      const queryString = new URLSearchParams(params).toString();
-      console.log(queryString)
-      const response = await fetch(`/api/filters?${queryString}`);
+
+        console.log('Params detected')
+        const queryString = new URLSearchParams(params).toString();
+        const response = await fetch(`/api/filters?${queryString}`);
+        console.log(queryString)
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -140,58 +89,103 @@ const FilterSection = ({response, setResponse}) => {
     // Get the parsed time
     const dep_time = convertTimeToISO(departureTime);
     const arr_time = convertTimeToISO(arrivalTime);
-    const params = {
-      // 'dep_time' : dep_time,
-      // 'arr_time' : arr_time,
-      'dep_arp._id' : selectedDeparture,
-      'arr_arp._id' : selectedArrival
-    };
+
+    // Checking if the params have to be included or not
+    const params = {};
+
+    if (selectedDeparture.length > 0) {
+      params['dep_arp._id'] = selectedDeparture
+    }
+
+    if (selectedArrival.length > 0) {
+      params['arr_arp._id'] = selectedArrival
+    }
+
+    if (dep_time) {
+      params['dep_time'] = dep_time;
+    }
+    if (arr_time) {
+        params['arr_time'] = arr_time;
+    }
+
+    console.log(params)
+
     setFilters(params);
     fetchResults(params);
-
-    // Update general state
-    console.log(response);
-    console.log('New response setted from FilterSelection');
 
   };
 
   const resetFilters = () => {
       // Reset the filters after applying the previous ones
+
+      setSelectedDate(dates_list[0])
       setDepartureTime('00:00')
       setArrivalTime('00:00')
       setSelectedDeparture([])
       setSelectedArrival([])
       setFilters(initial_filters)
+
+      // Fetch data without params
+      fetchResults(initial_filters)
   };
 
   const handleAirportChanges = (setter, value) => {
 
-    value = String(value)
-    const new_val = value.substring(0, 3);
-    setter(new_val)
+    if (value == null){
+      setter([])
+    }
+    else{
+      value = String(value)
+      const new_val = value.substring(0, 3);
+      setter(new_val);
+    }
+    
+    return
+  }
+
+  const handleDateChange = (setter, value) => {
+    if (value == null) {
+      setter(dates_list[0])
+    }
+    else {
+      setter(value)
+    }
     return
   }
 
   const convertTimeToISO = (timeString) => {
-    
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Meses en JavaScript son de 0-11
-    const day = String(today.getDate()).padStart(2, '0');
-  
+
+    // Create the timestamp value for the filtering based on the selected date
+
+    const [year, month, day] = String(selectedDate).split('-');
     const [hours, minutes] = timeString.split(':');
-  
     const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
-  
     const isoString = date.toISOString();
   
     return isoString;
   };
 
 
+
   return (
     <div className={styles.filterSelection}>
       <h2>Filter Selection</h2>
+      <SeparationBar />
+
+      <Combobox
+        className={styles.filterCombobox}
+        label="Flight date"
+        placeholder= {"Current date : " + String(selectedDate)}
+        initialValue={[]}
+        multiselect={false}
+        overflow={"expand-y"}
+        onChange={(e) => handleDateChange(setSelectedDate, e)}
+      >
+        {dates_list.map((option) => (
+          <ComboboxOption key={option} value={option} />
+        ))}
+      </Combobox>
+
       <SeparationBar />
       <TimeSlider
         label = 'Departure Time: '
@@ -209,7 +203,7 @@ const FilterSection = ({response, setResponse}) => {
         label="Departure Location"
         placeholder="Select departure airport"
         initialValue={[]}
-        multiselect={true}
+        multiselect={false}
         overflow={"expand-y"}
         onChange={(e) => handleAirportChanges(setSelectedDeparture, e)}
       >
@@ -222,7 +216,7 @@ const FilterSection = ({response, setResponse}) => {
         label="Arrival Location"
         placeholder="Select arrival airport"
         initialValue={[]}
-        multiselect={true}
+        multiselect={false}
         overflow={"expand-y"}
         onChange={(e) => handleAirportChanges(setSelectedArrival, e)}
       >

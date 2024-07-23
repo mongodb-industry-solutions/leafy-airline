@@ -241,6 +241,7 @@ class DataSimulator:
         return (self.arrived, {
                 "flight_id": self.FID,
                 "ts": self.timestamp.isoformat(),
+                "path" : self.path,
                 "disrupted" : self.disruption,
                 "extra_length" : self.extra_length,
                 "distance_to_arrival" : distance_to_dest,

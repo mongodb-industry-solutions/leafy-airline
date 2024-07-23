@@ -13,10 +13,19 @@ function FlightList({flights}) {
 
     function FlightCard({index, flight_info}) {
 
+      const date = new Date(flight_info.dep_time);
+
+      const day = String(date.getUTCDate()).padStart(2, '0');
+      const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth() returns a zero-based index
+      const year = date.getUTCFullYear();
+
+      const formattedDate = `${day}-${month}-${year}`;
+
         return <div 
             key={index} className={styles.resultItem}>
             <div><strong>Airline:</strong> {flight_info.airline}</div>
             <div><strong>Plane:</strong> {flight_info.plane}</div>
+            <div><strong>Flight Date:</strong> {formattedDate}</div>
             <div><strong>Departure Airport City:</strong> {flight_info.dep_arp?.city || 'N/A'}</div>
             <div><strong>Departure Airport Country:</strong> {flight_info.dep_arp?.country || 'N/A'}</div>
             <div><strong>Arrival Airport City:</strong> {flight_info.arr_arp?.city || 'N/A'}</div>
@@ -28,10 +37,14 @@ function FlightList({flights}) {
         }
 
     return <div className={styles.resultsContainer}>
-          {flights.map((flight_info, index) => (
-          <FlightCard key={index} index={index} flight_info={flight_info} />
-        ))}
-          </div>
+              {flights.length === 0 ? (
+                <p>Error: No flights available</p>
+              ) : (
+                flights.map((flight_info, index) => (
+                  <FlightCard key={index} index={index} flight_info={flight_info} />
+                ))
+              )}
+            </div>
   
   }
   
