@@ -19,20 +19,19 @@ from google.cloud import pubsub_v1
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
 
-# Include de origins from which to allow calls to the app
-# origins = [
-#     "http://localhost:3000",  # Next.js app address
-#     # Add other origins if needed
-# ]
+origins = [
+    "http://localhost:3001",
+    "http://localhost:3000"  # Next.js app address
+    # Add other origins if needed
+]
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # LOGGING CONFIG TO ANALYZE DATA
@@ -45,6 +44,8 @@ logging.basicConfig(
 # SCHEDULER : Calls my function (simulator) every x seconds
 measurement_interval = 1
 scheduler = BackgroundScheduler()
+scheduler_active = False
+resume_needed = False
 docs = []
 
 # PUBSUB INFO
@@ -68,8 +69,13 @@ def publish_data(simulator : DataSimulator):
         docs.append(data)
 
     if finished:
+
+        global scheduler
+        global scheduler_active
+
         logging.info("ARRIVED TO DESTINATION")
         scheduler.shutdown()
+        scheduler_active = False
         logging.info("Scheduler stopped due to finished flight")
 
     # Uncomment when using pubsub
@@ -81,8 +87,6 @@ def publish_data(simulator : DataSimulator):
 
 
 # ENDPOINTS FOR FAST API APP 
-# Eventually, the simulation should be triggered by using fetch('http://localhost:8000/start-scheduler')
-# in our next.js app
 
 @app.post("/start-scheduler")
 async def start_scheduler(flight_info:dict):
@@ -118,26 +122,48 @@ async def start_scheduler(flight_info:dict):
     
     logging.info("Simulator created")
 
+    global scheduler
+    global scheduler_active
+    global resume_needed
+
     # Start the scheduler that will get the data every second
-    if not scheduler.running:
-        scheduler.add_job(publish_data, 'interval', 
-                        seconds = measurement_interval ,
-                        args = (simulator,)) 
-        scheduler.start()
-        logging.info("Scheduler started")
+    if not scheduler_active:
+
+        if not resume_needed:
+            scheduler.add_job(publish_data, 'interval', 
+                            seconds = measurement_interval ,
+                            args = (simulator,)) 
+            scheduler.start()
+            scheduler_active = True
+            logging.info("Scheduler started")
+
+        else:
+            scheduler.resume()
+            logging.info("Scheduler resumed")
+            resume_needed = False
+            scheduler_active = True
+    
 
     return {"status": "Scheduler already running"}
 
-@app.get("/stop-scheduler")
-async def stop_scheduler():
+@app.get("/pause-scheduler")
+async def pause_scheduler():
     '''
     This function will trigger the stop of the scheduler that was calling periodically
     our get_measurements function'''
 
-    if scheduler.running:
-        scheduler.shutdown()
-        logging.info("Scheduler stopped")
+    global scheduler
+    global scheduler_active
+    global resume_needed
 
+    if scheduler_active:
+
+        # scheduler.shutdown()
+        scheduler.pause()
+        scheduler_active = False
+        resume_needed = True
+
+        logging.info("Scheduler paused")
         # Create json doc with all the records
         logging.info(f"Docs recorded {len(docs)}")
 

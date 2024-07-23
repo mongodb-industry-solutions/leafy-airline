@@ -55,24 +55,38 @@ const Layout1 = ({ children }) => {
   }, [flightId]); // Re-fetch data when flightId changes
 
 
-  const startSimulation = () => {
+  const startSimulation = async () => {
     console.log('Starting sim');
 
+    const start_url = app_url + "start-scheduler";
     const app_data = {'flight_id' : flightId,
              'dep_code': selectedFlight.dep_arp._id ,
              'arr_code' : selectedFlight.arr_arp._id ,
              'dep_loc' : [selectedFlight.dep_arp.geo_loc.lat, selectedFlight.dep_arp.geo_loc.long],
-             'arr_loc' : [selectedFlight.arr_arp.geo_loc.lat, selectedFlight.arr_arp.geo_loc.long]}
+             'arr_loc' : [selectedFlight.arr_arp.geo_loc.lat, selectedFlight.arr_arp.geo_loc.long]};
 
-    const start_url = app_url + "start-scheduler"
-
-    console.log(app_data)
+    try {
+      const response = await fetch(start_url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(app_data),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error starting process:', error);
+    }
 
     return
   }
 
-  const stopSimulation = async () => {
-    const stop_url = app_url + "stop-scheduler"
+  const pauseSimulation = async () => {
+    const stop_url = app_url + "pause-scheduler"
 
     try {
       const response = await fetch(stop_url, {
