@@ -83,7 +83,7 @@ const Layout1 = ({ children }) => {
     }
 
     return
-  }
+  };
 
   const pauseSimulation = async () => {
     const stop_url = app_url + "pause-scheduler"
@@ -102,7 +102,26 @@ const Layout1 = ({ children }) => {
     }
 
     return
-  }
+  };
+
+  const resetSimulation = async () => {
+    const reset_url = app_url + "reset-scheduler"
+
+    try {
+      const response = await fetch(reset_url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error starting process:', error);
+    }
+
+    return
+  };
 
   // Assuming you have latitude and longitude in selectedFlight data
   const mapContainerStyle = {

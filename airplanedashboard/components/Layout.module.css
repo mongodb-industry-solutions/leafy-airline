@@ -172,7 +172,7 @@ margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   gap: 10px; 
-  width: 100%; 
+  width: 100%;
   padding-top: 50px;
 }
 
@@ -182,8 +182,21 @@ margin-bottom: 1rem;
   justify-content: center;
 }
 
+.reset_simulationButton {
+  width: 25%;
+  align-self: center;
+  justify-content: center;
+  color: white;
+  background-color: rgb(218, 79, 79);
+}
+
 .simulationButton :hover{
   background-color : #00684A;
+  color: white;
+}
+
+.reset_simulationButton :hover{
+  background-color : rgb(145, 53, 53);
   color: white;
 }
 
