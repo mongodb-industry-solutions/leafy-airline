@@ -1,5 +1,4 @@
-// pages/index1.js
-"use client"
+'use client'
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,13 +6,25 @@ import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 
-const api_key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
 const Layout1 = ({ children }) => {
   const router = useRouter();
   const { flightId } = router.query; // Get flightId from query parameters
   const [flightData, setFlightData] = useState([]);
   const [selectedFlight, setSelectedFlight] = useState(null);
+  const [apiKey, setApiKey] = useState('');
+
+  useEffect(() => {
+    async function fetchApiKey() {
+      try {
+        const res = await fetch('/api/googleMapsKey');
+        const data = await res.json();
+        setApiKey(data.apiKey);
+      } catch (error) {
+        console.error('Error fetching API key:', error);
+      }
+    }
+    fetchApiKey();
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -102,36 +113,40 @@ const Layout1 = ({ children }) => {
 
           {/* Google Map Component */}
           <div className={styles.mapContainer}>
-            <LoadScript googleMapsApiKey={api_key}>
-              <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                center={depCoords} // Center map on departure point
-                zoom={5}
-              >
-                {/* Departure Marker */}
-                {selectedFlight && (
-                  <>
-                    <Marker
-                      position={depCoords}
-                      label={`Departure: ${selectedFlight.dep_arp.city}`}
-                    />
-                    <Marker
-                      position={arrCoords}
-                      label={`Arrival: ${selectedFlight.arr_arp.city}`}
-                    />
-                    {/* Line between departure and arrival */}
-                    <Polyline
-                      path={[depCoords, arrCoords]}
-                      options={{
-                        strokeColor: '#FF0000',
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2
-                      }}
-                    />
-                  </>
-                )}
-              </GoogleMap>
-            </LoadScript>
+            {apiKey ? (
+              <LoadScript googleMapsApiKey={apiKey}>
+                <GoogleMap
+                  mapContainerStyle={mapContainerStyle}
+                  center={depCoords} // Center map on departure point
+                  zoom={5}
+                >
+                  {/* Departure Marker */}
+                  {selectedFlight && (
+                    <>
+                      <Marker
+                        position={depCoords}
+                        label={`Departure: ${selectedFlight.dep_arp.city}`}
+                      />
+                      <Marker
+                        position={arrCoords}
+                        label={`Arrival: ${selectedFlight.arr_arp.city}`}
+                      />
+                      {/* Line between departure and arrival */}
+                      <Polyline
+                        path={[depCoords, arrCoords]}
+                        options={{
+                          strokeColor: '#FF0000',
+                          strokeOpacity: 1.0,
+                          strokeWeight: 2
+                        }}
+                      />
+                    </>
+                  )}
+                </GoogleMap>
+              </LoadScript>
+            ) : (
+              <p>Loading map...</p>
+            )}
           </div>
         </div>
         {/* Main Content */}
