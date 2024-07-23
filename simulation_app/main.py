@@ -20,8 +20,7 @@ from google.cloud import pubsub_v1
 app = FastAPI()
 
 origins = [
-    "http://localhost:3001",
-    "http://localhost:3000"  # Next.js app address
+    "http://localhost:3001",  # Next.js app address
     # Add other origins if needed
 ]
 
@@ -136,15 +135,17 @@ async def start_scheduler(flight_info:dict):
             scheduler.start()
             scheduler_active = True
             logging.info("Scheduler started")
+            return {"status": "Scheduler started"}
 
         else:
             scheduler.resume()
             logging.info("Scheduler resumed")
             resume_needed = False
             scheduler_active = True
+            return {"status": "Scheduler resumed"}
     
-
-    return {"status": "Scheduler already running"}
+    else:
+        return {"status": "Scheduler already running"}
 
 @app.get("/pause-scheduler")
 async def pause_scheduler():
@@ -172,6 +173,23 @@ async def pause_scheduler():
         return {"status": "Scheduler paused"}
     
     return {"status": "Scheduler was already not active"}
+
+@app.get("/reset-scheduler")
+async def reset_scheduler():
+
+    # Shutdown previous scheduler and create the new one
+    global scheduler
+    global scheduler_active
+    global resume_needed
+
+    scheduler.shutdown()
+
+    scheduler_active = False
+    resume_needed = False
+    scheduler = BackgroundScheduler()
+
+    return {"status": "Reset complete"}
+
 
 
 
