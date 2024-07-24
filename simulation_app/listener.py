@@ -5,6 +5,7 @@ import time
 from concurrent.futures import TimeoutError
 from google.cloud import pubsub_v1
 import json
+import datetime
 
 # Configura las variables del proyecto, topic y suscripción
 project_id = "connected-aircraft-ist"
@@ -26,13 +27,15 @@ def callback(message):
 
     # Work with the dictionary fields
     flight_id = data_dict.get("flight_id")
-    timestamp = data_dict.get("ts")
+    timestamp = data_dict.get("ts") + "Z"
     location = data_dict.get("location")
 
     # Create the new dict thats going to be sent to mongo
-    new_data = {'ts': { "$date": timestamp}}
+    new_data = {"ts": { "$date": timestamp},
+                "flight_id" : flight_id, 
+                "location" : location}
 
-    print(f"Decoded message : {data_dict}")
+    print(f"New processed message : {new_data}")
 
     message.ack()
 
