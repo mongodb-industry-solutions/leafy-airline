@@ -20,7 +20,9 @@ from google.cloud import pubsub_v1
 app = FastAPI()
 
 origins = [
-    "http://localhost:3001",  # Next.js app address
+    "http://localhost:3001",
+    "http://localhost:3000",  # Next.js app address
+    "https://airplanedashboard-65jcrv6puq-ew.a.run.app/"
     # Add other origins if needed
 ]
 

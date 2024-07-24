@@ -218,9 +218,17 @@ const Layout1 = ({ children }) => {
                   )}
                 </GoogleMap>
               </LoadScript>
+              
             ) : (
               <p>Loading map...</p>
             )}
+              
+              <div className={styles.simulationbuttonSection}>
+                <Button className={styles.simulationButton} children = 'Start Simulation' onClick={startSimulation} ></Button>
+                <Button className={styles.simulationButton} children = 'Pause Simulation' onClick={pauseSimulation} ></Button>
+                <Button className={styles.reset_simulationButton} children = 'Reset Simulation' onClick={resetSimulation} ></Button>
+              </div> 
+              
           </div>
         </div>
         {/* Main Content */}
