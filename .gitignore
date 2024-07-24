@@ -2,3 +2,4 @@ config.cfg
 connected-aircraft-ist-4fa26b67848a.json
 config.py
 node_modules/
+simulation_app/logs/
