@@ -63,20 +63,11 @@ def parse_data(flight_data):
         'Timestamp': timestamp,
         'Latitude': lat,
         'Longitude': lon,
-        'Speed': speed,
+        'Speed': speed*3.6, 
         'Heading': heading,
         'Distance': distance_db,
         'Delay_length': delay_length
     }
-
-def haversine(lat1, lon1, lat2, lon2):
-    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
-    c = 2 * math.asin(math.sqrt(a))
-    km = 6371 * c
-    return km
 
 def time_left(distance, speed):
     if speed > 0:
@@ -84,26 +75,15 @@ def time_left(distance, speed):
     else:
         return float('inf')  # Infinite time if speed is zero
 
-def calculate_cost(speed, distance, delay_cost_per_minute, delay_time, prev_speed, prev_fcr):
+def calculate_cost(speed, distance, delay_cost_per_minute, delay_time):
     time_left_in_hours = time_left(distance, speed)
-    fuel_cost = fuel_consumption_price_to_speed(speed, prev_speed, prev_fcr)[0] * time_left_in_hours
-    delay_cost = delay_cost_per_minute * delay_time
+    fuel_cost = 1500 * time_left_in_hours #average price per hour of fuel is 1500$
+    delay_cost = delay_cost_per_minute * delay_time * 60
     total_cost = fuel_cost + delay_cost
     return total_cost
 
-def fuel_consumption_price_to_speed(speed, prev_speed, prev_fcr=None):
-    c = 2600 / (870**3)  # constant
-    if prev_fcr is None:
-        fcr_prev = c * (prev_speed**3)  # initial fuel consumption rate for the first record
-    else:
-        fcr_prev = prev_fcr
-    fcr = fcr_prev * (prev_speed / speed)**3  # iterative calculation for subsequent records
-    gallons = fcr * 2.84  # approx. 1 gallon = 2.84kg
-    price = gallons * 3.5  # 1 gallon price = 3.5 EUR
-    return price, fcr
-
 def process_message(message_data):
-    global prev_speed, prev_fcr
+    global prev_speed
     
     current_entry = parse_data(message_data)
 
@@ -115,10 +95,9 @@ def process_message(message_data):
 
         # Calculate total cost for the current data point
         delay_time = time_left(current_entry['Delay_length'], speed)
-        price, prev_fcr = fuel_consumption_price_to_speed(speed, prev_speed, prev_fcr)
-        total_cost = calculate_cost(speed, distance_to_destination, delay_cost_per_minute, delay_time, prev_speed, prev_fcr)
-        delay_cost = delay_time * delay_cost_per_minute
-        fuel_cost = total_cost - delay_cost
+        total_cost = calculate_cost(speed, distance_to_destination, delay_cost_per_minute, delay_time)
+        delay_cost = delay_time * delay_cost_per_minute * 60 # by 60 because delay_time is given in hours
+        fuel_cost = 1500 * estimated_time_left
 
         # Prepare the data to be inserted into MongoDB
         document = {
@@ -141,8 +120,8 @@ def process_message(message_data):
         print(f"Estimated Time Left: {estimated_time_left:.2f} hours")
         print(f"Delay Time: {delay_time:.2f} hours")
         print(f"Delay Cost: {delay_cost:.2f} EUR")
-        print(f"Fuel Cost per Hour: {fuel_cost:.2f} EUR")
-        print(f"Total Cost per Hour: {total_cost:.2f} EUR")
+        print(f"Fuel Cost: {fuel_cost:.2f} EUR")
+        print(f"Total Cost: {total_cost:.2f} EUR")
         print("-----")
     
     # Update previous speed for the next message

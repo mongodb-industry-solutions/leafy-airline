@@ -168,6 +168,38 @@ margin-bottom: 1rem;
   color: white;
 }
 
+.simulationbuttonSection{
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+  width: 100%;
+  padding-top: 50px;
+}
+
+.simulationButton {
+  width: 25%;
+  align-self: center;
+  justify-content: center;
+}
+
+.reset_simulationButton {
+  width: 25%;
+  align-self: center;
+  justify-content: center;
+  color: white;
+  background-color: rgb(218, 79, 79);
+}
+
+.simulationButton :hover{
+  background-color : #00684A;
+  color: white;
+}
+
+.reset_simulationButton :hover{
+  background-color : rgb(145, 53, 53);
+  color: white;
+}
+
 .separationBar {
   border: 0;
   height: 1px;
@@ -254,15 +286,6 @@ margin-bottom: 1rem;
 
   }
 
-  .innerBox {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    padding: 1rem;
-    flex: 1; /* Make the inner boxes expand to fill the available space */
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
-    width: 90%;
-  }
 
   .innerBox1 {
     background-color: #ffffff;
@@ -341,3 +364,104 @@ margin-bottom: 1rem;
   box-sizing: border-box;
 }
 
+.innerBox2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+.costContainer {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 15px; /* Space between the two cost boxes */
+  width: 97%; /* Ensure container takes full width of innerBox */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.costBox {
+  background-color: #ffffff; /* Ensure background color is white */
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  flex: 1; /* Ensure boxes grow equally */
+  min-width: 0; /* Allow flex items to shrink below their minimum width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.costBox h4 {
+  margin: 0 0 10px;
+}
+
+.costBox p {
+  margin: 0;
+}
+
+/* Container for the two cost boxes */
+.costContainer {
+  display: flex;
+  justify-content: center; /* Center the cost boxes horizontally within the container */
+  gap: 20px; /* Space between the two cost boxes */
+  margin-top: 20px; /* Margin above the cost boxes */
+  width: 100%; /* Ensure it takes the full width of its parent */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Styling for individual cost boxes */
+.costBox {
+  background-color: #ffffff; /* Ensure background color is white */
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  flex: 1; /* Ensure boxes grow equally */
+  min-width: 0; /* Allow flex items to shrink below their minimum width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Margins for headings and paragraphs inside cost boxes */
+.costBox h4 {
+  margin: 0 0 10px;
+}
+
+.costBox p {
+  margin: 0;
+}
+
+/* Style for the inner box, which contains the costContainer */
+.innerBox {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 90%; /* Adjust as needed */
+  margin: 0 auto; /* Center the innerBox within its parent */
+}
+
+/* To ensure the costContainer is always within the innerBox */
+.innerBox .costContainer {
+  width: 100%; /* Full width of the innerBox */
+}
+
+/* Light red background for delay */
+.delayBox {
+  background-color: #ffcccc; /* Light red */
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 90%; /* Adjust as needed */
+  margin: 20px auto 0; /* Center and add margin on top */
+}
+
+/* White background for no delay */
+.noDelayBox {
+  background-color: #ffffff; /* White */
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 90%; /* Adjust as needed */
+  margin: 20px auto 0; /* Center and add margin on top */
+}

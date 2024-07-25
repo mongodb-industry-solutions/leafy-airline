@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from simulator import DataSimulator
 from path_finder import find_path
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -18,6 +19,21 @@ from google.cloud import pubsub_v1
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
 
+origins = [
+    "http://localhost:3001",
+    "http://localhost:3000",  # Next.js app address
+    "https://airplanedashboard-65jcrv6puq-ew.a.run.app/"
+    # Add other origins if needed
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # LOGGING CONFIG TO ANALYZE DATA
 logging.basicConfig(
@@ -29,6 +45,8 @@ logging.basicConfig(
 # SCHEDULER : Calls my function (simulator) every x seconds
 measurement_interval = 1
 scheduler = BackgroundScheduler()
+scheduler_active = False
+resume_needed = False
 docs = []
 
 # PUBSUB INFO
@@ -52,8 +70,13 @@ def publish_data(simulator : DataSimulator):
         docs.append(data)
 
     if finished:
+
+        global scheduler
+        global scheduler_active
+
         logging.info("ARRIVED TO DESTINATION")
         scheduler.shutdown()
+        scheduler_active = False
         logging.info("Scheduler stopped due to finished flight")
 
     # Uncomment when using pubsub
@@ -65,8 +88,6 @@ def publish_data(simulator : DataSimulator):
 
 
 # ENDPOINTS FOR FAST API APP 
-# Eventually, the simulation should be triggered by using fetch('http://localhost:8000/start-scheduler')
-# in our next.js app
 
 @app.post("/start-scheduler")
 async def start_scheduler(flight_info:dict):
@@ -102,36 +123,75 @@ async def start_scheduler(flight_info:dict):
     
     logging.info("Simulator created")
 
+    global scheduler
+    global scheduler_active
+    global resume_needed
+
     # Start the scheduler that will get the data every second
-    if not scheduler.running:
-        scheduler.add_job(publish_data, 'interval', 
-                        seconds = measurement_interval ,
-                        args = (simulator,)) 
-        scheduler.start()
-        logging.info("Scheduler started")
+    if not scheduler_active:
 
-    return {"status": "Scheduler already running"}
+        if not resume_needed:
+            scheduler.add_job(publish_data, 'interval', 
+                            seconds = measurement_interval ,
+                            args = (simulator,)) 
+            scheduler.start()
+            scheduler_active = True
+            logging.info("Scheduler started")
+            return {"status": "Scheduler started"}
 
-@app.get("/stop-scheduler")
-async def stop_scheduler():
+        else:
+            scheduler.resume()
+            logging.info("Scheduler resumed")
+            resume_needed = False
+            scheduler_active = True
+            return {"status": "Scheduler resumed"}
+    
+    else:
+        return {"status": "Scheduler already running"}
+
+@app.get("/pause-scheduler")
+async def pause_scheduler():
     '''
     This function will trigger the stop of the scheduler that was calling periodically
     our get_measurements function'''
 
-    if scheduler.running:
-        scheduler.shutdown()
-        logging.info("Scheduler stopped")
+    global scheduler
+    global scheduler_active
+    global resume_needed
 
+    if scheduler_active:
+
+        scheduler.pause()
+        scheduler_active = False
+        resume_needed = True
+
+        logging.info("Scheduler paused")
         # Create json doc with all the records
         logging.info(f"Docs recorded {len(docs)}")
 
         with open(f'sim_data/flight_telemetry_data.json', 'w') as f:
             json.dump(docs, f, indent=4)
         
-        return {"status": "Scheduler stopped"}
+        return {"status": "Scheduler paused"}
     
-    
-    return {"status": "Scheduler already stopped"}
+    return {"status": "Scheduler was already not active"}
+
+@app.get("/reset-scheduler")
+async def reset_scheduler():
+
+    # Shutdown previous scheduler and create the new one
+    global scheduler
+    global scheduler_active
+    global resume_needed
+
+    scheduler.shutdown()
+
+    scheduler_active = False
+    resume_needed = False
+    scheduler = BackgroundScheduler()
+
+    return {"status": "Reset complete"}
+
 
 
 
