@@ -1,4 +1,5 @@
 airports = {
+    # European Airports
     'LHR': (51.4700, -0.4543),   # London Heathrow Airport
     'CDG': (49.0097, 2.5479),    # Charles de Gaulle Airport (Paris)
     'FRA': (50.0379, 8.5622),    # Frankfurt Airport
@@ -48,5 +49,27 @@ airports = {
     'BEG': (44.8184, 20.3091),   # Belgrade Nikola Tesla Airport
     'SKG': (40.5197, 22.9711),   # Thessaloniki Airport
     'TSF': (45.6484, 12.1944),   # Treviso Airport
-    'CTA': (37.4668, 15.0664)    # Catania Fontanarossa Airport
+    'CTA': (37.4668, 15.0664),   # Catania Fontanarossa Airport
+
+    # US Airports
+    'ATL': (33.6407, -84.4279),   # Hartsfield-Jackson Atlanta International Airport
+    'LAX': (33.9416, -118.4085),   # Los Angeles International Airport
+    'ORD': (41.9742, -87.9073),    # O'Hare International Airport (Chicago)
+    'DFW': (32.8968, -97.0380),    # Dallas/Fort Worth International Airport
+    'JFK': (40.6413, -73.7781),    # John F. Kennedy International Airport (New York)
+    'DEN': (39.8561, -104.6737),   # Denver International Airport
+    'SFO': (37.6213, -122.3790),   # San Francisco International Airport
+    'SEA': (47.4502, -122.3088),   # Seattle-Tacoma International Airport
+    'MIA': (25.7957, -80.2870),    # Miami International Airport
+    'LAS': (36.08, -115.1537),     # McCarran International Airport (Las Vegas)
+    'PHX': (33.4342, -112.0126),   # Phoenix Sky Harbor International Airport
+    'IAH': (29.9844, -95.3415),    # George Bush Intercontinental Airport (Houston)
+    'MSP': (44.8848, -93.2223),    # Minneapolis-Saint Paul International Airport
+    'BOS': (42.3656, -71.0096),    # Boston Logan International Airport
+    'EWR': (40.6925, -74.1687),    # Newark Liberty International Airport
+    'DTW': (42.2127, -83.3534),    # Detroit Metropolitan Airport
+    'CLT': (35.2140, -80.9431),    # Charlotte Douglas International Airport
+    'LGA': (40.7772, -73.8726),    # LaGuardia Airport (New York)
+    'BWI': (39.1754, -76.6684),    # Baltimore/Washington International Thurgood Marshall Airport
+    'SAN': (32.7334, -117.1915),   # San Diego International Airport
 }
