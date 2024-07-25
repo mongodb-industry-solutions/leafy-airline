@@ -6,7 +6,9 @@ import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
-const app_url = "http://127.0.0.1:8000/"
+import io from 'socket.io-client'; // Import socket.io-client
+
+const app_url = "http://127.0.0.1:8000/";
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
@@ -14,6 +16,9 @@ const Layout1 = ({ children }) => {
   const [flightData, setFlightData] = useState([]);
   const [selectedFlight, setSelectedFlight] = useState(null);
   const [apiKey, setApiKey] = useState('');
+  const [delayTime, setDelayTime] = useState(null); // State for Delay_Time
+  const [delayCost, setDelayCost] = useState(null); // State for Delay_Cost
+  const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -50,18 +55,41 @@ const Layout1 = ({ children }) => {
       }
     }
     fetchData();
-  }, [flightId]); // Re-fetch data when flightId changes
+  }, [flightId]);
 
+  useEffect(() => {
+    // Connect to WebSocket server
+    const socket = io(); // Connect to the WebSocket server
+
+    socket.on('alert', (alert) => {
+      console.log('Alert received:', alert);
+      if (alert && alert.Delay_Time !== undefined) {
+        setDelayTime(Math.round(alert.Delay_Time)); // Round the delay time before setting it
+      }
+      if (alert && alert.Delay_Cost !== undefined) {
+        setDelayCost(alert.Delay_Cost); // Set the delay cost
+      }
+      if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
+        setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
+      }
+    });
+
+    return () => {
+      socket.off('alert');
+    };
+  }, []);
 
   const startSimulation = async () => {
     console.log('Starting sim');
 
     const start_url = app_url + "start-scheduler";
-    const app_data = {'flight_id' : flightId,
-             'dep_code': selectedFlight.dep_arp._id ,
-             'arr_code' : selectedFlight.arr_arp._id ,
-             'dep_loc' : [selectedFlight.dep_arp.geo_loc.lat, selectedFlight.dep_arp.geo_loc.long],
-             'arr_loc' : [selectedFlight.arr_arp.geo_loc.lat, selectedFlight.arr_arp.geo_loc.long]};
+    const app_data = {
+      'flight_id': flightId,
+      'dep_code': selectedFlight.dep_arp._id,
+      'arr_code': selectedFlight.arr_arp._id,
+      'dep_loc': [selectedFlight.dep_arp.geo_loc.lat, selectedFlight.dep_arp.geo_loc.long],
+      'arr_loc': [selectedFlight.arr_arp.geo_loc.lat, selectedFlight.arr_arp.geo_loc.long]
+    };
 
     try {
       const response = await fetch(start_url, {
@@ -79,12 +107,10 @@ const Layout1 = ({ children }) => {
     } catch (error) {
       console.error('Error starting process:', error);
     }
-
-    return
   };
 
   const pauseSimulation = async () => {
-    const stop_url = app_url + "pause-scheduler"
+    const stop_url = app_url + "pause-scheduler";
 
     try {
       const response = await fetch(stop_url, {
@@ -96,14 +122,12 @@ const Layout1 = ({ children }) => {
       const data = await response.json();
       console.log(data);
     } catch (error) {
-      console.error('Error starting process:', error);
+      console.error('Error pausing process:', error);
     }
-
-    return
   };
 
   const resetSimulation = async () => {
-    const reset_url = app_url + "reset-scheduler"
+    const reset_url = app_url + "reset-scheduler";
 
     try {
       const response = await fetch(reset_url, {
@@ -115,19 +139,15 @@ const Layout1 = ({ children }) => {
       const data = await response.json();
       console.log(data);
     } catch (error) {
-      console.error('Error starting process:', error);
+      console.error('Error resetting process:', error);
     }
-
-    return
   };
 
-  // Assuming you have latitude and longitude in selectedFlight data
   const mapContainerStyle = {
     width: '100%',
     height: '400px'
   };
 
-  // Coordinates for the departure and arrival points
   const depCoords = {
     lat: selectedFlight ? selectedFlight.dep_arp.geo_loc.lat : 0,
     lng: selectedFlight ? selectedFlight.dep_arp.geo_loc.long : 0
@@ -151,7 +171,6 @@ const Layout1 = ({ children }) => {
         <Logo className={styles.logo} />
       </header>
 
-
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
@@ -171,18 +190,33 @@ const Layout1 = ({ children }) => {
         <div className={styles.containersecond}>
           {/* Flight Overview Box */}
           <div className={styles.flightOverviewBox}>
-            <h3>Flight Overview</h3>
-            {selectedFlight ? (
-              <div className={styles.innerBox}>
-                <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
-                <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
-                <div className={styles.innerBox1}>
-                  <p>Delay: {selectedFlight.delay_time ? `${selectedFlight.delay_time} minutes` : 'No delay'}</p>
-                </div>
-              </div>
-            ) : (
-              <p>Loading flight details...</p>
-            )}
+          <h3>Flight Overview</h3>
+{selectedFlight ? (
+  <>
+    <div className={styles.innerBox}>
+      <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
+      <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
+    </div>
+    <div className={delayTime !== null ? styles.delayBox : styles.noDelayBox}>
+      <p>Delay: {delayTime !== null ? `${delayTime} hours` : 'No delay'}</p>
+    </div>
+    <div className={styles.costContainer}>
+      <div className={styles.costBox}>
+        <h4>Delay Cost</h4>
+        <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'Simulation not Started'}</p>
+      </div>
+      <div className={styles.costBox}>
+        <h4>Fuel Cost</h4>
+        <p>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
+      </div>
+    </div>
+    
+  </>
+) : (
+  <p>Loading flight details...</p>
+)}
+
+
           </div>
 
           {/* Google Map Component */}
@@ -218,17 +252,15 @@ const Layout1 = ({ children }) => {
                   )}
                 </GoogleMap>
               </LoadScript>
-              
             ) : (
               <p>Loading map...</p>
             )}
-              
-              <div className={styles.simulationbuttonSection}>
-                <Button className={styles.simulationButton} children = 'Start Simulation' onClick={startSimulation} ></Button>
-                <Button className={styles.simulationButton} children = 'Pause Simulation' onClick={pauseSimulation} ></Button>
-                <Button className={styles.reset_simulationButton} children = 'Reset Simulation' onClick={resetSimulation} ></Button>
-              </div> 
-              
+
+            <div className={styles.simulationbuttonSection}>
+              <Button className={styles.simulationButton} children='Start Simulation' onClick={startSimulation}></Button>
+              <Button className={styles.simulationButton} children='Pause Simulation' onClick={pauseSimulation}></Button>
+              <Button className={styles.reset_simulationButton} children='Reset Simulation' onClick={resetSimulation}></Button>
+            </div>
           </div>
         </div>
         {/* Main Content */}
