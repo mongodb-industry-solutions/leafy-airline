@@ -19,6 +19,9 @@ const Layout1 = ({ children }) => {
   const [delayTime, setDelayTime] = useState(null); // State for Delay_Time
   const [delayCost, setDelayCost] = useState(null); // State for Delay_Cost
   const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
+  const [airplanePosition, setAirplanePosition] = useState(null);
+  const [flightPath, setFlightPath] = useState([]);
+
 
   useEffect(() => {
     async function fetchApiKey() {
