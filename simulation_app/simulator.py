@@ -45,7 +45,7 @@ class SpeedSimulator:
             # We add a slight noise to our speed calculations
             speed = self.avg_plane_speed + np.random.uniform(-5, 5)
 
-        return speed
+        return speed  #*3.6 #Speed in km/h
 
 class CoordinateTransformer:
 
@@ -229,6 +229,7 @@ class DataSimulator:
 
         # Compute new speed 
         new_speed = self.SpController.get_new_speed(distance_to_dest)
+
         print('Speed:', new_speed)
         
 
