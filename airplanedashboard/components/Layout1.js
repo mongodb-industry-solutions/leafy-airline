@@ -156,7 +156,8 @@ const Layout1 = ({ children }) => {
         <ul className={styles.navList}>
           <li className={styles.navItem}>
             <Link href="/" passHref legacyBehavior>
-              <a className={`${styles.navLink} ${router.pathname === '/' ? styles.activeLink : ''}`}>Flights</a>
+            {/* Clicking in Flights to go back will trigger resetSimulation to allow the simulation to start again */}
+              <a className={`${styles.navLink} ${router.pathname === '/' ? styles.activeLink : ''}`} onClick={resetSimulation}>Flights</a>
             </Link>
           </li>
           <li className={styles.navItem}>
