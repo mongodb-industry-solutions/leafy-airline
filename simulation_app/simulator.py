@@ -83,7 +83,7 @@ class CoordinateTransformer:
         # Calculate the unit vector from origin to destination
         unit = self.unit_vector(origin_2d, destination_2d)
         
-        # Calculate the displacement vector for 1 km
+        # Calculate the displacement vector for advancement_rate meters
         displacement = (unit[0] * advancement, unit[1] * advancement)
         
         # Add the displacement vector to the origin
@@ -114,8 +114,7 @@ class DataSimulator:
 
         # Avg aircraft speed is usually between 880 - 930 km/h -> 247,22 m/s
         self.SpController = SpeedSimulator()
-        self.location_th = 1 # If the plane is at a 1km or less distance from the headed point, it is considered as reached
-        self.advancement_rate = 245*seconds_per_iter # Indicates the meters that the plane can cover per iteration
+        self.advancement_rate = 245*seconds_per_iter # Indicates the METERS that the plane can cover per iteration
         # Coordinate transformer
         self.CoordTransformer = CoordinateTransformer()
 
@@ -200,14 +199,14 @@ class DataSimulator:
         # 1. Compute direction vector from current position to headed point so we know
         # in which direction the airplane should move
         print('\nNew measurements: ')
-        print('Headed', self.headed_point)
-        print('Prev', self.prev_location)
 
         # Distance to next point in km
         distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
 
-        # Compute next location
-        if distance_to_headed < self.location_th :
+        # Compute next location 
+
+        # if the distance is less that what the plane is going to advance, we get to the next point directly
+        if distance_to_headed < (self.advancement_rate/1000) :
             new_loc = self.headed_point
             self.new_headed_point()
 
@@ -219,20 +218,19 @@ class DataSimulator:
                                                             self.headed_point[1], 
                                                             self.advancement_rate )
 
-        print('Distance to headed: ', distance_to_headed)
-        print('Heading to:', self.headed_point)
-        print('From : ', new_loc)
 
         # 5. Compute new heading direction and new distance to arrival (using the described path)
         # new_heading = (np.degrees(np.arctan2(unit_vector[1], unit_vector[0])) + 360) % 360
         distance_to_dest = self.dist_to_arrival(new_loc)
 
+        print('Distance to headed: ', distance_to_headed)
+        print('Distance to arrival: ', distance_to_dest)
+        print('Heading to:', self.headed_point)
+        print('From : ', new_loc)
+
         # Compute new speed 
         new_speed = self.SpController.get_new_speed(distance_to_dest)
-
-        print('Speed:', new_speed)
         
-
         # Update every measurement
         self.prev_location = new_loc
         self.prev_speed = new_speed

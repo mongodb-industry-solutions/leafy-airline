@@ -73,10 +73,13 @@ def publish_data(simulator : DataSimulator):
 
         global scheduler
         global scheduler_active
+        global resume_needed
 
         logging.info("ARRIVED TO DESTINATION")
         scheduler.shutdown()
+        scheduler = BackgroundScheduler()
         scheduler_active = False
+        resume_needed = False
         logging.info("Scheduler stopped due to finished flight")
 
     # Uncomment when using pubsub
@@ -119,7 +122,7 @@ async def start_scheduler(flight_info:dict):
     simulator = DataSimulator(flight_info["flight_id"],
                               disruption = disrupted,
                               path_atrib = path_data, 
-                              seconds_per_iter= 10)
+                              seconds_per_iter= 150)
     
     logging.info("Simulator created")
 
