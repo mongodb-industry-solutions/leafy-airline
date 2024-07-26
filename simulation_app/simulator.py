@@ -166,6 +166,7 @@ class DataSimulator:
         if i == path_len:
             self.arrived = True
             self.headed_point = None
+            return
         
         # If not, we can see if there are more than two main points in our path
         elif path_len == 2:
