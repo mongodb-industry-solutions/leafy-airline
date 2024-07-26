@@ -1,6 +1,5 @@
 config.cfg
-connected-aircraft-ist-4fa26b67848a.json
 config.py
 node_modules/
 simulation_app/logs/
-simulation_app/json-keys-for-connected-aircraft-ist
+simulation_app/json-keys-for-connect-aircraft-ist

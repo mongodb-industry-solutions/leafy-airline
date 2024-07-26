@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+apscheduler
+numpy
+matplotlib
+networkx
+pyproj
