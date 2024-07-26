@@ -64,7 +64,8 @@ doc_limit = 200
 # FUNCTIONS
 def publish_data(simulator : DataSimulator):
 
-    (finished, data )= simulator.generate_data()
+    (finished, data)= simulator.generate_data()
+    print(finished)
 
     if len(docs) <= doc_limit:
         docs.append(data)
@@ -76,7 +77,7 @@ def publish_data(simulator : DataSimulator):
         global resume_needed
 
         logging.info("ARRIVED TO DESTINATION")
-        scheduler.shutdown()
+        scheduler.pause()
         scheduler = BackgroundScheduler()
         scheduler_active = False
         resume_needed = False
