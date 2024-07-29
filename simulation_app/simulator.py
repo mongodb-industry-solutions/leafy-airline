@@ -45,7 +45,7 @@ class SpeedSimulator:
             # We add a slight noise to our speed calculations
             speed = self.avg_plane_speed + np.random.uniform(-5, 5)
 
-        return speed
+        return speed  #*3.6 #Speed in km/h
 
 class CoordinateTransformer:
 
@@ -83,7 +83,7 @@ class CoordinateTransformer:
         # Calculate the unit vector from origin to destination
         unit = self.unit_vector(origin_2d, destination_2d)
         
-        # Calculate the displacement vector for 1 km
+        # Calculate the displacement vector for advancement_rate meters
         displacement = (unit[0] * advancement, unit[1] * advancement)
         
         # Add the displacement vector to the origin
@@ -114,8 +114,7 @@ class DataSimulator:
 
         # Avg aircraft speed is usually between 880 - 930 km/h -> 247,22 m/s
         self.SpController = SpeedSimulator()
-        self.location_th = 1 # If the plane is at a 1km or less distance from the headed point, it is considered as reached
-        self.advancement_rate = 245*seconds_per_iter # Indicates the meters that the plane can cover per iteration
+        self.advancement_rate = 245*seconds_per_iter # Indicates the METERS that the plane can cover per iteration
         # Coordinate transformer
         self.CoordTransformer = CoordinateTransformer()
 
@@ -167,14 +166,16 @@ class DataSimulator:
         if i == path_len:
             self.arrived = True
             self.headed_point = None
+
+            return
         
         # If not, we can see if there are more than two main points in our path
         elif path_len == 2:
             self.headed_point = self.path[-1]
         
         else:
-            self.headed_point = self.path[i+1]
-
+            self.headed_point = self.path[i]
+        
         self.path_idx += 1
 
         return 
@@ -199,60 +200,69 @@ class DataSimulator:
 
         # 1. Compute direction vector from current position to headed point so we know
         # in which direction the airplane should move
-        print('\nNew measurements: ')
-        print('Headed', self.headed_point)
-        print('Prev', self.prev_location)
 
-        # Distance to next point in km
-        distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
+        if not self.arrived:
 
-        # Compute next location
-        if distance_to_headed < self.location_th :
-            new_loc = self.headed_point
-            self.new_headed_point()
+            print('\nNew measurements: ')
 
-        else:
-            # If the headed point is not reached, we just compute new location based of previous speed
-            new_loc = self.CoordTransformer.compute_new_loc(self.prev_location[0],
-                                                            self.prev_location[1],
-                                                            self.headed_point[0],
-                                                            self.headed_point[1], 
-                                                            self.advancement_rate )
+            # Distance to next point in km
+            distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
 
-        print('Distance to headed: ', distance_to_headed)
-        print('Heading to:', self.headed_point)
-        print('From : ', new_loc)
+            # Compute next location 
 
-        # 5. Compute new heading direction and new distance to arrival (using the described path)
-        # new_heading = (np.degrees(np.arctan2(unit_vector[1], unit_vector[0])) + 360) % 360
-        distance_to_dest = self.dist_to_arrival(new_loc)
+            # if the distance is less that what the plane is going to advance, we get to the next point directly
+            if distance_to_headed < (self.advancement_rate/1000) :
+                print("Headed point reached, changing to next one. Index: ", self.path_idx)
+                new_loc = self.headed_point
+                self.new_headed_point()
 
-        # Compute new speed 
-        new_speed = self.SpController.get_new_speed(distance_to_dest)
-        print('Speed:', new_speed)
-        
+            else:
+                # If the headed point is not reached, we just compute new location based of previous speed
+                new_loc = self.CoordTransformer.compute_new_loc(self.prev_location[0],
+                                                                self.prev_location[1],
+                                                                self.headed_point[0],
+                                                                self.headed_point[1], 
+                                                                self.advancement_rate )
 
-        # Update every measurement
-        self.prev_location = new_loc
-        self.prev_speed = new_speed
-        self.timestamp = datetime.now()
+
+            # 5. Compute new heading direction and new distance to arrival (using the described path)
+            # new_heading = (np.degrees(np.arctan2(unit_vector[1], unit_vector[0])) + 360) % 360
+            distance_to_dest = self.dist_to_arrival(new_loc)
+            new_dist_to_head = self.get_real_distance(new_loc, self.headed_point)
+
+            print(self.advancement_rate/1000)
+            print('Distance to headed: ', new_dist_to_head)
+            print('Distance to arrival: ', distance_to_dest)
+            print('Heading to:', self.headed_point)
+            print('From : ', new_loc)
+            print("Arrived? : ", self.arrived)
+
+            # Compute new speed 
+            new_speed = self.SpController.get_new_speed(distance_to_dest)
+            
+            # Update every measurement
+            self.prev_location = new_loc
+            self.prev_speed = new_speed
+            self.timestamp = datetime.now()
 
 
         return (self.arrived, {
-                "flight_id": self.FID,
-                "ts": self.timestamp.isoformat(),
-                "path" : self.path,
-                "disrupted" : self.disruption,
-                "extra_length" : self.extra_length,
-                "distance_to_arrival" : distance_to_dest,
-                "location": {
-                    "lat": new_loc[0],
-                    "long": new_loc[1]
-                },
-                "velocity": {
-                    "speed": new_speed,
-                    "heading": 'tbd'
-                }
-            })
+            "flight_id": self.FID,
+            "ts": self.timestamp.isoformat(),
+            "path" : self.path,
+            "disrupted" : self.disruption,
+            "extra_length" : self.extra_length,
+            "distance_to_arrival" : distance_to_dest,
+            "location": {
+                "lat": new_loc[0],
+                "long": new_loc[1]
+            },
+            "velocity": {
+                "speed": new_speed,
+                "heading": 'tbd'
+            }
+        })
+        
+
 
 
