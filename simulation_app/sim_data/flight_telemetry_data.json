@@ -1,15 +1,3684 @@
 [
     {
-        "flight_id": "668e41ee3f23ded5fecd6cd7",
-        "ts": "2024-07-26T17:08:54.179712",
         "path": [
             [
                 32.7334,
                 -117.1915
             ],
             [
-                33.9416,
-                -118.4085
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2766.100545436397,
+        "location": {
+            "lat": 41.96815031948345,
+            "long": -87.92774929782642
+        },
+        "velocity": {
+            "speed": 248.743748904402,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:20.280441",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2764.305956645179,
+        "location": {
+            "lat": 41.96210006440686,
+            "long": -87.94819859565283
+        },
+        "velocity": {
+            "speed": 240.98710979257487,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:21.270335",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2762.5111562966026,
+        "location": {
+            "lat": 41.95604923478315,
+            "long": -87.96864789347924
+        },
+        "velocity": {
+            "speed": 246.73270406934216,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:22.267298",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2760.7161444292183,
+        "location": {
+            "lat": 41.94999783062525,
+            "long": -87.98909719130566
+        },
+        "velocity": {
+            "speed": 247.23514783582445,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:23.268969",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2758.9209210815657,
+        "location": {
+            "lat": 41.94394585194611,
+            "long": -88.00954648913208
+        },
+        "velocity": {
+            "speed": 248.50878243108303,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:24.264039",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2757.125486292192,
+        "location": {
+            "lat": 41.937893298758716,
+            "long": -88.0299957869585
+        },
+        "velocity": {
+            "speed": 241.8749040810653,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:25.266296",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2755.3298400996396,
+        "location": {
+            "lat": 41.93184017107608,
+            "long": -88.05044508478491
+        },
+        "velocity": {
+            "speed": 241.50448782216975,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:26.270361",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2753.533982542447,
+        "location": {
+            "lat": 41.925786468911234,
+            "long": -88.07089438261133
+        },
+        "velocity": {
+            "speed": 247.23085284971768,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:27.268390",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2751.737913659155,
+        "location": {
+            "lat": 41.91973219227725,
+            "long": -88.09134368043773
+        },
+        "velocity": {
+            "speed": 247.05569250172505,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:28.268656",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2749.941633488297,
+        "location": {
+            "lat": 41.91367734118721,
+            "long": -88.11179297826416
+        },
+        "velocity": {
+            "speed": 240.91335123433046,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:29.269885",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2748.145142068412,
+        "location": {
+            "lat": 41.90762191565423,
+            "long": -88.13224227609058
+        },
+        "velocity": {
+            "speed": 244.46910685424018,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:30.268719",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2746.3484394380334,
+        "location": {
+            "lat": 41.90156591569148,
+            "long": -88.15269157391698
+        },
+        "velocity": {
+            "speed": 248.27215189213882,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:31.270032",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2744.5515256356925,
+        "location": {
+            "lat": 41.8955093413121,
+            "long": -88.17314087174341
+        },
+        "velocity": {
+            "speed": 244.70033125710552,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:32.267528",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2742.754400699919,
+        "location": {
+            "lat": 41.889452192529305,
+            "long": -88.19359016956983
+        },
+        "velocity": {
+            "speed": 247.0773004826581,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:33.266761",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2740.9570646692446,
+        "location": {
+            "lat": 41.883394469356325,
+            "long": -88.21403946739623
+        },
+        "velocity": {
+            "speed": 243.95331854204267,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:34.269282",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2739.1595175821935,
+        "location": {
+            "lat": 41.8773361718064,
+            "long": -88.23448876522266
+        },
+        "velocity": {
+            "speed": 245.6483728656872,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:35.274353",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2737.3617594772954,
+        "location": {
+            "lat": 41.87127729989281,
+            "long": -88.25493806304908
+        },
+        "velocity": {
+            "speed": 243.86617573371618,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:36.269147",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2735.5637903930715,
+        "location": {
+            "lat": 41.86521785362886,
+            "long": -88.27538736087548
+        },
+        "velocity": {
+            "speed": 241.13478849561739,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:37.267107",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2733.765610368043,
+        "location": {
+            "lat": 41.85915783302791,
+            "long": -88.29583665870192
+        },
+        "velocity": {
+            "speed": 242.78762884969905,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:38.270722",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2731.9672194407344,
+        "location": {
+            "lat": 41.85309723810329,
+            "long": -88.31628595652833
+        },
+        "velocity": {
+            "speed": 249.8214051517692,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:39.266286",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2730.1686176496632,
+        "location": {
+            "lat": 41.84703606886839,
+            "long": -88.33673525435474
+        },
+        "velocity": {
+            "speed": 246.95547760089144,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:40.274718",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2728.3698050333464,
+        "location": {
+            "lat": 41.840974325336646,
+            "long": -88.35718455218115
+        },
+        "velocity": {
+            "speed": 245.54914731419314,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:41.271747",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2726.5707816303006,
+        "location": {
+            "lat": 41.83491200752148,
+            "long": -88.37763385000758
+        },
+        "velocity": {
+            "speed": 248.79800102302175,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:42.271065",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2724.7715474790402,
+        "location": {
+            "lat": 41.828849115436356,
+            "long": -88.39808314783399
+        },
+        "velocity": {
+            "speed": 247.58587083146497,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:43.271388",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2722.9721026180773,
+        "location": {
+            "lat": 41.82278564909478,
+            "long": -88.4185324456604
+        },
+        "velocity": {
+            "speed": 248.08889697151812,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:44.268679",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2721.172447085922,
+        "location": {
+            "lat": 41.81672160851028,
+            "long": -88.43898174348683
+        },
+        "velocity": {
+            "speed": 241.5436486198382,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:45.271104",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2719.3725809210882,
+        "location": {
+            "lat": 41.81065699369639,
+            "long": -88.45943104131325
+        },
+        "velocity": {
+            "speed": 243.79376364822144,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:46.269873",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2717.57250416208,
+        "location": {
+            "lat": 41.8045918046667,
+            "long": -88.47988033913965
+        },
+        "velocity": {
+            "speed": 246.6679530152554,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:47.270188",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2715.7722168474015,
+        "location": {
+            "lat": 41.798526041434805,
+            "long": -88.50032963696609
+        },
+        "velocity": {
+            "speed": 243.62505741448106,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:48.268479",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2713.9717190155634,
+        "location": {
+            "lat": 41.79245970401434,
+            "long": -88.5207789347925
+        },
+        "velocity": {
+            "speed": 247.9404981865924,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:49.270213",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2712.171010705065,
+        "location": {
+            "lat": 41.78639279241897,
+            "long": -88.5412282326189
+        },
+        "velocity": {
+            "speed": 245.9062889682904,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:50.271276",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2710.3700919544044,
+        "location": {
+            "lat": 41.78032530666236,
+            "long": -88.56167753044534
+        },
+        "velocity": {
+            "speed": 249.4849904727641,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:51.269823",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2708.5689628020878,
+        "location": {
+            "lat": 41.77425724675824,
+            "long": -88.58212682827175
+        },
+        "velocity": {
+            "speed": 246.40973337305093,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:52.291723",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2706.76762328661,
+        "location": {
+            "lat": 41.76818861272034,
+            "long": -88.60257612609816
+        },
+        "velocity": {
+            "speed": 244.439721185828,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:53.271637",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2704.9660734464655,
+        "location": {
+            "lat": 41.76211940456242,
+            "long": -88.62302542392457
+        },
+        "velocity": {
+            "speed": 244.88611585051692,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:54.265223",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2703.164313320151,
+        "location": {
+            "lat": 41.75604962229828,
+            "long": -88.643474721751
+        },
+        "velocity": {
+            "speed": 246.08774551143324,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:55.271627",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2701.3623429461604,
+        "location": {
+            "lat": 41.74997926594173,
+            "long": -88.66392401957741
+        },
+        "velocity": {
+            "speed": 244.3396960817466,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:56.267590",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2699.560162362983,
+        "location": {
+            "lat": 41.74390833550664,
+            "long": -88.68437331740382
+        },
+        "velocity": {
+            "speed": 240.75686769427676,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:57.271336",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2697.757771609109,
+        "location": {
+            "lat": 41.73783683100687,
+            "long": -88.70482261523026
+        },
+        "velocity": {
+            "speed": 248.38670859049716,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:58.271568",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2695.95517072303,
+        "location": {
+            "lat": 41.731764752456314,
+            "long": -88.72527191305667
+        },
+        "velocity": {
+            "speed": 247.74909100173883,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:30:59.270327",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2694.1523597432288,
+        "location": {
+            "lat": 41.72569209986891,
+            "long": -88.74572121088308
+        },
+        "velocity": {
+            "speed": 246.49843374195808,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:00.271422",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2692.349338708189,
+        "location": {
+            "lat": 41.719618873258604,
+            "long": -88.76617050870951
+        },
+        "velocity": {
+            "speed": 245.53419368002724,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:01.270461",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2690.5461076563984,
+        "location": {
+            "lat": 41.71354507263939,
+            "long": -88.78661980653592
+        },
+        "velocity": {
+            "speed": 241.78939358390502,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:02.270592",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2688.7426666263364,
+        "location": {
+            "lat": 41.70747069802527,
+            "long": -88.80706910436233
+        },
+        "velocity": {
+            "speed": 249.65199866986765,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:03.269797",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2686.9390156564814,
+        "location": {
+            "lat": 41.70139574943028,
+            "long": -88.82751840218874
+        },
+        "velocity": {
+            "speed": 247.11177866878677,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:04.267279",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2685.135154785314,
+        "location": {
+            "lat": 41.69532022686849,
+            "long": -88.84796770001516
+        },
+        "velocity": {
+            "speed": 249.98299100326116,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:05.271566",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2683.3310840513086,
+        "location": {
+            "lat": 41.68924413035398,
+            "long": -88.86841699784158
+        },
+        "velocity": {
+            "speed": 243.68173495267555,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:06.267638",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2681.5268034929422,
+        "location": {
+            "lat": 41.68316745990088,
+            "long": -88.888866295668
+        },
+        "velocity": {
+            "speed": 245.9923385364988,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:07.273002",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2679.722313148688,
+        "location": {
+            "lat": 41.677090215523336,
+            "long": -88.90931559349441
+        },
+        "velocity": {
+            "speed": 242.14836582361812,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:08.267942",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2677.9176130570168,
+        "location": {
+            "lat": 41.67101239723551,
+            "long": -88.92976489132083
+        },
+        "velocity": {
+            "speed": 247.48714495582067,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:09.266931",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2676.1127032563986,
+        "location": {
+            "lat": 41.6649340050516,
+            "long": -88.95021418914725
+        },
+        "velocity": {
+            "speed": 246.86725078163033,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:10.272139",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2674.307583785303,
+        "location": {
+            "lat": 41.65885503898584,
+            "long": -88.97066348697366
+        },
+        "velocity": {
+            "speed": 241.3373991817377,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:11.271228",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2672.5022546821947,
+        "location": {
+            "lat": 41.652775499052474,
+            "long": -88.99111278480008
+        },
+        "velocity": {
+            "speed": 243.5353976160501,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:12.271068",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2670.69671598554,
+        "location": {
+            "lat": 41.646695385265794,
+            "long": -89.0115620826265
+        },
+        "velocity": {
+            "speed": 242.29782085870062,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:13.266835",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2668.890967733803,
+        "location": {
+            "lat": 41.64061469764011,
+            "long": -89.03201138045291
+        },
+        "velocity": {
+            "speed": 245.80535933384877,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:14.268260",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2667.085009965446,
+        "location": {
+            "lat": 41.634533436189756,
+            "long": -89.05246067827933
+        },
+        "velocity": {
+            "speed": 249.16814418212462,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:15.270892",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2665.278842718926,
+        "location": {
+            "lat": 41.62845160092908,
+            "long": -89.07290997610575
+        },
+        "velocity": {
+            "speed": 244.4637938304282,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:16.267077",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2663.472466032705,
+        "location": {
+            "lat": 41.62236919187251,
+            "long": -89.09335927393217
+        },
+        "velocity": {
+            "speed": 242.0683515619847,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:17.271457",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2661.665879945239,
+        "location": {
+            "lat": 41.61628620903442,
+            "long": -89.11380857175858
+        },
+        "velocity": {
+            "speed": 240.19507305718483,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:18.268701",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2659.8590844949817,
+        "location": {
+            "lat": 41.61020265242927,
+            "long": -89.134257869585
+        },
+        "velocity": {
+            "speed": 248.51468687346957,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:19.265577",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2658.0520797203867,
+        "location": {
+            "lat": 41.60411852207154,
+            "long": -89.15470716741142
+        },
+        "velocity": {
+            "speed": 249.592986236012,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:20.272607",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2656.244865659909,
+        "location": {
+            "lat": 41.59803381797571,
+            "long": -89.17515646523783
+        },
+        "velocity": {
+            "speed": 243.0056416541202,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:21.271059",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2654.4374423519953,
+        "location": {
+            "lat": 41.591948540156324,
+            "long": -89.19560576306425
+        },
+        "velocity": {
+            "speed": 240.401533133347,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:22.271226",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2652.629809835096,
+        "location": {
+            "lat": 41.58586268862793,
+            "long": -89.21605506089065
+        },
+        "velocity": {
+            "speed": 242.85564430867987,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:23.269338",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2650.821968147657,
+        "location": {
+            "lat": 41.57977626340511,
+            "long": -89.23650435871708
+        },
+        "velocity": {
+            "speed": 241.47242713075877,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:24.264621",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2649.0139173281245,
+        "location": {
+            "lat": 41.57368926450247,
+            "long": -89.2569536565435
+        },
+        "velocity": {
+            "speed": 248.15975671305884,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:25.271135",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2647.2056574149424,
+        "location": {
+            "lat": 41.56760169193465,
+            "long": -89.2774029543699
+        },
+        "velocity": {
+            "speed": 242.59633329002247,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:26.269928",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2645.39718844655,
+        "location": {
+            "lat": 41.561513545716295,
+            "long": -89.29785225219634
+        },
+        "velocity": {
+            "speed": 247.41912600211796,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:27.271710",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2643.5885104613917,
+        "location": {
+            "lat": 41.55542482586212,
+            "long": -89.31830155002275
+        },
+        "velocity": {
+            "speed": 242.8817491719704,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:32.266623",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2634.5419866293732,
+        "location": {
+            "lat": 41.52497262256976,
+            "long": -89.42054803915482
+        },
+        "velocity": {
+            "speed": 248.1910262298177,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:33.267503",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2632.7320553507598,
+        "location": {
+            "lat": 41.51888046121061,
+            "long": -89.44099733698125
+        },
+        "velocity": {
+            "speed": 242.49960599160113,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:34.268631",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2630.9219153244153,
+        "location": {
+            "lat": 41.51278772631919,
+            "long": -89.46144663480766
+        },
+        "velocity": {
+            "speed": 241.3872847344734,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:35.270552",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2629.1115665887637,
+        "location": {
+            "lat": 41.506694417910445,
+            "long": -89.48189593263407
+        },
+        "velocity": {
+            "speed": 248.9250842542719,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:36.271684",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2627.3010091822334,
+        "location": {
+            "lat": 41.50060053599931,
+            "long": -89.5023452304605
+        },
+        "velocity": {
+            "speed": 240.88117469400106,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:37.269987",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2625.490243143247,
+        "location": {
+            "lat": 41.49450608060074,
+            "long": -89.52279452828691
+        },
+        "velocity": {
+            "speed": 241.7251458562333,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:38.268852",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2623.679268510226,
+        "location": {
+            "lat": 41.488411051729734,
+            "long": -89.54324382611333
+        },
+        "velocity": {
+            "speed": 240.86508796312577,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:39.266770",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2621.868085321589,
+        "location": {
+            "lat": 41.48231544940129,
+            "long": -89.56369312393976
+        },
+        "velocity": {
+            "speed": 240.20989524146103,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:40.271069",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2620.0566936157607,
+        "location": {
+            "lat": 41.47621927363048,
+            "long": -89.58414242176617
+        },
+        "velocity": {
+            "speed": 244.42020315709956,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:41.268675",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2618.2450934311532,
+        "location": {
+            "lat": 41.47012252443235,
+            "long": -89.60459171959258
+        },
+        "velocity": {
+            "speed": 249.6515368732145,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:42.274527",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2616.4332848061817,
+        "location": {
+            "lat": 41.46402520182201,
+            "long": -89.62504101741901
+        },
+        "velocity": {
+            "speed": 243.1146408561346,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:43.270806",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2614.621267779263,
+        "location": {
+            "lat": 41.45792730581459,
+            "long": -89.64549031524542
+        },
+        "velocity": {
+            "speed": 245.28314651970672,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:44.267950",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2612.809042388807,
+        "location": {
+            "lat": 41.45182883642525,
+            "long": -89.66593961307183
+        },
+        "velocity": {
+            "speed": 245.39176701765268,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:45.271197",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2610.9966086732234,
+        "location": {
+            "lat": 41.44572979366916,
+            "long": -89.68638891089824
+        },
+        "velocity": {
+            "speed": 249.563593637935,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:46.270640",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2609.1839666709234,
+        "location": {
+            "lat": 41.43963017756153,
+            "long": -89.70683820872466
+        },
+        "velocity": {
+            "speed": 243.48238480057807,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:47.271662",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2607.371116420312,
+        "location": {
+            "lat": 41.433529988117606,
+            "long": -89.72728750655108
+        },
+        "velocity": {
+            "speed": 243.9937824932857,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:48.272125",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2605.558057959795,
+        "location": {
+            "lat": 41.42742922535266,
+            "long": -89.7477368043775
+        },
+        "velocity": {
+            "speed": 242.3098150900782,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:49.265237",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2603.744791327777,
+        "location": {
+            "lat": 41.42132788928196,
+            "long": -89.76818610220391
+        },
+        "velocity": {
+            "speed": 244.17286725024846,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:50.271081",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2601.9313165626586,
+        "location": {
+            "lat": 41.41522597992084,
+            "long": -89.78863540003033
+        },
+        "velocity": {
+            "speed": 245.555983610641,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:51.267160",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2600.1176337028405,
+        "location": {
+            "lat": 41.40912349728464,
+            "long": -89.80908469785675
+        },
+        "velocity": {
+            "speed": 244.78393709215715,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:52.290461",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2598.3037427867234,
+        "location": {
+            "lat": 41.40302044138875,
+            "long": -89.82953399568316
+        },
+        "velocity": {
+            "speed": 242.53840859293413,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:53.271777",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2596.4896438527007,
+        "location": {
+            "lat": 41.39691681224854,
+            "long": -89.84998329350958
+        },
+        "velocity": {
+            "speed": 243.893462577045,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:54.266031",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2594.675336939171,
+        "location": {
+            "lat": 41.39081260987946,
+            "long": -89.870432591336
+        },
+        "velocity": {
+            "speed": 243.7327759451792,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:55.270906",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2592.8608220845263,
+        "location": {
+            "lat": 41.38470783429698,
+            "long": -89.89088188916242
+        },
+        "velocity": {
+            "speed": 249.53728260154767,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:56.274605",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2591.0460993271604,
+        "location": {
+            "lat": 41.378602485516566,
+            "long": -89.91133118698883
+        },
+        "velocity": {
+            "speed": 243.6635382994123,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:57.271776",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2589.2311687054607,
+        "location": {
+            "lat": 41.372496563553725,
+            "long": -89.93178048481525
+        },
+        "velocity": {
+            "speed": 243.18716578070317,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:58.268132",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2587.4160302578184,
+        "location": {
+            "lat": 41.36639006842401,
+            "long": -89.95222978264167
+        },
+        "velocity": {
+            "speed": 246.73082984664725,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:31:59.265533",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2585.60068402262,
+        "location": {
+            "lat": 41.36028300014298,
+            "long": -89.97267908046808
+        },
+        "velocity": {
+            "speed": 244.96140549684023,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:00.272218",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2583.7851300382495,
+        "location": {
+            "lat": 41.35417535872622,
+            "long": -89.9931283782945
+        },
+        "velocity": {
+            "speed": 243.5565681163792,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:01.269831",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2581.969368343093,
+        "location": {
+            "lat": 41.34806714418937,
+            "long": -90.0135776761209
+        },
+        "velocity": {
+            "speed": 248.96817516962943,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:02.270688",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2580.1533989755294,
+        "location": {
+            "lat": 41.34195835654807,
+            "long": -90.03402697394733
+        },
+        "velocity": {
+            "speed": 246.1832364815476,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:03.269898",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2578.337221973941,
+        "location": {
+            "lat": 41.335848995818,
+            "long": -90.05447627177375
+        },
+        "velocity": {
+            "speed": 240.65448746031933,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:04.268535",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2576.5208373767055,
+        "location": {
+            "lat": 41.32973906201485,
+            "long": -90.07492556960015
+        },
+        "velocity": {
+            "speed": 241.3549387616872,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:05.270082",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2574.704245222201,
+        "location": {
+            "lat": 41.32362855515437,
+            "long": -90.09537486742659
+        },
+        "velocity": {
+            "speed": 247.95641984660614,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:06.266345",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2572.8874455488003,
+        "location": {
+            "lat": 41.3175174752523,
+            "long": -90.115824165253
+        },
+        "velocity": {
+            "speed": 244.51869273698216,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:07.267838",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2571.070438394881,
+        "location": {
+            "lat": 41.31140582232444,
+            "long": -90.1362734630794
+        },
+        "velocity": {
+            "speed": 242.80997829553795,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:08.268148",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2569.2532237988103,
+        "location": {
+            "lat": 41.305293596386605,
+            "long": -90.15672276090584
+        },
+        "velocity": {
+            "speed": 246.24474380434253,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:09.264510",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2567.4358017989634,
+        "location": {
+            "lat": 41.29918079745464,
+            "long": -90.17717205873225
+        },
+        "velocity": {
+            "speed": 240.27230240882008,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:10.268475",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2565.618172433706,
+        "location": {
+            "lat": 41.2930674255444,
+            "long": -90.19762135655866
+        },
+        "velocity": {
+            "speed": 244.3542144736908,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:11.268949",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2563.800335741403,
+        "location": {
+            "lat": 41.286953480671784,
+            "long": -90.21807065438509
+        },
+        "velocity": {
+            "speed": 247.60367521703276,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:12.273944",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2561.9822917604247,
+        "location": {
+            "lat": 41.280838962852734,
+            "long": -90.2385199522115
+        },
+        "velocity": {
+            "speed": 248.4097755093115,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:13.271617",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2560.1640405291314,
+        "location": {
+            "lat": 41.27472387210319,
+            "long": -90.25896925003791
+        },
+        "velocity": {
+            "speed": 240.3307455697807,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:14.268895",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2558.345582085884,
+        "location": {
+            "lat": 41.26860820843912,
+            "long": -90.27941854786432
+        },
+        "velocity": {
+            "speed": 241.14130305213143,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:15.271234",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2556.5269164690444,
+        "location": {
+            "lat": 41.26249197187655,
+            "long": -90.29986784569076
+        },
+        "velocity": {
+            "speed": 240.14116514389963,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:16.271416",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2554.708043716972,
+        "location": {
+            "lat": 41.25637516243152,
+            "long": -90.32031714351716
+        },
+        "velocity": {
+            "speed": 242.46724295050845,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:17.274335",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2552.8889638680216,
+        "location": {
+            "lat": 41.25025778012007,
+            "long": -90.34076644134358
+        },
+        "velocity": {
+            "speed": 241.9672520366986,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:18.271086",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2551.0696769605483,
+        "location": {
+            "lat": 41.24413982495831,
+            "long": -90.36121573917
+        },
+        "velocity": {
+            "speed": 241.18179935280102,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:19.268089",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2549.2501830329065,
+        "location": {
+            "lat": 41.23802129696234,
+            "long": -90.38166503699641
+        },
+        "velocity": {
+            "speed": 240.30075048591715,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:20.275572",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2547.4304821234477,
+        "location": {
+            "lat": 41.23190219614832,
+            "long": -90.40211433482283
+        },
+        "velocity": {
+            "speed": 241.0950295088999,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:21.270431",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2545.6105742705204,
+        "location": {
+            "lat": 41.225782522532405,
+            "long": -90.42256363264926
+        },
+        "velocity": {
+            "speed": 249.7807886914798,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:22.273107",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2543.7904595124774,
+        "location": {
+            "lat": 41.219662276130826,
+            "long": -90.44301293047567
+        },
+        "velocity": {
+            "speed": 241.8640565374703,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:23.267562",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2541.970137887661,
+        "location": {
+            "lat": 41.21354145695979,
+            "long": -90.46346222830208
+        },
+        "velocity": {
+            "speed": 243.69062783433466,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:24.265588",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2540.149609434417,
+        "location": {
+            "lat": 41.20742006503555,
+            "long": -90.48391152612851
+        },
+        "velocity": {
+            "speed": 243.19533364755023,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:25.271821",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2538.328874191091,
+        "location": {
+            "lat": 41.2012981003744,
+            "long": -90.50436082395493
+        },
+        "velocity": {
+            "speed": 247.424252192182,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:26.268127",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2536.507932196024,
+        "location": {
+            "lat": 41.19517556299265,
+            "long": -90.52481012178133
+        },
+        "velocity": {
+            "speed": 244.62755403027106,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:27.269702",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2534.6867834875534,
+        "location": {
+            "lat": 41.18905245290664,
+            "long": -90.54525941960775
+        },
+        "velocity": {
+            "speed": 245.9520804198271,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:28.265991",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2532.8654281040194,
+        "location": {
+            "lat": 41.182928770132726,
+            "long": -90.56570871743416
+        },
+        "velocity": {
+            "speed": 245.90731880284434,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:29.263868",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2531.043866083758,
+        "location": {
+            "lat": 41.17680451468731,
+            "long": -90.58615801526058
+        },
+        "velocity": {
+            "speed": 242.62826218214025,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:30.264820",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2529.2220974651045,
+        "location": {
+            "lat": 41.17067968658682,
+            "long": -90.606607313087
+        },
+        "velocity": {
+            "speed": 249.9708185834423,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:31.270425",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2527.4001222863926,
+        "location": {
+            "lat": 41.1645542858477,
+            "long": -90.62705661091341
+        },
+        "velocity": {
+            "speed": 247.99498492113048,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:32.268756",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2525.5779405859525,
+        "location": {
+            "lat": 41.15842831248643,
+            "long": -90.64750590873983
+        },
+        "velocity": {
+            "speed": 240.03753924131223,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:33.269634",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2523.7555524021145,
+        "location": {
+            "lat": 41.152301766519514,
+            "long": -90.66795520656625
+        },
+        "velocity": {
+            "speed": 240.9641180167546,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:34.266789",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2521.932957773209,
+        "location": {
+            "lat": 41.146174647963484,
+            "long": -90.68840450439266
+        },
+        "velocity": {
+            "speed": 246.98195977877558,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:35.266580",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2520.110156737559,
+        "location": {
+            "lat": 41.1400469568349,
+            "long": -90.70885380221908
+        },
+        "velocity": {
+            "speed": 246.01949767885935,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:36.272814",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2518.2871493334906,
+        "location": {
+            "lat": 41.13391869315035,
+            "long": -90.7293031000455
+        },
+        "velocity": {
+            "speed": 240.94917960629652,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:37.268597",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2516.4639355993268,
+        "location": {
+            "lat": 41.12778985692645,
+            "long": -90.74975239787192
+        },
+        "velocity": {
+            "speed": 249.16973379164048,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:38.268591",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2514.6405155733896,
+        "location": {
+            "lat": 41.121660448179846,
+            "long": -90.77020169569833
+        },
+        "velocity": {
+            "speed": 249.3391678968215,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:39.269187",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2512.8168892939984,
+        "location": {
+            "lat": 41.11553046692721,
+            "long": -90.79065099352475
+        },
+        "velocity": {
+            "speed": 249.94010851793638,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:40.268569",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2510.9930567994707,
+        "location": {
+            "lat": 41.10939991318524,
+            "long": -90.81110029135117
+        },
+        "velocity": {
+            "speed": 245.44139883969302,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:41.275650",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2509.1690181281247,
+        "location": {
+            "lat": 41.10326878697067,
+            "long": -90.83154958917758
+        },
+        "velocity": {
+            "speed": 249.68602528412117,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:42.270958",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2507.344773318272,
+        "location": {
+            "lat": 41.09713708830025,
+            "long": -90.851998887004
+        },
+        "velocity": {
+            "speed": 244.452426673982,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:43.266171",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2505.520322408229,
+        "location": {
+            "lat": 41.091004817190765,
+            "long": -90.8724481848304
+        },
+        "velocity": {
+            "speed": 242.52286447016806,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:44.264796",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2503.6956654363034,
+        "location": {
+            "lat": 41.08487197365903,
+            "long": -90.89289748265683
+        },
+        "velocity": {
+            "speed": 246.59439099283088,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:45.271526",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2501.870802440806,
+        "location": {
+            "lat": 41.078738557721856,
+            "long": -90.91334678048325
+        },
+        "velocity": {
+            "speed": 247.5874304170737,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:46.271431",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2500.045733460046,
+        "location": {
+            "lat": 41.072604569396134,
+            "long": -90.93379607830965
+        },
+        "velocity": {
+            "speed": 240.74313173309804,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:47.269936",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2498.2204585323284,
+        "location": {
+            "lat": 41.06647000869876,
+            "long": -90.95424537613609
+        },
+        "velocity": {
+            "speed": 248.08676781655595,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:48.270885",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2496.3949776959576,
+        "location": {
+            "lat": 41.060334875646646,
+            "long": -90.9746946739625
+        },
+        "velocity": {
+            "speed": 241.1274575662887,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:49.264766",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2494.5692909892373,
+        "location": {
+            "lat": 41.054199170256744,
+            "long": -90.9951439717889
+        },
+        "velocity": {
+            "speed": 242.22418713699966,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:32:50.268832",
+        "path": [
+            [
+                41.9742,
+                -87.9073
             ],
             [
                 33.4342,
@@ -59,1016 +3728,1201 @@
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:12.034985",
+        "ts": "2024-07-29T09:32:52.413630",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2791.640260805316,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2489.090996029977,
         "location": {
-            "lat": 41.96610463308623,
-            "long": -87.97242219915147
+            "lat": 41.03578862023026,
+            "long": -91.05649186526816
         },
         "velocity": {
-            "speed": 247.90394937316276,
+            "speed": 244.2623623655962,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:13.031458",
+        "ts": "2024-07-29T09:32:53.269811",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2789.8291350914296,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2487.264486224848,
         "location": {
-            "lat": 41.96340594882698,
-            "long": -87.99412959886861
+            "lat": 41.02965062565927,
+            "long": -91.07694116309459
         },
         "velocity": {
-            "speed": 242.70674716333528,
+            "speed": 249.1775337821747,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:14.032733",
+        "ts": "2024-07-29T09:32:54.270503",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2788.0179095471062,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2485.43777074086,
         "location": {
-            "lat": 41.96070715025897,
-            "long": -88.01583699858575
+            "lat": 41.02351205883567,
+            "long": -91.097390460921
         },
         "velocity": {
-            "speed": 241.9684880164183,
+            "speed": 241.95240456193486,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:15.031769",
+        "ts": "2024-07-29T09:32:55.269433",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2786.206584204958,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2483.610849616303,
         "location": {
-            "lat": 41.95800823738335,
-            "long": -88.03754439830291
+            "lat": 41.01737291977657,
+            "long": -91.11783975874741
         },
         "velocity": {
-            "speed": 243.4558840676543,
+            "speed": 248.36799624211568,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:16.035197",
+        "ts": "2024-07-29T09:32:56.265578",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2784.395159097593,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2481.7837228894664,
         "location": {
-            "lat": 41.95530921020127,
-            "long": -88.05925179802006
+            "lat": 41.0112332084991,
+            "long": -91.13828905657383
         },
         "velocity": {
-            "speed": 249.63891600682604,
+            "speed": 242.50738453567413,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:17.033204",
+        "ts": "2024-07-29T09:32:57.266064",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2782.5836342576113,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2479.956390598641,
         "location": {
-            "lat": 41.952610068713874,
-            "long": -88.0809591977372
+            "lat": 41.005092925020456,
+            "long": -91.15873835440026
         },
         "velocity": {
-            "speed": 249.59476207816613,
+            "speed": 245.2952184897705,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:18.138444",
+        "ts": "2024-07-29T09:32:58.269067",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2780.7720097176075,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2478.128852782115,
         "location": {
-            "lat": 41.94991081292231,
-            "long": -88.10266659745434
+            "lat": 40.99895206935783,
+            "long": -91.17918765222666
         },
         "velocity": {
-            "speed": 247.95894203186396,
+            "speed": 248.75865846936676,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:19.077439",
+        "ts": "2024-07-29T09:32:59.265533",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2778.9602855101703,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2476.3011094781727,
         "location": {
-            "lat": 41.94721144282774,
-            "long": -88.12437399717149
+            "lat": 40.99281064152843,
+            "long": -91.19963695005308
         },
         "velocity": {
-            "speed": 240.86272924252546,
+            "speed": 240.20725820556046,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:20.030503",
+        "ts": "2024-07-29T09:33:00.271182",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2777.1484616678817,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2474.4731607250988,
         "location": {
-            "lat": 41.9445119584313,
-            "long": -88.14608139688865
+            "lat": 40.98666864154954,
+            "long": -91.22008624787951
         },
         "velocity": {
-            "speed": 246.76870016055406,
+            "speed": 244.92258783341512,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:21.029251",
+        "ts": "2024-07-29T09:33:01.269891",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2775.336538223321,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2472.6450065611775,
         "location": {
-            "lat": 41.94181235973414,
-            "long": -88.16778879660579
+            "lat": 40.98052606943845,
+            "long": -91.24053554570591
         },
         "velocity": {
-            "speed": 244.34328882002112,
+            "speed": 244.45372646106472,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:22.035297",
+        "ts": "2024-07-29T09:33:02.269723",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2773.5245152090583,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2470.8166470246865,
         "location": {
-            "lat": 41.93911264673743,
-            "long": -88.18949619632293
+            "lat": 40.974382925212446,
+            "long": -91.26098484353233
         },
         "velocity": {
-            "speed": 247.24980717647432,
+            "speed": 248.78669832607972,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:23.043332",
+        "ts": "2024-07-29T09:33:03.269432",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2771.7123926576587,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2468.9880821539055,
         "location": {
-            "lat": 41.93641281944231,
-            "long": -88.2112035960401
+            "lat": 40.96823920888888,
+            "long": -91.28143414135876
         },
         "velocity": {
-            "speed": 242.64172412527972,
+            "speed": 246.58151750424008,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:24.031398",
+        "ts": "2024-07-29T09:33:04.274467",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2769.900170601684,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2467.1593119871136,
         "location": {
-            "lat": 41.93371287784995,
-            "long": -88.23291099575724
+            "lat": 40.96209492048512,
+            "long": -91.30188343918518
         },
         "velocity": {
-            "speed": 240.0205668240303,
+            "speed": 244.34879380619552,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:25.028257",
+        "ts": "2024-07-29T09:33:05.270293",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2768.087849073686,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2465.330336562586,
         "location": {
-            "lat": 41.93101282196151,
-            "long": -88.25461839547438
+            "lat": 40.95595006001856,
+            "long": -91.32233273701158
         },
         "velocity": {
-            "speed": 245.9913816426004,
+            "speed": 241.07008006756806,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:26.034610",
+        "ts": "2024-07-29T09:33:06.265229",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2766.2754281062107,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2463.501155918594,
         "location": {
-            "lat": 41.92831265177812,
-            "long": -88.27632579519154
+            "lat": 40.94980462750662,
+            "long": -91.34278203483801
         },
         "velocity": {
-            "speed": 240.56627106631714,
+            "speed": 241.2844297649688,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:27.033567",
+        "ts": "2024-07-29T09:33:07.265504",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2764.4629077318045,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2461.671770093414,
         "location": {
-            "lat": 41.925612367300964,
-            "long": -88.2980331949087
+            "lat": 40.94365862296676,
+            "long": -91.36323133266443
         },
         "velocity": {
-            "speed": 243.6521484778959,
+            "speed": 249.81669131224473,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:28.055798",
+        "ts": "2024-07-29T09:33:08.269441",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2762.650287983003,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2459.842179125314,
         "location": {
-            "lat": 41.922911968531196,
-            "long": -88.31974059462584
+            "lat": 40.937512046416444,
+            "long": -91.38368063049083
         },
         "velocity": {
-            "speed": 244.1013902906111,
+            "speed": 242.38360615656077,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:29.033837",
+        "ts": "2024-07-29T09:33:09.272338",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2760.8375688923365,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2458.0123830525627,
         "location": {
-            "lat": 41.92021145546999,
-            "long": -88.34144799434299
+            "lat": 40.9313648978732,
+            "long": -91.40412992831725
         },
         "velocity": {
-            "speed": 246.8045198543651,
+            "speed": 242.23810425458984,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:30.026701",
+        "ts": "2024-07-29T09:33:10.274370",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2759.0247504923273,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2456.1823819134274,
         "location": {
-            "lat": 41.91751082811848,
-            "long": -88.36315539406014
+            "lat": 40.92521717735456,
+            "long": -91.42457922614368
         },
         "velocity": {
-            "speed": 240.5976527677405,
+            "speed": 246.30131786387892,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:31.033485",
+        "ts": "2024-07-29T09:33:11.269530",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2757.2118328154975,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2454.3521757461754,
         "location": {
-            "lat": 41.91481008647784,
-            "long": -88.38486279377729
+            "lat": 40.91906888487807,
+            "long": -91.44502852397008
         },
         "velocity": {
-            "speed": 246.84903304463512,
+            "speed": 241.17634712776413,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:32.037604",
+        "ts": "2024-07-29T09:33:12.269779",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2755.3988158943584,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2452.5217645890675,
         "location": {
-            "lat": 41.91210923054925,
-            "long": -88.40657019349443
+            "lat": 40.91292002046135,
+            "long": -91.4654778217965
         },
         "velocity": {
-            "speed": 244.61591216962069,
+            "speed": 245.77397520984897,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:33.039725",
+        "ts": "2024-07-29T09:33:13.274267",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2753.5856997614173,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2450.6911484803654,
         "location": {
-            "lat": 41.909408260333855,
-            "long": -88.42827759321159
+            "lat": 40.90677058412199,
+            "long": -91.48592711962293
         },
         "velocity": {
-            "speed": 249.12591935547542,
+            "speed": 243.0909582753816,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:34.028249",
+        "ts": "2024-07-29T09:33:14.270694",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2751.7724844491768,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2448.8603274583347,
         "location": {
-            "lat": 41.906707175832835,
-            "long": -88.44998499292873
+            "lat": 40.90062057587766,
+            "long": -91.50637641744935
         },
         "velocity": {
-            "speed": 244.69853100121028,
+            "speed": 247.04177540850537,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:35.032265",
+        "ts": "2024-07-29T09:33:15.267074",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2749.959169990132,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2447.029301561229,
         "location": {
-            "lat": 41.904005977047355,
-            "long": -88.47169239264588
+            "lat": 40.89446999574602,
+            "long": -91.52682571527575
         },
         "velocity": {
-            "speed": 249.861539682052,
+            "speed": 248.84662142062908,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:36.039037",
+        "ts": "2024-07-29T09:33:16.270125",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2748.1457564167713,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2445.1980708273063,
         "location": {
-            "lat": 41.90130466397857,
-            "long": -88.49339979236304
+            "lat": 40.8883188437448,
+            "long": -91.54727501310218
         },
         "velocity": {
-            "speed": 244.8653789060884,
+            "speed": 249.0000590672763,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:37.032925",
+        "ts": "2024-07-29T09:33:17.267878",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2746.3322437615816,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2443.366635294823,
         "location": {
-            "lat": 41.898603236627665,
-            "long": -88.51510719208018
+            "lat": 40.8821671198917,
+            "long": -91.5677243109286
         },
         "velocity": {
-            "speed": 243.34638920155905,
+            "speed": 247.9263409816866,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:38.030325",
+        "ts": "2024-07-29T09:33:18.266384",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2744.518632057039,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2441.5349950020322,
         "location": {
-            "lat": 41.89590169499581,
-            "long": -88.53681459179732
+            "lat": 40.87601482420448,
+            "long": -91.588173608755
         },
         "velocity": {
-            "speed": 247.48238721324677,
+            "speed": 249.54006375880712,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:39.037462",
+        "ts": "2024-07-29T09:33:19.276475",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2742.7049213356167,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2439.703149987183,
         "location": {
-            "lat": 41.89320003908417,
-            "long": -88.55852199151448
+            "lat": 40.86986195670095,
+            "long": -91.60862290658143
         },
         "velocity": {
-            "speed": 245.6133100957232,
+            "speed": 244.395617847825,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:40.034697",
+        "ts": "2024-07-29T09:33:20.271291",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2740.8911116297822,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2437.871100288531,
         "location": {
-            "lat": 41.89049826889392,
-            "long": -88.58022939123163
+            "lat": 40.86370851739892,
+            "long": -91.62907220440785
         },
         "velocity": {
-            "speed": 245.05605326534229,
+            "speed": 245.08413930285363,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:41.031824",
+        "ts": "2024-07-29T09:33:21.271500",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2739.0772029719956,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2436.03884594432,
         "location": {
-            "lat": 41.887796384426245,
-            "long": -88.60193679094877
+            "lat": 40.85755450631622,
+            "long": -91.64952150223425
         },
         "velocity": {
-            "speed": 243.65235214171645,
+            "speed": 246.7376723854879,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:42.037419",
+        "ts": "2024-07-29T09:33:22.271007",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2737.263195394711,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2434.2063869927983,
         "location": {
-            "lat": 41.8850943856823,
-            "long": -88.62364419066593
+            "lat": 40.85139992347074,
+            "long": -91.66997080006067
         },
         "velocity": {
-            "speed": 242.71311132848936,
+            "speed": 244.50120759915004,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:43.028860",
+        "ts": "2024-07-29T09:33:23.269641",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2735.449088930379,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2432.3737234722116,
         "location": {
-            "lat": 41.88239227266327,
-            "long": -88.64535159038307
+            "lat": 40.84524476888037,
+            "long": -91.69042009788708
         },
         "velocity": {
-            "speed": 244.99972465888996,
+            "speed": 247.1317350748632,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:44.034274",
+        "ts": "2024-07-29T09:33:24.268627",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2733.6348836114425,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2430.5408554208016,
         "location": {
-            "lat": 41.87969004537033,
-            "long": -88.66705899010023
+            "lat": 40.83908904256303,
+            "long": -91.7108693957135
         },
         "velocity": {
-            "speed": 245.28522769174742,
+            "speed": 241.04316631325258,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:45.079253",
+        "ts": "2024-07-29T09:33:25.267316",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
-            ],
-            [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2731.8205794703417,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2428.7077828768097,
         "location": {
-            "lat": 41.87698770380467,
-            "long": -88.68876638981737
+            "lat": 40.83293274453669,
+            "long": -91.73131869353992
         },
         "velocity": {
-            "speed": 242.42335620032043,
+            "speed": 241.11492321413684,
             "heading": "tbd"
         }
     },
     {
         "flight_id": "668e41ee3f23ded5fecd6cd3",
-        "ts": "2024-07-25T12:16:46.180829",
+        "ts": "2024-07-29T09:33:26.270278",
         "path": [
             [
                 41.9742,
                 -87.9073
             ],
             [
-                39.8561,
-                -104.6737
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2426.8745058784784,
+        "location": {
+            "lat": 40.82677587481933,
+            "long": -91.75176799136634
+        },
+        "velocity": {
+            "speed": 249.02416467348297,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:27.268710",
+        "path": [
+            [
+                41.9742,
+                -87.9073
             ],
             [
                 32.7334,
                 -117.1915
             ]
         ],
-        "disrupted": true,
-        "extra_length": 29.178116006441996,
-        "distance_to_arrival": 2730.0061765395058,
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2425.0410244640425,
         "location": {
-            "lat": 41.87428524796747,
-            "long": -88.71047378953453
+            "lat": 40.820618433428955,
+            "long": -91.77221728919275
         },
         "velocity": {
-            "speed": 245.24256593522009,
+            "speed": 247.91259110817873,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:28.270844",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2423.2073386717416,
+        "location": {
+            "lat": 40.81446042038362,
+            "long": -91.79266658701917
+        },
+        "velocity": {
+            "speed": 248.87383248596504,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:29.268718",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2421.3734485398086,
+        "location": {
+            "lat": 40.80830183570138,
+            "long": -91.81311588484559
+        },
+        "velocity": {
+            "speed": 243.4752460398774,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:30.278496",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2419.5393541064773,
+        "location": {
+            "lat": 40.80214267940033,
+            "long": -91.833565182672
+        },
+        "velocity": {
+            "speed": 243.279123565259,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:31.269467",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2417.7050554099774,
+        "location": {
+            "lat": 40.7959829514986,
+            "long": -91.85401448049842
+        },
+        "velocity": {
+            "speed": 243.06167477913473,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:32.271058",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2415.8705524885404,
+        "location": {
+            "lat": 40.78982265201435,
+            "long": -91.87446377832484
+        },
+        "velocity": {
+            "speed": 241.27757159747776,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:33.271838",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2414.035845380395,
+        "location": {
+            "lat": 40.78366178096575,
+            "long": -91.89491307615125
+        },
+        "velocity": {
+            "speed": 245.60946326194215,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:34.269493",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2412.2009341237654,
+        "location": {
+            "lat": 40.77750033837101,
+            "long": -91.91536237397767
+        },
+        "velocity": {
+            "speed": 245.70438888439713,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:35.266292",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2410.3658187568763,
+        "location": {
+            "lat": 40.77133832424837,
+            "long": -91.93581167180409
+        },
+        "velocity": {
+            "speed": 241.52847519347603,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:36.269962",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2408.530499317953,
+        "location": {
+            "lat": 40.765175738616094,
+            "long": -91.9562609696305
+        },
+        "velocity": {
+            "speed": 240.5928394875046,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:37.271321",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2406.694975845213,
+        "location": {
+            "lat": 40.75901258149247,
+            "long": -91.97671026745692
+        },
+        "velocity": {
+            "speed": 247.26320501938943,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:38.266801",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2404.859248376879,
+        "location": {
+            "lat": 40.75284885289583,
+            "long": -91.99715956528333
+        },
+        "velocity": {
+            "speed": 240.28592244037912,
+            "heading": "tbd"
+        }
+    },
+    {
+        "flight_id": "668e41ee3f23ded5fecd6cd3",
+        "ts": "2024-07-29T09:33:39.270453",
+        "path": [
+            [
+                41.9742,
+                -87.9073
+            ],
+            [
+                32.7334,
+                -117.1915
+            ]
+        ],
+        "disrupted": false,
+        "extra_length": 0,
+        "distance_to_arrival": 2403.0233169511653,
+        "location": {
+            "lat": 40.74668455284452,
+            "long": -92.01760886310976
+        },
+        "velocity": {
+            "speed": 249.26857789648813,
             "heading": "tbd"
         }
     }
