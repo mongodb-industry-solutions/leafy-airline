@@ -16,6 +16,6 @@ jobs:
         run: |
           for i in {1..12}
           do
-            curl -X GET ../airplanedashboard/pages/api/aggregate.js
+            curl -X GET https://airplanedashboard-65jcrv6puq-ew.a.run.app/api/aggregate
             sleep 5
           done
