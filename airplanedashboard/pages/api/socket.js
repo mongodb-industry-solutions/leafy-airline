@@ -26,7 +26,7 @@ const connectToDatabase = async () => {
 const changeStreamHandler = async () => {
   console.log("Starting change stream handler...");
   const db = await connectToDatabase();
-  const collection = db.collection('flight_costs');
+  const collection = db.collection('flight_plane_simulation');
 
   const startChangeStream = () => {
     console.log("Setting up change stream...");
@@ -37,28 +37,28 @@ const changeStreamHandler = async () => {
     changeStream.on('change', async (change) => {
       console.log("Change detected:", change);
 
-      let alert = null;
+      let updateData = null;
 
       if (change.operationType === 'insert') {
         const document = change.fullDocument;
         console.log("Insert operation:", document);
-        if (document.Delay_Time !== undefined) {
-          alert = document;
+        if (document.mostRecentLat !== undefined && document.mostRecentLong !== undefined) {
+          updateData = document;
         }
       } else if (change.operationType === 'update') {
         const updatedFields = change.updateDescription?.updatedFields;
         console.log("Update operation:", updatedFields);
-        if (updatedFields?.Delay_Time !== undefined) {
+        if (updatedFields?.mostRecentLat !== undefined || updatedFields?.mostRecentLong !== undefined) {
           const document = await collection.findOne({ _id: change.documentKey._id });
-          alert = { ...document, ...updatedFields };
+          updateData = { ...document, ...updatedFields };
         }
       }
 
-      if (alert) {
-        console.log('Alert detected:', alert);
+      if (updateData) {
+        console.log('Update detected:', updateData);
         if (io) {
-          io.emit('alert', alert);
-          console.log('Alert emitted to clients.');
+          io.emit('flight_plane_simulation_update', updateData);
+          console.log('Update emitted to clients.');
         } else {
           console.warn("Socket.IO not initialized.");
         }
@@ -89,9 +89,9 @@ const socketHandler = (req, res) => {
     io = new Server(res.socket.server);
     res.socket.server.io = io;
 
-    // Emit 'No Delay' message to clients initially
-    io.emit('alert', { Delay_Time: null });
-    console.log('Initial alert emitted to clients: No Delay');
+    // Emit initial message to clients (if needed)
+    io.emit('flight_plane_simulation_update', { mostRecentLat: null, mostRecentLong: null });
+    console.log('Initial update emitted to clients.');
 
     changeStreamHandler();
   } else {
