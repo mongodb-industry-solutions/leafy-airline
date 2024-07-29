@@ -123,14 +123,21 @@ class DataSimulator:
         '''
         Haversine function to calculate distance between two points in the earth
         '''
-        (lat1, lon1) = loc1
-        (lat2, lon2) = loc2
-        lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
-        dlon = lon2 - lon1
-        dlat = lat2 - lat1
-        a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
-        c = 2 * math.asin(math.sqrt(a))
-        km = 6371 * c
+
+        # Check that the destination is not null
+        try:
+            (lat1, lon1) = loc1
+            (lat2, lon2) = loc2
+            lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+            dlon = lon2 - lon1
+            dlat = lat2 - lat1
+            a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+            c = 2 * math.asin(math.sqrt(a))
+            km = 6371 * c
+
+        except:
+            km = 0
+            
         return km
 
     def dist_to_arrival(self, loc):
@@ -194,6 +201,11 @@ class DataSimulator:
             - velocity : speed: new_speed,
                         heading: new_heading
         '''
+
+        # First we initialize the vbles so there is no error
+        distance_to_arrival = self.dist_to_arrival(self.prev_location)
+        new_loc = self.prev_location
+        new_speed = self.prev_speed
 
         # 1. Compute direction vector from current position to headed point so we know
         # in which direction the airplane should move
