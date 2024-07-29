@@ -65,7 +65,6 @@ doc_limit = 200
 def publish_data(simulator : DataSimulator):
 
     (finished, data)= simulator.generate_data()
-    print(finished)
 
     if len(docs) <= doc_limit:
         docs.append(data)
@@ -131,6 +130,10 @@ async def start_scheduler(flight_info:dict):
     global scheduler_active
     global resume_needed
 
+    print('Current Status:')
+    print('Active: ', scheduler_active)
+    print('Resume?: ', resume_needed)
+
     # Start the scheduler that will get the data every second
     if not scheduler_active:
 
@@ -188,10 +191,12 @@ async def reset_scheduler():
     global scheduler_active
     global resume_needed
 
-    scheduler.shutdown()
+    if scheduler_active:
 
-    scheduler_active = False
-    resume_needed = False
+        scheduler.shutdown()
+        scheduler_active = False
+        resume_needed = False
+
     scheduler = BackgroundScheduler()
 
     return {"status": "Reset complete"}
