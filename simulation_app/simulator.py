@@ -104,8 +104,9 @@ class DataSimulator:
         self.extra_length = path_atrib["extra_length"]
         self.arrived = False
         
-        # Get the initial headed point
+        # Get the initial headed point (idx will be the idx of the headed point)
         self.headed_point = np.array(self.path[1])
+        self.heading_dest = True if len(self.path) == 2 else False
         self.path_idx = 1
 
         self.prev_speed = 0
@@ -162,21 +163,17 @@ class DataSimulator:
         path_len = len(self.path)
         i = self.path_idx
 
-        # First we check if the point to which we are arriving is the final goal
-        if i == path_len:
+        # First we check if we are already heading the arrival point (if so, we have finished)
+        if not self.heading_dest:
+            if i < (path_len-1):
+                self.headed_point = self.path[i+1]     
+                self.path_idx += 1
+            else:
+                self.headed_point = self.path[-1]
+                self.heading_dest = True
+        else:
             self.arrived = True
             self.headed_point = None
-
-            return
-        
-        # If not, we can see if there are more than two main points in our path
-        elif path_len == 2:
-            self.headed_point = self.path[-1]
-        
-        else:
-            self.headed_point = self.path[i]
-        
-        self.path_idx += 1
 
         return 
 
@@ -212,7 +209,6 @@ class DataSimulator:
 
             # if the distance is less that what the plane is going to advance, we get to the next point directly
             if distance_to_headed < (self.advancement_rate/1000) :
-                print("Headed point reached, changing to next one. Index: ", self.path_idx)
                 new_loc = self.headed_point
                 self.new_headed_point()
 
@@ -227,18 +223,14 @@ class DataSimulator:
 
             # 5. Compute new heading direction and new distance to arrival (using the described path)
             # new_heading = (np.degrees(np.arctan2(unit_vector[1], unit_vector[0])) + 360) % 360
-            distance_to_dest = self.dist_to_arrival(new_loc)
+            distance_to_arrival = self.dist_to_arrival(new_loc)
             new_dist_to_head = self.get_real_distance(new_loc, self.headed_point)
 
-            print(self.advancement_rate/1000)
             print('Distance to headed: ', new_dist_to_head)
-            print('Distance to arrival: ', distance_to_dest)
-            print('Heading to:', self.headed_point)
-            print('From : ', new_loc)
-            print("Arrived? : ", self.arrived)
+            print('Distance to arrival: ', distance_to_arrival)
 
             # Compute new speed 
-            new_speed = self.SpController.get_new_speed(distance_to_dest)
+            new_speed = self.SpController.get_new_speed(distance_to_arrival)
             
             # Update every measurement
             self.prev_location = new_loc
@@ -252,7 +244,7 @@ class DataSimulator:
             "path" : self.path,
             "disrupted" : self.disruption,
             "extra_length" : self.extra_length,
-            "distance_to_arrival" : distance_to_dest,
+            "distance_to_arrival" : distance_to_arrival,
             "location": {
                 "lat": new_loc[0],
                 "long": new_loc[1]
