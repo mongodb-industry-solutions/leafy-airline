@@ -12,7 +12,7 @@ async function connectToDatabase() {
 
   const client = new MongoClient(uri);
   await client.connect();
-  const db = client.db('leafy_airline'); // Replace with your database name
+  const db = client.db('leafy_airline'); 
 
   cachedClient = client;
   cachedDb = db;
@@ -24,20 +24,11 @@ export default async function handler(req, res) {
     const { db } = await connectToDatabase();
 
     const flightsCollection = db.collection('flights');
-    const costsCollection = db.collection('flights_costs');
-
     const flights = await flightsCollection.find({}).toArray();
-    const costs = await costsCollection.find({}).toArray();
 
-    const mergedData = flights.map(flight => {
-      const cost = costs.find(cost => cost._id === flight._id); // Assuming _id is used as the common field
-      return {
-        ...flight,
-        delay_time: cost ? cost.DelayTime : 0, // Ensure DelayTime matches exactly the field name in flights_costs
-      };
-    });
-
-    res.status(200).json(mergedData);
+    // Exclude the flights_costs collection since it's no longer needed
+    // And return only the flight data
+    res.status(200).json(flights);
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     res.status(500).json({ error: 'Failed to fetch data' });

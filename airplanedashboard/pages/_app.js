@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
     console.log("useEffect in _app.js is running"); // Check this log in the browser console
     const startSocket = async () => {
       try {
-        const response = await fetch('/api/socket');
+        const response = await fetch('/api/socket1');
         if (response.ok) {
           console.log('Socket.IO and change stream initialized.');
         } else {

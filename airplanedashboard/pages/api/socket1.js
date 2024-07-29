@@ -1,4 +1,3 @@
-// pages/api/socket.js
 import { MongoClient } from 'mongodb';
 import { Server } from 'socket.io';
 
@@ -43,13 +42,13 @@ const changeStreamHandler = async () => {
       if (change.operationType === 'insert') {
         const document = change.fullDocument;
         console.log("Insert operation:", document);
-        if (document.DelayTime > 0) {
+        if (document.Delay_Time !== undefined) {
           alert = document;
         }
       } else if (change.operationType === 'update') {
         const updatedFields = change.updateDescription?.updatedFields;
         console.log("Update operation:", updatedFields);
-        if (updatedFields?.DelayTime > 0) {
+        if (updatedFields?.Delay_Time !== undefined) {
           const document = await collection.findOne({ _id: change.documentKey._id });
           alert = { ...document, ...updatedFields };
         }
@@ -84,11 +83,16 @@ const changeStreamHandler = async () => {
 };
 
 const socketHandler = (req, res) => {
-  console.log("Received request at /api/socket");
+  console.log("Received request at /api/socket1");
   if (!res.socket.server.io) {
     console.log("Initializing Socket.IO...");
     io = new Server(res.socket.server);
     res.socket.server.io = io;
+
+    // Emit 'No Delay' message to clients initially
+    io.emit('alert', { Delay_Time: null });
+    console.log('Initial alert emitted to clients: No Delay');
+
     changeStreamHandler();
   } else {
     console.log("Socket.IO already initialized.");
@@ -108,3 +112,4 @@ process.on('SIGINT', async () => {
 });
 
 export default socketHandler;
+
