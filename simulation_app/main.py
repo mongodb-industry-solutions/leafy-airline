@@ -130,6 +130,10 @@ async def start_scheduler(flight_info:dict):
     global scheduler_active
     global resume_needed
 
+    print('Current Status:')
+    print('Active: ', scheduler_active)
+    print('Resume?: ', resume_needed)
+
     # Start the scheduler that will get the data every second
     if not scheduler_active:
 
