@@ -246,25 +246,23 @@ class DataSimulator:
             self.timestamp = datetime.now()
 
 
-            return (self.arrived, {
-                "flight_id": self.FID,
-                "ts": self.timestamp.isoformat(),
-                "path" : self.path,
-                "disrupted" : self.disruption,
-                "extra_length" : self.extra_length,
-                "distance_to_arrival" : distance_to_dest,
-                "location": {
-                    "lat": new_loc[0],
-                    "long": new_loc[1]
-                },
-                "velocity": {
-                    "speed": new_speed,
-                    "heading": 'tbd'
-                }
-            })
+        return (self.arrived, {
+            "flight_id": self.FID,
+            "ts": self.timestamp.isoformat(),
+            "path" : self.path,
+            "disrupted" : self.disruption,
+            "extra_length" : self.extra_length,
+            "distance_to_arrival" : distance_to_dest,
+            "location": {
+                "lat": new_loc[0],
+                "long": new_loc[1]
+            },
+            "velocity": {
+                "speed": new_speed,
+                "heading": 'tbd'
+            }
+        })
         
-        else:
-            print('Finalized flight')
-            return (self.arrived, {})
+
 
 
