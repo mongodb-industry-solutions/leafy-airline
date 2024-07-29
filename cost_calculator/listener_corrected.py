@@ -49,6 +49,7 @@ print(f"Listening for messages on {subscription_path}...\n")
 
 # Functions from the notebook
 def parse_data(flight_data):
+    #print(flight_data)
     flight_id = flight_data['flight_id']
     timestamp = datetime.fromisoformat(flight_data['ts'])
     lat = flight_data['location']['lat']
