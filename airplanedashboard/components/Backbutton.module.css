@@ -1,0 +1,17 @@
+.backButton {
+    padding: 10px 20px;
+    background-color: #00684A; /* Button background color */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded edges */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    font-family: 'Lexend Deca', sans-serif;
+  }
+  
+  .backButton:hover {
+    background-color: #004d34; /* Slightly darker green on hover */
+  }
+  
