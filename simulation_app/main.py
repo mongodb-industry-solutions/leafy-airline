@@ -43,7 +43,7 @@ logging.basicConfig(
 )
 
 # SCHEDULER : Calls my function (simulator) every x seconds
-measurement_interval = 1
+measurement_interval = 5
 scheduler = BackgroundScheduler()
 scheduler_active = False
 resume_needed = False
@@ -51,7 +51,7 @@ docs = []
 
 # PUBSUB INFO
 project_id = "connected-aircraft-ist"
-topic_id = "flight_data"
+topic_id = "leafyAirlineData"
 service_account_file = "json-keys-for-connect-aircraft-ist/connected-aircraft-ist-4fa26b67848a.json"
 
 publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)

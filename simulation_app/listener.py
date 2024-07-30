@@ -9,9 +9,9 @@ import datetime
 
 # Configura las variables del proyecto, topic y suscripción
 project_id = "connected-aircraft-ist"
-topic_id = "flight_data"
+topic_id = "leafyAirlineData"
 service_account_file = "json-keys-for-connect-aircraft-ist/connected-aircraft-ist-4fa26b67848a.json"
-subscription_id = "flight_data-sub"
+subscription_id = "leafyAirlineData-sub"
 # Crea el cliente de suscripción
 subscriber = pubsub_v1.SubscriberClient()
 subscription_path = subscriber.subscription_path(project_id, subscription_id)
