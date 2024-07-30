@@ -46,7 +46,8 @@ logging.basicConfig(
 measurement_interval = 5
 scheduler = BackgroundScheduler()
 scheduler_active = False
-resume_needed = False
+# resume_needed = False
+
 docs = []
 
 # PUBSUB INFO
@@ -72,16 +73,10 @@ def publish_data(simulator : DataSimulator):
     if finished:
 
         global scheduler
-        global scheduler_active
-        global resume_needed
-
         logging.info("ARRIVED TO DESTINATION")
-        scheduler.pause()
-        scheduler = BackgroundScheduler()
-        scheduler_active = False
-        resume_needed = False
         logging.info("Scheduler stopped due to finished flight")
-
+        scheduler.pause()
+        
     # Uncomment when using pubsub
     data = json.dumps(data).encode("utf-8")
     future = publisher.publish(topic_path, data)
@@ -126,76 +121,31 @@ async def start_scheduler(flight_info:dict):
     
     logging.info("Simulator created")
 
-    global scheduler
-    global scheduler_active
-    global resume_needed
+    global scheduler, scheduler_active
 
-    print('Current Status:')
-    print('Active: ', scheduler_active)
-    print('Resume?: ', resume_needed)
-
-    # Start the scheduler that will get the data every second
     if not scheduler_active:
 
-        if not resume_needed:
-            scheduler.add_job(publish_data, 'interval', 
+        scheduler.add_job(publish_data, 'interval', 
                             seconds = measurement_interval ,
                             args = (simulator,)) 
-            scheduler.start()
-            scheduler_active = True
-            logging.info("Scheduler started")
-            return {"status": "Scheduler started"}
+        scheduler.start()
+        scheduler_active = True
+        logging.info("Scheduler started")
 
-        else:
-            scheduler.resume()
-            logging.info("Scheduler resumed")
-            resume_needed = False
-            scheduler_active = True
-            return {"status": "Scheduler resumed"}
+        return {"status": "Scheduler started"}
     
     else:
-        return {"status": "Scheduler already running"}
-
-@app.get("/pause-scheduler")
-async def pause_scheduler():
-    '''
-    This function will trigger the stop of the scheduler that was calling periodically
-    our get_measurements function'''
-
-    global scheduler
-    global scheduler_active
-    global resume_needed
-
-    if scheduler_active:
-
-        scheduler.pause()
-        scheduler_active = False
-        resume_needed = True
-
-        logging.info("Scheduler paused")
-        # Create json doc with all the records
-        logging.info(f"Docs recorded {len(docs)}")
-
-        with open(f'sim_data/flight_telemetry_data.json', 'w') as f:
-            json.dump(docs, f, indent=4)
-        
-        return {"status": "Scheduler paused"}
-    
-    return {"status": "Scheduler was already not active"}
+        return {"status": "Scheduler is already running"}
 
 @app.get("/reset-scheduler")
 async def reset_scheduler():
 
-    # Shutdown previous scheduler and create the new one
-    global scheduler
-    global scheduler_active
-    global resume_needed
-
+    global scheduler, scheduler_active
     if scheduler_active:
 
         scheduler.shutdown()
         scheduler_active = False
-        resume_needed = False
+
 
     scheduler = BackgroundScheduler()
 
