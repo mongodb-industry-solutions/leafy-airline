@@ -2,10 +2,11 @@ build:
 	docker build -t simulation-app .
 
 start: 
-	docker run -p 8000:8000 -d simulation-app
+	docker run --name flight-data-api -p 8000:8000 -d simulation-app
 
 stop:
-	docker-compose stop
+	docker stop flight-data-api
 
 clean:
-	docker-compose down --rmi all -v
+	docker rm flight-data-api || true
+	docker rmi simulation-app || true

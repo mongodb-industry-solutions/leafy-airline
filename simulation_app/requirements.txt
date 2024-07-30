@@ -6,5 +6,5 @@ matplotlib
 networkx
 pyproj
 pymongo
-google.cloud
-logging
+google-cloud
+google-cloud-pubsub
