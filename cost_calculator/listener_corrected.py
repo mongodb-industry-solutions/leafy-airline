@@ -40,7 +40,7 @@ def callback(message):
 
 # Pub/Sub setup
 project_id = "connected-aircraft-ist"
-subscription_id = "flight_data-sub"
+subscription_id = "leafyAirlineData-sub"
 service_account_file = "/Users/tamar.alphaidze/Desktop/airline_dashboard/leafy_airline/cost_calculator/json-keys-for-connect-aircraft-ist/connected-aircraft-ist-4fa26b67848a.json"
 subscriber = pubsub_v1.SubscriberClient.from_service_account_file(service_account_file)
 subscription_path = subscriber.subscription_path(project_id, subscription_id)
