@@ -5,7 +5,6 @@ import time
 from concurrent.futures import TimeoutError
 from google.cloud import pubsub_v1
 import json
-import datetime
 
 # Configura las variables del proyecto, topic y suscripción
 project_id = "connected-aircraft-ist"
