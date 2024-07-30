@@ -8,9 +8,10 @@ import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
 
-const app_url = "http://127.0.0.1:8000/";
+// const app_url = "http://127.0.0.1:8000/";
 // const app_url = "https://simulation-app-65jcrv6puq-ew.a.run.app/"
 // const app_url = "https://simulation-app2-65jcrv6puq-ew.a.run.app/"
+const app_url = "https://simulation-app3-65jcrv6puq-ew.a.run.app/";
 
 
 const Layout1 = ({ children }) => {
@@ -114,23 +115,6 @@ const Layout1 = ({ children }) => {
       console.error('Error starting process:', error);
     }
   };
-
-  // const pauseSimulation = async () => {
-  //   const stop_url = app_url + "pause-scheduler";
-
-  //   try {
-  //     const response = await fetch(stop_url, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error('Error pausing process:', error);
-  //   }
-  // };
 
   const resetSimulation = async () => {
     const reset_url = app_url + "reset-scheduler";
@@ -265,7 +249,6 @@ const Layout1 = ({ children }) => {
 
             <div className={styles.simulationbuttonSection}>
               <Button className={styles.simulationButton} children='Start Simulation' onClick={startSimulation}></Button>
-              {/* <Button className={styles.simulationButton} children='Pause Simulation' onClick={pauseSimulation}></Button> */}
               <Button className={styles.reset_simulationButton} children='Reset Simulation' onClick={resetSimulation}></Button>
             </div>
           </div>
