@@ -21,7 +21,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3001",
-    "http://localhost:3000",  # Next.js app address
+    "http://localhost:3000",
     "https://airplanedashboard-65jcrv6puq-ew.a.run.app/"
     # Add other origins if needed
 ]
