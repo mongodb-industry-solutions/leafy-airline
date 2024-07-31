@@ -7,13 +7,12 @@ import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
-import SocketClient from './socketClient';
+import PlaneIcon from './icons/plane-solid.svg';
 
 // const app_url = "http://127.0.0.1:8000/";
 // const app_url = "https://simulation-app-65jcrv6puq-ew.a.run.app/"
 // const app_url = "https://simulation-app2-65jcrv6puq-ew.a.run.app/"
 const app_url = "https://simulation-app3-65jcrv6puq-ew.a.run.app/";
-
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
@@ -26,7 +25,6 @@ const Layout1 = ({ children }) => {
   const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
-
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -79,6 +77,11 @@ const Layout1 = ({ children }) => {
       }
       if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
         setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
+      }
+      if (alert && alert.Latitude !== undefined && alert.Longitude !== undefined) {
+        const position = { lat: alert.Latitude, lng: alert.Longitude };
+        setAirplanePosition(position); // Update the airplane position
+        setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
       }
     });
 
@@ -226,7 +229,7 @@ const Layout1 = ({ children }) => {
               <LoadScript googleMapsApiKey={apiKey}>
                 <GoogleMap
                   mapContainerStyle={mapContainerStyle}
-                  center={depCoords} // Center map on departure point
+                  center={airplanePosition || depCoords} // Center map on airplane position or departure point
                   zoom={5}
                 >
                   {/* Departure Marker */}
@@ -247,6 +250,31 @@ const Layout1 = ({ children }) => {
                           strokeColor: '#FF0000',
                           strokeOpacity: 1.0,
                           strokeWeight: 2
+                        }}
+                      />
+                      {/* Airplane Marker */}
+                      {airplanePosition && (
+                        <Marker
+                          position={airplanePosition}
+                          icon={{
+                            url: 'path/to/plane',
+                            scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
+                          }}
+                          label="Airplane"
+                        />
+                      )}
+                      {/* Polyline for flight path */}
+                      <Polyline
+                        path={flightPath}
+                        options={{
+                          strokeColor: '#023430',
+                          strokeOpacity: 0.8,
+                          strokeWeight: 2,
+                          icons: [{
+                            icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
+                            offset: '100%',
+                            repeat: '20px'
+                          }]
                         }}
                       />
                     </>
