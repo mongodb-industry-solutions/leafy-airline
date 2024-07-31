@@ -20,7 +20,7 @@ const connectToDatabase = async () => {
       throw error;
     }
   }
-  return client.db('leafy_airline'); // Replace with your database name
+  return client.db('leafy_airline');
 };
 
 const changeStreamHandler = async () => {
@@ -28,75 +28,60 @@ const changeStreamHandler = async () => {
   const db = await connectToDatabase();
   const collection = db.collection('flight_costs');
 
-  const startChangeStream = () => {
-    console.log("Setting up change stream...");
-    changeStream = collection.watch([
-      { $match: { $or: [{ 'operationType': 'insert' }, { 'operationType': 'update' }] } }
-    ]);
+  changeStream = collection.watch([
+    { $match: { $or: [{ 'operationType': 'insert' }, { 'operationType': 'update' }] } }
+  ]);
 
-    changeStream.on('change', async (change) => {
-      console.log("Change detected:", change);
+  changeStream.on('change', async (change) => {
+    console.log("Change detected:", change);
 
-      let alert = null;
+    let alert = null;
 
-      if (change.operationType === 'insert') {
-        const document = change.fullDocument;
-        console.log("Insert operation:", document);
-        if (document.Delay_Time !== undefined) {
-          alert = document;
-        }
-      } else if (change.operationType === 'update') {
-        const updatedFields = change.updateDescription?.updatedFields;
-        console.log("Update operation:", updatedFields);
-        if (updatedFields?.Delay_Time !== undefined) {
-          const document = await collection.findOne({ _id: change.documentKey._id });
-          alert = { ...document, ...updatedFields };
-        }
+    if (change.operationType === 'insert') {
+      const document = change.fullDocument;
+      if (document.Delay_Time !== undefined) {
+        alert = document;
       }
-
-      if (alert) {
-        console.log('Alert detected:', alert);
-        if (io) {
-          io.emit('alert', alert);
-          console.log('Alert emitted to clients.');
-        } else {
-          console.warn("Socket.IO not initialized.");
-        }
+    } else if (change.operationType === 'update') {
+      const updatedFields = change.updateDescription?.updatedFields;
+      if (updatedFields?.Delay_Time !== undefined) {
+        const document = await collection.findOne({ _id: change.documentKey._id });
+        alert = { ...document, ...updatedFields };
       }
-    });
+    }
 
-    changeStream.on('error', (error) => {
-      console.error("Change stream error:", error);
-      if (error.code === 'ETIMEDOUT') {
-        console.log("Reconnecting change stream due to timeout...");
-        changeStream.close();
-        setTimeout(startChangeStream, 1000);
-      }
-    });
+    if (alert && io) {
+      io.emit('alert', alert);
+    }
+  });
 
-    changeStream.on('end', () => {
-      console.log("Change stream closed.");
-    });
-  };
+  changeStream.on('error', (error) => {
+    console.error("Change stream error:", error);
+    if (error.code === 'ETIMEDOUT') {
+      changeStream.close();
+      setTimeout(changeStreamHandler, 1000);
+    }
+  });
 
-  startChangeStream();
+  changeStream.on('end', () => {
+    console.log("Change stream closed.");
+  });
 };
 
 const socketHandler = (req, res) => {
-  console.log("Received request at /api/socket1");
-  if (!res.socket.server.io) {
-    console.log("Initializing Socket.IO...");
-    io = new Server(res.socket.server);
-    res.socket.server.io = io;
-
-    // Emit 'No Delay' message to clients initially
-    io.emit('alert', { Delay_Time: null });
-    console.log('Initial alert emitted to clients: No Delay');
-
-    changeStreamHandler();
-  } else {
+  if (res.socket.server.io) {
     console.log("Socket.IO already initialized.");
+    return res.end();
   }
+
+  console.log("Initializing Socket.IO...");
+  io = new Server(res.socket.server);
+  res.socket.server.io = io;
+
+  io.emit('alert', { Delay_Time: null });
+  console.log('Initial alert emitted to clients: No Delay');
+
+  changeStreamHandler();
   res.end();
 };
 

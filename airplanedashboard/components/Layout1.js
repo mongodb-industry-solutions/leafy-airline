@@ -7,6 +7,7 @@ import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
+import SocketClient from './socketClient';
 
 // const app_url = "http://127.0.0.1:8000/";
 // const app_url = "https://simulation-app-65jcrv6puq-ew.a.run.app/"
@@ -111,6 +112,15 @@ const Layout1 = ({ children }) => {
       }
       const data = await response.json();
       console.log(data);
+
+      // Trigger Aggregation API after starting the simulation
+      const aggregationResponse = await fetch('/api/aggregate', { method: 'POST' });
+      if (aggregationResponse.ok) {
+        console.log('Aggregation triggered successfully.');
+      } else {
+        console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
+      }
+
     } catch (error) {
       console.error('Error starting process:', error);
     }

@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 
 const MONGO_URI = process.env.MONGO_URI;
 const dbName = 'leafy_airline';
-const collectionName = 'flight_realtimeCF';
+const collectionName = 'flight_costs';
 const outputCollection = 'flight_plane_simulation';
 
 const runAggregation = async () => {
@@ -23,52 +23,41 @@ const runAggregation = async () => {
     console.log('Running aggregation pipeline...');
     const pipelineStart = Date.now();
     const pipeline = [
-      {
-        $addFields: {
-          bucket: {
-            $dateTrunc: {
-              date: "$ts",
-              unit: "second",
-              binSize: 20
-            }
-          }
-        }
-      },
-      {
-        $sort: {
-          ts: -1
-        }
-      },
-      {
-        $group: {
-          _id: "$bucket",
-          count: {
-            $sum: 1
+        {
+          $lookup: {
+            from: "flight_realtimeCF",
+            localField: "FlightID",
+            foreignField: "flight_id",
+            as: "realtime_data",
           },
-          mostRecentLat: {
-            $first: "$location.lat"
+        },
+        {
+          $unwind: "$realtime_data",
+        },
+        {
+          $project: {
+            _id: 1,
+            Timestamp: 1,
+            Distance_to_Destination: 1,
+            Estimated_Time_Left: 1,
+            Delay_Time: 1,
+            Delay_Cost: 1,
+            Fuel_Cost_per_Hour: 1,
+            Total_Cost_per_Hour: 1,
+            mostRecentLat:
+              "$realtime_data.location.lat",
+            mostRecentLong:
+              "$realtime_data.location.long",
           },
-          mostRecentLong: {
-            $first: "$location.long"
+        },
+        {
+          $merge: {
+            into: outputCollection,
+            whenMatched: "merge",
+            whenNotMatched: "insert",
           },
-          mostRecentTs: {
-            $first: "$ts"
-          }
-        }
-      },
-      {
-        $sort: {
-          _id: -1
-        }
-      },
-      {
-        $merge: {
-          into: outputCollection,
-          whenMatched: "merge",
-          whenNotMatched: "insert"
-        }
-      }
-    ];
+        },
+      ];
 
     const cursor = collection.aggregate(pipeline);
     const results = await cursor.toArray();
@@ -76,7 +65,7 @@ const runAggregation = async () => {
 
     console.log('Aggregation results:');
     results.forEach(doc => {
-      console.log(`Most recent latitude: ${doc.mostRecentLat}, Most recent longitude: ${doc.mostRecentLong}`);
+      console.log(`Most recent latitude: ${doc.mostRecentLat}, Most recent longitude: ${doc.mostRecentLong}, Delay Time: ${doc.Delay_Time},  Delay Cost: ${doc.Delay_Cost}`);
     });
 
   } catch (error) {
@@ -103,3 +92,15 @@ export default async function handler(req, res) {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
