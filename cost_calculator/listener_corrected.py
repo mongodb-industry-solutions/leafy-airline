@@ -99,6 +99,8 @@ def process_message(message_data):
         total_cost = calculate_cost(speed, distance_to_destination, delay_cost_per_minute, delay_time)
         delay_cost = delay_time * delay_cost_per_minute * 60 # by 60 because delay_time is given in hours
         fuel_cost = 1500 * estimated_time_left
+        latitude = current_entry['Latitude']
+        longitude = current_entry['Longitude']
 
         # Prepare the data to be inserted into MongoDB
         document = {
@@ -108,7 +110,9 @@ def process_message(message_data):
             "Delay_Time": delay_time,
             "Delay_Cost": delay_cost,
             "Fuel_Cost_per_Hour": fuel_cost,
-            "Total_Cost_per_Hour": total_cost
+            "Total_Cost_per_Hour": total_cost,
+            "Latitude": latitude,
+            "Longitude": longitude
         }
 
         # Insert the document into MongoDB
@@ -123,6 +127,8 @@ def process_message(message_data):
         print(f"Delay Cost: {delay_cost:.2f} EUR")
         print(f"Fuel Cost: {fuel_cost:.2f} EUR")
         print(f"Total Cost: {total_cost:.2f} EUR")
+        print(f"Latitude: {current_entry['Latitude']}")
+        print(f"Longitude: {current_entry['Longitude']}")
         print("-----")
     
     # Update previous speed for the next message
