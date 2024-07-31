@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-async function runAggregation() {
+export default async function runAggregation() {
   const uri = process.env.MONGO_URI;
   const client = new MongoClient(uri);
 
