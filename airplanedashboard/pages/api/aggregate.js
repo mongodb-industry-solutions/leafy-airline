@@ -1,7 +1,7 @@
 import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
 
-export async function runAggregation() {
+export default async function runAggregation() {
   const MONGO_URI = process.env.MONGO_URI;
   const client = new MongoClient(MONGO_URI);
   const dbName = 'leafy_airline';
