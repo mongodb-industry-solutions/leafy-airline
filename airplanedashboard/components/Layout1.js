@@ -7,7 +7,7 @@ import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
-import PlaneIcon from './icons/plane-solid.svg';
+import PlaneIcon from '../public/plane-solid.svg';
 
 // const app_url = "http://127.0.0.1:8000/";
 // const app_url = "https://simulation-app-65jcrv6puq-ew.a.run.app/"
@@ -202,7 +202,7 @@ const Layout1 = ({ children }) => {
       <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
     </div>
     <div className={delayTime !== null ? styles.delayBox : styles.noDelayBox}>
-      <p>Delay: {delayTime !== null ? `${delayTime} hours` : 'No delay'}</p>
+      <p>Delay: {delayTime !== null ? `${delayTime * 60} minutes` : 'No delay'}</p>
     </div>
     <div className={styles.costContainer}>
       <div className={styles.costBox}>
@@ -222,6 +222,7 @@ const Layout1 = ({ children }) => {
 
 
           </div>
+          
 
           {/* Google Map Component */}
           <div className={styles.mapContainer}>
@@ -257,10 +258,10 @@ const Layout1 = ({ children }) => {
                         <Marker
                           position={airplanePosition}
                           icon={{
-                            url: 'path/to/plane',
+                            url: '/plane-solid.svg',
                             scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
                           }}
-                          label="Airplane"
+                          /*label="Airplane"*/
                         />
                       )}
                       {/* Polyline for flight path */}
