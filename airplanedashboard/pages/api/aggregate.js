@@ -1,15 +1,13 @@
 import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
 
-const MONGO_URI = process.env.MONGO_URI;
-const dbName = 'leafy_airline';
-const collectionName = 'flight_realtimeCF';
-const outputCollection = 'flight_plane_simulation';
-
-const runAggregation = async () => {
-  console.log('Starting aggregation');
-
+export default async function runAggregation() {
+  const MONGO_URI = process.env.MONGO_URI;
   const client = new MongoClient(MONGO_URI);
+  const dbName = 'leafy_airline';
+  const collectionName = 'flight_realtimeCF';
+  const outputCollection = 'flight_plane_simulation';
+  console.log('Starting aggregation');
 
   try {
     console.log('Connecting to MongoDB...');
