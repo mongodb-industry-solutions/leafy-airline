@@ -1,7 +1,7 @@
 import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
 
-export default async function runAggregation() {
+export async function runAggregation() {
   const MONGO_URI = process.env.MONGO_URI;
   const client = new MongoClient(MONGO_URI);
   const dbName = 'leafy_airline';
@@ -91,7 +91,7 @@ export default async function runAggregation() {
 // Create a cron job to run the aggregation every 5 seconds
 cron.schedule('*/5 * * * * *', runAggregation);
 
-export default async function handler(req, res) {
+export async function handler(req, res) {
   if (req.method === 'POST') {
     // Start the cron job
     res.status(200).json({ message: 'Scheduler started' });
