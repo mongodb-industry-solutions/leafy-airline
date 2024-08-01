@@ -5,8 +5,8 @@ const uri = process.env.MONGO_URI;
 const options = { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 5000 };
 
 let client;
-let io;
 let changeStream;
+let io;
 
 const connectToDatabase = async () => {
   if (!client) {
@@ -20,7 +20,7 @@ const connectToDatabase = async () => {
       throw error;
     }
   }
-  return client.db('leafy_airline'); // Replace with your database name
+  return client.db('leafy_airline');
 };
 
 const changeStreamHandler = async () => {
@@ -28,75 +28,62 @@ const changeStreamHandler = async () => {
   const db = await connectToDatabase();
   const collection = db.collection('flight_plane_simulation');
 
-  const startChangeStream = () => {
-    console.log("Setting up change stream...");
-    changeStream = collection.watch([
-      { $match: { $or: [{ 'operationType': 'insert' }, { 'operationType': 'update' }] } }
-    ]);
+  changeStream = collection.watch([
+    { $match: { $or: [{ 'operationType': 'insert' }, { 'operationType': 'update' }] } }
+  ]);
 
-    changeStream.on('change', async (change) => {
-      console.log("Change detected:", change);
+  changeStream.on('change', async (change) => {
+    console.log("Change detected:", change);
 
-      let updateData = null;
+    let updateData = null;
 
-      if (change.operationType === 'insert') {
-        const document = change.fullDocument;
-        console.log("Insert operation:", document);
-        if (document.mostRecentLat !== undefined && document.mostRecentLong !== undefined) {
-          updateData = document;
-        }
-      } else if (change.operationType === 'update') {
-        const updatedFields = change.updateDescription?.updatedFields;
-        console.log("Update operation:", updatedFields);
-        if (updatedFields?.mostRecentLat !== undefined || updatedFields?.mostRecentLong !== undefined) {
-          const document = await collection.findOne({ _id: change.documentKey._id });
-          updateData = { ...document, ...updatedFields };
-        }
+    if (change.operationType === 'insert') {
+      const document = change.fullDocument;
+      if (document.mostRecentLat !== undefined && document.mostRecentLong !== undefined) {
+        updateData = document;
       }
-
-      if (updateData) {
-        console.log('Update detected:', updateData);
-        if (io) {
-          io.emit('flight_plane_simulation_update', updateData);
-          console.log('Update emitted to clients.');
-        } else {
-          console.warn("Socket.IO not initialized.");
-        }
+    } else if (change.operationType === 'update') {
+      const updatedFields = change.updateDescription?.updatedFields;
+      if (updatedFields?.mostRecentLat !== undefined || updatedFields?.mostRecentLong !== undefined) {
+        const document = await collection.findOne({ _id: change.documentKey._id });
+        updateData = { ...document, ...updatedFields };
       }
-    });
+    }
 
-    changeStream.on('error', (error) => {
-      console.error("Change stream error:", error);
-      if (error.code === 'ETIMEDOUT') {
-        console.log("Reconnecting change stream due to timeout...");
-        changeStream.close();
-        setTimeout(startChangeStream, 1000);
-      }
-    });
+    if (updateData && io) {
+      io.emit('flight_plane_simulation_update', updateData);
+    }
+  });
 
-    changeStream.on('end', () => {
-      console.log("Change stream closed.");
-    });
-  };
+  changeStream.on('error', (error) => {
+    console.error("Change stream error:", error);
+    if (error.code === 'ETIMEDOUT') {
+      changeStream.close();
+      setTimeout(changeStreamHandler, 1000);
+    }
+  });
 
-  startChangeStream();
+  changeStream.on('end', () => {
+    console.log("Change stream closed.");
+  });
 };
 
-const socketHandler = (req, res) => {
-  console.log("Received request at /api/socket1");
-  if (!res.socket.server.io) {
-    console.log("Initializing Socket.IO...");
-    io = new Server(res.socket.server);
-    res.socket.server.io = io;
-
-    // Emit initial message to clients (if needed)
-    io.emit('flight_plane_simulation_update', { mostRecentLat: null, mostRecentLong: null });
-    console.log('Initial update emitted to clients.');
-
-    changeStreamHandler();
-  } else {
+const flightPlaneSimulationSocketHandler = (req, res) => {
+  if (res.socket.server.io) {
     console.log("Socket.IO already initialized.");
+    return res.end();
   }
+
+  console.log("Initializing Socket.IO...");
+  io = new Server(res.socket.server);
+  res.socket.server.io = io.of('/flight_plane_simulation');
+
+  res.socket.server.io.on('connection', (socket) => {
+    console.log('Client connected to flight_plane_simulation namespace');
+    socket.emit('flight_plane_simulation_update', { mostRecentLat: null, mostRecentLong: null });
+  });
+
+  changeStreamHandler();
   res.end();
 };
 
@@ -111,4 +98,4 @@ process.on('SIGINT', async () => {
   process.exit(0);
 });
 
-export default socketHandler;
+export default flightPlaneSimulationSocketHandler;
