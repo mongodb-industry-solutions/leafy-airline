@@ -26,11 +26,8 @@ function FlightList({flights}) {
             <div><strong>Airline:</strong> {flight_info.airline}</div>
             <div><strong>Plane:</strong> {flight_info.plane}</div>
             <div><strong>Flight Date:</strong> {formattedDate}</div>
-            <div><strong>Departure Airport City:</strong> {flight_info.dep_arp?.city || 'N/A'}</div>
-            <div><strong>Departure Airport Country:</strong> {flight_info.dep_arp?.country || 'N/A'}</div>
-            <div><strong>Arrival Airport City:</strong> {flight_info.arr_arp?.city || 'N/A'}</div>
-            <div><strong>Arrival Airport Country:</strong> {flight_info.arr_arp?.country || 'N/A'}</div>
-            {/* Add more fields as needed */}
+            <div><strong>Departure Airport:</strong> {flight_info.dep_arp.city + ", " + flight_info.dep_arp.country }</div>
+            <div><strong>Arrival Airport:</strong> {flight_info.arr_arp.city + ", " + flight_info.arr_arp.country }</div>
             <button onClick={() => handleViewFlight(flight_info._id)} className={styles.viewFlightButton}>View flight</button>
         </div>
         
