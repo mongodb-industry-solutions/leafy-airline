@@ -80,16 +80,35 @@ const Layout1 = ({ children }) => {
       if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
         setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
       }
-      if (alert && alert.Latitude !== undefined && alert.Longitude !== undefined) {
-        const position = { lat: alert.Latitude, lng: alert.Longitude };
-        setAirplanePosition(position); // Update the airplane position
-        setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
-      }
+      //if (alert && alert.Latitude !== undefined && alert.Longitude !== undefined) {
+       // const position = { lat: alert.Latitude, lng: alert.Longitude };
+       // setAirplanePosition(position); // Update the airplane position
+       // setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
+     //}
     });
-
     return () => {
       socket.off('alert');
     };
+  }, []);
+
+  useEffect(() => {
+    // Fetch the newest document every 5 seconds for position updates
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch('/api/fetchNewestDocument');
+        const data = await response.json();
+        console.log('Fetched Data:', data);
+        if (data && data.mostRecentLat !== undefined && data.mostRecentLong !== undefined) {
+          const position = { lat: data.mostRecentLat, lng: data.mostRecentLong };
+          setAirplanePosition(position); // Update the airplane position
+          setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
+        }
+      } catch (error) {
+        console.error('Error fetching the newest document:', error);
+      }
+    }, 5000); // Fetch every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);
 
   const startSimulation = async () => {

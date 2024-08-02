@@ -51,7 +51,7 @@ const changeStreamHandler = async () => {
     }
 
     if (updateData && io) {
-      io.emit('flight_plane_simulation_update', updateData);
+      io.of('/flight_plane_simulation').emit('flight_plane_simulation_update', updateData);
     }
   });
 
@@ -76,9 +76,10 @@ const flightPlaneSimulationSocketHandler = (req, res) => {
 
   console.log("Initializing Socket.IO...");
   io = new Server(res.socket.server);
-  res.socket.server.io = io.of('/flight_plane_simulation');
+  res.socket.server.io = io;
 
-  res.socket.server.io.on('connection', (socket) => {
+  const namespace = io.of('/flight_plane_simulation');
+  namespace.on('connection', (socket) => {
     console.log('Client connected to flight_plane_simulation namespace');
     socket.emit('flight_plane_simulation_update', { mostRecentLat: null, mostRecentLong: null });
   });
