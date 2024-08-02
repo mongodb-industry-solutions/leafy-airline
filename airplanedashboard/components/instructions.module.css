@@ -1,4 +1,4 @@
-
+/* Containers (General) */
 .generalContainer {
   display: flex;
   justify-content: center;
@@ -17,6 +17,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Back button css */
 .backButton {
   display: block;
   margin-bottom: 20px;
@@ -28,8 +29,10 @@
   cursor: pointer;
 }
 
+/* Text content */
 .textContainer {
   font-family: 'Lexend Deca', sans-serif;
+  padding: 20px;
 }
 
 .textContainer h1 {
@@ -41,12 +44,13 @@
 .textContainer h2 {
   font-size: 1.5rem;
   margin-bottom: 15px;
-  color: #00684A; /* Green color */
+  color: #00684A; 
 }
 
 .textContainer p {
   margin-bottom: 15px;
   line-height: 1.6;
+  font-weight: lighter;
 }
 
 .textContainer ol,
@@ -75,8 +79,21 @@
   border-radius: 5px;
 }
 
+
 .textContainer h3 {
   font-size: 1.2rem;
   margin-bottom: 10px;
   color: #333;
+}
+
+.textContainer h4{
+  font-size: 1rem;
+  color: #00684A;
+}
+
+.separationBar {
+  border: 0;
+  height: 1px;
+  background: #00684A;
+  margin: 1rem 0;
 }
