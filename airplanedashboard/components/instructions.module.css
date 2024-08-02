@@ -1,41 +1,82 @@
 
-/* Back button css specifications */
-.backButton {
-    padding: 10px 20px;
-    background-color: #00684A; /* Button background color */
-    color: white; /* Text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded edges */
-    border: none; /* Remove border */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 14px; /* Font size */
-    transition: background-color 0.3s ease; /* Smooth color transition */
-    font-family: 'Lexend Deca', sans-serif;
-  }
-  
-.backButton:hover {
-background-color: #004d34; /* Slightly darker green on hover */
-}
-
 .generalContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Makes the container take up the full viewport height */
-  padding: 20px; /* Adds some padding around the container */
-  background-color: #f4f4f4; /* Optional: Adds a background color */
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f4f4f4;
 }
 
 .contentContainer {
-  max-width: 900px; 
-  width: 100%; /* Ensures the container takes up the available width */
-  background-color: #fff; /* Optional: Adds a background color */
-  padding: 20px; /* Adds padding inside the container */
-  border-radius: 8px; /* Optional: Adds rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  max-width: 800px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.textContainer { 
-  padding: 20px;
+.backButton {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color:  #00684A; 
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
+.textContainer {
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.textContainer h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.textContainer h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #00684A; /* Green color */
+}
+
+.textContainer p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.textContainer ol,
+.textContainer ul {
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.textContainer ul {
+  list-style-type: disc;
+}
+
+.textContainer ol {
+  list-style-type: decimal;
+}
+
+.textContainer li {
+  margin-bottom: 10px;
+}
+
+.highlightSection {
+  background-color: #eafaf1; /* Very light green background */
+  border-left: 5px solid  #00684A; /* Green highlight */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.textContainer h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
 }
