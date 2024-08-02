@@ -3,8 +3,6 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styles from '../components/instructions.module.css';
 import ExpandableCard from "@leafygreen-ui/expandable-card";
-import { Callout } from '@leafygreen-ui/callout';
-import LeafyGreenProvider from "@leafygreen-ui/leafygreen-provider";
 
 export default function Instructions() {
   const router = useRouter();
