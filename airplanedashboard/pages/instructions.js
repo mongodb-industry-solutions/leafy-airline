@@ -1,7 +1,7 @@
 // pages/instructions.js
 import React from 'react';
 import { useRouter } from 'next/router';
-import styles from '../components/Backbutton.module.css';
+import styles from '../components/instructions.module.css';
 
 const fontStyle = {
   fontFamily: 'Lexend Deca, sans-serif',
@@ -15,12 +15,13 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.generalContainer}>
+    <div className={styles.contentContainer}>
       <button onClick={handleBack} className={styles.backButton}>
         Back
       </button>
       <div className={styles.textContainer}>
-        <h1 style={fontStyle}>Instructions for Using the Leafy Airline Dashboard</h1>
+        <h1 style={fontStyle}>Getting Started : Leafy Airline Dashboard</h1>
         
         <h2 style={fontStyle}>Overview</h2>
         <p style={fontStyle}>
@@ -89,6 +90,7 @@ export default function Home() {
           <li><strong>Regular Updates:</strong> Ensure your browser is up-to-date for the best experience.</li>
         </ul>
       </div>
+    </div>
     </div>
   );
 }

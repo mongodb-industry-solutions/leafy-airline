@@ -1,0 +1,41 @@
+
+/* Back button css specifications */
+.backButton {
+    padding: 10px 20px;
+    background-color: #00684A; /* Button background color */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded edges */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    font-family: 'Lexend Deca', sans-serif;
+  }
+  
+.backButton:hover {
+background-color: #004d34; /* Slightly darker green on hover */
+}
+
+.generalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Makes the container take up the full viewport height */
+  padding: 20px; /* Adds some padding around the container */
+  background-color: #f4f4f4; /* Optional: Adds a background color */
+}
+
+.contentContainer {
+  max-width: 900px; 
+  width: 100%; /* Ensures the container takes up the available width */
+  background-color: #fff; /* Optional: Adds a background color */
+  padding: 20px; /* Adds padding inside the container */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+.textContainer { 
+  padding: 20px;
+
+}
