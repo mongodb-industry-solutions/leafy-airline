@@ -118,7 +118,7 @@ async def start_scheduler(flight_info:dict):
     simulator = DataSimulator(flight_info["flight_id"],
                               disruption = disrupted,
                               path_atrib = path_data, 
-                              seconds_per_iter= 250)
+                              seconds_per_iter= 300)
     
     logging.info("Simulator created")
 
