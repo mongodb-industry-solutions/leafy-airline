@@ -44,7 +44,7 @@ logging.basicConfig(
 )
 
 # SCHEDULER : Calls my function (simulator) every x seconds
-measurement_interval = 5
+measurement_interval = 2.5
 scheduler = BackgroundScheduler()
 scheduler_active = False
 # resume_needed = False
@@ -118,7 +118,7 @@ async def start_scheduler(flight_info:dict):
     simulator = DataSimulator(flight_info["flight_id"],
                               disruption = disrupted,
                               path_atrib = path_data, 
-                              seconds_per_iter= 200)
+                              seconds_per_iter= 250)
     
     logging.info("Simulator created")
 

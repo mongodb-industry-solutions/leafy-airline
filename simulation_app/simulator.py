@@ -212,8 +212,6 @@ class DataSimulator:
 
         if not self.arrived:
 
-            print('\nNew measurements: ')
-
             # Distance to next point in km
             distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
 
@@ -237,10 +235,7 @@ class DataSimulator:
             # new_heading = (np.degrees(np.arctan2(unit_vector[1], unit_vector[0])) + 360) % 360
             distance_to_arrival = self.dist_to_arrival(new_loc)
             new_dist_to_head = self.get_real_distance(new_loc, self.headed_point)
-
-            print('Distance to headed: ', new_dist_to_head)
-            print('Distance to arrival: ', distance_to_arrival)
-
+            
             # Compute new speed 
             new_speed = self.SpController.get_new_speed(distance_to_arrival)
             
