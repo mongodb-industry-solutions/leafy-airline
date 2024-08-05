@@ -10,7 +10,8 @@ import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
 
 // const app_url = "http://127.0.0.1:8000/";
-const app_url = "https://simulation-app-limitedaccess-65jcrv6puq-ew.a.run.app/"
+// const app_url = "https://simulation-app-limitedaccess-65jcrv6puq-ew.a.run.app/"
+const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/"
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
