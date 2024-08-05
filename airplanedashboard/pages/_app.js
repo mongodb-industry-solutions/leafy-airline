@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }) {
       } catch (error) {
         console.error('Error initializing Socket.IO and change stream:', error);
       }
+      
     };
     startSocket();
   }, []);
