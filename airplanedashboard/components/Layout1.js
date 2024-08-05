@@ -14,7 +14,7 @@ import PlaneIcon from '../public/plane-solid.svg';
 // const app_url = "https://simulation-app2-65jcrv6puq-ew.a.run.app/"
 // const app_url = "https://simulation-app3-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-freeaccess-65jcrv6puq-ew.a.run.app/"
-const app_url = "https://simulation-app-limitedaccess-65jcrv6puq-ew.a.run.app/"
+const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/"
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
