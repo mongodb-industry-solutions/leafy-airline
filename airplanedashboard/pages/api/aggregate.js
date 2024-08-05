@@ -91,7 +91,7 @@ export async function runAggregation() {
 // Create a cron job to run the aggregation every 5 seconds
 cron.schedule('*/5 * * * * *', runAggregation);
 
-export async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     // Start the cron job
     res.status(200).json({ message: 'Scheduler started' });
