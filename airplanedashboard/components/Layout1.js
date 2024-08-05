@@ -27,6 +27,7 @@ const Layout1 = ({ children }) => {
   const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
+  const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -80,17 +81,38 @@ const Layout1 = ({ children }) => {
       if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
         setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
       }
-      if (alert && alert.Latitude !== undefined && alert.Longitude !== undefined) {
-        const position = { lat: alert.Latitude, lng: alert.Longitude };
-        setAirplanePosition(position); // Update the airplane position
-        setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
-      }
+      //if (alert && alert.Latitude !== undefined && alert.Longitude !== undefined) {
+       // const position = { lat: alert.Latitude, lng: alert.Longitude };
+       // setAirplanePosition(position); // Update the airplane position
+       // setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
+     //}
     });
-
     return () => {
       socket.off('alert');
     };
   }, []);
+
+  useEffect(() => {
+    if (!fetchingStarted) return;
+
+    // Fetch the newest document every 5 seconds for position updates
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch('/api/fetchNewestDocument');
+        const data = await response.json();
+        console.log('Fetched Data:', data);
+        if (data && data.mostRecentLat !== undefined && data.mostRecentLong !== undefined) {
+          const position = { lat: data.mostRecentLat, lng: data.mostRecentLong };
+          setAirplanePosition(position); // Update the airplane position
+          setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
+        }
+      } catch (error) {
+        console.error('Error fetching the newest document:', error);
+      }
+    }, 5000); // Fetch every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [fetchingStarted]);
 
   const startSimulation = async () => {
     console.log('Starting sim');
@@ -126,6 +148,11 @@ const Layout1 = ({ children }) => {
         console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
       }
 
+      // Delay the start of fetching newest document
+      setTimeout(() => {
+        setFetchingStarted(true);
+      }, 10000); // 10 seconds delay
+
     } catch (error) {
       console.error('Error starting process:', error);
     }
@@ -143,6 +170,19 @@ const Layout1 = ({ children }) => {
       });
       const data = await response.json();
       console.log(data);
+      
+      // Clear flight path and stop fetching
+      setFlightPath([]);
+      setFetchingStarted(false);
+
+      // Move airplane to departure position
+      if (selectedFlight) {
+        const departurePosition = {
+          lat: selectedFlight.dep_arp.geo_loc.lat,
+          lng: selectedFlight.dep_arp.geo_loc.long
+        };
+        setAirplanePosition(departurePosition); // Reset airplane position
+      }
     } catch (error) {
       console.error('Error resetting process:', error);
     }
@@ -180,7 +220,6 @@ const Layout1 = ({ children }) => {
         <ul className={styles.navList}>
           <li className={styles.navItem}>
             <Link href="/" passHref legacyBehavior>
-            {/* Clicking in Flights to go back will trigger resetSimulation to allow the simulation to start again */}
               <a className={`${styles.navLink} ${router.pathname === '/' ? styles.activeLink : ''}`} onClick={resetSimulation}>Flights</a>
             </Link>
           </li>
@@ -196,35 +235,31 @@ const Layout1 = ({ children }) => {
         <div className={styles.containersecond}>
           {/* Flight Overview Box */}
           <div className={styles.flightOverviewBox}>
-          <h3>Flight Overview</h3>
-{selectedFlight ? (
-  <>
-    <div className={styles.innerBox}>
-      <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
-      <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
-    </div>
-    <div className={delayTime !== null ? styles.delayBox : styles.noDelayBox}>
-      <p>Delay: {delayTime !== null ? `${delayTime * 60} minutes` : 'No delay'}</p>
-    </div>
-    <div className={styles.costContainer}>
-      <div className={styles.costBox}>
-        <h4>Delay Cost</h4>
-        <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'Simulation not Started'}</p>
-      </div>
-      <div className={styles.costBox}>
-        <h4>Fuel Cost</h4>
-        <p>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
-      </div>
-    </div>
-    
-  </>
-) : (
-  <p>Loading flight details...</p>
-)}
-
-
+            <h3>Flight Overview</h3>
+            {selectedFlight ? (
+              <>
+                <div className={styles.innerBox}>
+                  <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
+                  <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
+                </div>
+                <div className={delayTime !== null ? styles.delayBox : styles.noDelayBox}>
+                  <p>Delay: {delayTime !== null ? `${delayTime * 60} minutes` : 'No delay'}</p>
+                </div>
+                <div className={styles.costContainer}>
+                  <div className={styles.costBox}>
+                    <h4>Delay Cost</h4>
+                    <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'Simulation not Started'}</p>
+                  </div>
+                  <div className={styles.costBox}>
+                    <h4>Fuel Cost</h4>
+                    <p>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <p>Loading flight details...</p>
+            )}
           </div>
-          
 
           {/* Google Map Component */}
           <div className={styles.mapContainer}>
