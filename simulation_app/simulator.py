@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime
 import math
 from pyproj import CRS, Transformer
+import pytz
 
 # Define the WGS84 projection (latitude and longitude)
 wgs84 = CRS.from_epsg(4326)
@@ -183,7 +184,8 @@ class DataSimulator:
             self.headed_point = None
 
         return 
-
+    
+    
     def generate_data(self):
         '''
         This function will generate real-time simulated data based on the route that
@@ -240,6 +242,8 @@ class DataSimulator:
 
             print('Distance to headed: ', new_dist_to_head)
             print('Distance to arrival: ', distance_to_arrival)
+        
+            new_ts = datetime.now(pytz.utc)
 
             # Compute new speed 
             new_speed = self.SpController.get_new_speed(distance_to_arrival)
@@ -247,12 +251,12 @@ class DataSimulator:
             # Update every measurement
             self.prev_location = new_loc
             self.prev_speed = new_speed
-            self.timestamp = datetime.now()
+            self.timestamp = new_ts
 
 
         return (self.arrived, {
             "flight_id": self.FID,
-            "ts": self.timestamp.isoformat(),
+            "ts": new_ts.isoformat(),
             "path" : self.path,
             "disrupted" : self.disruption,
             "extra_length" : self.extra_length,
