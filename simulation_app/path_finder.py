@@ -100,23 +100,18 @@ def find_path(flight_info):
 
     # 3. Get initial path without disruption
     initial_path, initial_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
-    initial_path_points = create_path_points(airports, initial_path)
 
-    paths["path"] = initial_path_points
-    paths["extra_length"] = 0
+    # 4. Get disruption and new path points
+    simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
+    disrupted = True
 
-    # 4. Include a disruption between our source and end airports randomly
-    if np.random.randint(0,10) >= 5:
-        simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
-        disrupted = True
+    # 5. Find the shortest path between the departure and arrival airports
+    shortest_path, shortest_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
 
-        # 5. Find the shortest path between the departure and arrival airports
-        shortest_path, shortest_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
-
-        # Compute the coordinates for this new path points so the simulator can follow the new directions
-        new_path_points = create_path_points(airports, shortest_path)
-        paths["path"] = new_path_points
-        paths["extra_length"] = shortest_path_length - initial_path_length
+    # Compute the coordinates for this new path points so the simulator can follow the new directions
+    new_path_points = create_path_points(airports, shortest_path)
+    paths["path"] = new_path_points
+    paths["extra_length"] = shortest_path_length - initial_path_length
 
 
     return (disrupted, paths)

@@ -25,16 +25,16 @@ def callback(message):
     data_dict = json.loads(data_json)
 
     # Work with the dictionary fields
-    flight_id = data_dict.get("flight_id")
-    timestamp = data_dict.get("ts") + "Z"
-    location = data_dict.get("location")
+    # flight_id = data_dict.get("flight_id")
+    # timestamp = data_dict.get("ts") + "Z"
+    # location = data_dict.get("location")
 
-    # Create the new dict thats going to be sent to mongo
-    new_data = {"ts": { "$date": timestamp},
-                "flight_id" : flight_id, 
-                "location" : location}
+    # # Create the new dict thats going to be sent to mongo
+    # new_data = {"ts": { "$date": timestamp},
+    #             "flight_id" : flight_id, 
+    #             "location" : location}
 
-    print(f"New processed message : {new_data}")
+    print(f"Info as json.loads message : {data_json}")
 
     message.ack()
 

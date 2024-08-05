@@ -1,13 +1,10 @@
 // pages/instructions.js
 import React from 'react';
 import { useRouter } from 'next/router';
-import styles from '../components/Backbutton.module.css';
+import styles from '../components/instructions.module.css';
+import ExpandableCard from "@leafygreen-ui/expandable-card";
 
-const fontStyle = {
-  fontFamily: 'Lexend Deca, sans-serif',
-};
-
-export default function Home() {
+export default function Instructions() {
   const router = useRouter();
 
   const handleBack = () => {
@@ -15,80 +12,108 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
-      <button onClick={handleBack} className={styles.backButton}>
-        Back
-      </button>
-      <div className={styles.textContainer}>
-        <h1 style={fontStyle}>Instructions for Using the Leafy Airline Dashboard</h1>
-        
-        <h2 style={fontStyle}>Overview</h2>
-        <p style={fontStyle}>
-          The Leafy Airline Dashboard is designed for flight operations managers to efficiently manage and monitor flight information.
-          The application is built using Next.js and MongoDB, providing a user-friendly interface for searching, filtering, and viewing detailed flight information.
-        </p>
+    <div className={styles.generalContainer}>
+      <div className={styles.contentContainer}>
+        <button onClick={handleBack} className={styles.backButton}>
+          Back
+        </button>
+        <div className={styles.textContainer}>
+          <h1>Getting Started: Leafy Airline Dashboard</h1>
 
-        <h2 style={fontStyle}>Accessing the Dashboard</h2>
-        <ol style={fontStyle}>
-          <li><strong>Open the Application:</strong> Launch the Leafy Airline Dashboard in your web browser.</li>
-        </ol>
+          <div className={styles.nothighlightSection}>
+            <h2>Overview</h2>
+            <p>
+              The Leafy Airline Dashboard is designed for <strong>flight operations managers</strong> to efficiently manage and monitor flight information.<br />
+              The application is built using <strong>Next.js and MongoDB</strong>, providing a user-friendly interface for searching, filtering, and viewing detailed flight information.
+            </p>
+            <br/>
+          </div>
 
-        <h2 style={fontStyle}>Main Dashboard - Flights Overview</h2>
-        <ol style={fontStyle}>
-          <li><strong>Flight Information Tab:</strong> Upon logging in, you will be directed to the main dashboard.</li>
-          <li><strong>Search and Filter:</strong> Use the search bar at the top of the page to find specific flights. You can filter flights by:
-            <ul style={fontStyle}>
-              <li>Flight Date</li>
-              <li>Departure Time</li>
-              <li>Arrival Time</li>
-              <li>Departure Location</li>
-              <li>Arrival Airport Location</li>
+          <div className={styles.highlightSection}>
+            <h2>Before we start : Components </h2>
+            <div className={styles.componentBox}>
+            <br/>
+              <ExpandableCard
+                title="General Overview Tab"
+                description="This is the landing page where you can get a summary of flights, including quick access to various functions such as searching and filtering flights."
+                darkMode={false}>
+                  <p><strong>Filter Selection & SearchBar: </strong> These tools allow you to refine your search based on different criteria such as flight date, departure and arrival times, and locations</p>
+                  <p><strong>Flight Cards: </strong> This cards will display the basic information for each of the flights that meet the selected filters<br /></p>
+              </ExpandableCard>
+              <br/>
+              <ExpandableCard
+                title="Flight Information Tab"
+                description="This section displays detailed information about flights. You can view flights, sort them, and access specific details."
+                darkMode={false}>
+                  <p><strong>Simulation Controls: </strong> These controls enable you to start and reset flight simulations to analyze various flight scenarios.</p>
+              </ExpandableCard>
+              <br/>
+            </div>
+          </div>
+
+          <div className={styles.nothighlightSection}>
+          <h2>1. General Overview Tab </h2>
+            <p>Upon logging in, you will be directed to the main dashboard. Moreover, one can use the search bar at the top of the page to find specific flights. Filtering options include: </p>
+                <div className={styles.highlightSection}>
+                <ul>
+                  <li>Flight Date</li>
+                  <li>Departure Time</li>
+                  <li>Arrival Time</li>
+                  <li>Departure Location</li>
+                  <li>Arrival Airport Location</li>
+                </ul>
+                </div>
+            </div>
+
+          <div className={styles.nothighlightSection}>
+            <h2>2. How to Use the Flight Information Tab</h2>
+            <ul className={styles.instructionList}>
+              <li className={styles.instructionBox}>
+                <h4>Viewing Flight Overview</h4>
+                <p>
+                  Upon selecting a flight, you will see detailed information about it. This includes departure and arrival cities, times, and any potential delays or costs associated with the flight.
+                </p>
+              </li>
+              <li className={styles.instructionBox}>
+                <h4>Using the Simulation Controls</h4>
+                <p>
+                  The simulation controls at the bottom of the page allow you to start, pause, or reset the flight simulation. Use the following buttons to control the flight simulation:
+                </p>
+                <ul>
+                  <li><strong>Start Simulation:</strong> Click this button to start the simulation for the flight.</li>
+                  <li><strong>Reset Simulation:</strong> Click this button to reset the simulation to its initial state.</li>
+                </ul>
+              </li>
+              <li className={styles.instructionBox}>
+                <h4>Checking Delay and Cost Details</h4>
+                <p>
+                  The tab displays the delay time (if any) and associated costs, such as delay cost and fuel cost. This information is updated in real-time based on the simulation data.
+                </p>
+              </li>
+              <li className={styles.instructionBox}>
+                <h4>Viewing the Flight Path on the Map</h4>
+                <p>
+                  The Google Map on this tab shows the flight path, including markers for the departure and arrival locations.<br/>The airplane's current position and flight path are updated as the simulation progresses.
+                </p>
+              </li>
+              <li className={styles.instructionBox}>
+                <h4>Navigating Between Tabs</h4>
+                <p>
+                  Use the navigation links to switch between the Flight Overview tab and other sections of the dashboard. This allows you to seamlessly explore different functionalities and information.
+                </p>
+              </li>
             </ul>
-          </li>
-        </ol>
+          </div>
 
-        <h2 style={fontStyle}>Viewing Detailed Flight Information</h2>
-        <ol style={fontStyle}>
-          <li><strong>Select a Flight:</strong> Click on the "View Flight" button next to the flight you are interested in. This will take you to the flight detail page.</li>
-        </ol>
-
-        <h2 style={fontStyle}>Flight Detail Page</h2>
-        <p style={fontStyle}>
-          This section provides detailed information about the selected flight, including:
-        </p>
-        <ul style={fontStyle}>
-          <li>Departure City</li>
-          <li>Arrival City</li>
-          <li>Departure Time</li>
-          <li>Arrival Time</li>
-          <li>Arrival Delay Time</li>
-          <li>Flight Delay Cost</li>
-          <li>Fuel Cost</li>
-        </ul>
-        <p style={fontStyle}>
-          On the right side of the page, a Google Map API will display the departure and arrival cities for the selected flight.
-        </p>
-
-        <h2 style={fontStyle}>Simulation Controls</h2>
-        <p style={fontStyle}>
-          Use the following buttons to control the flight simulation:
-        </p>
-        <ul style={fontStyle}>
-          <li><strong>Start Simulation:</strong> Click this button to start the simulation for the flight.</li>
-          <li><strong>Pause Simulation:</strong> Click this button to pause the simulation.</li>
-          <li><strong>Reset Simulation:</strong> Click this button to reset the simulation to its initial state.</li>
-        </ul>
-
-        <h2 style={fontStyle}>Navigation</h2>
-        <p style={fontStyle}>
-          At the bottom of the flight detail page, there is a toggle button that will take you back to the main dashboard (first page) where you can search and filter other flights.
-        </p>
-
-        <h2 style={fontStyle}>Additional Tips</h2>
-        <ul style={fontStyle}>
-          <li><strong>Regular Updates:</strong> Ensure your browser is up-to-date for the best experience.</li>
-        </ul>
+          <div className={styles.highlightSection}>
+            <h2>Additional Tips & Comments</h2>
+            <ul>
+              <li><strong>Regular Updates:</strong> Ensure your browser is up-to-date for the best experience.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
