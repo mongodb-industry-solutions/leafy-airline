@@ -100,7 +100,6 @@ def find_path(flight_info):
 
     # 3. Get initial path without disruption
     initial_path, initial_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
-    initial_path_points = create_path_points(airports, initial_path)
 
     # 4. Get disruption and new path points
     simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
