@@ -208,6 +208,11 @@ const Layout1 = ({ children }) => {
         };
         setAirplanePosition(departurePosition); // Reset airplane position
       }
+
+      // Reset delay, delay cost, and fuel cost
+      setDelayTime(null);
+      setDelayCost(null);
+      setFuelCostPerHour(null)
     } catch (error) {
       console.error('Error resetting process:', error);
     }
