@@ -69,7 +69,7 @@ const Layout1 = ({ children }) => {
     socket.on('alert', (alert) => {
       console.log('Alert received:', alert);
       if (alert && alert.Delay_Time !== undefined) {
-        setDelayTime(Math.round(alert.Delay_Time)); // Round the delay time before setting it
+        setDelayTime(alert.Delay_Time); // Round the delay time before setting it
       }
       if (alert && alert.Delay_Cost !== undefined) {
         setDelayCost(alert.Delay_Cost); // Set the delay cost
@@ -238,7 +238,7 @@ const Layout1 = ({ children }) => {
         <div className={styles.flightInfo}>
           <h1 className={styles.flightID}>
             <span className={styles.flightIdGreen}>Flight ID: </span>
-            <span className={styles.flightIdBlack}>{selectedFlight ? selectedFlight._id : 'Loading...'}</span>
+            <span className={styles.flightIdBlack}>{selectedFlight ? selectedFlight.flight_number : 'Loading...'}</span>
           </h1>
           <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
         </div>
@@ -264,9 +264,10 @@ const Layout1 = ({ children }) => {
                   <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
                   <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
                 </div>
-                <div className={delayTime !== null ? styles.delayBox : styles.noDelayBox}>
-                  <p>Delay: {delayTime !== null ? `${delayTime * 60} minutes` : 'No delay'}</p>
+                <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
+                  <p>Delay: {delayTime === 0 || delayTime === null ? 'No delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
                 </div>
+
                 <div className={styles.costContainer}>
                   <div className={styles.costBox}>
                     <h4>Delay Cost</h4>
