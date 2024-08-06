@@ -149,22 +149,30 @@ margin-bottom: 1rem;
 }
 
 .filterbuttonSection{
-  display: flex;
-  justify-content: center;
   gap: 10px; 
   width: 100%; 
-  padding-top: 50px;
+  padding-top: 25px;
 }
 
-.filterButton {
-  width: 35%;
+.applyfilterButton {
+  width: 100%;
+  margin: 10px 0;
   align-self: center;
   justify-content: center;
 }
 
-
-.filterButton :hover{
+.applyfilterButton :hover{
   background-color : #00684A;
+  color: white;
+}
+
+.resetfilterButton {
+  width: 35%;
+  margin-left: auto;
+}
+
+.resetfilterButton :hover{
+  background-color : #940603;
   color: white;
 }
 
