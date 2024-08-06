@@ -25,6 +25,13 @@
   font-size: 0.9rem; 
 }
 
+.rightheaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap : 20px;
+}
+
 .flightInfo {
   display: flex;
   flex-direction: column;

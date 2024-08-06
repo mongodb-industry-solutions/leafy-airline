@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
+import { Option, OptionGroup, Select, Size } from '@leafygreen-ui/select';
 import { Combobox, ComboboxOption } from '@leafygreen-ui/combobox'
 
 
@@ -172,19 +173,17 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       <h2>Filter Selection</h2>
       <SeparationBar />
 
-      <Combobox
-        className={styles.filterCombobox}
+      <Select
         label="Flight date"
-        placeholder= {"Current date : " + String(selectedDate)}
-        initialValue={[]}
-        multiselect={false}
-        overflow={"expand-y"}
+        placeholder= "Select the date"
+        defaultValue= {selectedDate}
+        size={Size.Default}
         onChange={(e) => handleDateChange(setSelectedDate, e)}
       >
         {dates_list.map((option) => (
-          <ComboboxOption key={option} value={option} />
+          <Option key={option} value={option}>{option}</Option>
         ))}
-      </Combobox>
+      </Select>
 
       <SeparationBar />
       <TimeSlider
@@ -198,32 +197,31 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
         setter={setArrivalTime}
       ></TimeSlider>
       <SeparationBar />
-      <Combobox
-        className={styles.filterCombobox}
+
+      <Select
         label="Departure Location"
         placeholder="Select departure airport"
-        initialValue={[]}
-        multiselect={false}
-        overflow={"expand-y"}
+        defaultValue= ""
+        size={Size.Default}
         onChange={(e) => handleAirportChanges(setSelectedDeparture, e)}
       >
         {airports_list.map((option) => (
-          <ComboboxOption key={option} value={option} />
+          <Option key={option} value={option}>{option}</Option>
         ))}
-      </Combobox>
-      <Combobox
-        className={styles.filterCombobox}
+      </Select>
+
+      <Select
         label="Arrival Location"
         placeholder="Select arrival airport"
-        initialValue={[]}
-        multiselect={false}
-        overflow={"expand-y"}
+        defaultValue= ""
+        size={Size.Default}
         onChange={(e) => handleAirportChanges(setSelectedArrival, e)}
       >
         {airports_list.map((option) => (
-          <ComboboxOption key={option} value={option} />
+          <Option key={option} value={option}>{option}</Option>
         ))}
-      </Combobox>
+      </Select>
+
       <div className={styles.filterbuttonSection}>
         <Button className={styles.filterButton} children = 'Apply Filters' onClick={applyFilters} ></Button>
         <Button className={styles.filterButton} children = 'Reset Filters' onClick={resetFilters} ></Button>
