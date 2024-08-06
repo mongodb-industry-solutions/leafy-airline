@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
@@ -9,9 +8,7 @@ import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api'
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
 
-// const app_url = "http://127.0.0.1:8000/";
-// const app_url = "https://simulation-app-freeaccess-65jcrv6puq-ew.a.run.app/"
-const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/"
+const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
@@ -78,11 +75,6 @@ const Layout1 = ({ children }) => {
       if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
         setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
       }
-      //if (alert && alert.Latitude !== undefined && alert.Longitude !== undefined) {
-       // const position = { lat: alert.Latitude, lng: alert.Longitude };
-       // setAirplanePosition(position); // Update the airplane position
-       // setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
-     //}
     });
     return () => {
       socket.off('alert');
@@ -185,6 +177,11 @@ const Layout1 = ({ children }) => {
     }
   };
 
+  const handleBackClick = () => {
+    resetSimulation();
+    router.push('/');
+  };
+
   const mapContainerStyle = {
     width: '100%',
     height: '400px'
@@ -211,23 +208,16 @@ const Layout1 = ({ children }) => {
           <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
         </div>
         <Logo className={styles.logo} />
-      </header>
+      
 
+      </header>
       <nav className={styles.nav}>
-        <ul className={styles.navList}>
-          <li className={styles.navItem}>
-            <Link href="/" passHref legacyBehavior>
-              <a className={`${styles.navLink} ${router.pathname === '/' ? styles.activeLink : ''}`} onClick={resetSimulation}>Flights</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/index1" passHref legacyBehavior>
-              <a className={`${styles.navLink} ${router.pathname === '/index1' ? styles.activeLink : ''}`}>Flight Overview</a>
-            </Link>
-          </li>
-        </ul>
+          <button className={styles.greenButton} onClick={handleBackClick}>
+            <span className={styles.arrowIcon}>&larr;</span> Back to Flights
+          </button>
       </nav>
 
+      
       <div className={styles.main}>
         <div className={styles.containersecond}>
           {/* Flight Overview Box */}
@@ -295,7 +285,6 @@ const Layout1 = ({ children }) => {
                             url: '/plane-solid.svg',
                             scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
                           }}
-                          /*label="Airplane"*/
                         />
                       )}
                       {/* Polyline for flight path */}
@@ -321,8 +310,8 @@ const Layout1 = ({ children }) => {
             )}
 
             <div className={styles.simulationbuttonSection}>
-              <Button className={styles.simulationButton} children='Start Simulation' onClick={startSimulation}></Button>
-              <Button className={styles.reset_simulationButton} children='Reset Simulation' onClick={resetSimulation}></Button>
+              <Button className={styles.simulationButton} onClick={startSimulation}>Start Simulation</Button>
+              <Button className={styles.reset_simulationButton} onClick={resetSimulation}>Reset Simulation</Button>
             </div>
           </div>
         </div>
