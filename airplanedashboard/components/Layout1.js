@@ -22,8 +22,8 @@ const Layout1 = ({ children }) => {
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
+  const [loading, setLoading] = useState(false); // State for loading
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
-
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -88,19 +88,18 @@ const Layout1 = ({ children }) => {
     const lon1 = from.lng * Math.PI / 180;
     const lat2 = to.lat * Math.PI / 180;
     const lon2 = to.lng * Math.PI / 180;
-  
+
     const dLon = lon2 - lon1;
     const y = Math.sin(dLon) * Math.cos(lat2);
     const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
-  
+
     const heading = Math.atan2(y, x) * 180 / Math.PI;
     return (heading + 360) % 360; // Normalize to 0-360
   };
-  
 
   useEffect(() => {
     if (!fetchingStarted) return;
-  
+
     const interval = setInterval(async () => {
       try {
         const response = await fetch('/api/fetchNewestDocument');
@@ -108,25 +107,25 @@ const Layout1 = ({ children }) => {
         console.log('Fetched Data:', data);
         if (data && data.mostRecentLat !== undefined && data.mostRecentLong !== undefined) {
           const newPosition = { lat: data.mostRecentLat, lng: data.mostRecentLong };
-  
+
           if (prevAirplanePosition) {
             const heading = calculateHeading(prevAirplanePosition, newPosition);
             setAirplanePosition({ ...newPosition, heading });
           } else {
             setAirplanePosition(newPosition);
           }
-  
+
           setFlightPath(prevPath => [...prevPath, newPosition]); // Append to flight path
           setPrevAirplanePosition(newPosition); // Update previous position
         }
       } catch (error) {
         console.error('Error fetching the newest document:', error);
       }
-    }, 2500); // Fetch every 5 seconds
-  
+    }, 2500); // Fetch every 2.5 seconds
+
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);
-  
+
   const getAirplaneIcon = () => {
     if (airplanePosition) {
       const { heading } = airplanePosition;
@@ -136,9 +135,9 @@ const Layout1 = ({ children }) => {
     }
     return '/plane-solid.svg'; // URL for default plane icon
   };
-  
 
   const startSimulation = async () => {
+    setLoading(true); // Set loading to true
     console.log('Starting sim');
 
     const start_url = app_url + "start-scheduler";
@@ -175,10 +174,12 @@ const Layout1 = ({ children }) => {
       // Delay the start of fetching newest document
       setTimeout(() => {
         setFetchingStarted(true);
-      }, 3000); // 10 seconds delay
+        setLoading(false); // Set loading to false after delay
+      }, 3000); // 3 seconds delay
 
     } catch (error) {
       console.error('Error starting process:', error);
+      setLoading(false); // Set loading to false if there is an error
     }
   };
 
@@ -243,16 +244,13 @@ const Layout1 = ({ children }) => {
           <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
         </div>
         <Logo className={styles.logo} />
-      
-
       </header>
       <nav className={styles.nav}>
-          <button className={styles.greenButton} onClick={handleBackClick}>
-            <span className={styles.arrowIcon}>&larr;</span> Back to Flights
-          </button>
+        <button className={styles.greenButton} onClick={handleBackClick}>
+          <span className={styles.arrowIcon}>&larr;</span> Back to Flights
+        </button>
       </nav>
 
-      
       <div className={styles.main}>
         <div className={styles.containersecond}>
           {/* Flight Overview Box */}
@@ -286,65 +284,65 @@ const Layout1 = ({ children }) => {
 
           {/* Google Map Component */}
           <div className={styles.mapContainer}>
-            {apiKey ? (
-              <LoadScript googleMapsApiKey={apiKey}>
-                <GoogleMap
-                  mapContainerStyle={{ width: '100%', height: '85%' }}
-                  center={airplanePosition || depCoords} // Center map on airplane position or departure point
-                  zoom={5}
-                >
-                  {/* Departure Marker */}
-                  {selectedFlight && (
-                    <>
+          {apiKey ? (
+          <div style={{ position: 'relative', width: '100%', height: '85%' }}>
+            <LoadScript googleMapsApiKey={apiKey}>
+              <GoogleMap
+                mapContainerStyle={{ width: '100%', height: '100%' }}
+                center={airplanePosition || depCoords}
+                zoom={5}
+              >
+                {/* Departure Marker */}
+                {selectedFlight && (
+                  <>
+                    <Marker
+                      position={depCoords}
+                      label={`Departure: ${selectedFlight.dep_arp.city}`}
+                    />
+                    <Marker
+                      position={arrCoords}
+                      label={`Arrival: ${selectedFlight.arr_arp.city}`}
+                    />
+                    <Polyline
+                      path={[depCoords, arrCoords]}
+                      options={{
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                      }}
+                    />
+                    {airplanePosition && (
                       <Marker
-                        position={depCoords}
-                        label={`Departure: ${selectedFlight.dep_arp.city}`}
-                      />
-                      <Marker
-                        position={arrCoords}
-                        label={`Arrival: ${selectedFlight.arr_arp.city}`}
-                      />
-                      {/* Line between departure and arrival */}
-                      <Polyline
-                        path={[depCoords, arrCoords]}
-                        options={{
-                          strokeColor: '#FF0000',
-                          strokeOpacity: 1.0,
-                          strokeWeight: 2
+                        position={airplanePosition}
+                        icon={{
+                          url: getAirplaneIcon(),
+                          scaledSize: new google.maps.Size(32, 32),
                         }}
                       />
-                      {/* Airplane Marker */}
-                      {airplanePosition && (
-                        <Marker
-                          position={airplanePosition}
-                          icon={{
-                            url: getAirplaneIcon(),
-                            scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
-                          }}
-                        />
-                      )}
+                    )}
+                    <Polyline
+                      path={flightPath}
+                      options={{
+                        strokeColor: '#023430',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        icons: [{
+                          icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
+                          offset: '100%',
+                          repeat: '20px'
+                        }]
+                      }}
+                    />
+                  </>
+                )}
+              </GoogleMap>
+            </LoadScript>
+            {loading && <div className={styles.loadingOverlay}>Loading...</div>}
+          </div>
+        ) : (
+          <p>Loading map...</p>
+        )}
 
-                      {/* Polyline for flight path */}
-                      <Polyline
-                        path={flightPath}
-                        options={{
-                          strokeColor: '#023430',
-                          strokeOpacity: 0.8,
-                          strokeWeight: 2,
-                          icons: [{
-                            icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
-                            offset: '100%',
-                            repeat: '20px'
-                          }]
-                        }}
-                      />
-                    </>
-                  )}
-                </GoogleMap>
-              </LoadScript>
-            ) : (
-              <p>Loading map...</p>
-            )}
 
             <div className={styles.simulationbuttonSection}>
               <Button className={styles.simulationButton} onClick={startSimulation}>Start Simulation</Button>
@@ -353,7 +351,8 @@ const Layout1 = ({ children }) => {
           </div>
         </div>
         {/* Main Content */}
-        {children}
+        
+
       </div>
     </div>
   );

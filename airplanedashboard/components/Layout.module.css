@@ -507,3 +507,24 @@ margin-bottom: 1rem;
   font-size: 16px; /* Adjust size as needed */
   margin-right: 8px; /* Space between arrow and text */
 }
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  z-index: 10; /* Ensure it overlays other elements */
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.mapContainerWrapper {
+  position: relative;
+  width: 100%;
+  height: 85%; /* Adjust the height as needed */
+}

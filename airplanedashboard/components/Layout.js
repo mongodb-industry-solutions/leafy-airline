@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
           <span>Flight Operations Manager</span>
         </div>
         <div className={headerStyles.title_container}>
-          <h1>Leafy Airline Dashboard</h1>
+          <h1>Leafy Air</h1>
         </div>
         <div className={headerStyles.logo_container}>
         <a href="/instructions" className={headerStyles.infoButton}>Instructions of Use</a>
