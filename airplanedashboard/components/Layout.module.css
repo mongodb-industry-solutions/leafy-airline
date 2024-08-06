@@ -25,6 +25,7 @@
   font-size: 0.9rem; 
 }
 
+
 .rightheaderContainer {
   display: flex;
   justify-content: center;
@@ -137,24 +138,24 @@ margin-bottom: 1rem;
 .filterTimeSlider div{
   font-weight: bold;
   font-size: 17px;
+  padding-left: 5px;
 }
 
 .filterTimeSlider input {
   width: 100%;
 }
 
-.filterCombobox {
-  width: 95%;
+.filterSelect {
+  width: 100%;
   margin-top: 5px;
   padding: 5px;
 }
 
-.filterCombobox label{
+.filterSelect label{
   font-family: 'Lexend Deca', sans-serif;
   font-size : 17px;
   padding: 5px;
 }
-
 
 .filterbuttonSection{
   display: flex;

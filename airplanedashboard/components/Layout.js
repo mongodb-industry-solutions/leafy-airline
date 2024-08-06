@@ -18,7 +18,8 @@ const Layout = ({ children }) => {
           <a href="/instructions" className={headerStyles.infoButton}>Instructions of Use</a>
           <div className={headerStyles.icon_container}>
             <Icon glyph='Person' fill="#00684A" size='xlarge'/>
-            <span>Flight Operations Manager</span>
+            <span>Francesco Baldissera</span>
+            <span>FO. Manager</span>
           </div>
         </div>
       </header>

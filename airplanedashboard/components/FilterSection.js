@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
 import { Option, OptionGroup, Select, Size } from '@leafygreen-ui/select';
-import { Combobox, ComboboxOption } from '@leafygreen-ui/combobox'
 
 
 const TimeSlider = ({label, state, setter}) => {
@@ -57,8 +56,8 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
   const [selectedDate, setSelectedDate] = useState(dates_list[0]);
   const [departureTime, setDepartureTime] = useState('00:00');
   const [arrivalTime, setArrivalTime] = useState('00:00');
-  const [selectedDeparture, setSelectedDeparture] = useState([]);
-  const [selectedArrival, setSelectedArrival] = useState([]);
+  const [selectedDeparture, setSelectedDeparture] = useState('');
+  const [selectedArrival, setSelectedArrival] = useState('');
   const initial_filters = {}
 
   
@@ -86,6 +85,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
 
   const applyFilters = () => {
     console.log('Applying filters')
+    console.log(filters)
 
     // Get the parsed time
     const dep_time = convertTimeToISO(departureTime);
@@ -122,27 +122,34 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       setSelectedDate(dates_list[0])
       setDepartureTime('00:00')
       setArrivalTime('00:00')
-      setSelectedDeparture([])
-      setSelectedArrival([])
+      setSelectedDeparture('')
+      setSelectedArrival('')
       setFilters(initial_filters)
 
       // Fetch data without params
       fetchResults(initial_filters)
+      console.log(filters)
   };
 
   const handleAirportChanges = (setter, value) => {
 
     if (value == null){
-      setter([])
+      setter([]);
     }
     else{
-      value = String(value)
+      value = String(value);
       const new_val = value.substring(0, 3);
       setter(new_val);
     }
-    
-    return
   }
+
+  const handleArrivalChange = (e) => {
+    setSelectedArrival(e);
+  };
+
+  const handleDepartureChange = (e) => {
+    setSelectedDeparture(e);
+  };
 
   const handleDateChange = (setter, value) => {
     if (value == null) {
@@ -151,7 +158,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
     else {
       setter(value)
     }
-    return
+    
   }
 
   const convertTimeToISO = (timeString) => {
@@ -174,6 +181,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       <SeparationBar />
 
       <Select
+        className={styles.filterSelect}
         label="Flight date"
         placeholder= "Select the date"
         defaultValue= {selectedDate}
@@ -199,11 +207,12 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       <SeparationBar />
 
       <Select
+        className={styles.filterSelect}
         label="Departure Location"
         placeholder="Select departure airport"
         defaultValue= ""
         size={Size.Default}
-        onChange={(e) => handleAirportChanges(setSelectedDeparture, e)}
+        onChange={handleDepartureChange}
       >
         {airports_list.map((option) => (
           <Option key={option} value={option}>{option}</Option>
@@ -211,11 +220,12 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       </Select>
 
       <Select
+        className={styles.filterSelect}
         label="Arrival Location"
         placeholder="Select arrival airport"
         defaultValue= ""
         size={Size.Default}
-        onChange={(e) => handleAirportChanges(setSelectedArrival, e)}
+        onChange={handleArrivalChange}
       >
         {airports_list.map((option) => (
           <Option key={option} value={option}>{option}</Option>
