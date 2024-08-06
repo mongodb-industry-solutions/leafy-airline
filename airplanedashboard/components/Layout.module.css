@@ -129,7 +129,7 @@ margin-bottom: 1rem;
 
 .filterTimeSlider div{
   font-weight: bold;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .filterTimeSlider input {
@@ -144,37 +144,31 @@ margin-bottom: 1rem;
 
 .filterCombobox label{
   font-family: 'Lexend Deca', sans-serif;
-  font-size : 20px;
+  font-size : 17px;
   padding: 5px;
 }
 
+
 .filterbuttonSection{
+  display: flex;
+  justify-content: center;
   gap: 10px; 
   width: 100%; 
-  padding-top: 25px;
+  padding-top: 50px;
 }
 
-.applyfilterButton {
-  width: 100%;
-  margin: 10px 0;
+.filterButton {
+  font-size: 12px;
+  width: 50%;
   align-self: center;
   justify-content: center;
 }
 
-.applyfilterButton :hover{
+.filterButton :hover{
   background-color : #00684A;
   color: white;
 }
 
-.resetfilterButton {
-  width: 35%;
-  margin-left: auto;
-}
-
-.resetfilterButton :hover{
-  background-color : #940603;
-  color: white;
-}
 
 .simulationbuttonSection{
   display: flex;
