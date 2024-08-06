@@ -174,7 +174,7 @@ margin-bottom: 1rem;
   justify-content: center;
   gap: 10px; 
   width: 100%;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 .simulationButton {
@@ -236,7 +236,7 @@ margin-bottom: 1rem;
     border-radius: 25px; /* Round the edges */
     border: 1px solid #ccc; /* Add a border */
     margin-bottom: 10px; /* Space between input and button */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    box-sizing: border-box; 
   }
   
   .searchBar button {
@@ -349,14 +349,19 @@ margin-bottom: 1rem;
 }
 
 .mapContainer {
-  background-color: #ffffff; /* Example background color */
-  margin-top: 100px;
-  width: 60%; /* Adjust width as needed */
-  height: 400px;
+  background-color: #ffffff;
+  width: 65%; /* Adjust width as needed */
+  height: 65vh; /* Ensure the map has the same height as the flight overview box */
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   flex-shrink: 0; /* Prevent shrinking */
-  float: right;
+  margin-top: 1rem;
+  padding: 1rem;
 }
+
+.mapWrapper {
+  flex: 1 1 70%; /* Make wrapper take around 70% of the container's height */
+}
+
 
 .containersecond{
   display: flex; /* Aligns child elements horizontally */

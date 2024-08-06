@@ -253,7 +253,7 @@ const Layout1 = ({ children }) => {
             {apiKey ? (
               <LoadScript googleMapsApiKey={apiKey}>
                 <GoogleMap
-                  mapContainerStyle={mapContainerStyle}
+                  mapContainerStyle={{ width: '100%', height: '85%' }}
                   center={airplanePosition || depCoords} // Center map on airplane position or departure point
                   zoom={5}
                 >
