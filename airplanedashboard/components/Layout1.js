@@ -7,6 +7,7 @@ import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
+import Image from 'next/image';
 
 const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 
@@ -248,7 +249,14 @@ const Layout1 = ({ children }) => {
           </h1>
           <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
         </div>
-        <Logo className={styles.logo} />
+        {/*<Logo className={styles.logo} />*/}
+        <Image
+          src="/leafylogo.svg" // Path to your SVG in the public directory
+          alt="Leafy Logo"
+          width={100} // Specify the width of the image
+          height={50} // Specify the height of the image
+          className={styles.logo} // Apply any relevant styles
+        />
       </header>
       <nav className={styles.nav}>
         <button className={styles.greenButton} onClick={handleBackClick}>
@@ -356,8 +364,7 @@ const Layout1 = ({ children }) => {
           </div>
         </div>
         {/* Main Content */}
-        
-
+        <Logo className={styles.logo} />
       </div>
     </div>
   );

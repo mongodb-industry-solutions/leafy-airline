@@ -365,9 +365,6 @@ margin-bottom: 1rem;
   padding: 1rem;
 }
 
-.mapWrapper {
-  flex: 1 1 70%; /* Make wrapper take around 70% of the container's height */
-}
 
 
 .containersecond{
