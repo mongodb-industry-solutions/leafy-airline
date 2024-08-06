@@ -22,6 +22,8 @@ const Layout1 = ({ children }) => {
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
+  const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
+
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -81,27 +83,60 @@ const Layout1 = ({ children }) => {
     };
   }, []);
 
+  const calculateHeading = (from, to) => {
+    const lat1 = from.lat * Math.PI / 180;
+    const lon1 = from.lng * Math.PI / 180;
+    const lat2 = to.lat * Math.PI / 180;
+    const lon2 = to.lng * Math.PI / 180;
+  
+    const dLon = lon2 - lon1;
+    const y = Math.sin(dLon) * Math.cos(lat2);
+    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+  
+    const heading = Math.atan2(y, x) * 180 / Math.PI;
+    return (heading + 360) % 360; // Normalize to 0-360
+  };
+  
+
   useEffect(() => {
     if (!fetchingStarted) return;
-
-    // Fetch the newest document every 5 seconds for position updates
+  
     const interval = setInterval(async () => {
       try {
         const response = await fetch('/api/fetchNewestDocument');
         const data = await response.json();
         console.log('Fetched Data:', data);
         if (data && data.mostRecentLat !== undefined && data.mostRecentLong !== undefined) {
-          const position = { lat: data.mostRecentLat, lng: data.mostRecentLong };
-          setAirplanePosition(position); // Update the airplane position
-          setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
+          const newPosition = { lat: data.mostRecentLat, lng: data.mostRecentLong };
+  
+          if (prevAirplanePosition) {
+            const heading = calculateHeading(prevAirplanePosition, newPosition);
+            setAirplanePosition({ ...newPosition, heading });
+          } else {
+            setAirplanePosition(newPosition);
+          }
+  
+          setFlightPath(prevPath => [...prevPath, newPosition]); // Append to flight path
+          setPrevAirplanePosition(newPosition); // Update previous position
         }
       } catch (error) {
         console.error('Error fetching the newest document:', error);
       }
-    }, 5000); // Fetch every 5 seconds
-
+    }, 2500); // Fetch every 5 seconds
+  
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [fetchingStarted]);
+  }, [fetchingStarted, prevAirplanePosition]);
+  
+  const getAirplaneIcon = () => {
+    if (airplanePosition) {
+      const { heading } = airplanePosition;
+      if (heading >= 240 && heading < 300) { // Example range for heading towards West
+        return '/plane-solid_west.svg'; // URL for westward plane icon
+      }
+    }
+    return '/plane-solid.svg'; // URL for default plane icon
+  };
+  
 
   const startSimulation = async () => {
     console.log('Starting sim');
@@ -140,7 +175,7 @@ const Layout1 = ({ children }) => {
       // Delay the start of fetching newest document
       setTimeout(() => {
         setFetchingStarted(true);
-      }, 10000); // 10 seconds delay
+      }, 3000); // 10 seconds delay
 
     } catch (error) {
       console.error('Error starting process:', error);
@@ -201,7 +236,7 @@ const Layout1 = ({ children }) => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.flightInfo}>
-          <h1 className={styles.headerText}>
+          <h1 className={styles.flightID}>
             <span className={styles.flightIdGreen}>Flight ID: </span>
             <span className={styles.flightIdBlack}>{selectedFlight ? selectedFlight._id : 'Loading...'}</span>
           </h1>
@@ -282,11 +317,12 @@ const Layout1 = ({ children }) => {
                         <Marker
                           position={airplanePosition}
                           icon={{
-                            url: '/plane-solid.svg',
+                            url: getAirplaneIcon(),
                             scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
                           }}
                         />
                       )}
+
                       {/* Polyline for flight path */}
                       <Polyline
                         path={flightPath}

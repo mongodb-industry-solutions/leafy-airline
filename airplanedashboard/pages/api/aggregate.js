@@ -89,7 +89,7 @@ export async function runAggregation() {
 };
 
 // Create a cron job to run the aggregation every 5 seconds
-cron.schedule('*/5 * * * * *', runAggregation);
+cron.schedule('*/2.5 * * * * *', runAggregation);
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
