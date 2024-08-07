@@ -44,12 +44,7 @@ const Layout = ({ children }) => {
           </p>
         </div>
         <div className={footerStyles.footerImage}>
-          <Image
-            src="/leafylogo.svg"  
-            alt="MongoDB Logo"
-            width={100}
-            height={50}  // Adjust height as needed
-          />
+          <Logo className={footerStyles.logo}></Logo>
         </div>
       </footer>
     </div>

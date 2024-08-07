@@ -29,9 +29,8 @@
     text-decoration: underline; /* Underline on hover for better UX */
   }
 
-  .footer-image {
-    /* Adjust size as needed */
-    width: 100px;
-    height: auto;
+  .logo {
+    width: 125px; 
+    padding: 5px;
   }
   
