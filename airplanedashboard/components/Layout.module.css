@@ -71,7 +71,7 @@
 }
 
 .logo {
-  width: 100px; 
+  width: 150px; 
   padding: 5px;
 }
 
@@ -325,7 +325,7 @@ margin-bottom: 1rem;
 .resultsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Space between boxes */
+  gap: 20px; /* Space between boxes */
   width: 100%;
   box-sizing: border-box;
 }
@@ -335,7 +335,7 @@ margin-bottom: 1rem;
   border: 1px solid #ddd; /* Border color */
   border-radius: 10px; /* Rounded edges */
   padding: 15px; /* Padding inside the box */
-  width: calc(33% - 10px);  /*Adjust width for responsiveness (33% width minus gap) */
+  width: calc(50% - 10px); 
   min-width: 350px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
   box-sizing: border-box; /* Ensure padding is included in the width */

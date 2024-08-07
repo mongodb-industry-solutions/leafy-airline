@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Layout.module.css';
 import headerStyles from './Header.module.css'; // Import the new header CSS file
+import footerStyles from './Footer.module.css'; // Import the footer CSS file
 import Logo from '@leafygreen-ui/logo';
 import Icon from "@leafygreen-ui/icon";
 import Image from "next/image";
@@ -10,17 +11,16 @@ const Layout = ({ children }) => {
     <div className={styles.container}>
       <header className={headerStyles.header}>
         <div className={headerStyles.logo_container}>
-          {/* <Logo className={headerStyles.logo} /> */}
           <Image
-          src="/leafylogo.svg" // Path to your SVG in the public directory
+          src="/leafylogo.svg" 
           alt="Leafy Logo"
-          width={100} // Specify the width of the image
-          height={50} // Specify the height of the image
-          className={styles.logo} // Apply any relevant styles
+          width={200} 
+          height={150} 
+          className={styles.logo} 
         />
         </div>
         <div className={headerStyles.title_container}>
-          <h1>Leafy Air </h1>
+          <h1>General Overview</h1>
         </div>
         <div className={styles.rightheaderContainer}>
           <a href="/instructions" className={headerStyles.infoButton}>Instructions of Use</a>
@@ -36,6 +36,17 @@ const Layout = ({ children }) => {
           {children}
         </div>
       </div>
+      <footer className={footerStyles.footer}>
+        <div className={footerStyles.footerContent}>
+          <p>&copy; 2024 MongoDB. All rights reserved.</p>
+          <p>
+            <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a>
+          </p>
+        </div>
+        <div className={footerStyles.footerImage}>
+          <Logo className={footerStyles.logo}></Logo>
+        </div>
+      </footer>
     </div>
   );
 };
