@@ -97,3 +97,8 @@
   background: #00684A;
   margin: 1rem 0;
 }
+
+
+.expandableCard p {
+  font-family: 'Lexend Deca', sans-serif;
+}

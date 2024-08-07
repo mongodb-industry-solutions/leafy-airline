@@ -10,13 +10,12 @@ const Layout = ({ children }) => {
     <div className={styles.container}>
       <header className={headerStyles.header}>
         <div className={headerStyles.logo_container}>
-          {/* <Logo className={headerStyles.logo} /> */}
           <Image
-          src="/leafylogo.svg" // Path to your SVG in the public directory
+          src="/leafylogo.svg" 
           alt="Leafy Logo"
-          width={100} // Specify the width of the image
-          height={50} // Specify the height of the image
-          className={styles.logo} // Apply any relevant styles
+          width={200} 
+          height={150} 
+          className={styles.logo} 
         />
         </div>
         <div className={headerStyles.title_container}>

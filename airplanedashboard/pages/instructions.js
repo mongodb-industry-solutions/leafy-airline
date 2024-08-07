@@ -35,16 +35,18 @@ export default function Instructions() {
             <div className={styles.componentBox}>
             <br/>
               <ExpandableCard
-                title="General Overview Tab"
-                description="This is the landing page where you can get a summary of flights, including quick access to various functions such as searching and filtering flights."
+                className={styles.expandableCard}
+                title={<span style={{ fontFamily: 'Lexend Deca, sans-serif', fontSize: '17px', fontWeight: 'bold' }}>General Overview Tab</span>}
+                description={<span style={{ fontFamily: 'Lexend Deca, sans-serif', fontSize: '12px' }}>This is the landing page where you can get a summary of flights, including quick access to various functions such as searching and filtering flights.</span>}
                 darkMode={false}>
                   <p><strong>Filter Selection & SearchBar: </strong> These tools allow you to refine your search based on different criteria such as flight date, departure and arrival times, and locations</p>
                   <p><strong>Flight Cards: </strong> This cards will display the basic information for each of the flights that meet the selected filters<br /></p>
               </ExpandableCard>
               <br/>
               <ExpandableCard
-                title="Flight Information Tab"
-                description="This section displays detailed information about flights. You can view flights, sort them, and access specific details."
+                className={styles.expandableCard}
+                title={<span style={{ fontFamily: 'Lexend Deca, sans-serif', fontSize: '17px', fontWeight: 'bold' }}>Flight Information Tab</span>}
+                description={<span style={{ fontFamily: 'Lexend Deca, sans-serif', fontSize: '12px' }}>This section displays detailed information about flights. You can view flights, sort them, and access specific details.</span>}
                 darkMode={false}>
                   <p><strong>Simulation Controls: </strong> These controls enable you to start and reset flight simulations to analyze various flight scenarios.</p>
               </ExpandableCard>
