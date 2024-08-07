@@ -1,0 +1,37 @@
+.footer {
+    display: flex;
+    gap: 50px;
+    align-items: center; 
+    justify-content: center; /* Center the content horizontally */
+  
+    background-color: #f8f8f8; 
+    padding: 20px; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    text-align: center; 
+    border-top: 1px solid #e0e0e0; 
+    font-size: 14px; 
+    color: #333; 
+  }
+  
+  .footer p {
+    margin: 5px 0; /* Space between paragraphs */
+  }
+  
+  .footer a {
+    color: #00684A; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  .footer a:hover {
+    text-decoration: underline; /* Underline on hover for better UX */
+  }
+
+  .footer-image {
+    /* Adjust size as needed */
+    width: 100px;
+    height: auto;
+  }
+  

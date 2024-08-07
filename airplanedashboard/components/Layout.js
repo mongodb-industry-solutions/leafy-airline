@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Layout.module.css';
 import headerStyles from './Header.module.css'; // Import the new header CSS file
+import footerStyles from './Footer.module.css'; // Import the footer CSS file
 import Logo from '@leafygreen-ui/logo';
 import Icon from "@leafygreen-ui/icon";
 import Image from "next/image";
@@ -35,6 +36,22 @@ const Layout = ({ children }) => {
           {children}
         </div>
       </div>
+      <footer className={footerStyles.footer}>
+        <div className={footerStyles.footerContent}>
+          <p>&copy; 2024 MongoDB. All rights reserved.</p>
+          <p>
+            <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a>
+          </p>
+        </div>
+        <div className={footerStyles.footerImage}>
+          <Image
+            src="/leafylogo.svg"  
+            alt="MongoDB Logo"
+            width={100}
+            height={50}  // Adjust height as needed
+          />
+        </div>
+      </footer>
     </div>
   );
 };
