@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Layout.module.css';
 import Button from '@leafygreen-ui/button';
-import { Combobox, ComboboxOption } from '@leafygreen-ui/combobox'
+import { Option, OptionGroup, Select, Size } from '@leafygreen-ui/select';
 
 
 const TimeSlider = ({label, state, setter}) => {
@@ -56,8 +56,8 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
   const [selectedDate, setSelectedDate] = useState(dates_list[0]);
   const [departureTime, setDepartureTime] = useState('00:00');
   const [arrivalTime, setArrivalTime] = useState('00:00');
-  const [selectedDeparture, setSelectedDeparture] = useState([]);
-  const [selectedArrival, setSelectedArrival] = useState([]);
+  const [selectedDeparture, setSelectedDeparture] = useState('');
+  const [selectedArrival, setSelectedArrival] = useState('');
   const initial_filters = {}
 
   
@@ -85,6 +85,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
 
   const applyFilters = () => {
     console.log('Applying filters')
+    console.log(filters)
 
     // Get the parsed time
     const dep_time = convertTimeToISO(departureTime);
@@ -121,27 +122,34 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       setSelectedDate(dates_list[0])
       setDepartureTime('00:00')
       setArrivalTime('00:00')
-      setSelectedDeparture([])
-      setSelectedArrival([])
+      setSelectedDeparture('')
+      setSelectedArrival('')
       setFilters(initial_filters)
 
       // Fetch data without params
       fetchResults(initial_filters)
+      console.log(filters)
   };
 
   const handleAirportChanges = (setter, value) => {
 
     if (value == null){
-      setter([])
+      setter([]);
     }
     else{
-      value = String(value)
+      value = String(value);
       const new_val = value.substring(0, 3);
       setter(new_val);
     }
-    
-    return
   }
+
+  const handleArrivalChange = (e) => {
+    setSelectedArrival(e);
+  };
+
+  const handleDepartureChange = (e) => {
+    setSelectedDeparture(e);
+  };
 
   const handleDateChange = (setter, value) => {
     if (value == null) {
@@ -150,7 +158,7 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
     else {
       setter(value)
     }
-    return
+    
   }
 
   const convertTimeToISO = (timeString) => {
@@ -172,19 +180,18 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
       <h2>Filter Selection</h2>
       <SeparationBar />
 
-      <Combobox
-        className={styles.filterCombobox}
+      <Select
+        className={styles.filterSelect}
         label="Flight date"
-        placeholder= {"Current date : " + String(selectedDate)}
-        initialValue={[]}
-        multiselect={false}
-        overflow={"expand-y"}
+        placeholder= "Select the date"
+        defaultValue= {selectedDate}
+        size={Size.Default}
         onChange={(e) => handleDateChange(setSelectedDate, e)}
       >
         {dates_list.map((option) => (
-          <ComboboxOption key={option} value={option} />
+          <Option key={option} value={option}>{option}</Option>
         ))}
-      </Combobox>
+      </Select>
 
       <SeparationBar />
       <TimeSlider
@@ -198,32 +205,33 @@ const FilterSection = ({response, setResponse, dates_list, airports_list}) => {
         setter={setArrivalTime}
       ></TimeSlider>
       <SeparationBar />
-      <Combobox
-        className={styles.filterCombobox}
+
+      <Select
+        className={styles.filterSelect}
         label="Departure Location"
         placeholder="Select departure airport"
-        initialValue={[]}
-        multiselect={false}
-        overflow={"expand-y"}
-        onChange={(e) => handleAirportChanges(setSelectedDeparture, e)}
+        defaultValue= ""
+        size={Size.Default}
+        onChange={handleDepartureChange}
       >
         {airports_list.map((option) => (
-          <ComboboxOption key={option} value={option} />
+          <Option key={option} value={option}>{option}</Option>
         ))}
-      </Combobox>
-      <Combobox
-        className={styles.filterCombobox}
+      </Select>
+
+      <Select
+        className={styles.filterSelect}
         label="Arrival Location"
         placeholder="Select arrival airport"
-        initialValue={[]}
-        multiselect={false}
-        overflow={"expand-y"}
-        onChange={(e) => handleAirportChanges(setSelectedArrival, e)}
+        defaultValue= ""
+        size={Size.Default}
+        onChange={handleArrivalChange}
       >
         {airports_list.map((option) => (
-          <ComboboxOption key={option} value={option} />
+          <Option key={option} value={option}>{option}</Option>
         ))}
-      </Combobox>
+      </Select>
+
       <div className={styles.filterbuttonSection}>
         <Button className={styles.filterButton} children = 'Apply Filters' onClick={applyFilters} ></Button>
         <Button className={styles.filterButton} children = 'Reset Filters' onClick={resetFilters} ></Button>

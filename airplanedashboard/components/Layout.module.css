@@ -25,6 +25,14 @@
   font-size: 0.9rem; 
 }
 
+
+.rightheaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap : 20px;
+}
+
 .flightInfo {
   display: flex;
   flex-direction: column;
@@ -148,22 +156,23 @@ margin-bottom: 1rem;
 
 .filterTimeSlider div{
   font-weight: bold;
-  font-size: 20px;
+  font-size: 17px;
+  padding-left: 5px;
 }
 
 .filterTimeSlider input {
   width: 100%;
 }
 
-.filterCombobox {
-  width: 95%;
+.filterSelect {
+  width: 100%;
   margin-top: 5px;
   padding: 5px;
 }
 
-.filterCombobox label{
+.filterSelect label{
   font-family: 'Lexend Deca', sans-serif;
-  font-size : 20px;
+  font-size : 17px;
   padding: 5px;
 }
 
@@ -172,20 +181,23 @@ margin-bottom: 1rem;
   justify-content: center;
   gap: 10px; 
   width: 100%; 
-  padding-top: 50px;
+  padding-top: 25px;
 }
 
 .filterButton {
-  width: 35%;
+  background-color: #00684A; /* Button background color */
+  color: white; /* Text color */
+  font-size: 12px;
+  width: 50%;
   align-self: center;
   justify-content: center;
 }
 
-
 .filterButton :hover{
-  background-color : #00684A;
+  background-color : #003b2a;
   color: white;
 }
+
 
 .simulationbuttonSection{
   display: flex;
@@ -323,7 +335,7 @@ margin-bottom: 1rem;
 .resultsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Space between boxes */
+  gap: 20px; /* Space between boxes */
   width: 100%;
   box-sizing: border-box;
 }
@@ -333,7 +345,7 @@ margin-bottom: 1rem;
   border: 1px solid #ddd; /* Border color */
   border-radius: 10px; /* Rounded edges */
   padding: 15px; /* Padding inside the box */
-  width: calc(33% - 10px);  /*Adjust width for responsiveness (33% width minus gap) */
+  width: calc(50% - 10px); 
   min-width: 350px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
   box-sizing: border-box; /* Ensure padding is included in the width */
