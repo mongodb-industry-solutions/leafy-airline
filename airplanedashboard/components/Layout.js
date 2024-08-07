@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
         />
         </div>
         <div className={headerStyles.title_container}>
-          <h1>Leafy Air </h1>
+          <h1>General Overview</h1>
         </div>
         <div className={styles.rightheaderContainer}>
           <a href="/instructions" className={headerStyles.infoButton}>Instructions of Use</a>
