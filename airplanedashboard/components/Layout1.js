@@ -8,6 +8,8 @@ import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api'
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
 import Image from 'next/image';
+import Banner from '@leafygreen-ui/banner';
+
 
 const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 
@@ -364,7 +366,18 @@ const Layout1 = ({ children }) => {
           </div>
         </div>
         {/* Main Content */}
-        <Logo className={styles.logo} />
+        <div className={styles.logocontainer}>
+          <Logo className={styles.logo} />
+          <Banner
+            className={styles.banner}
+            variant="info"
+          >
+            <strong>MongoDB efficiently handles operational time series data via Pub/Sub and time series collection, and powers analytical insights using Pub/Sub, Vertex AI, and regular collections. </strong>
+            <a href="https://www.mongodb.com/">See more</a>
+          </Banner>
+
+        </div>
+
       </div>
     </div>
   );
