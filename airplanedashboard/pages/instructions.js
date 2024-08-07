@@ -86,7 +86,7 @@ export default function Instructions() {
                   <li><strong>Start Simulation:</strong> Click this button to start the simulation for the flight.</li>
                   <li><strong>Reset Simulation:</strong> Click this button to reset the simulation to its initial state.</li>
                 </ul>
-                <Banner variant='warning'> <strong>Important!</strong> The simulation will take some seconds to begin, please be patient. </Banner>
+                <Banner variant='warning' className={styles.bannerWarning}> <strong>Important!</strong> The simulation will take some seconds to begin, please be patient. </Banner>
               </li>
 
               <li className={styles.instructionBox}>

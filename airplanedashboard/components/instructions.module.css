@@ -27,6 +27,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: 'Lexend Deca', sans-serif;
 }
 
 /* Text content */
@@ -100,5 +101,10 @@
 
 
 .expandableCard p {
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+/* Back button css */
+.bannerWarning {
   font-family: 'Lexend Deca', sans-serif;
 }
