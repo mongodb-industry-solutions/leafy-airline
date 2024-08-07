@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
         <div className={footerStyles.footerContent}>
           <p>&copy; 2024 MongoDB. All rights reserved.</p>
           <p>
-            <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-service">Terms of Service</a>
+            Leafy Air Demo developed by IS Team 
           </p>
         </div>
         <div className={footerStyles.footerImage}>
