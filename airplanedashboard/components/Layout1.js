@@ -9,6 +9,8 @@ import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api'
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
 import Image from 'next/image';
+import Banner from '@leafygreen-ui/banner';
+
 
 const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 
@@ -26,6 +28,8 @@ const Layout1 = ({ children }) => {
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
   const [loading, setLoading] = useState(false); // State for loading
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
+  const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
+  const [sumCost, setSumCost] = useState(null);
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -78,6 +82,7 @@ const Layout1 = ({ children }) => {
       }
       if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
         setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
+        setTotalExpectedFuelCost(prev => prev === null ? alert.Fuel_Cost_per_Hour : prev);
       }
     });
     return () => {
@@ -98,6 +103,19 @@ const Layout1 = ({ children }) => {
     const heading = Math.atan2(y, x) * 180 / Math.PI;
     return (heading + 360) % 360; // Normalize to 0-360
   };
+
+  useEffect(() => {
+    if (totalExpectedFuelCost !== null && delayCost !== null) {
+      setSumCost(totalExpectedFuelCost + delayCost);
+    } else if (totalExpectedFuelCost !== null) {
+      setSumCost(totalExpectedFuelCost);
+    } else if (delayCost !== null) {
+      setSumCost(delayCost);
+    } else {
+      setSumCost(null);
+    }
+  }, [totalExpectedFuelCost, delayCost]);
+  
 
   useEffect(() => {
     if (!fetchingStarted) return;
@@ -214,7 +232,8 @@ const Layout1 = ({ children }) => {
       // Reset delay, delay cost, and fuel cost
       setDelayTime(null);
       setDelayCost(null);
-      setFuelCostPerHour(null)
+      setFuelCostPerHour(null);
+      setTotalExpectedFuelCost(null);
     } catch (error) {
       console.error('Error resetting process:', error);
     }
@@ -286,9 +305,15 @@ const Layout1 = ({ children }) => {
                     <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'Simulation not Started'}</p>
                   </div>
                   <div className={styles.costBox}>
-                    <h4>Fuel Cost</h4>
+                    <h4>Fuel Cost until Arrival</h4>
                     <p>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
                   </div>
+                </div>
+                <div className={styles.innerBoxTotalCosts}>
+                    <p> Total Expected Fuel Cost: {totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                </div>
+                <div className={styles.innerBoxTotalCosts}>
+                  <p>Total Expected Cost: {sumCost !== null ? `$${sumCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
@@ -365,7 +390,18 @@ const Layout1 = ({ children }) => {
           </div>
         </div>
         {/* Main Content */}
-        <Logo className={styles.logo} />
+        <div className={styles.logocontainer}>
+          {/*<Logo className={styles.logo} />*/}
+          <Banner
+            className={styles.banner}
+            variant="info"
+          >
+            <strong>MongoDB efficiently handles operational time series data via Pub/Sub and time series collection, and powers analytical insights using Pub/Sub, Vertex AI, and regular collections. </strong>
+            <a href="https://www.mongodb.com/">See more</a>
+          </Banner>
+
+        </div>
+
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
