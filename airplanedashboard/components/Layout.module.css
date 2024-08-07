@@ -72,6 +72,14 @@
 
 .logo {
   width: 100px; 
+  padding: 5px;
+}
+
+.flightID{
+  font-size: 25px; /* Decrease the font size as needed */
+  margin: 0;
+  padding: 0;
+  font-family: 'Lexend Deca', sans-serif; /* Ensure the font family matches */
 }
 
 .flightIdGreen {
@@ -92,9 +100,10 @@
 }
 
 .nav {
-  margin-top: 0.1rem;
+  margin-top: -2rem;
   background-color: #f8f9fa;
   padding: 0.5rem;
+  margin-left: 7px;
 }
 
 .navList {
@@ -185,7 +194,7 @@ margin-bottom: 1rem;
   justify-content: center;
   gap: 10px; 
   width: 100%;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 .simulationButton {
@@ -247,7 +256,7 @@ margin-bottom: 1rem;
     border-radius: 25px; /* Round the edges */
     border: 1px solid #ccc; /* Add a border */
     margin-bottom: 10px; /* Space between input and button */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    box-sizing: border-box; 
   }
   
   .searchBar button {
@@ -294,7 +303,7 @@ margin-bottom: 1rem;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
-    margin-right:20px;
+    margin-right:10px;
 
   }
 
@@ -360,14 +369,16 @@ margin-bottom: 1rem;
 }
 
 .mapContainer {
-  background-color: #ffffff; /* Example background color */
-  margin-top: 100px;
-  width: 60%; /* Adjust width as needed */
-  height: 400px;
+  background-color: #ffffff;
+  width: 65%; /* Adjust width as needed */
+  height: 65vh; /* Ensure the map has the same height as the flight overview box */
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   flex-shrink: 0; /* Prevent shrinking */
-  float: right;
+  margin-top: 1rem;
+  padding: 1rem;
 }
+
+
 
 .containersecond{
   display: flex; /* Aligns child elements horizontally */
@@ -476,4 +487,54 @@ margin-bottom: 1rem;
   text-align: center;
   width: 90%; /* Adjust as needed */
   margin: 20px auto 0; /* Center and add margin on top */
+}
+
+.greenButton {
+  background-color: #00684A; /* Green color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px; /* Adjust margin as needed */
+  font-family: 'Lexend Deca', sans-serif;
+  padding: 8px 16px; /* Adjust padding for better text alignment */
+  display: inline-flex; /* Use flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  height: auto; /* Adjust height to fit content */
+}
+
+
+.greenButton:hover {
+  background-color: #01543c; /* Darker green on hover */
+}
+
+.arrowIcon {
+  display: inline-block;
+  font-size: 16px; /* Adjust size as needed */
+  margin-right: 8px; /* Space between arrow and text */
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  z-index: 10; /* Ensure it overlays other elements */
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.mapContainerWrapper {
+  position: relative;
+  width: 100%;
+  height: 85%; /* Adjust the height as needed */
 }

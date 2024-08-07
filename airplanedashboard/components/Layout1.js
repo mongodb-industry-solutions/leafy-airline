@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css'; // Ensure this path is correct
 import Logo from '@leafygreen-ui/logo';
@@ -8,10 +7,9 @@ import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
+import Image from 'next/image';
 
-// const app_url = "http://127.0.0.1:8000/";
-// const app_url = "https://simulation-app-freeaccess-65jcrv6puq-ew.a.run.app/"
-const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/"
+const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 
 const Layout1 = ({ children }) => {
   const router = useRouter();
@@ -25,6 +23,8 @@ const Layout1 = ({ children }) => {
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
+  const [loading, setLoading] = useState(false); // State for loading
+  const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -70,7 +70,7 @@ const Layout1 = ({ children }) => {
     socket.on('alert', (alert) => {
       console.log('Alert received:', alert);
       if (alert && alert.Delay_Time !== undefined) {
-        setDelayTime(Math.round(alert.Delay_Time)); // Round the delay time before setting it
+        setDelayTime(alert.Delay_Time); // Round the delay time before setting it
       }
       if (alert && alert.Delay_Cost !== undefined) {
         setDelayCost(alert.Delay_Cost); // Set the delay cost
@@ -78,40 +78,67 @@ const Layout1 = ({ children }) => {
       if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
         setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
       }
-      //if (alert && alert.Latitude !== undefined && alert.Longitude !== undefined) {
-       // const position = { lat: alert.Latitude, lng: alert.Longitude };
-       // setAirplanePosition(position); // Update the airplane position
-       // setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
-     //}
     });
     return () => {
       socket.off('alert');
     };
   }, []);
 
+  const calculateHeading = (from, to) => {
+    const lat1 = from.lat * Math.PI / 180;
+    const lon1 = from.lng * Math.PI / 180;
+    const lat2 = to.lat * Math.PI / 180;
+    const lon2 = to.lng * Math.PI / 180;
+
+    const dLon = lon2 - lon1;
+    const y = Math.sin(dLon) * Math.cos(lat2);
+    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+
+    const heading = Math.atan2(y, x) * 180 / Math.PI;
+    return (heading + 360) % 360; // Normalize to 0-360
+  };
+
   useEffect(() => {
     if (!fetchingStarted) return;
 
-    // Fetch the newest document every 5 seconds for position updates
     const interval = setInterval(async () => {
       try {
         const response = await fetch('/api/fetchNewestDocument');
         const data = await response.json();
         console.log('Fetched Data:', data);
         if (data && data.mostRecentLat !== undefined && data.mostRecentLong !== undefined) {
-          const position = { lat: data.mostRecentLat, lng: data.mostRecentLong };
-          setAirplanePosition(position); // Update the airplane position
-          setFlightPath(prevPath => [...prevPath, position]); // Append to flight path
+          const newPosition = { lat: data.mostRecentLat, lng: data.mostRecentLong };
+
+          if (prevAirplanePosition) {
+            const heading = calculateHeading(prevAirplanePosition, newPosition);
+            setAirplanePosition({ ...newPosition, heading });
+          } else {
+            setAirplanePosition(newPosition);
+          }
+
+          setFlightPath(prevPath => [...prevPath, newPosition]); // Append to flight path
+          setPrevAirplanePosition(newPosition); // Update previous position
         }
       } catch (error) {
         console.error('Error fetching the newest document:', error);
       }
-    }, 5000); // Fetch every 5 seconds
+    }, 2500); // Fetch every 2.5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [fetchingStarted]);
+  }, [fetchingStarted, prevAirplanePosition]);
+
+  const getAirplaneIcon = () => {
+    if (airplanePosition) {
+      const { heading } = airplanePosition;
+      if (heading >= 240 && heading < 300) { // Example range for heading towards West
+        return '/plane-solid_west.svg'; // URL for westward plane icon
+      }
+    }
+    return '/plane-solid.svg'; // URL for default plane icon
+  };
 
   const startSimulation = async () => {
+    setLoading(true); // Set loading to true
     console.log('Starting sim');
 
     const start_url = app_url + "start-scheduler";
@@ -148,10 +175,12 @@ const Layout1 = ({ children }) => {
       // Delay the start of fetching newest document
       setTimeout(() => {
         setFetchingStarted(true);
-      }, 10000); // 10 seconds delay
+        setLoading(false); // Set loading to false after delay
+      }, 3000); // 3 seconds delay
 
     } catch (error) {
       console.error('Error starting process:', error);
+      setLoading(false); // Set loading to false if there is an error
     }
   };
 
@@ -180,9 +209,19 @@ const Layout1 = ({ children }) => {
         };
         setAirplanePosition(departurePosition); // Reset airplane position
       }
+
+      // Reset delay, delay cost, and fuel cost
+      setDelayTime(null);
+      setDelayCost(null);
+      setFuelCostPerHour(null)
     } catch (error) {
       console.error('Error resetting process:', error);
     }
+  };
+
+  const handleBackClick = () => {
+    resetSimulation();
+    router.push('/');
   };
 
   const mapContainerStyle = {
@@ -204,28 +243,25 @@ const Layout1 = ({ children }) => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.flightInfo}>
-          <h1 className={styles.headerText}>
+          <h1 className={styles.flightID}>
             <span className={styles.flightIdGreen}>Flight ID: </span>
-            <span className={styles.flightIdBlack}>{selectedFlight ? selectedFlight._id : 'Loading...'}</span>
+            <span className={styles.flightIdBlack}>{selectedFlight ? selectedFlight.flight_number : 'Loading...'}</span>
           </h1>
           <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
         </div>
-        <Logo className={styles.logo} />
+        {/*<Logo className={styles.logo} />*/}
+        {/*<Image
+          src="/leafylogo.svg" // Path to your SVG in the public directory
+          alt="Leafy Logo"
+          width={100} // Specify the width of the image
+          height={50} // Specify the height of the image
+          className={styles.logo} // Apply any relevant styles
+        />*/}
       </header>
-
       <nav className={styles.nav}>
-        <ul className={styles.navList}>
-          <li className={styles.navItem}>
-            <Link href="/" passHref legacyBehavior>
-              <a className={`${styles.navLink} ${router.pathname === '/' ? styles.activeLink : ''}`} onClick={resetSimulation}>Flights</a>
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link href="/index1" passHref legacyBehavior>
-              <a className={`${styles.navLink} ${router.pathname === '/index1' ? styles.activeLink : ''}`}>Flight Overview</a>
-            </Link>
-          </li>
-        </ul>
+        <button className={styles.greenButton} onClick={handleBackClick}>
+          <span className={styles.arrowIcon}>&larr;</span> Back to Flights
+        </button>
       </nav>
 
       <div className={styles.main}>
@@ -239,9 +275,10 @@ const Layout1 = ({ children }) => {
                   <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
                   <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
                 </div>
-                <div className={delayTime !== null ? styles.delayBox : styles.noDelayBox}>
-                  <p>Delay: {delayTime !== null ? `${delayTime * 60} minutes` : 'No delay'}</p>
+                <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
+                  <p>Delay: {delayTime === 0 || delayTime === null ? 'No delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
                 </div>
+
                 <div className={styles.costContainer}>
                   <div className={styles.costBox}>
                     <h4>Delay Cost</h4>
@@ -260,74 +297,74 @@ const Layout1 = ({ children }) => {
 
           {/* Google Map Component */}
           <div className={styles.mapContainer}>
-            {apiKey ? (
-              <LoadScript googleMapsApiKey={apiKey}>
-                <GoogleMap
-                  mapContainerStyle={mapContainerStyle}
-                  center={airplanePosition || depCoords} // Center map on airplane position or departure point
-                  zoom={5}
-                >
-                  {/* Departure Marker */}
-                  {selectedFlight && (
-                    <>
+          {apiKey ? (
+          <div style={{ position: 'relative', width: '100%', height: '85%' }}>
+            <LoadScript googleMapsApiKey={apiKey}>
+              <GoogleMap
+                mapContainerStyle={{ width: '100%', height: '100%' }}
+                center={airplanePosition || depCoords}
+                zoom={5}
+              >
+                {/* Departure Marker */}
+                {selectedFlight && (
+                  <>
+                    <Marker
+                      position={depCoords}
+                      label={`Departure: ${selectedFlight.dep_arp.city}`}
+                    />
+                    <Marker
+                      position={arrCoords}
+                      label={`Arrival: ${selectedFlight.arr_arp.city}`}
+                    />
+                    <Polyline
+                      path={[depCoords, arrCoords]}
+                      options={{
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                      }}
+                    />
+                    {airplanePosition && (
                       <Marker
-                        position={depCoords}
-                        label={`Departure: ${selectedFlight.dep_arp.city}`}
-                      />
-                      <Marker
-                        position={arrCoords}
-                        label={`Arrival: ${selectedFlight.arr_arp.city}`}
-                      />
-                      {/* Line between departure and arrival */}
-                      <Polyline
-                        path={[depCoords, arrCoords]}
-                        options={{
-                          strokeColor: '#FF0000',
-                          strokeOpacity: 1.0,
-                          strokeWeight: 2
+                        position={airplanePosition}
+                        icon={{
+                          url: getAirplaneIcon(),
+                          scaledSize: new google.maps.Size(32, 32),
                         }}
                       />
-                      {/* Airplane Marker */}
-                      {airplanePosition && (
-                        <Marker
-                          position={airplanePosition}
-                          icon={{
-                            url: '/plane-solid.svg',
-                            scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
-                          }}
-                          /*label="Airplane"*/
-                        />
-                      )}
-                      {/* Polyline for flight path */}
-                      <Polyline
-                        path={flightPath}
-                        options={{
-                          strokeColor: '#023430',
-                          strokeOpacity: 0.8,
-                          strokeWeight: 2,
-                          icons: [{
-                            icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
-                            offset: '100%',
-                            repeat: '20px'
-                          }]
-                        }}
-                      />
-                    </>
-                  )}
-                </GoogleMap>
-              </LoadScript>
-            ) : (
-              <p>Loading map...</p>
-            )}
+                    )}
+                    <Polyline
+                      path={flightPath}
+                      options={{
+                        strokeColor: '#023430',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        icons: [{
+                          icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
+                          offset: '100%',
+                          repeat: '20px'
+                        }]
+                      }}
+                    />
+                  </>
+                )}
+              </GoogleMap>
+            </LoadScript>
+            {loading && <div className={styles.loadingOverlay}>Loading...</div>}
+          </div>
+        ) : (
+          <p>Loading map...</p>
+        )}
+
 
             <div className={styles.simulationbuttonSection}>
-              <Button className={styles.simulationButton} children='Start Simulation' onClick={startSimulation}></Button>
-              <Button className={styles.reset_simulationButton} children='Reset Simulation' onClick={resetSimulation}></Button>
+              <Button className={styles.simulationButton} onClick={startSimulation}>Start Simulation</Button>
+              <Button className={styles.reset_simulationButton} onClick={resetSimulation}>Reset Simulation</Button>
             </div>
           </div>
         </div>
         {/* Main Content */}
-        {children}
+        <Logo className={styles.logo} />
       </div>
     </div>
   );
