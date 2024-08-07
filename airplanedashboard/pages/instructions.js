@@ -3,6 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styles from '../components/instructions.module.css';
 import ExpandableCard from "@leafygreen-ui/expandable-card";
+import Banner from '@leafygreen-ui/banner';
 
 export default function Instructions() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function Instructions() {
           Back
         </button>
         <div className={styles.textContainer}>
-          <h1>Getting Started: Leafy Airline Dashboard</h1>
+          <h1>Getting Started: Leafy Air Dashboard</h1>
 
           <div className={styles.nothighlightSection}>
             <h2>Overview</h2>
@@ -83,7 +84,9 @@ export default function Instructions() {
                   <li><strong>Start Simulation:</strong> Click this button to start the simulation for the flight.</li>
                   <li><strong>Reset Simulation:</strong> Click this button to reset the simulation to its initial state.</li>
                 </ul>
+                <Banner variant='warning'> <strong>Important!</strong> The simulation will take some seconds to begin, please be patient. </Banner>
               </li>
+
               <li className={styles.instructionBox}>
                 <h4>Checking Delay and Cost Details</h4>
                 <p>
