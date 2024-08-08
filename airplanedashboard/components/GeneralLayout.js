@@ -9,6 +9,7 @@ import Image from "next/image";
 const GeneralLayout = ({ children }) => {
   return (
     <div className={styles.container}>
+      
       <header className={headerStyles.header}>
         <div className={headerStyles.logo_container}>
           <Image
@@ -31,11 +32,13 @@ const GeneralLayout = ({ children }) => {
           </div>
         </div>
       </header>
+
       <div className={styles.main}>
         <div className={styles.content}>
           {children}
         </div>
       </div>
+
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
           <p>&copy; 2024 MongoDB. All rights reserved.</p>

@@ -64,7 +64,6 @@ export default function Home() {
         <FilterSection response={flights} setResponse={setFlights} dates_list={dates} airports_list = {airports}/>
       </aside>
       <div className={styles.searchList}>
-        {/* <SearchBar /> */}
         <SearchBar response={flights} setResponse={setFlights}/>
         <div className={styles.flightsList}>
           <FlightList flights={flights} />
