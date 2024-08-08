@@ -1,0 +1,56 @@
+.filterTimeSlider{
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+.filterTimeSlider div{
+    font-weight: bold;
+    font-size: 17px;
+    padding-left: 5px;
+}
+
+.filterTimeSlider input {
+    width: 100%;
+}
+
+  
+/* Styling for the range input */
+.slider {
+    -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+    width: 100%; /* Full width */ 
+    height: 8px; /* Height of the track */
+    background: #ddd; /* Track color */
+    border-radius: 5px; /* Rounded corners */
+    outline: none; /* Remove default focus outline */
+    opacity: 0.7; /* Slightly transparent */
+    transition: opacity .2s; /* Smooth transition on hover/focus */
+    }
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none; /* Remove default styling */
+    width: 15px; /* Width of the thumb */
+    height: 15px; /* Height of the thumb */
+    background: #00684A; /* Thumb color */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%; /* Round thumb */
+}
+
+.slider::-moz-range-thumb {
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: #00684A;; /* Thumb color */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%; /* Round thumb */
+}
+
+.slider::-ms-thumb {
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background: #00684A;/* Thumb color */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%; /* Round thumb */
+    }
+
+
