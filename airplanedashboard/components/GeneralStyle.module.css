@@ -71,7 +71,7 @@
 }
 
 .logo {
-  width: 100px;
+  width: 150px;
   padding: 5px;
   margin-left: auto;
   order: 1;
@@ -143,61 +143,6 @@
 }
 
 
-.filterGroup {
-margin-bottom: 1rem;
-}
-
-
-.filterTimeSlider{
-  margin-top: 5px;
-  padding: 5px;
-  width: 100%;
-}
-
-.filterTimeSlider div{
-  font-weight: bold;
-  font-size: 17px;
-  padding-left: 5px;
-}
-
-.filterTimeSlider input {
-  width: 100%;
-}
-
-.filterSelect {
-  width: 100%;
-  margin-top: 5px;
-  padding: 5px;
-}
-
-.filterSelect label{
-  font-family: 'Lexend Deca', sans-serif;
-  font-size : 17px;
-  padding: 5px;
-}
-
-.filterbuttonSection{
-  display: flex;
-  justify-content: center;
-  gap: 10px; 
-  width: 100%; 
-  padding-top: 25px;
-}
-
-.filterButton {
-  background-color: #00684A; /* Button background color */
-  color: white; /* Text color */
-  font-size: 12px;
-  width: 50%;
-  align-self: center;
-  justify-content: center;
-}
-
-.filterButton :hover{
-  background-color : #003b2a;
-  color: white;
-}
-
 
 .simulationbuttonSection{
   display: flex;
@@ -242,94 +187,36 @@ margin-bottom: 1rem;
   position: relative;
   width: 200px;
 }
+.flightOverviewBox {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  width: 30%;
+  min-width: 200px;
+  /*margin-right: 40rem;*/
+  height: 65vh;
+  font-family: 'Lexend Deca', sans-serif;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin-right:10px;
 
-  /* SearchBar.module.css */
-  .searchBar {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally */
-    margin: 20px; /* Add margin for spacing */
-  }
-  
-  .searchBar form {
-    display: flex;
-    flex-direction: center;
-    align-items: center;
-    width: 100%; /* Make the form take the full width of its container */
-    max-width: 600px; /* Set a maximum width for the search bar */
-    margin: 0 auto; /* Center the form */
-  }
-  
-  .searchBar input {
-    padding: 10px;
-    width: 100%; /* Make the input take the full width of its container */
-    border-radius: 25px; /* Round the edges */
-    border: 1px solid #ccc; /* Add a border */
-    margin-bottom: 10px; /* Space between input and button */
-    box-sizing: border-box; 
-  }
-  
-  .searchBar button {
-    padding: 10px 20px;
-    border-radius: 25px; /* Round the edges */
-    border: none; /* Remove default border */
-    background-color: #00684A; /* Set background color */
-    color: white; /* Set text color */
-    cursor: pointer; /* Change cursor on hover */
-    font-size: 16px;
-    margin-left: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .searchBar button:disabled {
-    background-color: #6c757d; /* Change background color when disabled */
-  }
-  
-  .searchBar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 20px 0; /* Add margin around the results list */
-    width: 100%; /* Make the results list take the full width of its container */
-    max-width: 600px; /* Set a maximum width for the results list */
-  }
-  
-  .searchBar li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd; /* Add a border between items */
-    border-radius: 5px; /* Round the edges of list items */
-    margin-bottom: 5px; /* Space between list items */
-  }
-
-  .flightOverviewBox {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    margin-top: 1rem;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    width: 30%;
-    min-width: 200px;
-    /*margin-right: 40rem;*/
-    height: 65vh;
-    font-family: 'Lexend Deca', sans-serif;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    margin-right:10px;
-
-  }
+}
 
 
-  .innerBox1 {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    padding: 1rem;
-    margin: 1rem 0;
-    flex: 1; /* Make the inner boxes expand to fill the available space */
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
-    width: 35%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.innerBox1 {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  margin: 1rem 0;
+  flex: 1; /* Make the inner boxes expand to fill the available space */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 .resultsContainer {

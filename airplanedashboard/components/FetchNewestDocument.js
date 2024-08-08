@@ -1,4 +1,4 @@
-// components/FetchNewestDocument.js
+// components/FetchNewestDocument.js -> Not used at the moment
 
 import { useEffect } from 'react';
 

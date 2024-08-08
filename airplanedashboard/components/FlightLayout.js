@@ -1,8 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import styles from './Layout.module.css'; // Ensure this path is correct
+import styles from './GeneralStyle.module.css'; // Ensure this path is correct
 import footerStyles from './Footer.module.css';
+
 import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
@@ -14,7 +15,7 @@ import Banner from '@leafygreen-ui/banner';
 
 const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 
-const Layout1 = ({ children }) => {
+const FlightLayout = ({ children }) => {
   const router = useRouter();
   const { flightId } = router.query; // Get flightId from query parameters
   const [flightData, setFlightData] = useState([]);
@@ -269,14 +270,6 @@ const Layout1 = ({ children }) => {
           </h1>
           <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
         </div>
-        {/*<Logo className={styles.logo} />*/}
-        {/*<Image
-          src="/leafylogo.svg" // Path to your SVG in the public directory
-          alt="Leafy Logo"
-          width={100} // Specify the width of the image
-          height={50} // Specify the height of the image
-          className={styles.logo} // Apply any relevant styles
-        />*/}
       </header>
       <nav className={styles.nav}>
         <button className={styles.greenButton} onClick={handleBackClick}>
@@ -418,4 +411,4 @@ const Layout1 = ({ children }) => {
   );
 };
 
-export default Layout1;
+export default FlightLayout;

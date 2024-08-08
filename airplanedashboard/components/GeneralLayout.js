@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './Layout.module.css';
+import styles from './GeneralStyle.module.css';
 import headerStyles from './Header.module.css'; // Import the new header CSS file
 import footerStyles from './Footer.module.css'; // Import the footer CSS file
 import Logo from '@leafygreen-ui/logo';
 import Icon from "@leafygreen-ui/icon";
 import Image from "next/image";
 
-const Layout = ({ children }) => {
+const GeneralLayout = ({ children }) => {
   return (
     <div className={styles.container}>
+      
       <header className={headerStyles.header}>
         <div className={headerStyles.logo_container}>
           <Image
@@ -31,11 +32,13 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </header>
+
       <div className={styles.main}>
         <div className={styles.content}>
           {children}
         </div>
       </div>
+
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
           <p>&copy; 2024 MongoDB. All rights reserved.</p>
@@ -51,4 +54,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default GeneralLayout;

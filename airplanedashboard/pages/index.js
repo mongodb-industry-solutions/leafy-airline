@@ -1,10 +1,10 @@
 // pages/index.js
 import React from 'react';
-import Layout from '../components/Layout';
+import GeneralLayout from '../components/GeneralLayout';
 import FlightList from '../components/FlightList';
-import SearchBar from '../components/searchbar';
+import SearchBar from '../components/Searchbar';
 import FilterSection from '../components/FilterSection';
-import styles from '../components/Layout.module.css';
+import styles from '../components/GeneralStyle.module.css';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
@@ -58,18 +58,17 @@ export default function Home() {
   }
 
   return (
-    <Layout>
+    <GeneralLayout>
       {/* Integrate the SearchBar component here */}
       <aside className={styles.sidebar}>
         <FilterSection response={flights} setResponse={setFlights} dates_list={dates} airports_list = {airports}/>
       </aside>
       <div className={styles.searchList}>
-        {/* <SearchBar /> */}
         <SearchBar response={flights} setResponse={setFlights}/>
         <div className={styles.flightsList}>
           <FlightList flights={flights} />
         </div>
       </div>
-    </Layout>
+    </GeneralLayout>
   );
 }

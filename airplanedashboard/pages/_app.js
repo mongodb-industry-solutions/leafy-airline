@@ -1,5 +1,5 @@
 // pages/_app.js
-import '../components/Layout.module.css'; 
+import '../components/GeneralStyle.module.css'; 
 import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
