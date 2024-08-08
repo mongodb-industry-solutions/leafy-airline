@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styles from './Layout.module.css';
+import styles from './FilterSection.module.css';
 import Button from '@leafygreen-ui/button';
 import { Option, OptionGroup, Select, Size } from '@leafygreen-ui/select';
 

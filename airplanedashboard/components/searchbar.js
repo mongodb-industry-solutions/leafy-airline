@@ -1,7 +1,7 @@
 // components/SearchBar.js
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'; // Import useRouter from next/router
-import styles from './Layout.module.css';
+import styles from './Searchbar.module.css';
 
 function SearchBar({response, setResponse}) {
   const [query, setQuery] = useState('');

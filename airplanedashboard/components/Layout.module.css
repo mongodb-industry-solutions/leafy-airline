@@ -143,61 +143,6 @@
 }
 
 
-.filterGroup {
-margin-bottom: 1rem;
-}
-
-
-.filterTimeSlider{
-  margin-top: 5px;
-  padding: 5px;
-  width: 100%;
-}
-
-.filterTimeSlider div{
-  font-weight: bold;
-  font-size: 17px;
-  padding-left: 5px;
-}
-
-.filterTimeSlider input {
-  width: 100%;
-}
-
-.filterSelect {
-  width: 100%;
-  margin-top: 5px;
-  padding: 5px;
-}
-
-.filterSelect label{
-  font-family: 'Lexend Deca', sans-serif;
-  font-size : 17px;
-  padding: 5px;
-}
-
-.filterbuttonSection{
-  display: flex;
-  justify-content: center;
-  gap: 10px; 
-  width: 100%; 
-  padding-top: 25px;
-}
-
-.filterButton {
-  background-color: #00684A; /* Button background color */
-  color: white; /* Text color */
-  font-size: 12px;
-  width: 50%;
-  align-self: center;
-  justify-content: center;
-}
-
-.filterButton :hover{
-  background-color : #003b2a;
-  color: white;
-}
-
 
 .simulationbuttonSection{
   display: flex;
