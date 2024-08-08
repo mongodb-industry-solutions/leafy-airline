@@ -14,7 +14,7 @@ import Banner from '@leafygreen-ui/banner';
 
 const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 
-const Layout1 = ({ children }) => {
+const FlightLayout = ({ children }) => {
   const router = useRouter();
   const { flightId } = router.query; // Get flightId from query parameters
   const [flightData, setFlightData] = useState([]);
@@ -418,4 +418,4 @@ const Layout1 = ({ children }) => {
   );
 };
 
-export default Layout1;
+export default FlightLayout;
