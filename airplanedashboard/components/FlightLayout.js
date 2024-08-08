@@ -270,14 +270,6 @@ const FlightLayout = ({ children }) => {
           </h1>
           <h2 className={styles.subHeader}>Flight Information & Route Optimization</h2>
         </div>
-        {/*<Logo className={styles.logo} />*/}
-        {/*<Image
-          src="/leafylogo.svg" // Path to your SVG in the public directory
-          alt="Leafy Logo"
-          width={100} // Specify the width of the image
-          height={50} // Specify the height of the image
-          className={styles.logo} // Apply any relevant styles
-        />*/}
       </header>
       <nav className={styles.nav}>
         <button className={styles.greenButton} onClick={handleBackClick}>
