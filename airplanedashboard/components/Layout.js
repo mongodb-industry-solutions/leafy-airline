@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
         />
         </div>
         <div className={headerStyles.title_container}>
-          <h1>General Overview</h1>
+          <h3>General Overview</h3>
         </div>
         <div className={styles.rightheaderContainer}>
           <a href="/instructions" className={headerStyles.infoButton}>Instructions of Use</a>
