@@ -6,7 +6,6 @@ import FetchNewestDocument from '../components/FetchNewestDocument';
 export default function Home() {
   return (
     <FlightLayout>
-      {/*<FetchNewestDocument />*/}
     </FlightLayout>
   );
 }

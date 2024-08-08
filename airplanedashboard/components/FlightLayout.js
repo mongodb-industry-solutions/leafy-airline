@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import styles from './Layout.module.css'; // Ensure this path is correct
+import styles from './GeneralLayout.module.css'; // Ensure this path is correct
 import footerStyles from './Footer.module.css';
 
 import Logo from '@leafygreen-ui/logo';

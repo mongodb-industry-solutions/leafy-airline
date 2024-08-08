@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Layout.module.css';
+import styles from './GeneralLayout.module.css';
 import headerStyles from './Header.module.css'; // Import the new header CSS file
 import footerStyles from './Footer.module.css'; // Import the footer CSS file
 import Logo from '@leafygreen-ui/logo';
