@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'; // Import useRouter from next/router
-import styles from './GeneralLayout.module.css';
+import styles from './GeneralStyle.module.css';
 
 
 function FlightList({flights}) {

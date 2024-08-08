@@ -4,7 +4,7 @@ import GeneralLayout from '../components/GeneralLayout';
 import FlightList from '../components/FlightList';
 import SearchBar from '../components/Searchbar';
 import FilterSection from '../components/FilterSection';
-import styles from '../components/GeneralLayout.module.css';
+import styles from '../components/GeneralStyle.module.css';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
