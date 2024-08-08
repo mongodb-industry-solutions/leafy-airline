@@ -7,6 +7,7 @@
     flex-direction: column;
     height: 100vh;
     font-family: 'Lexend Deca', sans-serif;
+    padding-bottom: 40px;
   }
   
 .header {
