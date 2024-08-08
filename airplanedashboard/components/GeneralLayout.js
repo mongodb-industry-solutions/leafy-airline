@@ -6,7 +6,7 @@ import Logo from '@leafygreen-ui/logo';
 import Icon from "@leafygreen-ui/icon";
 import Image from "next/image";
 
-const Layout = ({ children }) => {
+const GeneralLayout = ({ children }) => {
   return (
     <div className={styles.container}>
       <header className={headerStyles.header}>
@@ -51,4 +51,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default GeneralLayout;

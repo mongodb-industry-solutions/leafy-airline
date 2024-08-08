@@ -1,6 +1,6 @@
 // pages/index.js
 import React from 'react';
-import Layout from '../components/Layout';
+import GeneralLayout from '../components/GeneralLayout';
 import FlightList from '../components/FlightList';
 import SearchBar from '../components/searchbar';
 import FilterSection from '../components/FilterSection';
@@ -58,7 +58,7 @@ export default function Home() {
   }
 
   return (
-    <Layout>
+    <GeneralLayout>
       {/* Integrate the SearchBar component here */}
       <aside className={styles.sidebar}>
         <FilterSection response={flights} setResponse={setFlights} dates_list={dates} airports_list = {airports}/>
@@ -70,6 +70,6 @@ export default function Home() {
           <FlightList flights={flights} />
         </div>
       </div>
-    </Layout>
+    </GeneralLayout>
   );
 }
