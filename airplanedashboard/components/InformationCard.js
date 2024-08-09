@@ -7,7 +7,7 @@ const InformationCard = ({title, text}) => {
         <div className={styles.cardcontainer}>
             <Icon className={styles.icon} glyph="InfoWithCircle" fill="#00684A" />
             <div className={styles.card}>
-                <h4>{title}</h4>
+                <h3><strong>{title}</strong></h3>
                 <p>{text}</p>
             </div>
         </div>

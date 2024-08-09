@@ -295,9 +295,10 @@ const FlightLayout = ({ children }) => {
                 </div>
 
                 <div className={styles.costContainer}>
+                  
                   <div className={styles.costBox}>
                     <h4>Delay Cost</h4>
-                    <InformationCard title="My card" text="New text"></InformationCard>
+                    <InformationCard title="Additional information" text="This feature shows the current delay's financial impact in our company. It is updated in real time within the flight!"></InformationCard>
                     <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'Simulation not Started'}</p>
                   </div>
                   <div className={styles.costBox}>
