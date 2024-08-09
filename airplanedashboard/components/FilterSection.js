@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import styles from './FilterSection.module.css';
 import Button from '@leafygreen-ui/button';
 import { Option, OptionGroup, Select, Size } from '@leafygreen-ui/select';
@@ -107,6 +107,7 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
     return date.toISOString();
   };
 
+
   return (
     <div className={styles.filterSelection}>
       <h2>Filter Selection</h2>
@@ -116,7 +117,7 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
         className={styles.filterSelect}
         label="Flight date"
         placeholder="Select the date"
-        defaultValue={selectedDate}
+        value={selectedDate}
         size={Size.Default}
         onChange={(e) => handleDateChange(setSelectedDate, e)}
       >
@@ -142,7 +143,7 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
         className={styles.filterSelect}
         label="Departure Location"
         placeholder="Select departure airport"
-        defaultValue=""
+        value={selectedDeparture}
         size={Size.Default}
         onChange={(e) => handleDepartureChange(e)}
       >
@@ -155,7 +156,7 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
         className={styles.filterSelect}
         label="Arrival Location"
         placeholder="Select arrival airport"
-        defaultValue=""
+        value={selectedArrival}
         size={Size.Default}
         onChange={(e) => handleArrivalChange(e)}
       >
