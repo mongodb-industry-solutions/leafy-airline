@@ -49,6 +49,7 @@
 }
 
 .intro_container{
+  /* background-color: #18775c; */
   background-color: #00684A;
   border-radius: 5px;
   margin-top : 5px;
@@ -60,7 +61,6 @@
   font-family: 'Lexend Deca', sans-serif;
   font-size: 15px;
   font-weight: lighter;
-  color: white;
 }
 
 .intro_container a {
