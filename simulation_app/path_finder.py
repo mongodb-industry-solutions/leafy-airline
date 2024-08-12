@@ -113,5 +113,8 @@ def find_path(flight_info):
     paths["path"] = new_path_points
     paths["extra_length"] = shortest_path_length - initial_path_length
 
+    # CHANGES : NEW APPROACH TO BE ABLE TO PRINT THE NEW PATH IN THE WEBSITE
+    paths["path_airps"] = shortest_path
+
 
     return (disrupted, paths)

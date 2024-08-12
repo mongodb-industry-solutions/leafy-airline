@@ -104,6 +104,9 @@ class DataSimulator:
         self.path = path_atrib["path"]
         self.extra_length = path_atrib["extra_length"]
         self.arrived = False
+
+        #CHANGES:
+        self.path_airps = path_atrib["path_airps"]
         
         # Get the initial headed point (idx will be the idx of the headed point)
         self.headed_point = np.array(self.path[1])
@@ -258,6 +261,10 @@ class DataSimulator:
             "flight_id": self.FID,
             "ts": new_ts.isoformat(),
             "path" : self.path,
+
+            # CHANGES
+            "path_airps" : self.path_airps,
+
             "disrupted" : self.disruption,
             "extra_length" : self.extra_length,
             "distance_to_arrival" : distance_to_arrival,

@@ -29,6 +29,7 @@ const FlightLayout = ({ children }) => {
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
+  
   const [loading, setLoading] = useState(false); // State for loading
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
