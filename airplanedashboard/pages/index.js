@@ -65,7 +65,7 @@ export default function Home() {
       </aside>
       <div className={styles.searchList}>
         <div className={styles.intro_container}>
-          <h3>Welcome!</h3>
+          <h3>Dive In and Explore!</h3>
           <p>
            Welcome to the Leafy Airline Dashboard, where flight operations managers can effortlessly oversee and optimize flight data. 
            Powered by Next.js and MongoDB, our intuitive interface makes searching, filtering, and reviewing flight details a breeze.

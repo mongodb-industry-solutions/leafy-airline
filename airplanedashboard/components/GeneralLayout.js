@@ -21,7 +21,7 @@ const GeneralLayout = ({ children }) => {
         />
         </div>
         <div className={headerStyles.title_container}>
-          <h3>General Overview</h3>
+          <h3>Flights Overview</h3>
         </div>
         <div className={styles.rightheaderContainer}>
           <a href="/instructions" className={headerStyles.infoButton}>Instructions</a>
