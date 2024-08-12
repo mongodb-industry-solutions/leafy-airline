@@ -64,6 +64,17 @@ export default function Home() {
         <FilterSection response={flights} setResponse={setFlights} dates_list={dates} airports_list = {airports}/>
       </aside>
       <div className={styles.searchList}>
+        <div className={styles.intro_container}>
+          <h3>Dive In and Explore!</h3>
+          <p>
+           Welcome to the Leafy Airline Dashboard, where flight operations managers can effortlessly oversee and optimize flight data. 
+           Powered by Next.js and MongoDB, our intuitive interface makes searching, filtering, and reviewing flight details a breeze.
+           <br />
+            
+           <br />
+           Begin your search right away or check out our <a href="/instructions">Instructions Tab</a> for a better understanding!
+           </p>
+        </div>
         <SearchBar response={flights} setResponse={setFlights}/>
         <div className={styles.flightsList}>
           <FlightList flights={flights} />
