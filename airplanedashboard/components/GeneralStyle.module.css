@@ -48,6 +48,35 @@
   gap: 20px;
 }
 
+.intro_container{
+  background-color: #00684A;
+  border-radius: 5px;
+  margin : 7px;
+  color: white;
+  padding: 5px 15px;
+}
+
+.intro_container p {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 15px;
+  font-weight: lighter;
+  color: white;
+}
+
+.intro_container a {
+  color: rgb(201, 201, 201); /* Default color for the link */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.intro_container a:active {
+  color: grey; /* Color of the link when clicked */
+}
+
+.intro_container a:hover {
+  text-decoration: underline; /* Optional: underline on hover for better UX */
+}
+
+
 .searchList {
   display: flex;
   flex-direction: column;
