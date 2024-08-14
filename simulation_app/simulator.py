@@ -101,7 +101,14 @@ class DataSimulator:
         
         self.FID = flight_ID
         self.disruption = disruption
-        self.path = path_atrib["path"]
+
+        # Path atributes 
+        self.initial_path = path_atrib["initial_path"]
+        self.initial_path_airps = path_atrib["initial_path_airps"]
+
+        self.path = path_atrib["new_path"]
+        self.new_path_airps = path_atrib["new_path_airps"]
+
         self.extra_length = path_atrib["extra_length"]
         self.arrived = False
         
@@ -257,7 +264,13 @@ class DataSimulator:
         return (self.arrived, {
             "flight_id": self.FID,
             "ts": new_ts.isoformat(),
+
+            "initial_path" : self.initial_path,
+            "initial_path_airps" : self.initial_path_airps,
+
             "path" : self.path,
+            "new_path_airps" : self.new_path_airps,
+
             "disrupted" : self.disruption,
             "extra_length" : self.extra_length,
             "distance_to_arrival" : distance_to_arrival,
