@@ -12,6 +12,8 @@ import PlaneIcon from '../public/plane-solid.svg';
 import Image from 'next/image';
 import Banner from '@leafygreen-ui/banner';
 
+import airports_dict from '../resources/airports.js'
+
 
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 const app_url = "https://simulation-app-final-doubletopic-65jcrv6puq-ew.a.run.app/";
@@ -34,6 +36,8 @@ const FlightLayout = ({ children }) => {
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
+ 
+  const [newPath, setNewPath] = useState([])
 
   async function fetchData() {
     try {
@@ -154,7 +158,7 @@ const FlightLayout = ({ children }) => {
     const heading = Math.atan2(y, x) * 180 / Math.PI;
     return (heading + 360) % 360; // Normalize to 0-360
   };
-  
+
   const getAirplaneIcon = () => {
     if (airplanePosition) {
       const { heading } = airplanePosition;
@@ -164,6 +168,18 @@ const FlightLayout = ({ children }) => {
     }
     return '/plane-solid.svg'; // URL for default plane icon
   };
+
+  const getNewPath = () => {
+    const path = selectedFlight && Array.isArray(selectedFlight.new_path) 
+                  ? selectedFlight.new_path 
+                  : [];
+
+    // Map each path value to its city and code from the airports dictionary
+    const resolvedPath = path.map(code => airports_dict[code] || code);
+
+    setNewPath(resolvedPath);
+    console.log(resolvedPath)
+};
 
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
@@ -208,6 +224,7 @@ const FlightLayout = ({ children }) => {
 
       // Change state to fetch the new information from flights to update the path visually
       setSimulationStarted(true);
+      getNewPath()
 
     } catch (error) {
       console.error('Error starting process:', error);
@@ -249,6 +266,7 @@ const FlightLayout = ({ children }) => {
 
       // Reset the simulation status
       setSimulationStarted(false);
+      setNewPath([])
 
     } catch (error) {
       console.error('Error resetting process:', error);
@@ -259,6 +277,7 @@ const FlightLayout = ({ children }) => {
     resetSimulation();
     router.push('/');
   };
+
 
   const mapContainerStyle = {
     width: '100%',
@@ -300,7 +319,14 @@ const FlightLayout = ({ children }) => {
             {selectedFlight ? (
               <>
                 <div className={styles.innerBox}>
-                  <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
+                  <h3>Routing:</h3>
+                  <h4>{`Initial Path: ${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</h4>
+                  {newPath.length === 0 ? (
+                    <h4>No simulation running</h4>
+                  ) : (
+                    <h4>{`New Path: ${newPath.join(' - ')}`}</h4>
+                  )}
+
                   <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
                 </div>
                 <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
