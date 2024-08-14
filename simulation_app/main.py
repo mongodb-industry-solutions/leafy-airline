@@ -8,13 +8,6 @@ import os
 import json
 from google.cloud import pubsub_v1
 
-# Resources:
-# https://medium.com/@mouaazfarrukh99/getting-started-with-pub-sub-using-python-305a19901f1a
-# https://www.youtube.com/watch?v=ML6P1ksHcqo&list=PLIivdWyY5sqKwVLe4BLJ-vlh9r9zCdOse&index=4 
-
-
-# MongoDB connection : Data API - Custom endpoints
-
 
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
@@ -24,8 +17,6 @@ origins = [
     "https://airplanedashboard-65jcrv6puq-ew.a.run.app"
     # Add other origins if needed
 ]
-
-# origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -43,21 +34,29 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )
 
+
+
 # SCHEDULER : Calls my function (simulator) every x seconds
 measurement_interval = 2.5
 scheduler = BackgroundScheduler()
 scheduler_active = False
-# resume_needed = False
-
 docs = []
 
-# PUBSUB INFO
+
+
+# PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions
 project_id = "connected-aircraft-ist"
-topic_id = "leafyAirlineData"
+
+data_topic_id = "leafyAirlineData"
+path_topic_id = "leafyAirlinePath"
+
 service_account_file = "json-keys-for-connect-aircraft-ist/connected-aircraft-ist-4fa26b67848a.json"
 
-publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
-topic_path = publisher.topic_path(project_id, topic_id)
+data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+
+data_topic = data_publisher.topic_path(project_id, data_topic_id)
+path_topic = path_publisher.topic_path(project_id, path_topic_id)
 
 # GENERAL LIMITS
 doc_limit = 200
@@ -78,12 +77,19 @@ def publish_data(simulator : DataSimulator):
         logging.info("Scheduler stopped due to finished flight")
         scheduler.pause()
         
-    # Uncomment when using pubsub
     data = json.dumps(data).encode("utf-8")
-    future = publisher.publish(topic_path, data)
+    future = data_publisher.publish(data_topic, data)
     logging.info(future)
 
     return {"status": "New data published"}
+
+def publish_path(path_dict:dict):
+
+    data = json.dumps(path_dict).encode("utf-8")
+    future = path_publisher.publish(path_topic, data)
+    logging.info(future)
+
+    return {"status": "New path published"}
 
 
 # ENDPOINTS FOR FAST API APP 
