@@ -98,20 +98,6 @@ const FlightLayout = ({ children }) => {
   }, []);
 
 
-  const calculateHeading = (from, to) => {
-    const lat1 = from.lat * Math.PI / 180;
-    const lon1 = from.lng * Math.PI / 180;
-    const lat2 = to.lat * Math.PI / 180;
-    const lon2 = to.lng * Math.PI / 180;
-
-    const dLon = lon2 - lon1;
-    const y = Math.sin(dLon) * Math.cos(lat2);
-    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
-
-    const heading = Math.atan2(y, x) * 180 / Math.PI;
-    return (heading + 360) % 360; // Normalize to 0-360
-  };
-
   useEffect(() => {
     if (totalExpectedFuelCost !== null && delayCost !== null) {
       setSumCost(totalExpectedFuelCost + delayCost);
@@ -154,6 +140,21 @@ const FlightLayout = ({ children }) => {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);
 
+
+  const calculateHeading = (from, to) => {
+    const lat1 = from.lat * Math.PI / 180;
+    const lon1 = from.lng * Math.PI / 180;
+    const lat2 = to.lat * Math.PI / 180;
+    const lon2 = to.lng * Math.PI / 180;
+
+    const dLon = lon2 - lon1;
+    const y = Math.sin(dLon) * Math.cos(lat2);
+    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+
+    const heading = Math.atan2(y, x) * 180 / Math.PI;
+    return (heading + 360) % 360; // Normalize to 0-360
+  };
+  
   const getAirplaneIcon = () => {
     if (airplanePosition) {
       const { heading } = airplanePosition;
