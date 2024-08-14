@@ -35,6 +35,29 @@ const FlightLayout = ({ children }) => {
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
 
+  async function fetchData() {
+    try {
+      const res = await fetch('/api/flights');
+      const data = await res.json();
+      setFlightData(data);
+
+      if (flightId) {
+        console.log('Flight ID from query:', flightId);
+
+        const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
+        if (flight) {
+          console.log("Flight Data")
+          console.log(flight)
+          setSelectedFlight(flight);
+        } else {
+          console.error('No flight found with ID:', flightId);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
     async function fetchApiKey() {
       try {
@@ -49,28 +72,8 @@ const FlightLayout = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch('/api/flights');
-        const data = await res.json();
-        setFlightData(data);
-
-        if (flightId) {
-          console.log('Flight ID from query:', flightId);
-
-          const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
-          if (flight) {
-            setSelectedFlight(flight);
-          } else {
-            console.error('No flight found with ID:', flightId);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
     fetchData();
-  }, [flightId]);
+  }, [flightId, simulationStarted]);
 
   useEffect(() => {
     // Connect to WebSocket server
@@ -93,36 +96,6 @@ const FlightLayout = ({ children }) => {
       socket.off('alert');
     };
   }, []);
-
-  useEffect(() => {
-
-    // NEW IMPLEMENTATIO TO SEE IF IT FETCHES THE DATA CORRECTKY FROM MDB
-    console.log("Started simulation status changed")
-    async function fetchData() {
-      try {
-        const res = await fetch('/api/flights');
-        const data = await res.json();
-        setFlightData(data);
-
-        if (flightId) {
-          console.log('Flight ID from query:', flightId);
-          const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
-          if (flight) {
-
-            console.log("New data for the flight")
-            console.log(flight)
-            setSelectedFlight(flight);
-          } else {
-            console.error('No flight found with ID:', flightId);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-    fetchData();
-
-  }, [simulationStarted]);
 
 
   const calculateHeading = (from, to) => {
