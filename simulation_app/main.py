@@ -63,6 +63,7 @@ doc_limit = 200
 
 
 # FUNCTIONS
+
 def publish_data(simulator : DataSimulator):
 
     (finished, data)= simulator.generate_data()
@@ -83,10 +84,17 @@ def publish_data(simulator : DataSimulator):
 
     return {"status": "New data published"}
 
-def publish_path(path_dict:dict):
+def publish_path(flight_id, path_data):
 
-    data = json.dumps(path_dict).encode("utf-8")
+    # Create the new message
+    msg = {"flight_id" : flight_id, 
+           "initial_path_airps" : path_data["initial_path_airps"],
+           "new_path_airps" : path_data["new_path_airps"],
+           }
+    
+    data = json.dumps(msg).encode("utf-8")
     future = path_publisher.publish(path_topic, data)
+    
     logging.info(future)
 
     return {"status": "New path published"}
@@ -119,6 +127,9 @@ async def start_scheduler(flight_info:dict):
 
     # Find the path between the departure and arrival locations
     (disrupted, path_data) = find_path(flight_info)
+
+    # Publish the initial and new path in path topic
+    publish_path(flight_info["flight_id"], path_data)
 
     # Create our Data Simulator for this flight
     simulator = DataSimulator(flight_info["flight_id"],
