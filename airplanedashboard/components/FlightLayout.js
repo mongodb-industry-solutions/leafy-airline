@@ -12,7 +12,9 @@ import PlaneIcon from '../public/plane-solid.svg';
 import Image from 'next/image';
 import Banner from '@leafygreen-ui/banner';
 
+import airports_dict from '../resources/airports.js'
 
+// const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-newpath-65jcrv6puq-ew.a.run.app/";
 const app_url = "https://simulation-app-final-doubletopic-65jcrv6puq-ew.a.run.app/";
@@ -28,11 +30,38 @@ const FlightLayout = ({ children }) => {
   const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
+
+  const [simulationStarted, setSimulationStarted] = useState(false)
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
   const [loading, setLoading] = useState(false); // State for loading
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
+ 
+  const [newPath, setNewPath] = useState([])
+
+  async function fetchData() {
+    try {
+      const res = await fetch('/api/flights');
+      const data = await res.json();
+      setFlightData(data);
+
+      if (flightId) {
+        console.log('Flight ID from query:', flightId);
+
+        const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
+        if (flight) {
+          console.log("Flight Data")
+          console.log(flight)
+          setSelectedFlight(flight);
+        } else {
+          console.error('No flight found with ID:', flightId);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
     async function fetchApiKey() {
@@ -48,28 +77,8 @@ const FlightLayout = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch('/api/flights');
-        const data = await res.json();
-        setFlightData(data);
-
-        if (flightId) {
-          console.log('Flight ID from query:', flightId);
-
-          const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
-          if (flight) {
-            setSelectedFlight(flight);
-          } else {
-            console.error('No flight found with ID:', flightId);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
     fetchData();
-  }, [flightId]);
+  }, [flightId, simulationStarted]);
 
   useEffect(() => {
     // Connect to WebSocket server
@@ -93,19 +102,6 @@ const FlightLayout = ({ children }) => {
     };
   }, []);
 
-  const calculateHeading = (from, to) => {
-    const lat1 = from.lat * Math.PI / 180;
-    const lon1 = from.lng * Math.PI / 180;
-    const lat2 = to.lat * Math.PI / 180;
-    const lon2 = to.lng * Math.PI / 180;
-
-    const dLon = lon2 - lon1;
-    const y = Math.sin(dLon) * Math.cos(lat2);
-    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
-
-    const heading = Math.atan2(y, x) * 180 / Math.PI;
-    return (heading + 360) % 360; // Normalize to 0-360
-  };
 
   useEffect(() => {
     if (totalExpectedFuelCost !== null && delayCost !== null) {
@@ -149,6 +145,21 @@ const FlightLayout = ({ children }) => {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);
 
+
+  const calculateHeading = (from, to) => {
+    const lat1 = from.lat * Math.PI / 180;
+    const lon1 = from.lng * Math.PI / 180;
+    const lat2 = to.lat * Math.PI / 180;
+    const lon2 = to.lng * Math.PI / 180;
+
+    const dLon = lon2 - lon1;
+    const y = Math.sin(dLon) * Math.cos(lat2);
+    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+
+    const heading = Math.atan2(y, x) * 180 / Math.PI;
+    return (heading + 360) % 360; // Normalize to 0-360
+  };
+
   const getAirplaneIcon = () => {
     if (airplanePosition) {
       const { heading } = airplanePosition;
@@ -158,6 +169,18 @@ const FlightLayout = ({ children }) => {
     }
     return '/plane-solid.svg'; // URL for default plane icon
   };
+
+  const getNewPath = () => {
+    const path = selectedFlight && Array.isArray(selectedFlight.new_path) 
+                  ? selectedFlight.new_path 
+                  : [];
+
+    // Map each path value to its city and code from the airports dictionary
+    const resolvedPath = path.map(code => airports_dict[code] || code);
+
+    setNewPath(resolvedPath);
+    console.log(resolvedPath)
+};
 
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
@@ -200,6 +223,10 @@ const FlightLayout = ({ children }) => {
         setLoading(false); // Set loading to false after delay
       }, 3000); // 3 seconds delay
 
+      // Change state to fetch the new information from flights to update the path visually
+      setSimulationStarted(true);
+      getNewPath()
+
     } catch (error) {
       console.error('Error starting process:', error);
       setLoading(false); // Set loading to false if there is an error
@@ -237,6 +264,11 @@ const FlightLayout = ({ children }) => {
       setDelayCost(null);
       setFuelCostPerHour(null);
       setTotalExpectedFuelCost(null);
+
+      // Reset the simulation status
+      setSimulationStarted(false);
+      setNewPath([])
+
     } catch (error) {
       console.error('Error resetting process:', error);
     }
@@ -246,6 +278,7 @@ const FlightLayout = ({ children }) => {
     resetSimulation();
     router.push('/');
   };
+
 
   const mapContainerStyle = {
     width: '100%',
@@ -287,7 +320,14 @@ const FlightLayout = ({ children }) => {
             {selectedFlight ? (
               <>
                 <div className={styles.innerBox}>
-                  <h4>{`${selectedFlight.dep_arp.city} - ${selectedFlight.arr_arp.city}`}</h4>
+                  <h3>Routing:</h3>
+                  <h4>{`Initial Path: ${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</h4>
+                  {newPath.length === 0 ? (
+                    <h4>No simulation running</h4>
+                  ) : (
+                    <h4>{`New Path: ${newPath.join(' - ')}`}</h4>
+                  )}
+
                   <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
                 </div>
                 <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
