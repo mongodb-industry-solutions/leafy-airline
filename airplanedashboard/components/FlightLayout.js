@@ -14,8 +14,9 @@ import Banner from '@leafygreen-ui/banner';
 
 import airports_dict from '../resources/airports.js'
 
-
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
+// const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
+// const app_url = "https://simulation-app-newpath-65jcrv6puq-ew.a.run.app/";
 const app_url = "https://simulation-app-final-doubletopic-65jcrv6puq-ew.a.run.app/";
 
 const FlightLayout = ({ children }) => {
