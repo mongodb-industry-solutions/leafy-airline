@@ -13,7 +13,8 @@ import Image from 'next/image';
 import Banner from '@leafygreen-ui/banner';
 
 
-const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
+// const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
+const app_url = "https://simulation-app-newpath-65jcrv6puq-ew.a.run.app/";
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
