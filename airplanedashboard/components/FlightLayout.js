@@ -13,7 +13,8 @@ import Image from 'next/image';
 import Banner from '@leafygreen-ui/banner';
 
 
-const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
+// const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
+const app_url = "https://simulation-app-final-doubletopic-65jcrv6puq-ew.a.run.app/";
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -26,6 +27,8 @@ const FlightLayout = ({ children }) => {
   const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
+
+  const [simulationStarted, setSimulationStarted] = useState(false)
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
   const [loading, setLoading] = useState(false); // State for loading
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
@@ -90,6 +93,37 @@ const FlightLayout = ({ children }) => {
       socket.off('alert');
     };
   }, []);
+
+  useEffect(() => {
+
+    // NEW IMPLEMENTATIO TO SEE IF IT FETCHES THE DATA CORRECTKY FROM MDB
+    console.log("Started simulation status changed")
+    async function fetchData() {
+      try {
+        const res = await fetch('/api/flights');
+        const data = await res.json();
+        setFlightData(data);
+
+        if (flightId) {
+          console.log('Flight ID from query:', flightId);
+          const flight = data.find(flight => flight._id && flight._id.toString() === flightId.toString());
+          if (flight) {
+
+            console.log("New data for the flight")
+            console.log(flight)
+            setSelectedFlight(flight);
+          } else {
+            console.error('No flight found with ID:', flightId);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+
+  }, [simulationStarted]);
+
 
   const calculateHeading = (from, to) => {
     const lat1 = from.lat * Math.PI / 180;
@@ -198,6 +232,9 @@ const FlightLayout = ({ children }) => {
         setLoading(false); // Set loading to false after delay
       }, 3000); // 3 seconds delay
 
+      // Change state to fetch the new information from flights to update the path visually
+      setSimulationStarted(true);
+
     } catch (error) {
       console.error('Error starting process:', error);
       setLoading(false); // Set loading to false if there is an error
@@ -235,6 +272,10 @@ const FlightLayout = ({ children }) => {
       setDelayCost(null);
       setFuelCostPerHour(null);
       setTotalExpectedFuelCost(null);
+
+      // Reset the simulation status
+      setSimulationStarted(false);
+
     } catch (error) {
       console.error('Error resetting process:', error);
     }
