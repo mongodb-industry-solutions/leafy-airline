@@ -16,11 +16,12 @@ import Image from 'next/image';
 import Banner from '@leafygreen-ui/banner';
 
 import airports_dict from '../resources/airports.js'
+import { set } from 'mongoose';
 
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-newpath-65jcrv6puq-ew.a.run.app/";
-const app_url = "https://simulation-app-final-doubletopic-65jcrv6puq-ew.a.run.app/";
+const app_url = "https://simulation-app-final-v3-65jcrv6puq-ew.a.run.app/";
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -42,6 +43,8 @@ const FlightLayout = ({ children }) => {
   const [sumCost, setSumCost] = useState(null);
  
   const [newPath, setNewPath] = useState([])
+  const [newDisrup, setDisruption] = useState({})
+  const [disrupEmpty, setDisrupEmpty] = useState(true)
 
   async function fetchData() {
     try {
@@ -173,7 +176,20 @@ const FlightLayout = ({ children }) => {
     return '/plane-solid.svg'; // URL for default plane icon
   };
 
+  const getNewDisrup = () => {
+
+    console.log(selectedFlight.disruption_coords)
+
+    setDisruption({"lat" : selectedFlight.disruption_coords.lat,
+      "lng" : selectedFlight.disruption_coords.long});
+    console.log("Disruption");
+    console.log(selectedFlight.disruption_coords);
+    setDisrupEmpty(false);
+  
+  };
+
   const getNewPath = () => {
+    console.log("Entered newpath")
     const path = selectedFlight && Array.isArray(selectedFlight.new_path) 
                   ? selectedFlight.new_path 
                   : [];
@@ -182,8 +198,10 @@ const FlightLayout = ({ children }) => {
     const resolvedPath = path.map(code => airports_dict[code] || code);
 
     setNewPath(resolvedPath);
+    getNewDisrup()
     console.log(resolvedPath)
 };
+
 
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
@@ -271,6 +289,8 @@ const FlightLayout = ({ children }) => {
       // Reset the simulation status
       setSimulationStarted(false);
       setNewPath([])
+      setDisruption({})
+      setDisrupEmpty(true);
 
     } catch (error) {
       console.error('Error resetting process:', error);
@@ -297,6 +317,12 @@ const FlightLayout = ({ children }) => {
     lat: selectedFlight ? selectedFlight.arr_arp.geo_loc.lat : 0,
     lng: selectedFlight ? selectedFlight.arr_arp.geo_loc.long : 0
   };
+
+  // const disrupCoords = {
+  //   lat: selectedFlight ? selectedFlight.disruption_coords.lat: 0,
+  //   lng: selectedFlight ? selectedFlight.disruption_coords.long : 0
+  // };
+
 
   return (
     <div className={styles.container}>
@@ -386,6 +412,12 @@ const FlightLayout = ({ children }) => {
                         position={arrCoords}
                         label={`Arrival: ${selectedFlight.arr_arp.city}`}
                       />
+                      {!disrupEmpty && (
+                        <Marker
+                          position={newDisrup}
+                          label="Disruption"
+                        />
+                      )}
                       <Polyline
                         path={[depCoords, arrCoords]}
                         options={{
