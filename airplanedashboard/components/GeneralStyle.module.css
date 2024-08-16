@@ -386,12 +386,9 @@
   margin: 0px 5px; 
 }
 
-/* .innerBox .routing {
-  text-align: left;
-} */
-
-.innerBox h4 {
+.innerBox .routing h4 {
   padding: 0px;
+  margin : 0px;
 }
 
 .innerBoxTotalCosts {
