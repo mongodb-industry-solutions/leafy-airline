@@ -27,7 +27,7 @@ const GeneralLayout = ({ children }) => {
           <a href="/instructions" className={headerStyles.infoButton}>Instructions</a>
           <div className={headerStyles.icon_container}>
             <Icon glyph='Person' fill="#00684A" size='xlarge'/>
-            <span>Francesco Baldissera</span>
+            <span>Eddie Grant</span>
             <span>FO. Manager</span>
           </div>
         </div>
