@@ -33,6 +33,8 @@ const FlightLayout = ({ children }) => {
   const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
+  const [totalCost, setTotalCost] = useState(null);
+  const [totalExpectedCost, setTotalExpectedCost] = useState(null);
 
   const [simulationStarted, setSimulationStarted] = useState(false)
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
@@ -41,7 +43,7 @@ const FlightLayout = ({ children }) => {
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
  
-  const [newPath, setNewPath] = useState([])
+  const [newPath, setNewPath] = useState([]);
 
   async function fetchData() {
     try {
@@ -89,15 +91,19 @@ const FlightLayout = ({ children }) => {
 
     socket.on('alert', (alert) => {
       console.log('Alert received:', alert);
-      if (alert && alert.Delay_Time !== undefined) {
-        setDelayTime(alert.Delay_Time); // Round the delay time before setting it
+      if (alert && alert.input.Delay_Time !== undefined) {
+        setDelayTime(alert.input.Delay_Time); // Round the delay time before setting it
       }
-      if (alert && alert.Delay_Cost !== undefined) {
-        setDelayCost(alert.Delay_Cost); // Set the delay cost
+      if (alert && alert.input.Delay_Cost !== undefined) {
+        setDelayCost(alert.input.Delay_Cost); // Set the delay cost
       }
-      if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
-        setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
-        setTotalExpectedFuelCost(prev => prev === null ? alert.Fuel_Cost_per_Hour : prev);
+      if (alert && alert.predictions[0] !== undefined) {
+        setTotalCost(alert.predictions[0]); // Set the delay cost
+        setTotalExpectedCost(prev => prev === null ? alert.predictions[0] : prev);
+      }
+      if (alert && alert.input.Fuel_Cost_per_Hour !== undefined) {
+        setFuelCostPerHour(alert.input.Fuel_Cost_per_Hour); // Set the fuel cost per hour
+        setTotalExpectedFuelCost(prev => prev === null ? alert.input.Fuel_Cost_per_Hour : prev);
       }
     });
     return () => {
@@ -267,6 +273,8 @@ const FlightLayout = ({ children }) => {
       setDelayCost(null);
       setFuelCostPerHour(null);
       setTotalExpectedFuelCost(null);
+      setTotalCost(null);
+      setTotalExpectedCost(null);
 
       // Reset the simulation status
       setSimulationStarted(false);
@@ -356,7 +364,7 @@ const FlightLayout = ({ children }) => {
                     <h4> Total Expected Fuel Cost:</h4>
                     <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                     <h4> Total Expected Cost:</h4>
-                    <p className={styles.costs_data}>{sumCost !== null ? `$${sumCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <p className={styles.costs_data}>{totalExpectedCost !== null ? `$${totalExpectedCost}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
