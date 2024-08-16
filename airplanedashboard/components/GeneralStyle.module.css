@@ -193,7 +193,8 @@
   align-self: center;
   justify-content: center;
   color: white;
-  background-color: rgb(218, 79, 79);
+  background-color: #023430
+;
 }
 
 .simulationButton :hover{
@@ -202,7 +203,7 @@
 }
 
 .reset_simulationButton :hover{
-  background-color : rgb(145, 53, 53);
+  background-color : #00684A;
   color: white;
 }
 
@@ -234,19 +235,6 @@
 
 }
 
-
-.innerBox1 {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  padding: 1rem;
-  margin: 1rem 0;
-  flex: 1; /* Make the inner boxes expand to fill the available space */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 35%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
 .resultsContainer {
@@ -312,13 +300,6 @@
   flex: 1;
   gap: 20px; /* Space between the flight overview and map */
   box-sizing: border-box;
-}
-
-.innerBox2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 10px;
 }
 
 
@@ -387,7 +368,23 @@
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   text-align: center;
   width: 90%; /* Adjust as needed */
-  margin: 0 auto; /* Center the innerBox within its parent */
+  margin: 0px 5px; 
+}
+
+.innerBox .routing {
+  text-align: left;
+}
+
+.innerBox h4 {
+  padding: 0px;
+}
+
+.innerBox .data {
+  padding: 5px;
+  background-color: #00684A;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
 }
 
 /* To ensure the costContainer is always within the innerBox */

@@ -320,15 +320,20 @@ const FlightLayout = ({ children }) => {
             {selectedFlight ? (
               <>
                 <div className={styles.innerBox}>
-                  <h3>Routing:</h3>
-                  <h4>{`Initial Path: ${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</h4>
+                  <div className={styles.routing}>
+                  <h4>Initial Path: </h4>
+                  <p className={styles.data}>{`${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</p>
+                  <h4>New Path: </h4>
                   {newPath.length === 0 ? (
-                    <h4>No simulation running</h4>
+                    <p className={styles.data}>No simulation running</p>
                   ) : (
-                    <h4>{`New Path: ${newPath.join(' - ')}`}</h4>
+                    <div>
+                    <p className={styles.data}>{`${newPath.join(' - ')}`}</p>
+                    </div>
                   )}
-
-                  <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
+                  <h4>Scheduled for: </h4>
+                  <p className={styles.data}>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
+                  </div>
                 </div>
                 <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
                   <p>Delay: {delayTime === 0 || delayTime === null ? 'No delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
