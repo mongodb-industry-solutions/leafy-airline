@@ -328,7 +328,7 @@ const FlightLayout = ({ children }) => {
                     <h4>{`New Path: ${newPath.join(' - ')}`}</h4>
                   )}
 
-                  <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
+                  <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
                 </div>
                 <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
                   <p>Delay: {delayTime === 0 || delayTime === null ? 'No delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
