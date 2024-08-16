@@ -324,9 +324,9 @@ const FlightLayout = ({ children }) => {
               <>
                 <div className={styles.innerBox}>
                   <div className={styles.routing}>
-                  <h4>Initial Path: </h4>
+                  <h4>Initial Path </h4>
                   <p className={styles.data}>{`${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</p>
-                  <h4>New Path: </h4>
+                  <h4>New Path </h4>
                   {newPath.length === 0 ? (
                     <p className={styles.data}>No simulation running</p>
                   ) : (
@@ -334,7 +334,7 @@ const FlightLayout = ({ children }) => {
                     <p className={styles.data}>{`${newPath.join(' - ')}`}</p>
                     </div>
                   )}
-                  <h4>Scheduled for: </h4>
+                  <h4>Scheduled for </h4>
                   <p className={styles.data}>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
                   </div>
                 </div>
@@ -353,10 +353,10 @@ const FlightLayout = ({ children }) => {
                   </div>
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
-                    <p> Total Expected Fuel Cost: {totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
-                </div>
-                <div className={styles.innerBoxTotalCosts}>
-                  <p>Total Expected Cost: {sumCost !== null ? `$${sumCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <h4> Total Expected Fuel Cost:</h4>
+                    <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <h4> Total Expected Cost:</h4>
+                    <p className={styles.costs_data}>{sumCost !== null ? `$${sumCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (

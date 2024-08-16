@@ -386,15 +386,57 @@
   margin: 0px 5px; 
 }
 
-.innerBox .routing {
+/* .innerBox .routing {
   text-align: left;
-}
+} */
 
 .innerBox h4 {
   padding: 0px;
 }
 
-.innerBox .data {
+.innerBoxTotalCosts {
+  background-color: #ffffff; /* Light red */
+  border: 1px solid #e0e0e0;
+  padding: 1rem; /* Adjust padding */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  width: 90%; /* Adjust as needed */
+  margin: 20px auto 0; /* Center and add margin on top */
+  height: auto; /* Keep height fixed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensure content doesn't overflow */
+  word-wrap: break-word; /* Break long words */
+}
+
+.innerBoxTotalCosts h4 {
+  margin: 5px;
+  font-size: 1rem; /* Reduce font size */
+  line-height: 1rem; /* Adjust line height */
+  padding: 10px;
+}
+
+.innerBoxTotalCosts p {
+  margin: 0;
+  font-size: 1rem; /* Reduce font size */
+  line-height: 1rem; /* Adjust line height */
+  overflow: hidden; /* Ensure text doesn't overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.data {
+  padding: 5px;
+  background-color: #00684A;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.costs_data {
   padding: 5px;
   background-color: #00684A;
   border-radius: 10px;
@@ -490,35 +532,3 @@
   margin-bottom: 10px;
 }
 
-.innerBoxTotalCosts {
-  background-color: #ffffff; /* Light red */
-  border: 1px solid #e0e0e0;
-  padding: 0.5rem; /* Adjust padding */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 90%; /* Adjust as needed */
-  margin: 20px auto 0; /* Center and add margin on top */
-  height: 40px; /* Keep height fixed */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Ensure content doesn't overflow */
-  word-wrap: break-word; /* Break long words */
-}
-
-.innerBoxTotalCosts h4 {
-  margin: 0;
-  font-size: 1rem; /* Reduce font size */
-  line-height: 1rem; /* Adjust line height */
-  padding: 10px;
-}
-
-.innerBoxTotalCosts p {
-  margin: 0;
-  font-size: 1rem; /* Reduce font size */
-  line-height: 1rem; /* Adjust line height */
-  overflow: hidden; /* Ensure text doesn't overflow */
-  text-overflow: ellipsis; /* Add ellipsis for overflow text */
-  white-space: nowrap; /* Prevent text wrapping */
-}
