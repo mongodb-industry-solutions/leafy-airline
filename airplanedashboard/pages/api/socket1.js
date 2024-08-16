@@ -26,7 +26,7 @@ const connectToDatabase = async () => {
 const changeStreamHandler = async () => {
   console.log("Starting change stream handler...");
   const db = await connectToDatabase();
-  const collection = db.collection('flight_costs');
+  const collection = db.collection('flight_costs1');
 
   changeStream = collection.watch([
     { $match: { $or: [{ 'operationType': 'insert' }, { 'operationType': 'update' }] } }
@@ -39,12 +39,12 @@ const changeStreamHandler = async () => {
 
     if (change.operationType === 'insert') {
       const document = change.fullDocument;
-      if (document.Delay_Time !== undefined) {
+      if (document.input.Delay_Time !== undefined) {
         alert = document;
       }
     } else if (change.operationType === 'update') {
       const updatedFields = change.updateDescription?.updatedFields;
-      if (updatedFields?.Delay_Time !== undefined) {
+      if (updatedFields?.input.Delay_Time !== undefined) {
         const document = await collection.findOne({ _id: change.documentKey._id });
         alert = { ...document, ...updatedFields };
       }
