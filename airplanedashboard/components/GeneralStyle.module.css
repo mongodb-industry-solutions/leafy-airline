@@ -49,7 +49,6 @@
 }
 
 .intro_container{
-  /* background-color: #18775c; */
   background-color: #00684A;
   border-radius: 5px;
   margin-top : 5px;
@@ -218,6 +217,7 @@
   position: relative;
   width: 200px;
 }
+
 .flightOverviewBox {
   background-color: #f8f9fa;
   padding: 1rem;
@@ -226,7 +226,7 @@
   width: 30%;
   min-width: 200px;
   /*margin-right: 40rem;*/
-  height: 65vh;
+  height: auto;
   font-family: 'Lexend Deca', sans-serif;
   flex-shrink: 0;
   justify-content: center;
@@ -283,17 +283,32 @@
   background-color: #00684A; /* Darker color on hover */
 }
 
+
+.rightContainer {
+  width: 100%;
+}
+
 .mapContainer {
   background-color: #ffffff;
-  width: 65%; /* Adjust width as needed */
-  height: 65vh; /* Ensure the map has the same height as the flight overview box */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  width: 95%; 
+  height: 70%; 
   flex-shrink: 0; /* Prevent shrinking */
   margin-top: 1rem;
   padding: 1rem;
 }
 
 
+.title {
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+.card_styles { 
+  background-color: #E3FCF7;
+  color: #023430;
+  max-width: 90%;
+}
 
 .containersecond{
   display: flex; /* Aligns child elements horizontally */
@@ -469,8 +484,8 @@
   flex-grow: 0;
   order: 2;
   margin-left: 10px;
-  width: 30%;
-  max-width: 60%;
+  width: 95%;
+  /* max-width: 60%; */
   margin-top: 10px;
   margin-bottom: 10px;
 }
