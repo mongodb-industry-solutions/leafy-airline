@@ -12,6 +12,8 @@ import Card from "@leafygreen-ui/card";
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
+
+import Icon from "@leafygreen-ui/icon";
 import Image from 'next/image';
 import Banner from '@leafygreen-ui/banner';
 
