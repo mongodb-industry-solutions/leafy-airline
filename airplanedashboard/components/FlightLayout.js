@@ -6,6 +6,9 @@ import footerStyles from './Footer.module.css';
 
 import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
+import ExpandableCard from "@leafygreen-ui/expandable-card";
+import Card from "@leafygreen-ui/card";
+
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
@@ -320,15 +323,20 @@ const FlightLayout = ({ children }) => {
             {selectedFlight ? (
               <>
                 <div className={styles.innerBox}>
-                  <h3>Routing:</h3>
-                  <h4>{`Initial Path: ${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</h4>
+                  <div className={styles.routing}>
+                  <h4>Initial Path </h4>
+                  <p className={styles.data}>{`${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</p>
+                  <h4>New Path </h4>
                   {newPath.length === 0 ? (
-                    <h4>No simulation running</h4>
+                    <p className={styles.data}>No simulation running</p>
                   ) : (
-                    <h4>{`New Path: ${newPath.join(' - ')}`}</h4>
+                    <div>
+                    <p className={styles.data}>{`${newPath.join(' - ')}`}</p>
+                    </div>
                   )}
-
-                  <p>{`${new Date(selectedFlight.dep_time).toLocaleTimeString()} - ${new Date(selectedFlight.arr_time).toLocaleTimeString()}`}</p>
+                  <h4>Scheduled for </h4>
+                  <p className={styles.data}>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
+                  </div>
                 </div>
                 <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
                   <p>Delay: {delayTime === 0 || delayTime === null ? 'No delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
@@ -345,10 +353,10 @@ const FlightLayout = ({ children }) => {
                   </div>
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
-                    <p> Total Expected Fuel Cost: {totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
-                </div>
-                <div className={styles.innerBoxTotalCosts}>
-                  <p>Total Expected Cost: {sumCost !== null ? `$${sumCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <h4> Total Expected Fuel Cost:</h4>
+                    <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <h4> Total Expected Cost:</h4>
+                    <p className={styles.costs_data}>{sumCost !== null ? `$${sumCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
@@ -357,86 +365,80 @@ const FlightLayout = ({ children }) => {
           </div>
 
           {/* Google Map Component */}
-          <div className={styles.mapContainer}>
-          {apiKey ? (
-          <div style={{ position: 'relative', width: '100%', height: '85%' }}>
-            <LoadScript googleMapsApiKey={apiKey}>
-              <GoogleMap
-                mapContainerStyle={{ width: '100%', height: '100%' }}
-                center={airplanePosition || depCoords}
-                zoom={5}
-              >
-                {/* Departure Marker */}
-                {selectedFlight && (
-                  <>
-                    <Marker
-                      position={depCoords}
-                      label={`Departure: ${selectedFlight.dep_arp.city}`}
-                    />
-                    <Marker
-                      position={arrCoords}
-                      label={`Arrival: ${selectedFlight.arr_arp.city}`}
-                    />
-                    <Polyline
-                      path={[depCoords, arrCoords]}
-                      options={{
-                        strokeColor: '#FF0000',
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2
-                      }}
-                    />
-                    {airplanePosition && (
+          <div className={styles.rightContainer}>
+            <div className={styles.mapContainer}>
+            {apiKey ? (
+            <div style={{ position: 'relative', width: '100%', height: '85%' }}>
+              <LoadScript googleMapsApiKey={apiKey}>
+                <GoogleMap
+                  mapContainerStyle={{ width: '100%', height: '100%' }}
+                  center={airplanePosition || depCoords}
+                  zoom={5}
+                >
+                  {/* Departure Marker */}
+                  {selectedFlight && (
+                    <>
                       <Marker
-                        position={airplanePosition}
-                        icon={{
-                          url: getAirplaneIcon(),
-                          scaledSize: new google.maps.Size(32, 32),
+                        position={depCoords}
+                        label={`Departure: ${selectedFlight.dep_arp.city}`}
+                      />
+                      <Marker
+                        position={arrCoords}
+                        label={`Arrival: ${selectedFlight.arr_arp.city}`}
+                      />
+                      <Polyline
+                        path={[depCoords, arrCoords]}
+                        options={{
+                          strokeColor: '#FF0000',
+                          strokeOpacity: 1.0,
+                          strokeWeight: 2
                         }}
                       />
-                    )}
-                    <Polyline
-                      path={flightPath}
-                      options={{
-                        strokeColor: '#023430',
-                        strokeOpacity: 0.8,
-                        strokeWeight: 2,
-                        icons: [{
-                          icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
-                          offset: '100%',
-                          repeat: '20px'
-                        }]
-                      }}
-                    />
-                  </>
-                )}
-              </GoogleMap>
-            </LoadScript>
-            {loading && <div className={styles.loadingOverlay}>Loading...</div>}
-          </div>
-        ) : (
-          <p>Loading map...</p>
-        )}
-
-
-            <div className={styles.simulationbuttonSection}>
-              <Button className={styles.simulationButton} onClick={startSimulation}>Start Simulation</Button>
-              <Button className={styles.reset_simulationButton} onClick={resetSimulation}>Reset Simulation</Button>
+                      {airplanePosition && (
+                        <Marker
+                          position={airplanePosition}
+                          icon={{
+                            url: getAirplaneIcon(),
+                            scaledSize: new google.maps.Size(32, 32),
+                          }}
+                        />
+                      )}
+                      <Polyline
+                        path={flightPath}
+                        options={{
+                          strokeColor: '#023430',
+                          strokeOpacity: 0.8,
+                          strokeWeight: 2,
+                          icons: [{
+                            icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
+                            offset: '100%',
+                            repeat: '20px'
+                          }]
+                        }}
+                      />
+                    </>
+                  )}
+                </GoogleMap>
+              </LoadScript>
+              {loading && <div className={styles.loadingOverlay}>Loading...</div>}
             </div>
+          ) : (
+            <p>Loading map...</p>
+          )}
+              <div className={styles.simulationbuttonSection}>
+                <Button className={styles.simulationButton} onClick={startSimulation}>Start Simulation</Button>
+                <Button className={styles.reset_simulationButton} onClick={resetSimulation}>Reset Simulation</Button>
+              </div>
+            </div>
+
+          <Card className={styles.card_styles} as="article">
+            <p className={styles.title}>MongoDB Benefits</p>
+            <p>MongoDB efficiently handles operational time series data via Pub/Sub and time series collection, and powers analytical insights using Pub/Sub, Vertex AI, and regular collections.</p>
+            <a href="https://www.mongodb.com/">See more</a>
+
+          </Card>
           </div>
         </div>
-        {/* Main Content */}
-        <div className={styles.logocontainer}>
-          {/*<Logo className={styles.logo} />*/}
-          <Banner
-            className={styles.banner}
-            variant="info"
-          >
-            <strong>MongoDB efficiently handles operational time series data via Pub/Sub and time series collection, and powers analytical insights using Pub/Sub, Vertex AI, and regular collections. </strong>
-            <a href="https://www.mongodb.com/">See more</a>
-          </Banner>
-
-        </div>
-
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>

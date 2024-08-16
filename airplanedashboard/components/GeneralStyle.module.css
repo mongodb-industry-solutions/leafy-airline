@@ -49,7 +49,6 @@
 }
 
 .intro_container{
-  /* background-color: #18775c; */
   background-color: #00684A;
   border-radius: 5px;
   margin-top : 5px;
@@ -193,7 +192,8 @@
   align-self: center;
   justify-content: center;
   color: white;
-  background-color: rgb(218, 79, 79);
+  background-color: #023430
+;
 }
 
 .simulationButton :hover{
@@ -202,7 +202,7 @@
 }
 
 .reset_simulationButton :hover{
-  background-color : rgb(145, 53, 53);
+  background-color : #00684A;
   color: white;
 }
 
@@ -217,6 +217,7 @@
   position: relative;
   width: 200px;
 }
+
 .flightOverviewBox {
   background-color: #f8f9fa;
   padding: 1rem;
@@ -225,7 +226,7 @@
   width: 30%;
   min-width: 200px;
   /*margin-right: 40rem;*/
-  height: 65vh;
+  height: auto;
   font-family: 'Lexend Deca', sans-serif;
   flex-shrink: 0;
   justify-content: center;
@@ -234,19 +235,6 @@
 
 }
 
-
-.innerBox1 {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  padding: 1rem;
-  margin: 1rem 0;
-  flex: 1; /* Make the inner boxes expand to fill the available space */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 35%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
 .resultsContainer {
@@ -295,30 +283,38 @@
   background-color: #00684A; /* Darker color on hover */
 }
 
+
+.rightContainer {
+  width: 100%;
+}
+
 .mapContainer {
   background-color: #ffffff;
-  width: 65%; /* Adjust width as needed */
-  height: 65vh; /* Ensure the map has the same height as the flight overview box */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  width: 95%; 
+  height: 70%; 
   flex-shrink: 0; /* Prevent shrinking */
   margin-top: 1rem;
   padding: 1rem;
 }
 
 
+.title {
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+.card_styles { 
+  background-color: #E3FCF7;
+  color: #023430;
+  max-width: 90%;
+}
 
 .containersecond{
   display: flex; /* Aligns child elements horizontally */
   flex: 1;
   gap: 20px; /* Space between the flight overview and map */
   box-sizing: border-box;
-}
-
-.innerBox2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 10px;
 }
 
 
@@ -387,7 +383,65 @@
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   text-align: center;
   width: 90%; /* Adjust as needed */
-  margin: 0 auto; /* Center the innerBox within its parent */
+  margin: 0px 5px; 
+}
+
+/* .innerBox .routing {
+  text-align: left;
+} */
+
+.innerBox h4 {
+  padding: 0px;
+}
+
+.innerBoxTotalCosts {
+  background-color: #ffffff; /* Light red */
+  border: 1px solid #e0e0e0;
+  padding: 1rem; /* Adjust padding */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  width: 90%; /* Adjust as needed */
+  margin: 20px auto 0; /* Center and add margin on top */
+  height: auto; /* Keep height fixed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensure content doesn't overflow */
+  word-wrap: break-word; /* Break long words */
+}
+
+.innerBoxTotalCosts h4 {
+  margin: 5px;
+  font-size: 1rem; /* Reduce font size */
+  line-height: 1rem; /* Adjust line height */
+  padding: 10px;
+}
+
+.innerBoxTotalCosts p {
+  margin: 0;
+  font-size: 1rem; /* Reduce font size */
+  line-height: 1rem; /* Adjust line height */
+  overflow: hidden; /* Ensure text doesn't overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.data {
+  padding: 5px;
+  background-color: #00684A;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.costs_data {
+  padding: 5px;
+  background-color: #00684A;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
 }
 
 /* To ensure the costContainer is always within the innerBox */
@@ -472,41 +526,9 @@
   flex-grow: 0;
   order: 2;
   margin-left: 10px;
-  width: 30%;
-  max-width: 60%;
+  width: 95%;
+  /* max-width: 60%; */
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.innerBoxTotalCosts {
-  background-color: #ffffff; /* Light red */
-  border: 1px solid #e0e0e0;
-  padding: 0.5rem; /* Adjust padding */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 90%; /* Adjust as needed */
-  margin: 20px auto 0; /* Center and add margin on top */
-  height: 40px; /* Keep height fixed */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Ensure content doesn't overflow */
-  word-wrap: break-word; /* Break long words */
-}
-
-.innerBoxTotalCosts h4 {
-  margin: 0;
-  font-size: 1rem; /* Reduce font size */
-  line-height: 1rem; /* Adjust line height */
-  padding: 10px;
-}
-
-.innerBoxTotalCosts p {
-  margin: 0;
-  font-size: 1rem; /* Reduce font size */
-  line-height: 1rem; /* Adjust line height */
-  overflow: hidden; /* Ensure text doesn't overflow */
-  text-overflow: ellipsis; /* Add ellipsis for overflow text */
-  white-space: nowrap; /* Prevent text wrapping */
-}
