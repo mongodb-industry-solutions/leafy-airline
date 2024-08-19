@@ -355,7 +355,14 @@ const FlightLayout = ({ children }) => {
                 <div className={styles.costContainer}>
                   <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
                   <h4>Delay:</h4>
-                    <p>{delayTime === 0 || delayTime === null ? 'No Delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
+                  <p className={styles.costs_data}>
+                    {delayTime === 0 || delayTime === null ? (
+                      <span className={styles.noDelayText}>No Delay</span>
+                    ) : (
+                      `${(delayTime * 60).toFixed(2)} minutes`
+                    )}
+                  </p>
+
                   </div>
                   <div className={styles.noDelayBox}>
                     <h4>Delay Cost:</h4>
@@ -469,9 +476,8 @@ const FlightLayout = ({ children }) => {
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
-          <p>&copy; 2024 MongoDB. All rights reserved.</p>
           <p>
-          Leafy Air Demo developed by IS Team 
+          An Airline demo developed by Industry Solutions Team at MongoDB
           </p>
         </div>
         <div className={footerStyles.footerImage}>

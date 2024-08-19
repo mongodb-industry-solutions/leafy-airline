@@ -41,9 +41,8 @@ const GeneralLayout = ({ children }) => {
 
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
-          <p>&copy; 2024 MongoDB. All rights reserved.</p>
           <p>
-            Leafy Air Demo developed by IS Team 
+            An Airline demo developed by Industry Solutions Team at MongoDB
           </p>
         </div>
         <div className={footerStyles.footerImage}>
