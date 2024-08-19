@@ -35,6 +35,7 @@ const FlightLayout = ({ children }) => {
   const [flightPath, setFlightPath] = useState([]);
   const [totalCost, setTotalCost] = useState(null);
   const [totalExpectedCost, setTotalExpectedCost] = useState(null);
+  const [extraFuelCost, setExtraFuelCost] = useState(null);
 
   const [simulationStarted, setSimulationStarted] = useState(false)
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
@@ -97,8 +98,11 @@ const FlightLayout = ({ children }) => {
       if (alert && alert.input.Delay_Cost !== undefined) {
         setDelayCost(alert.input.Delay_Cost); // Set the delay cost
       }
+      if (alert && alert.input.Extra_Fuel_Cost !== undefined) {
+        setExtraFuelCost(alert.input.Extra_Fuel_Cost); // Set the extra fuel cost
+      }
       if (alert && alert.predictions[0] !== undefined) {
-        setTotalCost(alert.predictions[0]); // Set the delay cost
+        setTotalCost(alert.predictions[0]); // Set the total cost
         setTotalExpectedCost(prev => prev === null ? alert.predictions[0] : prev);
       }
       if (alert && alert.input.Fuel_Cost_per_Hour !== undefined) {
@@ -275,6 +279,7 @@ const FlightLayout = ({ children }) => {
       setTotalExpectedFuelCost(null);
       setTotalCost(null);
       setTotalExpectedCost(null);
+      setExtraFuelCost(null);
 
       // Reset the simulation status
       setSimulationStarted(false);
@@ -361,6 +366,8 @@ const FlightLayout = ({ children }) => {
                   </div>
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
+                    <h4> Extra Fuel Cost due to Delay:</h4>
+                    <p className={styles.costs_data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                     <h4> Total Expected Fuel Cost:</h4>
                     <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                     <h4> Total Expected Cost:</h4>
