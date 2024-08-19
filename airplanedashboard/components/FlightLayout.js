@@ -383,7 +383,7 @@ const FlightLayout = ({ children }) => {
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
                     <h4> Total Expected Cost:</h4>
-                    <p>{totalExpectedCost !== null ? `$${totalExpectedCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <p className={styles.costs_data}>{totalCost !== null ? `$${totalCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
