@@ -359,7 +359,7 @@ const FlightLayout = ({ children }) => {
                   </div>
                   <div className={styles.noDelayBox}>
                     <h4>Delay Cost:</h4>
-                    <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
+                    <p className={styles.costs_data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
                   </div>
                   
                 </div>
@@ -367,7 +367,7 @@ const FlightLayout = ({ children }) => {
                 <div className = {styles.costContainer}>
                 <div className={styles.costBox}>
                   <h4> Fixed Fuel Cost:</h4>
-                  <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                  <p>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
                 <div className={styles.costBox}>
                     <h4>Real-Time Fuel Cost:</h4>
@@ -383,7 +383,7 @@ const FlightLayout = ({ children }) => {
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
                     <h4> Total Expected Cost:</h4>
-                    <p className={styles.costs_data}>{totalExpectedCost !== null ? `$${totalExpectedCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <p>{totalExpectedCost !== null ? `$${totalExpectedCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
