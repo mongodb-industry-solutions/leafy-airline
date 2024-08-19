@@ -368,7 +368,7 @@ const FlightLayout = ({ children }) => {
                 <div className={styles.innerBoxTotalCosts}>
                     <h4> Extra Fuel Cost due to Delay:</h4>
                     <p className={styles.costs_data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
-                    <h4> Total Expected Fuel Cost:</h4>
+                    <h4> Fixed Fuel Cost:</h4>
                     <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                     <h4> Total Expected Cost:</h4>
                     <p className={styles.costs_data}>{totalExpectedCost !== null ? `$${totalExpectedCost.toFixed(2)}` : 'Simulation not started'}</p>
