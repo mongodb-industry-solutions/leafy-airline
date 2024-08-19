@@ -355,11 +355,18 @@ const FlightLayout = ({ children }) => {
                 <div className={styles.costContainer}>
                   <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
                   <h4>Delay:</h4>
-                    <p>{delayTime === 0 || delayTime === null ? 'No Delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
+                  <p className={styles.costs_data}>
+                    {delayTime === 0 || delayTime === null ? (
+                      <span className={styles.noDelayText}>No Delay</span>
+                    ) : (
+                      `${(delayTime * 60).toFixed(2)} minutes`
+                    )}
+                  </p>
+
                   </div>
                   <div className={styles.noDelayBox}>
                     <h4>Delay Cost:</h4>
-                    <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
+                    <p className={styles.costs_data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
                   </div>
                   
                 </div>
@@ -367,7 +374,7 @@ const FlightLayout = ({ children }) => {
                 <div className = {styles.costContainer}>
                 <div className={styles.costBox}>
                   <h4> Fixed Fuel Cost:</h4>
-                  <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                  <p>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
                 <div className={styles.costBox}>
                     <h4>Real-Time Fuel Cost:</h4>
@@ -383,7 +390,7 @@ const FlightLayout = ({ children }) => {
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
                     <h4> Total Expected Cost:</h4>
-                    <p className={styles.costs_data}>{totalExpectedCost !== null ? `$${totalExpectedCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <p className={styles.costs_data}>{totalCost !== null ? `$${totalCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
@@ -469,9 +476,8 @@ const FlightLayout = ({ children }) => {
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
-          <p>&copy; 2024 MongoDB. All rights reserved.</p>
           <p>
-          Leafy Air Demo developed by IS Team 
+          An Airline demo developed by Industry Solutions Team at MongoDB
           </p>
         </div>
         <div className={footerStyles.footerImage}>
