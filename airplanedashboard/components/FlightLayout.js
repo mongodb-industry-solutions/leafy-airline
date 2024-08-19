@@ -351,25 +351,37 @@ const FlightLayout = ({ children }) => {
                   <p className={styles.data}>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
                   </div>
                 </div>
-                <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
-                  <p>Delay: {delayTime === 0 || delayTime === null ? 'No delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
+                
+                <div className={styles.costContainer}>
+                  <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
+                  <h4>Delay:</h4>
+                    <p>{delayTime === 0 || delayTime === null ? 'No Delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
+                  </div>
+                  <div className={styles.noDelayBox}>
+                    <h4>Delay Cost:</h4>
+                    <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
+                  </div>
+                  
                 </div>
 
-                <div className={styles.costContainer}>
-                  <div className={styles.costBox}>
-                    <h4>Delay Cost</h4>
-                    <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'Simulation not Started'}</p>
-                  </div>
-                  <div className={styles.costBox}>
-                    <h4>Fuel Cost until Arrival</h4>
-                    <p>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
-                  </div>
+                <div className = {styles.costContainer}>
+                <div className={styles.costBox}>
+                  <h4> Fixed Fuel Cost:</h4>
+                  <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                </div>
+                <div className={styles.costBox}>
+                    <h4>Real-Time Fuel Cost:</h4>
+                    <p className={styles.costs_data}>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
+                </div>
+                <div className={styles.costBox}>
+                  <h4> Extra Fuel Cost due to Delay:</h4>
+                  <p className={styles.costs_data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                </div>
+                
+                  
+
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
-                    <h4> Extra Fuel Cost due to Delay:</h4>
-                    <p className={styles.costs_data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
-                    <h4> Fixed Fuel Cost:</h4>
-                    <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                     <h4> Total Expected Cost:</h4>
                     <p className={styles.costs_data}>{totalExpectedCost !== null ? `$${totalExpectedCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
