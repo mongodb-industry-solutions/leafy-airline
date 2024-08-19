@@ -364,7 +364,7 @@ const FlightLayout = ({ children }) => {
                     <h4> Total Expected Fuel Cost:</h4>
                     <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                     <h4> Total Expected Cost:</h4>
-                    <p className={styles.costs_data}>{totalExpectedCost !== null ? `$${totalExpectedCost}` : 'Simulation not started'}</p>
+                    <p className={styles.costs_data}>{totalExpectedCost !== null ? `$${(totalExpectedCost + delayCost).toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
