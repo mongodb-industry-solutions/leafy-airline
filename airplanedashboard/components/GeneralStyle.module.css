@@ -426,9 +426,9 @@
 }
 
 /* Margins for headings and paragraphs inside cost boxes */
-/* .costBox h4 {
+.costBox h4 {
   margin: 0 0 10px;
-} */
+}
 
 .greenButton {
   background-color: #00684A; /* Green color */

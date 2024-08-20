@@ -383,8 +383,7 @@ const FlightLayout = ({ children }) => {
                   <div className={styles.boxInfo} >
                     <h4>Delay:</h4>
                     <InformationCard
-                    title = "Hola"
-                    text = "Adios">
+                    text = "Current time difference between expected and real schedule due to disruptions">
                     </InformationCard>
                   </div>
                   <p className={styles.data}>
@@ -400,8 +399,7 @@ const FlightLayout = ({ children }) => {
                     <div className={styles.boxInfo} >
                       <h4>Delay Cost:</h4>
                       <InformationCard
-                      title = "Hola"
-                      text = "Adios">
+                      text = "Dynamic calculation of current delay's real-time cost">
                       </InformationCard>
                     </div>
                     <p className={styles.data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
@@ -422,8 +420,7 @@ const FlightLayout = ({ children }) => {
                   <div className={styles.boxInfo} >
                       <h4>Extra Fuel Cost:</h4>
                       <InformationCard
-                      title = "Hola"
-                      text = "Adios">
+                      text = "Predicted cost for the extra fuel being used due to the disruption">
                       </InformationCard>
                     </div>
                   <p className={styles.data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
