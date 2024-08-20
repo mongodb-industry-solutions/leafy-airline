@@ -59,6 +59,10 @@ def parse_data(flight_data):
     distance_db = flight_data['distance_to_arrival']
     delay_length = flight_data['extra_length']
 
+    # CHANGES
+    # path_cords = flight_data["path"]
+    # path_airps = flight_data["path_airps"]
+
     return {
         'FlightID': flight_id,
         'Timestamp': timestamp,
@@ -67,7 +71,11 @@ def parse_data(flight_data):
         'Speed': speed*3.6, 
         'Heading': heading,
         'Distance': distance_db,
-        'Delay_length': delay_length
+        'Delay_length': delay_length,
+
+        #CHANGES
+        # 'Path_cords' : path_cords,
+        # 'Path_airports' : path_airps
     }
 
 def time_left(distance, speed):
@@ -102,6 +110,10 @@ def process_message(message_data):
         latitude = current_entry['Latitude']
         longitude = current_entry['Longitude']
 
+        # CHANGES
+        # path_cords = current_entry['Path_cords']
+        # path_airps = current_entry['Path_airports']
+
         # Prepare the data to be inserted into MongoDB
         document = {
             "Timestamp": current_entry['Timestamp'],
@@ -112,7 +124,11 @@ def process_message(message_data):
             "Fuel_Cost_per_Hour": fuel_cost,
             "Total_Cost_per_Hour": total_cost,
             "Latitude": latitude,
-            "Longitude": longitude
+            "Longitude": longitude,
+
+            # CHANGES
+            # "Path_cords" : path_cords,
+            # "Path_airports" : path_airps
         }
 
         # Insert the document into MongoDB

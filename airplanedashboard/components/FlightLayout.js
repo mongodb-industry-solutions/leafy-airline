@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import styles from './GeneralStyle.module.css'; // Ensure this path is correct
 import footerStyles from './Footer.module.css';
 
+import InformationCard from './InformationCard';
+
 import Logo from '@leafygreen-ui/logo';
 import Button from '@leafygreen-ui/button';
 import ExpandableCard from "@leafygreen-ui/expandable-card";
@@ -41,6 +43,7 @@ const FlightLayout = ({ children }) => {
 
   const [simulationStarted, setSimulationStarted] = useState(false)
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
+  
   const [loading, setLoading] = useState(false); // State for loading
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
@@ -376,7 +379,12 @@ const FlightLayout = ({ children }) => {
                 
                 <div className={styles.dynamicContainer}>
                   <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
-                  <h4>Delay:</h4>
+                  <div className={styles.boxInfo} >
+                    <h4>Delay:</h4>
+                    <InformationCard
+                    text = "Current time difference between expected and real schedule due to disruptions">
+                    </InformationCard>
+                  </div>
                   <p className={styles.data}>
                     {delayTime === 0 || delayTime === null ? (
                       <span className={styles.noDelayText}>No Delay</span>
@@ -387,7 +395,12 @@ const FlightLayout = ({ children }) => {
 
                   </div>
                   <div className={styles.noDelayBox}>
-                    <h4>Delay Cost:</h4>
+                    <div className={styles.boxInfo} >
+                      <h4>Delay Cost:</h4>
+                      <InformationCard
+                      text = "Dynamic calculation of current delay's real-time cost">
+                      </InformationCard>
+                    </div>
                     <p className={styles.data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
                   </div>
                   
@@ -403,7 +416,12 @@ const FlightLayout = ({ children }) => {
                     <p className={styles.data}>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
                 </div>
                 <div className={styles.costBox}>
-                  <h4> Extra Fuel Cost:</h4>
+                  <div className={styles.boxInfo} >
+                      <h4>Extra Fuel Cost:</h4>
+                      <InformationCard
+                      text = "Predicted cost for the extra fuel being used due to the disruption">
+                      </InformationCard>
+                    </div>
                   <p className={styles.data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
                 

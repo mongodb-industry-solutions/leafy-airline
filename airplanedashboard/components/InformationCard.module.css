@@ -1,0 +1,44 @@
+
+.cardcontainer {
+    position: relative;
+    display: inline-block;
+}
+
+.icon {
+    font-size: 5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #00684A;
+
+}
+
+.card {
+    z-index: 2;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+
+    width: auto;
+    height: auto;     /* Allow card to expand based on content */
+    min-width: 125px;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    transform: scale(0);
+    transform-origin: top;
+
+    font-family: 'Lexend Deca', sans-serif;
+    font-size : 12px;
+}
+
+.cardcontainer:hover .card {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}

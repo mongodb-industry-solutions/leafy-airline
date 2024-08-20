@@ -111,6 +111,9 @@ class DataSimulator:
 
         self.extra_length = path_atrib["extra_length"]
         self.arrived = False
+
+        #CHANGES:
+        self.path_airps = path_atrib["path_airps"]
         
         # Get the initial headed point (idx will be the idx of the headed point)
         self.headed_point = np.array(self.path[1])

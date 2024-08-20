@@ -348,6 +348,18 @@
 
 }
 
+.boxInfo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap : 10px;
+  width: 100%;
+}
+
+.boxInfo h4 {
+  margin: 10px;
+}
+
 .staticBox {
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
@@ -411,11 +423,14 @@
   flex: 1; /* Ensure boxes grow equally */
   min-width: 0; /* Allow flex items to shrink below their minimum width */
   box-sizing: border-box; /* Include padding and border in width calculation */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 /* Margins for headings and paragraphs inside cost boxes */
 .costBox h4 {
-  margin: 0 0 10px;
+  margin: 0 10px;
 }
 
 .greenButton {
