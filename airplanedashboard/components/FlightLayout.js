@@ -380,7 +380,13 @@ const FlightLayout = ({ children }) => {
                 
                 <div className={styles.dynamicContainer}>
                   <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
-                  <h4>Delay:</h4>
+                  <div className={styles.boxInfo} >
+                    <h4>Delay:</h4>
+                    <InformationCard
+                    title = "Hola"
+                    text = "Adios">
+                    </InformationCard>
+                  </div>
                   <p className={styles.data}>
                     {delayTime === 0 || delayTime === null ? (
                       <span className={styles.noDelayText}>No Delay</span>
@@ -391,12 +397,14 @@ const FlightLayout = ({ children }) => {
 
                   </div>
                   <div className={styles.noDelayBox}>
-                    <h4>Delay Cost:</h4>
+                    <div className={styles.boxInfo} >
+                      <h4>Delay Cost:</h4>
+                      <InformationCard
+                      title = "Hola"
+                      text = "Adios">
+                      </InformationCard>
+                    </div>
                     <p className={styles.data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
-                    <InformationCard
-                    title = "Hola"
-                    text = "Adios">
-                    </InformationCard>
                   </div>
                   
                 </div>
@@ -411,7 +419,13 @@ const FlightLayout = ({ children }) => {
                     <p className={styles.data}>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
                 </div>
                 <div className={styles.costBox}>
-                  <h4> Extra Fuel Cost:</h4>
+                  <div className={styles.boxInfo} >
+                      <h4>Extra Fuel Cost:</h4>
+                      <InformationCard
+                      title = "Hola"
+                      text = "Adios">
+                      </InformationCard>
+                    </div>
                   <p className={styles.data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
                 

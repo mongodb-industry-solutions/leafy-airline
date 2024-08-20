@@ -348,6 +348,18 @@
 
 }
 
+.boxInfo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap : 10px;
+  width: 100%;
+}
+
+.boxInfo h4 {
+  margin: 10px;
+}
+
 .staticBox {
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
@@ -414,9 +426,9 @@
 }
 
 /* Margins for headings and paragraphs inside cost boxes */
-.costBox h4 {
+/* .costBox h4 {
   margin: 0 0 10px;
-}
+} */
 
 .greenButton {
   background-color: #00684A; /* Green color */
