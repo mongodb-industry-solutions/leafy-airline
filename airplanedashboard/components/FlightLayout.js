@@ -24,7 +24,6 @@ import { set } from 'mongoose';
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-newpath-65jcrv6puq-ew.a.run.app/";
 const app_url = "https://simulation-app-final-v3-65jcrv6puq-ew.a.run.app/";
-const app_url = "https://simulation-app-final-v3-65jcrv6puq-ew.a.run.app/";
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -66,6 +65,12 @@ const FlightLayout = ({ children }) => {
           console.log("Flight Data")
           console.log(flight)
           setSelectedFlight(flight);
+
+          if (simulationStarted) {
+            getNewPath(flight);
+            getNewDisrup(flight);
+          };
+
         } else {
           console.error('No flight found with ID:', flightId);
         }
@@ -189,29 +194,26 @@ const FlightLayout = ({ children }) => {
     return '/plane-solid.svg'; // URL for default plane icon
   };
 
-  const getNewDisrup = () => {
-
-    console.log(selectedFlight.disruption_coords)
-
-    setDisruption({"lat" : selectedFlight.disruption_coords.lat,
-      "lng" : selectedFlight.disruption_coords.long});
-    console.log("Disruption");
-    console.log(selectedFlight.disruption_coords);
+  const getNewDisrup = (flight) => {
+  
+    setDisruption({"lat" : flight.disruption_coords.lat,
+                   "lng" : flight.disruption_coords.long});
+    console.log("Disruption setted");
     setDisrupEmpty(false);
   
   };
 
-  const getNewPath = () => {
+  const getNewPath = (flight) => {
+
     console.log("Entered newpath")
-    const path = selectedFlight && Array.isArray(selectedFlight.new_path) 
-                  ? selectedFlight.new_path 
+    const path = flight && Array.isArray(flight.new_path) 
+                  ? flight.new_path 
                   : [];
 
     // Map each path value to its city and code from the airports dictionary
     const resolvedPath = path.map(code => airports_dict[code] || code);
 
     setNewPath(resolvedPath);
-    getNewDisrup()
     console.log(resolvedPath)
 };
 
@@ -251,15 +253,13 @@ const FlightLayout = ({ children }) => {
         console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
       }
 
+      setSimulationStarted(true);
+      
       // Delay the start of fetching newest document
       setTimeout(() => {
         setFetchingStarted(true);
         setLoading(false); // Set loading to false after delay
       }, 3000); // 3 seconds delay
-
-      // Change state to fetch the new information from flights to update the path visually
-      setSimulationStarted(true);
-      getNewPath()
 
     } catch (error) {
       console.error('Error starting process:', error);
@@ -318,7 +318,6 @@ const FlightLayout = ({ children }) => {
     router.push('/');
   };
 
-
   const mapContainerStyle = {
     width: '100%',
     height: '400px'
@@ -333,11 +332,6 @@ const FlightLayout = ({ children }) => {
     lat: selectedFlight ? selectedFlight.arr_arp.geo_loc.lat : 0,
     lng: selectedFlight ? selectedFlight.arr_arp.geo_loc.long : 0
   };
-
-  // const disrupCoords = {
-  //   lat: selectedFlight ? selectedFlight.disruption_coords.lat: 0,
-  //   lng: selectedFlight ? selectedFlight.disruption_coords.long : 0
-  // };
 
 
   return (
