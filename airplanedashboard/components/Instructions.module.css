@@ -30,6 +30,11 @@
   font-family: 'Lexend Deca', sans-serif;
 }
 
+.backButton:hover{
+  background-color : #004d34;
+  color: white;
+}
+
 /* Text content */
 .textContainer {
   font-family: 'Lexend Deca', sans-serif;

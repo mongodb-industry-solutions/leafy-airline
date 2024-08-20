@@ -192,7 +192,7 @@
   align-self: center;
   justify-content: center;
   color: white;
-  background-color: #023430
+  background-color: #00684A;
 ;
 }
 
@@ -202,7 +202,7 @@
 }
 
 .reset_simulationButton :hover{
-  background-color : #00684A;
+  background-color : #004d34;
   color: white;
 }
 
@@ -280,7 +280,7 @@
 }
 
 .viewFlightButton:hover {
-  background-color: #00684A; /* Darker color on hover */
+  background-color: #004d34; /* Darker color on hover */
 }
 
 
@@ -427,7 +427,7 @@
 
 .data {
   padding: 5px;
-  background-color: #00684A;
+  background-color: rgba(0, 104, 74, 0.85);
   border-radius: 10px;
   color: #FFFFFF;
   text-align: center;
@@ -435,7 +435,7 @@
 
 .costs_data {
   padding: 5px;
-  background-color: #00684A;
+  background-color: rgba(0, 104, 74, 0.85);
   border-radius: 10px;
   color: #FFFFFF;
   text-align: center;
@@ -453,7 +453,7 @@
   padding: 1rem;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   text-align: center;
-  width: 90%; /* Adjust as needed */
+  width: 40%; /* Adjust as needed */
   margin: 20px auto 0; /* Center and add margin on top */
 }
 
@@ -464,7 +464,7 @@
   padding: 1rem;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   text-align: center;
-  width: 90%; /* Adjust as needed */
+  width: 40%; /* Adjust as needed */
   margin: 20px auto 0; /* Center and add margin on top */
 }
 

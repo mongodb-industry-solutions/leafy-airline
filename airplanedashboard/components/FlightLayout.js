@@ -24,6 +24,7 @@ import { set } from 'mongoose';
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-newpath-65jcrv6puq-ew.a.run.app/";
 const app_url = "https://simulation-app-final-v3-65jcrv6puq-ew.a.run.app/";
+const app_url = "https://simulation-app-final-v3-65jcrv6puq-ew.a.run.app/";
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -36,6 +37,9 @@ const FlightLayout = ({ children }) => {
   const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
+  const [totalCost, setTotalCost] = useState(null);
+  const [totalExpectedCost, setTotalExpectedCost] = useState(null);
+  const [extraFuelCost, setExtraFuelCost] = useState(null);
 
   const [simulationStarted, setSimulationStarted] = useState(false)
   const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
@@ -94,15 +98,22 @@ const FlightLayout = ({ children }) => {
 
     socket.on('alert', (alert) => {
       console.log('Alert received:', alert);
-      if (alert && alert.Delay_Time !== undefined) {
-        setDelayTime(alert.Delay_Time); // Round the delay time before setting it
+      if (alert && alert.input.Delay_Time !== undefined) {
+        setDelayTime(alert.input.Delay_Time); // Round the delay time before setting it
       }
-      if (alert && alert.Delay_Cost !== undefined) {
-        setDelayCost(alert.Delay_Cost); // Set the delay cost
+      if (alert && alert.input.Delay_Cost !== undefined) {
+        setDelayCost(alert.input.Delay_Cost); // Set the delay cost
       }
-      if (alert && alert.Fuel_Cost_per_Hour !== undefined) {
-        setFuelCostPerHour(alert.Fuel_Cost_per_Hour); // Set the fuel cost per hour
-        setTotalExpectedFuelCost(prev => prev === null ? alert.Fuel_Cost_per_Hour : prev);
+      if (alert && alert.input.Extra_Fuel_Cost !== undefined) {
+        setExtraFuelCost(alert.input.Extra_Fuel_Cost); // Set the extra fuel cost
+      }
+      if (alert && alert.predictions[0] !== undefined) {
+        setTotalCost(alert.predictions[0]); // Set the total cost
+        setTotalExpectedCost(prev => prev === null ? alert.predictions[0] : prev);
+      }
+      if (alert && alert.input.Fuel_Cost_per_Hour !== undefined) {
+        setFuelCostPerHour(alert.input.Fuel_Cost_per_Hour); // Set the fuel cost per hour
+        setTotalExpectedFuelCost(prev => prev === null ? alert.input.Fuel_Cost_per_Hour : prev);
       }
     });
     return () => {
@@ -287,6 +298,9 @@ const FlightLayout = ({ children }) => {
       setDelayCost(null);
       setFuelCostPerHour(null);
       setTotalExpectedFuelCost(null);
+      setTotalCost(null);
+      setTotalExpectedCost(null);
+      setExtraFuelCost(null);
 
       // Reset the simulation status
       setSimulationStarted(false);
@@ -366,25 +380,46 @@ const FlightLayout = ({ children }) => {
                   <p className={styles.data}>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
                   </div>
                 </div>
-                <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
-                  <p>Delay: {delayTime === 0 || delayTime === null ? 'No delay' : `${(delayTime * 60).toFixed(2)} minutes`}</p>
+                
+                <div className={styles.costContainer}>
+                  <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
+                  <h4>Delay:</h4>
+                  <p className={styles.costs_data}>
+                    {delayTime === 0 || delayTime === null ? (
+                      <span className={styles.noDelayText}>No Delay</span>
+                    ) : (
+                      `${(delayTime * 60).toFixed(2)} minutes`
+                    )}
+                  </p>
+
+                  </div>
+                  <div className={styles.noDelayBox}>
+                    <h4>Delay Cost:</h4>
+                    <p className={styles.costs_data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
+                  </div>
+                  
                 </div>
 
-                <div className={styles.costContainer}>
-                  <div className={styles.costBox}>
-                    <h4>Delay Cost</h4>
-                    <p>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'Simulation not Started'}</p>
-                  </div>
-                  <div className={styles.costBox}>
-                    <h4>Fuel Cost until Arrival</h4>
-                    <p>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
-                  </div>
+                <div className = {styles.costContainer}>
+                <div className={styles.costBox}>
+                  <h4> Fixed Fuel Cost:</h4>
+                  <p>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                </div>
+                <div className={styles.costBox}>
+                    <h4>Real-Time Fuel Cost:</h4>
+                    <p className={styles.costs_data}>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
+                </div>
+                <div className={styles.costBox}>
+                  <h4> Extra Fuel Cost due to Delay:</h4>
+                  <p className={styles.costs_data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                </div>
+                
+                  
+
                 </div>
                 <div className={styles.innerBoxTotalCosts}>
-                    <h4> Total Expected Fuel Cost:</h4>
-                    <p className={styles.costs_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                     <h4> Total Expected Cost:</h4>
-                    <p className={styles.costs_data}>{sumCost !== null ? `$${sumCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <p className={styles.costs_data}>{totalCost !== null ? `$${totalCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
@@ -476,9 +511,8 @@ const FlightLayout = ({ children }) => {
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
-          <p>&copy; 2024 MongoDB. All rights reserved.</p>
           <p>
-          Leafy Air Demo developed by IS Team 
+          An Airline demo developed by Industry Solutions Team at MongoDB
           </p>
         </div>
         <div className={footerStyles.footerImage}>
