@@ -90,6 +90,7 @@ def publish_path(flight_id, path_data):
     msg = {"flight_id" : flight_id, 
            "initial_path_airps" : path_data["initial_path_airps"],
            "new_path_airps" : path_data["new_path_airps"],
+           "disruption_coords" : path_data["disruption_coords"]
            }
     
     data = json.dumps(msg).encode("utf-8")

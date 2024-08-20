@@ -12,10 +12,13 @@ import Card from "@leafygreen-ui/card";
 import { GoogleMap, LoadScript, Marker, Polyline } from '@react-google-maps/api';
 import io from 'socket.io-client'; // Import socket.io-client
 import PlaneIcon from '../public/plane-solid.svg';
+
+import Icon from "@leafygreen-ui/icon";
 import Image from 'next/image';
 import Banner from '@leafygreen-ui/banner';
 
 import airports_dict from '../resources/airports.js'
+import { set } from 'mongoose';
 
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
 // const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
@@ -44,7 +47,9 @@ const FlightLayout = ({ children }) => {
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
  
-  const [newPath, setNewPath] = useState([]);
+  const [newPath, setNewPath] = useState([])
+  const [newDisrup, setDisruption] = useState({})
+  const [disrupEmpty, setDisrupEmpty] = useState(true)
 
   async function fetchData() {
     try {
@@ -60,6 +65,12 @@ const FlightLayout = ({ children }) => {
           console.log("Flight Data")
           console.log(flight)
           setSelectedFlight(flight);
+
+          if (simulationStarted) {
+            getNewPath(flight);
+            getNewDisrup(flight);
+          };
+
         } else {
           console.error('No flight found with ID:', flightId);
         }
@@ -183,9 +194,20 @@ const FlightLayout = ({ children }) => {
     return '/plane-solid.svg'; // URL for default plane icon
   };
 
-  const getNewPath = () => {
-    const path = selectedFlight && Array.isArray(selectedFlight.new_path) 
-                  ? selectedFlight.new_path 
+  const getNewDisrup = (flight) => {
+  
+    setDisruption({"lat" : flight.disruption_coords.lat,
+                   "lng" : flight.disruption_coords.long});
+    console.log("Disruption setted");
+    setDisrupEmpty(false);
+  
+  };
+
+  const getNewPath = (flight) => {
+
+    console.log("Entered newpath")
+    const path = flight && Array.isArray(flight.new_path) 
+                  ? flight.new_path 
                   : [];
 
     // Map each path value to its city and code from the airports dictionary
@@ -194,6 +216,7 @@ const FlightLayout = ({ children }) => {
     setNewPath(resolvedPath);
     console.log(resolvedPath)
 };
+
 
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
@@ -230,15 +253,13 @@ const FlightLayout = ({ children }) => {
         console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
       }
 
+      setSimulationStarted(true);
+      
       // Delay the start of fetching newest document
       setTimeout(() => {
         setFetchingStarted(true);
         setLoading(false); // Set loading to false after delay
       }, 3000); // 3 seconds delay
-
-      // Change state to fetch the new information from flights to update the path visually
-      setSimulationStarted(true);
-      getNewPath()
 
     } catch (error) {
       console.error('Error starting process:', error);
@@ -284,6 +305,8 @@ const FlightLayout = ({ children }) => {
       // Reset the simulation status
       setSimulationStarted(false);
       setNewPath([])
+      setDisruption({})
+      setDisrupEmpty(true);
 
     } catch (error) {
       console.error('Error resetting process:', error);
@@ -294,7 +317,6 @@ const FlightLayout = ({ children }) => {
     resetSimulation();
     router.push('/');
   };
-
 
   const mapContainerStyle = {
     width: '100%',
@@ -310,6 +332,7 @@ const FlightLayout = ({ children }) => {
     lat: selectedFlight ? selectedFlight.arr_arp.geo_loc.lat : 0,
     lng: selectedFlight ? selectedFlight.arr_arp.geo_loc.long : 0
   };
+
 
   return (
     <div className={styles.container}>
@@ -329,33 +352,33 @@ const FlightLayout = ({ children }) => {
       </nav>
 
       <div className={styles.main}>
-        <div className={styles.containersecond}>
+        <div className={styles.contentContainer}>
           {/* Flight Overview Box */}
           <div className={styles.flightOverviewBox}>
             <h3>Flight Overview</h3>
             {selectedFlight ? (
               <>
-                <div className={styles.innerBox}>
+                <div className={styles.staticBox}>
                   <div className={styles.routing}>
                   <h4>Initial Path </h4>
-                  <p className={styles.data}>{`${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</p>
+                  <p className={styles.static_data}>{`${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</p>
                   <h4>New Path </h4>
                   {newPath.length === 0 ? (
-                    <p className={styles.data}>No simulation running</p>
+                    <p className={styles.static_data}>No simulation running</p>
                   ) : (
                     <div>
-                    <p className={styles.data}>{`${newPath.join(' - ')}`}</p>
+                    <p className={styles.static_data}>{`${newPath.join(' - ')}`}</p>
                     </div>
                   )}
                   <h4>Scheduled for </h4>
-                  <p className={styles.data}>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
+                  <p className={styles.static_data}>{`${new Date(selectedFlight.dep_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${new Date(selectedFlight.arr_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}</p>
                   </div>
                 </div>
                 
-                <div className={styles.costContainer}>
+                <div className={styles.dynamicContainer}>
                   <div className={delayTime === 0 || delayTime === null ? styles.noDelayBox : styles.delayBox}>
                   <h4>Delay:</h4>
-                  <p className={styles.costs_data}>
+                  <p className={styles.data}>
                     {delayTime === 0 || delayTime === null ? (
                       <span className={styles.noDelayText}>No Delay</span>
                     ) : (
@@ -366,31 +389,30 @@ const FlightLayout = ({ children }) => {
                   </div>
                   <div className={styles.noDelayBox}>
                     <h4>Delay Cost:</h4>
-                    <p className={styles.costs_data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
+                    <p className={styles.data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
                   </div>
                   
                 </div>
 
-                <div className = {styles.costContainer}>
+                <div className = {styles.dynamicContainer}>
                 <div className={styles.costBox}>
                   <h4> Fixed Fuel Cost:</h4>
-                  <p>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                  <p className={styles.static_data}>{totalExpectedFuelCost !== null ? `$${totalExpectedFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
                 <div className={styles.costBox}>
                     <h4>Real-Time Fuel Cost:</h4>
-                    <p className={styles.costs_data}>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
+                    <p className={styles.data}>{fuelCostPerHour !== null ? `$${fuelCostPerHour.toFixed(2)}` : 'Simulation not Started'}</p>
                 </div>
                 <div className={styles.costBox}>
-                  <h4> Extra Fuel Cost due to Delay:</h4>
-                  <p className={styles.costs_data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
+                  <h4> Extra Fuel Cost:</h4>
+                  <p className={styles.data}>{extraFuelCost !== null ? `$${extraFuelCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
                 
                   
-
                 </div>
-                <div className={styles.innerBoxTotalCosts}>
+                <div className={styles.staticBox}>
                     <h4> Total Expected Cost:</h4>
-                    <p className={styles.costs_data}>{totalCost !== null ? `$${totalCost.toFixed(2)}` : 'Simulation not started'}</p>
+                    <p className={styles.data}>{totalCost !== null ? `$${totalCost.toFixed(2)}` : 'Simulation not started'}</p>
                 </div>
               </>
             ) : (
@@ -420,6 +442,12 @@ const FlightLayout = ({ children }) => {
                         position={arrCoords}
                         label={`Arrival: ${selectedFlight.arr_arp.city}`}
                       />
+                      {!disrupEmpty && (
+                        <Marker
+                          position={newDisrup}
+                          label="Disruption"
+                        />
+                      )}
                       <Polyline
                         path={[depCoords, arrCoords]}
                         options={{

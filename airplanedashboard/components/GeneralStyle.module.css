@@ -221,7 +221,6 @@
 .flightOverviewBox {
   background-color: #f8f9fa;
   padding: 1rem;
-  margin-top: 1rem;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   width: 30%;
   min-width: 200px;
@@ -232,6 +231,7 @@
   justify-content: center;
   align-items: center;
   margin-right:10px;
+  margin-top: 1rem;
 
 }
 
@@ -310,55 +310,102 @@
   max-width: 90%;
 }
 
-.containersecond{
+
+/* CSS FOR COMPONENTS IN FLIGHT SPECIFICS TAB */
+
+/* General content container */
+.contentContainer{
   display: flex; /* Aligns child elements horizontally */
   flex: 1;
   gap: 20px; /* Space between the flight overview and map */
   box-sizing: border-box;
 }
 
+/* CSS for containers inside the static part of Flight Overview */
 
-.costContainer {
-  display: flex;
-  justify-content: space-between;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 15px; /* Space between the two cost boxes */
-  width: 97%; /* Ensure container takes full width of innerBox */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+/* CSS for displayed data */
+
+.data {
+  padding: 5px;
+  background-color: rgba(0, 104, 74, 0.85);
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
 }
 
+.static_data{
+  padding: 5px;
+  background-color: #e3fcf77e
+;  
+
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: #023430;
+
+  color: #023430;
+  text-align: center;
+
+}
+
+.staticBox {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 90%; /* Adjust as needed */
+  margin: 0px 10px; 
+}
+
+.staticBox .routing h4 {
+  padding: 0px;
+  margin : 0px;
+}
+
+/* CSS components for cost dynamic containers */
+
+/* Container for the two cost boxes */
+.dynamicContainer {
+  display: flex;
+  justify-content: center; /* Center the cost boxes horizontally within the container */
+  gap: 10px; /* Space between the two cost boxes */
+  width: 95%; /* Adjust as needed */
+  margin: 0px 10px; 
+  padding: 1rem 0rem;
+
+}
+
+/* Delay box : Turns red when delay appears*/
+.delayBox {
+  background-color: #ffcccc; /* Light red */
+  border: 0.5px dotted rgb(88, 7, 7);
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(92, 6, 6, 0.1);
+  text-align: center;
+  width: 40%; /* Adjust as needed */
+  margin: 20px auto 0; /* Center and add margin on top */
+}
+
+.delayBox .data {
+  background-color: rgb(88, 7, 7);
+}
+
+/* No delay box : Only if there is no delay*/
+.noDelayBox {
+  background-color: #ffffff; /* White */
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 40%; /* Adjust as needed */
+  margin: 20px auto 0; /* Center and add margin on top */
+}
+
+/* CSS for cost boxes */
 .costBox {
   background-color: #ffffff; /* Ensure background color is white */
   border: 1px solid #e0e0e0;
-  padding: 1rem;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  flex: 1; /* Ensure boxes grow equally */
-  min-width: 0; /* Allow flex items to shrink below their minimum width */
-  box-sizing: border-box; /* Include padding and border in width calculation */
-}
-
-.costBox h4 {
-  margin: 0 0 10px;
-}
-
-.costBox p {
-  margin: 0;
-}
-
-/* Container for the two cost boxes */
-.costContainer {
-  display: flex;
-  justify-content: center; /* Center the cost boxes horizontally within the container */
-  gap: 20px; /* Space between the two cost boxes */
-  margin-top: 20px; /* Margin above the cost boxes */
-  width: 100%; /* Ensure it takes the full width of its parent */
-  box-sizing: border-box; /* Include padding and border in width calculation */
-}
-
-/* Styling for individual cost boxes */
-.costBox {
-  background-color: #ffffff; /* Ensure background color is white */
   padding: 1rem;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   flex: 1; /* Ensure boxes grow equally */
@@ -369,106 +416,6 @@
 /* Margins for headings and paragraphs inside cost boxes */
 .costBox h4 {
   margin: 0 0 10px;
-}
-
-.costBox p {
-  margin: 0;
-}
-
-/* Style for the inner box, which contains the costContainer */
-.innerBox {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  padding: 1rem;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 90%; /* Adjust as needed */
-  margin: 0px 5px; 
-}
-
-/* .innerBox .routing {
-  text-align: left;
-} */
-
-.innerBox h4 {
-  padding: 0px;
-}
-
-.innerBoxTotalCosts {
-  background-color: #ffffff; /* Light red */
-  border: 1px solid #e0e0e0;
-  padding: 1rem; /* Adjust padding */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-
-  width: 90%; /* Adjust as needed */
-  margin: 20px auto 0; /* Center and add margin on top */
-  height: auto; /* Keep height fixed */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Ensure content doesn't overflow */
-  word-wrap: break-word; /* Break long words */
-}
-
-.innerBoxTotalCosts h4 {
-  margin: 5px;
-  font-size: 1rem; /* Reduce font size */
-  line-height: 1rem; /* Adjust line height */
-  padding: 10px;
-}
-
-.innerBoxTotalCosts p {
-  margin: 0;
-  font-size: 1rem; /* Reduce font size */
-  line-height: 1rem; /* Adjust line height */
-  overflow: hidden; /* Ensure text doesn't overflow */
-  text-overflow: ellipsis; /* Add ellipsis for overflow text */
-  white-space: nowrap; /* Prevent text wrapping */
-}
-
-.data {
-  padding: 5px;
-  background-color: rgba(0, 104, 74, 0.85);
-  border-radius: 10px;
-  color: #FFFFFF;
-  text-align: center;
-}
-
-.costs_data {
-  padding: 5px;
-  background-color: rgba(0, 104, 74, 0.85);
-  border-radius: 10px;
-  color: #FFFFFF;
-  text-align: center;
-}
-
-/* To ensure the costContainer is always within the innerBox */
-.innerBox .costContainer {
-  width: 100%; /* Full width of the innerBox */
-}
-
-/* Light red background for delay */
-.delayBox {
-  background-color: #ffcccc; /* Light red */
-  border: 1px solid #e0e0e0;
-  padding: 1rem;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 40%; /* Adjust as needed */
-  margin: 20px auto 0; /* Center and add margin on top */
-}
-
-/* White background for no delay */
-.noDelayBox {
-  background-color: #ffffff; /* White */
-  border: 1px solid #e0e0e0;
-  padding: 1rem;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 40%; /* Adjust as needed */
-  margin: 20px auto 0; /* Center and add margin on top */
 }
 
 .greenButton {
