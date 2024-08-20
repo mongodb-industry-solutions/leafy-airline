@@ -393,6 +393,10 @@ const FlightLayout = ({ children }) => {
                   <div className={styles.noDelayBox}>
                     <h4>Delay Cost:</h4>
                     <p className={styles.data}>{delayCost !== null ? `$${delayCost.toFixed(2)}` : 'No Delay Cost'}</p>
+                    <InformationCard
+                    title = "Hola"
+                    text = "Adios">
+                    </InformationCard>
                   </div>
                   
                 </div>
