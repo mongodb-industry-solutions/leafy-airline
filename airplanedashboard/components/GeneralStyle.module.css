@@ -363,11 +363,6 @@
   margin : 0px;
 }
 
-/* .staticBox .data{
-  background-color: #E3FCF7;
-} */
-
-
 /* CSS components for cost dynamic containers */
 
 /* Container for the two cost boxes */
@@ -384,7 +379,7 @@
 /* Delay box : Turns red when delay appears*/
 .delayBox {
   background-color: #ffcccc; /* Light red */
-  border: 1px solid #e0e0e0;
+  border: 0.5px dotted rgb(88, 7, 7);
   padding: 1rem;
   box-shadow: 2px 2px 5px rgba(92, 6, 6, 0.1);
   text-align: center;
