@@ -5,7 +5,7 @@ import Icon from '@leafygreen-ui/icon';
 const InformationCard = ({title, text}) => {
     return (
         <div className={styles.cardcontainer}>
-            <Icon className={styles.icon} glyph="InfoWithCircle" fill="#00684A" />
+            <Icon className={styles.icon} glyph="InfoWithCircle" />
             <div className={styles.card}>
                 <h3><strong>{title}</strong></h3>
                 <p>{text}</p>

@@ -8,6 +8,8 @@
     font-size: 5rem;
     cursor: pointer;
     transition: color 0.3s ease;
+    color: #00684A;
+
 }
 
 .card {
