@@ -27,7 +27,7 @@ const GeneralLayout = ({ children }) => {
           <a href="/instructions" className={headerStyles.infoButton}>Instructions</a>
           <div className={headerStyles.icon_container}>
             <Icon glyph='Person' fill="#00684A" size='xlarge'/>
-            <span>Francesco Baldissera</span>
+            <span>Eddie Grant</span>
             <span>FO. Manager</span>
           </div>
         </div>
@@ -41,9 +41,8 @@ const GeneralLayout = ({ children }) => {
 
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
-          <p>&copy; 2024 MongoDB. All rights reserved.</p>
           <p>
-            Leafy Air Demo developed by IS Team 
+            An Airline demo developed by Industry Solutions Team at MongoDB
           </p>
         </div>
         <div className={footerStyles.footerImage}>

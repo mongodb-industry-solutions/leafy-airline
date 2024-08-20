@@ -8,13 +8,6 @@ import os
 import json
 from google.cloud import pubsub_v1
 
-# Resources:
-# https://medium.com/@mouaazfarrukh99/getting-started-with-pub-sub-using-python-305a19901f1a
-# https://www.youtube.com/watch?v=ML6P1ksHcqo&list=PLIivdWyY5sqKwVLe4BLJ-vlh9r9zCdOse&index=4 
-
-
-# MongoDB connection : Data API - Custom endpoints
-
 
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
@@ -24,8 +17,6 @@ origins = [
     "https://airplanedashboard-65jcrv6puq-ew.a.run.app"
     # Add other origins if needed
 ]
-
-# origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -43,27 +34,36 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )
 
+
+
 # SCHEDULER : Calls my function (simulator) every x seconds
 measurement_interval = 2.5
 scheduler = BackgroundScheduler()
 scheduler_active = False
-# resume_needed = False
-
 docs = []
 
-# PUBSUB INFO
+
+
+# PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions
 project_id = "connected-aircraft-ist"
-topic_id = "leafyAirlineData"
+
+data_topic_id = "leafyAirlineData"
+path_topic_id = "leafyAirlinePath"
+
 service_account_file = "json-keys-for-connect-aircraft-ist/connected-aircraft-ist-4fa26b67848a.json"
 
-publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
-topic_path = publisher.topic_path(project_id, topic_id)
+data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+
+data_topic = data_publisher.topic_path(project_id, data_topic_id)
+path_topic = path_publisher.topic_path(project_id, path_topic_id)
 
 # GENERAL LIMITS
 doc_limit = 200
 
 
 # FUNCTIONS
+
 def publish_data(simulator : DataSimulator):
 
     (finished, data)= simulator.generate_data()
@@ -78,12 +78,27 @@ def publish_data(simulator : DataSimulator):
         logging.info("Scheduler stopped due to finished flight")
         scheduler.pause()
         
-    # Uncomment when using pubsub
     data = json.dumps(data).encode("utf-8")
-    future = publisher.publish(topic_path, data)
+    future = data_publisher.publish(data_topic, data)
     logging.info(future)
 
     return {"status": "New data published"}
+
+def publish_path(flight_id, path_data):
+
+    # Create the new message
+    msg = {"flight_id" : flight_id, 
+           "initial_path_airps" : path_data["initial_path_airps"],
+           "new_path_airps" : path_data["new_path_airps"],
+           "disruption_coords" : path_data["disruption_coords"]
+           }
+    
+    data = json.dumps(msg).encode("utf-8")
+    future = path_publisher.publish(path_topic, data)
+    
+    logging.info(future)
+
+    return {"status": "New path published"}
 
 
 # ENDPOINTS FOR FAST API APP 
@@ -113,6 +128,9 @@ async def start_scheduler(flight_info:dict):
 
     # Find the path between the departure and arrival locations
     (disrupted, path_data) = find_path(flight_info)
+
+    # Publish the initial and new path in path topic
+    publish_path(flight_info["flight_id"], path_data)
 
     # Create our Data Simulator for this flight
     simulator = DataSimulator(flight_info["flight_id"],

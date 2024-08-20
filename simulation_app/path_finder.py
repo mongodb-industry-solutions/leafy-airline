@@ -60,6 +60,38 @@ def simulate_disruption(G, disrupted_edge):
 
     G.remove_edge(*disrupted_edge)
 
+def midpoint_lat_lon(lat1, lon1, lat2, lon2):
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+    
+    # Calculate midpoint using spherical trigonometry
+    d_lon = lon2 - lon1
+    
+    # Convert spherical coordinates to Cartesian coordinates
+    x1 = math.cos(lat1) * math.cos(lon1)
+    y1 = math.cos(lat1) * math.sin(lon1)
+    z1 = math.sin(lat1)
+    
+    x2 = math.cos(lat2) * math.cos(lon2)
+    y2 = math.cos(lat2) * math.sin(lon2)
+    z2 = math.sin(lat2)
+    
+    # Average the Cartesian coordinates
+    x = (x1 + x2) / 2
+    y = (y1 + y2) / 2
+    z = (z1 + z2) / 2
+    
+    # Convert back to latitude and longitude
+    hyp = math.sqrt(x * x + y * y)
+    lat_mid = math.atan2(z, hyp)
+    lon_mid = math.atan2(y, x)
+    
+    # Convert latitude and longitude back to degrees
+    lat_mid = math.degrees(lat_mid)
+    lon_mid = math.degrees(lon_mid)
+    
+    return lat_mid, lon_mid
+
 def create_path_points(airports, path):
     '''
     Function that creates a list of the coordinates that the aircraft will have to
@@ -100,18 +132,31 @@ def find_path(flight_info):
 
     # 3. Get initial path without disruption
     initial_path, initial_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
+    initial_path_points = create_path_points(airports, initial_path)
 
     # 4. Get disruption and new path points
     simulate_disruption(G, (flight_info["dep_code"], flight_info["arr_code"]))
     disrupted = True
+
+    disrup_coords = midpoint_lat_lon(flight_info["dep_loc"][0],
+                                     flight_info["dep_loc"][1],
+                                     flight_info["arr_loc"][0],
+                                     flight_info["arr_loc"][1], )
 
     # 5. Find the shortest path between the departure and arrival airports
     shortest_path, shortest_path_length = find_shortest_path(G, flight_info["dep_code"], flight_info["arr_code"])
 
     # Compute the coordinates for this new path points so the simulator can follow the new directions
     new_path_points = create_path_points(airports, shortest_path)
-    paths["path"] = new_path_points
+
+    paths["initial_path_airps"] = initial_path
+    paths["initial_path"] = initial_path_points
+    
+    paths["new_path_airps"] = shortest_path
+    paths["new_path"] = new_path_points
+
     paths["extra_length"] = shortest_path_length - initial_path_length
+    paths["disruption_coords"] = disrup_coords
 
     # CHANGES : NEW APPROACH TO BE ABLE TO PRINT THE NEW PATH IN THE WEBSITE
     paths["path_airps"] = shortest_path
