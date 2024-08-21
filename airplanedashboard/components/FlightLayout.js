@@ -442,9 +442,9 @@ const FlightLayout = ({ children }) => {
           {/* Google Map Component */}
           <div className={styles.rightContainer}>
             <div className={styles.mapContainer}>
-            {googleAPI ? (
+            {apiKey ? (
             <div style={{ position: 'relative', width: '100%', height: '85%' }}>
-              <LoadScript googleMapsApiKey={googleAPI}>
+              <LoadScript googleMapsApiKey={apiKey}>
                 <GoogleMap
                   mapContainerStyle={{ width: '100%', height: '100%' }}
                   center={airplanePosition || depCoords}
