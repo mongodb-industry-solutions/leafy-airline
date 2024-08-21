@@ -53,6 +53,8 @@ const FlightLayout = ({ children }) => {
   const [newDisrup, setDisruption] = useState({})
   const [disrupEmpty, setDisrupEmpty] = useState(true)
 
+  const googleAPI = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
   async function fetchData() {
     try {
       const res = await fetch('/api/flights');
@@ -440,9 +442,9 @@ const FlightLayout = ({ children }) => {
           {/* Google Map Component */}
           <div className={styles.rightContainer}>
             <div className={styles.mapContainer}>
-            {apiKey ? (
+            {googleAPI ? (
             <div style={{ position: 'relative', width: '100%', height: '85%' }}>
-              <LoadScript googleMapsApiKey={apiKey}>
+              <LoadScript googleMapsApiKey={googleAPI}>
                 <GoogleMap
                   mapContainerStyle={{ width: '100%', height: '100%' }}
                   center={airplanePosition || depCoords}
