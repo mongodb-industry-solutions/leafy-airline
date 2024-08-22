@@ -186,6 +186,10 @@ module.exports = mongoose.models.Flight || mongoose.model('Flight', FlightSchema
 
 To deploy this application, GCP's Cloud Run is recommended for its ability to scale containerized applications automatically. Follow the instructions in the [GCP Integration](#gcp-integration) section to set up and deploy your app.
 
+## In the end your app should look like this:
+<img width="1511" alt="Screenshot 2024-08-22 at 14 29 29" src="https://github.com/user-attachments/assets/b47abccb-d662-4fde-a5b8-5edd3b3883d1">
+<img width="1511" alt="Screenshot 2024-08-22 at 14 29 45" src="https://github.com/user-attachments/assets/f2bed2e3-a98e-463b-82c4-1996d08f39d6">
+
 ---
 
 **Happy Coding!** ✈️
