@@ -25,7 +25,7 @@ Before you begin, ensure you have the following installed:
 
 ### Installation
 
-First open your preferred IDE and create a new terminal and navigate to the directory in which you want to begin the setup process. 
+First open your preferred IDE and create a new terminal. Then navigate through your files into the directory in which you want to begin the setup process. 
 1. **Clone the repository:**
 
     ```bash
