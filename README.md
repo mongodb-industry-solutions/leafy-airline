@@ -323,8 +323,9 @@ This service will be in charge of processing application data such as new route 
 
 
 ## In the end your app should look like this:
-![Screenshot 2024-08-23 at 15 36 56](https://github.com/user-attachments/assets/ddaede1d-5b05-46e0-9a5b-fef12fb20d23)
 ![Screenshot 2024-08-23 at 15 35 22](https://github.com/user-attachments/assets/cfcec7f3-e591-4933-849d-bbba10e9fc94)
+![Screenshot 2024-08-23 at 15 36 56](https://github.com/user-attachments/assets/ddaede1d-5b05-46e0-9a5b-fef12fb20d23)
+
 
 
 ---
