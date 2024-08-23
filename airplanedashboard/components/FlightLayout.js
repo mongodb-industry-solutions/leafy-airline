@@ -98,8 +98,10 @@ const FlightLayout = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (apiKey) {
     fetchData();
-  }, [flightId, simulationStarted]);
+    }
+  }, [flightId, simulationStarted, apiKey]);
 
   useEffect(() => {
     // Connect to WebSocket server
