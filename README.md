@@ -187,6 +187,61 @@ module.exports = mongoose.models.Flight || mongoose.model('Flight', FlightSchema
 
 To deploy this application, GCP's Cloud Run is recommended for its ability to scale containerized applications automatically. Follow the instructions in the [GCP Integration](#gcp-integration) section to set up and deploy your app.
 
+## Integrations
+
+The plane simulation runs due to the application's integrations with GCP services such as Cloud Functions, Vertex AI, and Pub/Sub. Review how you can set up each integration:
+
+### Pub/Sub Topic
+
+### Vertex AI Model
+
+The Vertex AI model is responsible for producing the analytical data required by your application. Follow these steps to train and deploy the model:
+
+1. **Training the Model**:
+   - Navigate to the **GCP Console**.
+   - Go to **Vertex AI** -> **Colab Enterprise**.
+   - Use the notebook available in the repository at `Notebooks/train_cost_calculator` to train and upload the model to the model registry.
+
+2. **Deploying the Model**:
+   - Follow the [Vertex AI deployment guide](https://cloud.google.com/vertex-ai/docs/general/deployment) to deploy the model to an endpoint.
+   - Once deployed, the model will be ready to receive input data and provide predictions.
+
+3. **Integrating with Cloud Functions**:
+   - Set up a Cloud Function to send input data to the deployed Vertex AI model and receive predictions.
+   - The predictions can then be written into a MongoDB collection for further use.
+
+### Cloud Functions
+
+The Cloud Functions are responsible for handling the data flow between your application, Pub/Sub topic, the Vertex AI model, and MongoDB. Follow these steps to configure the Cloud Functions:
+
+#### Cloud Function #1: Data Ingestion and Prediction
+
+1. **Create the Cloud Function**:
+   - In the **GCP Console** search bar, type `Cloud Run functions`.
+   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
+
+2. **Configure the Trigger**:
+   - Select **Trigger type** as `Cloud Pub/Sub`.
+   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic.
+
+3. **Set Environment Variables**:
+   - Set the following environment variables:
+     - `MONGO_DATABASE`
+     - `MONGO_COLLECTION`
+   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
+
+4. **Deploy the Cloud Function**:
+   - Click **Next** to proceed to the code section.
+   - Choose `Python` as the runtime language.
+   - Introduce the code from the repository, found in the `Cloud Functions/vertex_app_function` file.
+   - Click **Deploy** and wait for the function to build and deploy.
+
+Once these steps are completed, your Cloud Function will be able to send data to the Vertex AI model, receive predictions, and store them in a MongoDB collection.
+
+#### Cloud Function #2
+
+#### Cloud Function #3
+
 ## In the end your app should look like this:
 <img width="1511" alt="Screenshot 2024-08-22 at 14 29 29" src="https://github.com/user-attachments/assets/b47abccb-d662-4fde-a5b8-5edd3b3883d1">
 <img width="1511" alt="Screenshot 2024-08-22 at 14 29 45" src="https://github.com/user-attachments/assets/f2bed2e3-a98e-463b-82c4-1996d08f39d6">
