@@ -200,7 +200,7 @@ The Vertex AI model is responsible for producing the analytical data required by
 1. **Training the Model**:
    - Navigate to the **GCP Console**.
    - Go to **Vertex AI** -> **Colab Enterprise**.
-   - Use the notebook available in the repository at `Notebooks/train_cost_calculator` to train and upload the model to the model registry.
+   - Use the notebook available in the repository at `notebooks/published_leafyAirline_MLmodel.ipynb` to train and upload the model to the model registry.
 
 2. **Deploying the Model**:
    - Follow the [Vertex AI deployment guide](https://cloud.google.com/vertex-ai/docs/general/deployment) to deploy the model to an endpoint.
