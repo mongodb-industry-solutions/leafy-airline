@@ -214,7 +214,7 @@ The Vertex AI model is responsible for producing the analytical data required by
 
 The Cloud Functions are responsible for handling the data flow between your application, Pub/Sub topic, the Vertex AI model, and MongoDB. Follow these steps to configure the Cloud Functions:
 
-#### Cloud Function #1: Data Ingestion and Prediction
+#### Cloud Function #1: Data Ingestion and Prediction (Analytical Data Flow)
 
 1. **Create the Cloud Function**:
    - In the **GCP Console** search bar, type `Cloud Run functions`.
@@ -233,14 +233,62 @@ The Cloud Functions are responsible for handling the data flow between your appl
 4. **Deploy the Cloud Function**:
    - Click **Next** to proceed to the code section.
    - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `Cloud Functions/vertex_app_function` file.
+   - Introduce the code from the repository, found in the `cloud_functions/analyticalDataCF` directory.
+       * **Important** : Include both main.py and requirements.txt
    - Click **Deploy** and wait for the function to build and deploy.
 
 Once these steps are completed, your Cloud Function will be able to send data to the Vertex AI model, receive predictions, and store them in a MongoDB collection.
 
-#### Cloud Function #2
+#### Cloud Function #2: Real-time Telemetry data
 
-#### Cloud Function #3
+This service will be in charge of processing real-time continuous data published in the specified Pub/Sub topic. To set it up follow the next steps:
+
+1. **Create the Cloud Function**:
+   - In the **GCP Console** search bar, type `Cloud Run functions`.
+   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
+
+2. **Configure the Trigger**:
+   - Select **Trigger type** as `Cloud Pub/Sub`.
+   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic. (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
+
+3. **Set Environment Variables**:
+   - Set the following environment variables:
+     - `MONGO_DATABASE`
+     - `MONGO_COLLECTION`
+   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
+
+4. **Deploy the Cloud Function**:
+   - Click **Next** to proceed to the code section.
+   - Choose `Python` as the runtime language.
+   - Introduce the code from the repository, found in the `cloud_functions/telemetryDataCF` directory.
+        * **Important** : Include both main.py and requirements.txt
+   - Click **Deploy** and wait for the function to build and deploy.
+
+#### Cloud Function #3: Application Data
+
+This service will be in charge of processing application data such as new route and disruption location. This data will only be published in the specified Pub/Sub topic when a change occurs, whilst other topics use a real-time continuous data publishing approach. To set it up follow the next steps:
+
+1. **Create the Cloud Function**:
+   - In the **GCP Console** search bar, type `Cloud Run functions`.
+   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
+
+2. **Configure the Trigger**:
+   - Select **Trigger type** as `Cloud Pub/Sub`.
+   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
+
+3. **Set Environment Variables**:
+   - Set the following environment variables:
+     - `MONGO_DATABASE`
+     - `MONGO_COLLECTION`
+   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
+
+4. **Deploy the Cloud Function**:
+   - Click **Next** to proceed to the code section.
+   - Choose `Python` as the runtime language.
+   - Introduce the code from the repository, found in the `cloud_functions/applicationDataCF` directory. 
+       * **Important** : Include both main.py and requirements.txt
+   - Click **Deploy** and wait for the function to build and deploy.
+
 
 ## In the end your app should look like this:
 <img width="1511" alt="Screenshot 2024-08-22 at 14 29 29" src="https://github.com/user-attachments/assets/b47abccb-d662-4fde-a5b8-5edd3b3883d1">
