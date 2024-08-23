@@ -232,7 +232,7 @@ The Vertex AI model is responsible for producing the analytical data required by
 1. **Training the Model**:
    - Navigate to the **GCP Console**.
    - Go to **Vertex AI** -> **Colab Enterprise**.
-   - Use the notebook available in the repository at `notebooks/published_leafyAirline_MLmodel.ipynb` to train and upload the model to the model registry.
+   - Use the notebook available in the repository at `microservices/notebooks/published_leafyAirline_MLmodel.ipynb` to train and upload the model to the model registry.
 
 2. **Deploying the Model**:
    - Follow the [Vertex AI deployment guide](https://cloud.google.com/vertex-ai/docs/general/deployment) to deploy the model to an endpoint.
@@ -265,7 +265,7 @@ The Cloud Functions are responsible for handling the data flow between your appl
 4. **Deploy the Cloud Function**:
    - Click **Next** to proceed to the code section.
    - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `cloud_functions/analyticalDataCF` directory.
+   - Introduce the code from the repository, found in the `microservices/cloud_functions/analyticalDataCF` directory.
        * **Important** : Include both main.py and requirements.txt
    - Click **Deploy** and wait for the function to build and deploy.
 
@@ -292,7 +292,7 @@ This service will be in charge of processing real-time continuous data published
 4. **Deploy the Cloud Function**:
    - Click **Next** to proceed to the code section.
    - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `cloud_functions/telemetryDataCF` directory.
+   - Introduce the code from the repository, found in the `microservices/cloud_functions/telemetryDataCF` directory.
         * **Important** : Include both main.py and requirements.txt
    - Click **Deploy** and wait for the function to build and deploy.
 
@@ -317,7 +317,7 @@ This service will be in charge of processing application data such as new route 
 4. **Deploy the Cloud Function**:
    - Click **Next** to proceed to the code section.
    - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `cloud_functions/applicationDataCF` directory. 
+   - Introduce the code from the repository, found in the `microservices/cloud_functions/applicationDataCF` directory. 
        * **Important** : Include both main.py and requirements.txt
    - Click **Deploy** and wait for the function to build and deploy.
 
