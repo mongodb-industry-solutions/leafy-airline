@@ -366,9 +366,9 @@ const FlightLayout = ({ children }) => {
               <>
                 <div className={styles.staticBox}>
                   <div className={styles.routing}>
-                  <h4>Initial Path </h4>
+                  <h4>Departure - Arrival Locations </h4>
                   <p className={styles.static_data}>{`${selectedFlight.dep_arp.city}, ${selectedFlight.dep_arp._id}  - ${selectedFlight.arr_arp.city}, ${selectedFlight.arr_arp._id}`}</p>
-                  <h4>New Path </h4>
+                  <h4>Alternative flying route</h4>
                   {newPath.length === 0 ? (
                     <p className={styles.static_data}>No simulation running</p>
                   ) : (
