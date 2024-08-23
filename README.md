@@ -193,6 +193,38 @@ The plane simulation runs due to the application's integrations with GCP service
 
 ### Pub/Sub Topic
 
+This demo manages data by using PubSub topics to distribute the data between the different microservices. Consequently, setting up the neccessary PubSub topics is crucial for this deployment to work correctly.
+
+The demo works using 2 main topics:
+
+* **Real-time data topic**:
+
+  This topic will manage the plane simulated data (or real plane data if available). This data should be published in the topic in real-time , as it will be used for analytical purposes in the application.
+  
+* **Application data topic**:
+
+  This topic will manage the application data for route and disruption status, which are static for mostly all the flight (minus minor changes or optimization). This data should be the published only when it is altered rather than every second.
+
+To set up both topics , follow these steps for each of them:
+
+1. Navigate to the **GCP Console**.
+2. Access the **Navigation Menu** on the left side of the tab and go to **Pub/Sub**. You can also search for this service in the searchbar located on top of this same tab.
+3. Click **Create Topic** and include your desired configuration
+
+Now, your new topic should be created. You can check by accessing **Pub/Sub** -> **Topics** and reviewing the topics list. 
+
+At this point, a default subscription should have also been automatically created for the topic. You can decide to keep this default subscription or either create a new one by clicking the desired topic in the list and then cliking **Create Subscription**
+
+At least one subscription must be created for each topic in order to set PubSub integrations correctly.
+
+***Integral connection to the app***
+
+Now that the topics and subscriptions are created, you will have to take some things into account to correctly set all GCP integrations:
+
+1. Ensure that your data source publishes data correctly in both topics
+2. Create Cloud Functions triggered by messages in the topics by following the steps in the **Cloud Functions** section
+
+
 ### Vertex AI Model
 
 The Vertex AI model is responsible for producing the analytical data required by your application. Follow these steps to train and deploy the model:
