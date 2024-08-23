@@ -45,12 +45,12 @@ docs = []
 
 
 # PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions
-project_id = "connected-aircraft-ist"
+project_id = "gcp-project-id"
 
-data_topic_id = "leafyAirlineData"
-path_topic_id = "leafyAirlinePath"
+data_topic_id = "real-time-data-topic-name"
+path_topic_id = "application-data-topic-name"
 
-service_account_file = "json-keys-for-connect-aircraft-ist/connected-aircraft-ist-4fa26b67848a.json"
+service_account_file = "path-to-your-json-key-file"
 
 data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
 path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
