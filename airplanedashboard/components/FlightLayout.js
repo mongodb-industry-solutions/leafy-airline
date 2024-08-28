@@ -104,6 +104,7 @@ const FlightLayout = ({ children }) => {
   }, [flightId, simulationStarted, apiKey]);
 
   useEffect(() => {
+    if (apiKey) {
     // Connect to WebSocket server
     const socket = io(); // Connect to the WebSocket server
 
@@ -130,10 +131,12 @@ const FlightLayout = ({ children }) => {
     return () => {
       socket.off('alert');
     };
-  }, []);
+  } 
+}, [apiKey]);
 
 
   useEffect(() => {
+    if (apiKey) {
     if (totalExpectedFuelCost !== null && delayCost !== null) {
       setSumCost(totalExpectedFuelCost + delayCost);
     } else if (totalExpectedFuelCost !== null) {
@@ -143,7 +146,8 @@ const FlightLayout = ({ children }) => {
     } else {
       setSumCost(null);
     }
-  }, [totalExpectedFuelCost, delayCost]);
+  }
+}, [totalExpectedFuelCost, delayCost, apiKey]);
   
 
   useEffect(() => {
