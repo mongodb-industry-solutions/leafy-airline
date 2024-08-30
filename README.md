@@ -1,7 +1,8 @@
 # Leafy Air: A Flight Management App
 
 This is a **Next.js** application integrated with **MongoDB** and deployed using **Google Cloud Platform (GCP)** services. The app is designed to efficiently manage flights, focusing on real-time data updates to handle flight delays and other critical events.
-![Screenshot 2024-08-22 at 12 59 22](https://github.com/user-attachments/assets/121b7deb-0cd1-452c-a810-184d09522595)
+![image](https://github.com/user-attachments/assets/9d932c22-db0c-425e-aeaf-852aa3fe9cd7)
+
 
 
 ## Features
