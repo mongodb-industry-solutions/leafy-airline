@@ -21,9 +21,7 @@ import Banner from '@leafygreen-ui/banner';
 
 import airports_dict from '../resources/airports.js'
 
-// const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
-// const app_url = "https://simulation-app-final-65jcrv6puq-ew.a.run.app/";
-// const app_url = "https://simulation-app-newpath-65jcrv6puq-ew.a.run.app/";
+// URL from the cloud run data-simulator microservice
 const app_url = "https://simulation-app-final-v3-65jcrv6puq-ew.a.run.app/";
 
 const FlightLayout = ({ children }) => {
@@ -179,6 +177,25 @@ const FlightLayout = ({ children }) => {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);
 
+  const performAggregation = async () => {
+
+    // Trigger Aggregation API after starting the simulation
+    const aggregationResponse = await fetch('/api/aggregate', { method: 'POST' });
+    if (aggregationResponse.ok) {
+      console.log('Aggregation triggered successfully.');
+    } else {
+      console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
+    }
+  }
+
+  useEffect(() => {
+
+    if (simulationStarted) {
+      const aggregationInterval = setInterval(performAggregation, 2500); // 5 seconds in milliseconds
+      return () => clearInterval(aggregationInterval);
+    }
+
+  },[simulationStarted]);
 
   const calculateHeading = (from, to) => {
     const lat1 = from.lat * Math.PI / 180;
@@ -255,13 +272,13 @@ const FlightLayout = ({ children }) => {
       const data = await response.json();
       console.log(data);
 
-      // Trigger Aggregation API after starting the simulation
-      const aggregationResponse = await fetch('/api/aggregate', { method: 'POST' });
-      if (aggregationResponse.ok) {
-        console.log('Aggregation triggered successfully.');
-      } else {
-        console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
-      }
+      // // Trigger Aggregation API after starting the simulation
+      // const aggregationResponse = await fetch('/api/aggregation', { method: 'POST' });
+      // if (aggregationResponse.ok) {
+      //   console.log('Aggregation triggered successfully.');
+      // } else {
+      //   console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
+      // }
 
       setSimulationStarted(true);
       
@@ -289,7 +306,7 @@ const FlightLayout = ({ children }) => {
       });
       const data = await response.json();
       console.log(data);
-      
+
       // Clear flight path and stop fetching
       setFlightPath([]);
       setFetchingStarted(false);

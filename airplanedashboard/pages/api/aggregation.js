@@ -1,7 +1,11 @@
 import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
+// import React, { useEffect, useState } from 'react';
+
+// const [schedulerStarted, setSchedulerStatus] = useState(false);
 
 export async function runAggregation() {
+  
   const MONGO_URI = process.env.MONGO_URI;
   const client = new MongoClient(MONGO_URI);
   const dbName = 'leafy_airline';
@@ -17,6 +21,7 @@ export async function runAggregation() {
 
     const database = client.db(dbName);
     const collection = database.collection(collectionName);
+
 
     console.log('Running aggregation pipeline...');
     const pipelineStart = Date.now();
@@ -89,16 +94,34 @@ export async function runAggregation() {
 };
 
 // Create a cron job to run the aggregation every 5 seconds
-// cron.schedule('*/2.5 * * * * *', runAggregation);
+let cronJob = null;
+
+function createCronJob() {
+  if (!cronJob) {
+    cronJob = cron.schedule('*/2.5 * * * * *', runAggregation, { scheduled: false });
+  }
+}
 
 export default async function handler(req, res) {
+  createCronJob(); // Ensure cronJob is initialized
+  
   if (req.method === 'POST') {
-    // Start the cron job
-    await runAggregation();
-    res.status(200).json({ message: 'Scheduler started' });
+    if (cronJob && !cronJob.running) {
+      cronJob.start();
+      res.status(200).json({ message: 'Scheduler started' });
+    } else {
+      res.status(400).json({ message: 'Scheduler already running or could not be started' });
+    }
+
+  } else if (req.method === 'DELETE') {
+    if (cronJob && cronJob.running) {
+      await cronJob.stop();
+      res.status(200).json({ message: 'Scheduler stopped' });
+    } else {
+      res.status(400).json({ message: 'Scheduler not running' });
+    }
   } else {
-    // Handle unsupported HTTP methods
-    res.setHeader('Allow', ['POST']);
+    res.setHeader('Allow', ['POST', 'DELETE']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
