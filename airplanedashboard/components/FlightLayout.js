@@ -27,7 +27,8 @@ import Banner from "@leafygreen-ui/banner";
 import airports_dict from "../resources/airports.js";
 
 // URL from the cloud run data-simulator microservice
-const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
+const app_url =
+  "https://simulation-app-final-v3-502454695591.europe-west1.run.app/";
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
