@@ -4,3 +4,7 @@ node_modules/
 app.log
 simulation_app/json-keys-for-connect-aircraft-ist
 cost_calculator/json-keys-for-connect-aircraft-ist
+
+**/simulation_app/json-keys-for-connect-aircraft-ist
+**/.venv
+.env*
