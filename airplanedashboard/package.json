@@ -10,7 +10,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@leafygreen-ui/banner": "^8.0.1",
-    "@leafygreen-ui/button": "^21.2.1",
+    "@leafygreen-ui/button": "^21.3.0",
     "@leafygreen-ui/callout": "^10.0.0",
     "@leafygreen-ui/card": "^11.0.0",
     "@leafygreen-ui/combobox": "^9.1.1",

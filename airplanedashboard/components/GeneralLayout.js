@@ -5,6 +5,7 @@ import footerStyles from './Footer.module.css'; // Import the footer CSS file
 import Logo from '@leafygreen-ui/logo';
 import Icon from "@leafygreen-ui/icon";
 import Image from "next/image";
+import Button from "@leafygreen-ui/button";
 
 const GeneralLayout = ({ children }) => {
   return (
@@ -24,7 +25,7 @@ const GeneralLayout = ({ children }) => {
           <h3>Flights Overview</h3>
         </div>
         <div className={styles.rightheaderContainer}>
-          <a href="/instructions" className={headerStyles.infoButton}>Instructions</a>
+          <a href="/instructions" className={headerStyles.infoButton}> <Icon glyph='Wizard' fill='#889396'/>Tell me more!</a>
           <div className={headerStyles.icon_container}>
             <Icon glyph='Person' fill="#00684A" size='xlarge'/>
             <span>Eddie Grant</span>
