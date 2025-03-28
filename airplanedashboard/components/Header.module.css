@@ -42,10 +42,11 @@
 }
 
 .infoButton {
-  background-color: #00684A; /* Button background color */
-  color: white; /* Text color */
+  background-color: #F8FBFA; /* Button background color */
+  color: #011E2B; /* Text color */
   text-decoration: none; /* Remove underline */
   border-radius: 5px; /* Rounded edges */
+  border: 1px solid #889396;
   padding: 10px 15px; /* Padding inside the button */
   cursor: pointer; /* Pointer cursor on hover */
   font-size: 14px; /* Font size */
@@ -56,6 +57,6 @@
 }
 
 .infoButton:hover {
-  background-color: #004d34; /* Slightly darker green on hover */
-  text-decoration: underline; /* Underline text on hover */
+  box-shadow: 0 0 6px rgba(128, 128, 128, 0.6); /* Even gray shadow */
 }
+
