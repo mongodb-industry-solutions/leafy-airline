@@ -53,9 +53,13 @@ path_topic_id = "leafyAirlinePath"
 # Path to your service account key file = JSON File generated only once when creating the service account key
 # To access : GCP Console - IAM & Admin - Service Accounts - Select your service account - Keys - Add Key - Create new key - JSON
 
-service_account_file = "json_keys/connected-aircraft-ist-4fa26b67848a.json"
-data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
-path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+# service_account_file = "json_keys/connected-aircraft-ist-4fa26b67848a.json"
+# data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+# path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+
+# Use this to avoid using service accounts
+data_publisher = pubsub_v1.PublisherClient()
+path_publisher = pubsub_v1.PublisherClient()
 
 data_topic = data_publisher.topic_path(project_id, data_topic_id)
 path_topic = path_publisher.topic_path(project_id, path_topic_id)
