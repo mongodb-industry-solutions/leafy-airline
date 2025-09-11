@@ -9,7 +9,7 @@ import json
 # Configura las variables del proyecto, topic y suscripción
 project_id = "connected-aircraft-ist"
 topic_id = "leafyAirlineData"
-service_account_file = "json-keys-for-connect-aircraft-ist/connected-aircraft-ist-4fa26b67848a.json"
+service_account_file = "json_keys/connected-aircraft-ist-4fa26b67848a.json"
 subscription_id = "leafyAirlineData-sub"
 # Crea el cliente de suscripción
 subscriber = pubsub_v1.SubscriberClient()
