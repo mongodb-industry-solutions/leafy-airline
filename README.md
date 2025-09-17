@@ -44,11 +44,16 @@ First open your preferred IDE and create a new terminal. Then navigate through y
    Create a `.env.local` file in the root directory and add the following variables:
 
    ```bash
+   <!-- MongoDB Credentials / Data -->
    MONGODB_URI=your-mongodb-connection-string
+   MONGODB_DB=your-mongodb-database-name
+
+   <!-- GCP API Keys -->
    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-google-maps-api-key
-   MONGODB_DB=your-mongodb-database
    NEXT_PUBLIC_SIMULATION_APP_URL=your-simulation-app-url
    ```
+
+   Take into account these variables should not be included between "" or any other symbol. Also, don't worry if you still don't have the API keys, we will explain to you how to get them in following sections.
 
 4. **Run the development server:**
 
