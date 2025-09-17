@@ -11,9 +11,10 @@ This is a **Next.js** application integrated with **MongoDB** and deployed using
 - **MongoDB Integration:** Scalable and flexible database management for storing flight data.
 - **Google Cloud Platform:** Deploy and scale your application using GCP services like Cloud Run.
 
-## Getting Started
 
-### Prerequisites
+## Getting Started - Local Deployment
+
+### *Prerequisites*
 
 Before you begin, ensure you have the following installed:
 
@@ -22,11 +23,23 @@ Before you begin, ensure you have the following installed:
 - [Next.js](https://nextjs.org/) (v12 or later)
 - [Google Cloud SDK](https://cloud.google.com/sdk)
 
-### Installation
+To check if Node.js and Next.js are correctly installed, use the following commands on your terminal. If the output is a version number, you correctly installed both resources.
 
-First open your preferred IDE and create a new terminal. Then navigate through your files into the directory in which you want to begin the setup process.
+```bash
+npm --version
+node --version
+```
 
-1. **Clone the repository:**
+
+<!-- Include division -->
+---
+
+<!-- ### First steps :  -->
+### *Github Repository*
+
+To begin your journey, open your preferred IDE and create a new terminal. Then navigate through your files into the directory in which you want to begin the setup process and where you would like to locate the project. Once you are located in your preferred directory, follow these simple steps:
+
+1. **Clone the repository and browse to the dashboard directory:**
 
    ```bash
    git clone https://github.com/mongodb-industry-solutions/leafy_airline/
@@ -44,50 +57,74 @@ First open your preferred IDE and create a new terminal. Then navigate through y
    Create a `.env.local` file in the root directory and add the following variables:
 
    ```bash
+   <!-- MongoDB Credentials / Data -->
    MONGODB_URI=your-mongodb-connection-string
+   MONGODB_DB=your-mongodb-database-name
+
+   <!-- GCP API Keys -->
    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-google-maps-api-key
-   MONGODB_DB=your-mongodb-database
    NEXT_PUBLIC_SIMULATION_APP_URL=your-simulation-app-url
    ```
 
-4. **Run the development server:**
+   Take into account these variables should not be included between "" or any other symbol. Also, don't worry if you still don't have the API keys, we will explain to you how to get them in following sections.
+
+<!-- 4. **Run the development server:**
 
    ```bash
    npm run dev
    ```
 
-   Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the app. -->
 
-## GCP Integration
+Now that you already have your local repository, let's begin setting up microservices and your GCP project.
 
-### Using Google Cloud Services
+---
+
+### *GCP Integration*
+
+#### What will you be using Google Cloud Services for?
 
 - **Cloud Run:** Deploy the app as a containerized service on Cloud Run.
 - **Google Cloud Build:** Automatically build and deploy your app using Cloud Build triggers.
 - **Cloud Storage:** Store static assets and other files.
 
-### Setting Up GCP
+After you cloned your repo, you will need to complete the following steps to set GCP up:
 
-1. **Create a GCP Project:**
+<!-- ### Setting Up GCP -->
+
+1. **Create your project:**
 
    Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a new project.
 
 2. **Enable Required APIs:**
 
-   Enable the following APIs in your GCP project:
+   Once you have created your project, navigate to the "APIs & Services" section on the menu located on the left part of your Project Console. Then, use the "Enable APIs and services" button to enable the following APIs:
 
-   - Cloud Run
-   - Cloud Build
-   - Container Registry
+   - Cloud Run Admin API
+   - Cloud Build API
+   - Clound Functions API
+   - Cloud Pub/Sub API
+   - Artifact Registry API
+   - Maps JavaScript API
+   - Secret Manager API
+   - Dataform API
+   - Compute Engine API
+   - Notebooks API
+   - Vertex AI API
    - Cloud Storage (optional for storing assets)
 
-3. **Install Google Cloud SDK:**
+3. **Obtain your API keys**
 
-   Follow the instructions to install the [Google Cloud SDK](https://cloud.google.com/sdk).
+   On the left bar on the "API & Services" tab, navigate to Credentials and click on "Create credentials -> API Keys"
+   Rename this key to your preference and copy its value on the .env file we asked you to create on the root folder. This will be the "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY" constant
 
-4. **Authenticate with GCP:**
+4. **Install Google Cloud SDK:**
 
-   Authenticate your local environment with your GCP account:
+   Now follow the instructions to install the [Google Cloud SDK](https://cloud.google.com/sdk).
+
+5. **Authenticate with GCP:**
+
+   Open the command prompt and authenticate your local environment with your GCP account:
 
    ```bash
    gcloud auth login
@@ -98,8 +135,8 @@ First open your preferred IDE and create a new terminal. Then navigate through y
    ```bash
    gcloud config set project your-gcp-project-id
    ```
-
-5. **Dockerize Your App:**
+<!-- 
+6. **Dockerize Your App:**
 
    Create a `Dockerfile` in the root of your project:
 
@@ -143,14 +180,60 @@ First open your preferred IDE and create a new terminal. Then navigate through y
 
 7. **Access Your App:**
 
-   Once deployed, Cloud Run will provide a URL to access your app. Open it in your browser to see the deployed version.
+   Once deployed, Cloud Run will provide a URL to access your app. Open it in your browser to see the deployed version. -->
 
-## Usage
+<!-- ## Usage
 
 - **Add Flights:** Navigate to the flight management section to add new flights.
 - **Update Flight Status:** Real-time updates allow users to modify flight statuses, including delays.
 - **View Flight Information:** Users can view detailed information about each flight.
-- **Receive Notifications:** Set up notifications to alert users of flight delays.
+- **Receive Notifications:** Set up notifications to alert users of flight delays. -->
+
+
+--- 
+
+### *Data simulation*
+
+The last step required to fully enjoy this demo requires setting up the plane data simulation app. Follow these nexts steps to do so:
+
+1. **Open new window and browse**
+
+   Firstly, open a new window of your preferred IDE, open the project you just cloned and navigate to the **"simulation app"** directory (included in the microservices folder).
+
+2. **Set up environment variables:**
+
+   Create a `.env.local` file in the root directory and add the following variables:
+
+     ```bash
+     <!-- ORIGINS: Routes from which the simulation app will get requested data -->
+   ORIGINS = ["your-local-app-url","your-cloud-app-url"]
+
+   <!-- GCP Variables -->
+   PROJECT_ID = "your-GCP-project-id"
+   DATA_TOPIC_ID = "your-data-topic-name"
+   PATH_TOPIC_ID = "your-path-topic-name"
+   ```
+   The last three variables can be found on the Console and Pub/Sub tab in your GCP project, therefore, make sure to follow the previous steps regarding GCP Integration to be sure you are able to access every needed value.
+
+3. **Install required resources**
+
+   Create a new terminal, browse to the simulation app directory and install all dependencies running:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+
+4. **Run the app**
+
+   Finally, use the same terminal to run the following command and start the simulation app:
+
+   ```bash
+   fastapi dev main.py
+   ```
+
+
+--- 
+
 
 ## MongoDB Integration
 
