@@ -146,7 +146,7 @@ With the database set up, your application is ready to store and manage flight d
 
 After you cloned your repo, you will need to complete the following steps to set GCP up:
 
-<!-- ### Setting Up GCP -->
+### Project Setup
 
 1. **Create your project:**
 
@@ -191,6 +191,151 @@ After you cloned your repo, you will need to complete the following steps to set
    ```bash
    gcloud config set project your-gcp-project-id
    ```
+
+### Integrations
+
+Now that you have created your project in GCP, lets configure come of the vital parts of this project. The plane simulation runs due to the application's integrations with GCP services such as Cloud Functions, Vertex AI, and Pub/Sub topics. Follow the next steps to set up these services:
+
+####  *Pub/Sub Topic*
+
+This demo manages data by using PubSub topics to distribute the data between the different microservices. Consequently, setting up the neccessary PubSub topics is crucial for this deployment to work correctly.
+
+The demo works using 2 main topics:
+
+- **Real-time data topic**:
+
+  This topic will manage the plane simulated data (or real plane data if available). This data should be published in the topic in real-time , as it will be used for analytical purposes in the application.
+
+- **Application data topic**:
+
+  This topic will manage the application data for route and disruption status, which are static for mostly all the flight (minus minor changes or optimization). This data should be the published only when it is altered rather than every second.
+
+To set up both topics , *follow these steps for each of them*:
+
+1. Navigate to the **GCP Console**.
+2. Access the **Navigation Menu** on the left side of the tab and go to **Pub/Sub**. You can also search for this service in the searchbar located on top of this same tab.
+3. Click **Create Topic** and include your desired configuration
+
+Now, your new topic should be created. You can check by accessing **Pub/Sub** -> **Topics** and reviewing the topics list.
+
+At this point, a default subscription should have also been automatically created for the topic. You can decide to keep this default subscription or either create a new one by clicking the desired topic in the list and then cliking **Create Subscription**
+
+At least one subscription must be created for each topic in order to set PubSub integrations correctly.
+
+**_Integral connection to the app_**
+
+Now that the topics and subscriptions are created, you will have to take some things into account to correctly set all GCP integrations:
+
+1. Ensure that your data source publishes data correctly in both topics
+2. Create Cloud Functions triggered by messages in the topics by following the steps in the **Cloud Functions** section
+
+#### *Vertex AI Model*
+
+The Vertex AI model is responsible for producing the analytical data required by your application. Follow these steps to train and deploy the model:
+
+1. **Training the Model**:
+
+   - Navigate to the **GCP Console**.
+   - Go to **Vertex AI** -> **Colab Enterprise**.
+   - Use the notebook available in the repository at `microservices/notebooks/published_leafyAirline_MLmodel.ipynb` to train and upload the model to the model registry.
+
+2. **Deploying the Model**:
+
+   - Follow the [Vertex AI deployment guide](https://cloud.google.com/vertex-ai/docs/general/deployment) to deploy the model to an endpoint.
+   - Once deployed, the model will be ready to receive input data and provide predictions.
+
+3. **Integrating with Cloud Functions**:
+   - Set up a Cloud Function to send input data to the deployed Vertex AI model and receive predictions.
+   - The predictions can then be written into a MongoDB collection for further use.
+
+#### *Cloud Functions*
+
+The Cloud Functions are responsible for handling the data flow between your application, Pub/Sub topic, the Vertex AI model, and MongoDB. Follow these steps to configure the Cloud Functions:
+
+**Cloud Function #1: Data Ingestion and Prediction (Analytical Data Flow)**
+
+1. **Create the Cloud Function**:
+
+   - In the **GCP Console** search bar, type `Cloud Run functions`.
+   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
+
+2. **Configure the Trigger**:
+
+   - Select **Trigger type** as `Cloud Pub/Sub`.
+   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic.
+
+3. **Set Environment Variables**:
+
+   - Set the following environment variables:
+     - `MONGO_DATABASE`
+     - `MONGO_COLLECTION`
+   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
+
+4. **Deploy the Cloud Function**:
+   - Click **Next** to proceed to the code section.
+   - Choose `Python` as the runtime language.
+   - Introduce the code from the repository, found in the `microservices/cloud_functions/analyticalDataCF` directory.
+     - **Important** : Include both main.py and requirements.txt
+   - Click **Deploy** and wait for the function to build and deploy.
+
+Once these steps are completed, your Cloud Function will be able to send data to the Vertex AI model, receive predictions, and store them in a MongoDB collection.
+
+**Cloud Function #2: Real-time Telemetry data**
+
+This service will be in charge of processing real-time continuous data published in the specified Pub/Sub topic. To set it up follow the next steps:
+
+1. **Create the Cloud Function**:
+
+   - In the **GCP Console** search bar, type `Cloud Run functions`.
+   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
+
+2. **Configure the Trigger**:
+
+   - Select **Trigger type** as `Cloud Pub/Sub`.
+   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic. (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
+
+3. **Set Environment Variables**:
+
+   - Set the following environment variables:
+     - `MONGO_DATABASE`
+     - `MONGO_COLLECTION`
+   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
+
+4. **Deploy the Cloud Function**:
+   - Click **Next** to proceed to the code section.
+   - Choose `Python` as the runtime language.
+   - Introduce the code from the repository, found in the `microservices/cloud_functions/telemetryDataCF` directory.
+     - **Important** : Include both main.py and requirements.txt
+   - Click **Deploy** and wait for the function to build and deploy.
+
+**Cloud Function #3: Application Data**
+
+This service will be in charge of processing application data such as new route and disruption location. This data will only be published in the specified Pub/Sub topic when a change occurs, whilst other topics use a real-time continuous data publishing approach. To set it up follow the next steps:
+
+1. **Create the Cloud Function**:
+
+   - In the **GCP Console** search bar, type `Cloud Run functions`.
+   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
+
+2. **Configure the Trigger**:
+
+   - Select **Trigger type** as `Cloud Pub/Sub`.
+   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
+
+3. **Set Environment Variables**:
+
+   - Set the following environment variables:
+     - `MONGO_DATABASE`
+     - `MONGO_COLLECTION`
+   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
+
+4. **Deploy the Cloud Function**:
+   - Click **Next** to proceed to the code section.
+   - Choose `Python` as the runtime language.
+   - Introduce the code from the repository, found in the `microservices/cloud_functions/applicationDataCF` directory.
+     - **Important** : Include both main.py and requirements.txt
+   - Click **Deploy** and wait for the function to build and deploy.
+
 <!-- 
 6. **Dockerize Your App:**
 
@@ -289,154 +434,11 @@ The last step required to fully enjoy this demo requires setting up the plane da
 
 
 --- 
-
+<!-- 
 ## Deployment
 
-To deploy this application, GCP's Cloud Run is recommended for its ability to scale containerized applications automatically. Follow the instructions in the [GCP Integration](#gcp-integration) section to set up and deploy your app.
+To deploy this application, GCP's Cloud Run is recommended for its ability to scale containerized applications automatically. Follow the instructions in the [GCP Integration](#gcp-integration) section to set up and deploy your app. -->
 
-## Integrations
-
-The plane simulation runs due to the application's integrations with GCP services such as Cloud Functions, Vertex AI, and Pub/Sub. Review how you can set up each integration:
-
-### Pub/Sub Topic
-
-This demo manages data by using PubSub topics to distribute the data between the different microservices. Consequently, setting up the neccessary PubSub topics is crucial for this deployment to work correctly.
-
-The demo works using 2 main topics:
-
-- **Real-time data topic**:
-
-  This topic will manage the plane simulated data (or real plane data if available). This data should be published in the topic in real-time , as it will be used for analytical purposes in the application.
-
-- **Application data topic**:
-
-  This topic will manage the application data for route and disruption status, which are static for mostly all the flight (minus minor changes or optimization). This data should be the published only when it is altered rather than every second.
-
-To set up both topics , follow these steps for each of them:
-
-1. Navigate to the **GCP Console**.
-2. Access the **Navigation Menu** on the left side of the tab and go to **Pub/Sub**. You can also search for this service in the searchbar located on top of this same tab.
-3. Click **Create Topic** and include your desired configuration
-
-Now, your new topic should be created. You can check by accessing **Pub/Sub** -> **Topics** and reviewing the topics list.
-
-At this point, a default subscription should have also been automatically created for the topic. You can decide to keep this default subscription or either create a new one by clicking the desired topic in the list and then cliking **Create Subscription**
-
-At least one subscription must be created for each topic in order to set PubSub integrations correctly.
-
-**_Integral connection to the app_**
-
-Now that the topics and subscriptions are created, you will have to take some things into account to correctly set all GCP integrations:
-
-1. Ensure that your data source publishes data correctly in both topics
-2. Create Cloud Functions triggered by messages in the topics by following the steps in the **Cloud Functions** section
-
-### Vertex AI Model
-
-The Vertex AI model is responsible for producing the analytical data required by your application. Follow these steps to train and deploy the model:
-
-1. **Training the Model**:
-
-   - Navigate to the **GCP Console**.
-   - Go to **Vertex AI** -> **Colab Enterprise**.
-   - Use the notebook available in the repository at `microservices/notebooks/published_leafyAirline_MLmodel.ipynb` to train and upload the model to the model registry.
-
-2. **Deploying the Model**:
-
-   - Follow the [Vertex AI deployment guide](https://cloud.google.com/vertex-ai/docs/general/deployment) to deploy the model to an endpoint.
-   - Once deployed, the model will be ready to receive input data and provide predictions.
-
-3. **Integrating with Cloud Functions**:
-   - Set up a Cloud Function to send input data to the deployed Vertex AI model and receive predictions.
-   - The predictions can then be written into a MongoDB collection for further use.
-
-### Cloud Functions
-
-The Cloud Functions are responsible for handling the data flow between your application, Pub/Sub topic, the Vertex AI model, and MongoDB. Follow these steps to configure the Cloud Functions:
-
-#### Cloud Function #1: Data Ingestion and Prediction (Analytical Data Flow)
-
-1. **Create the Cloud Function**:
-
-   - In the **GCP Console** search bar, type `Cloud Run functions`.
-   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
-
-2. **Configure the Trigger**:
-
-   - Select **Trigger type** as `Cloud Pub/Sub`.
-   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic.
-
-3. **Set Environment Variables**:
-
-   - Set the following environment variables:
-     - `MONGO_DATABASE`
-     - `MONGO_COLLECTION`
-   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
-
-4. **Deploy the Cloud Function**:
-   - Click **Next** to proceed to the code section.
-   - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `microservices/cloud_functions/analyticalDataCF` directory.
-     - **Important** : Include both main.py and requirements.txt
-   - Click **Deploy** and wait for the function to build and deploy.
-
-Once these steps are completed, your Cloud Function will be able to send data to the Vertex AI model, receive predictions, and store them in a MongoDB collection.
-
-#### Cloud Function #2: Real-time Telemetry data
-
-This service will be in charge of processing real-time continuous data published in the specified Pub/Sub topic. To set it up follow the next steps:
-
-1. **Create the Cloud Function**:
-
-   - In the **GCP Console** search bar, type `Cloud Run functions`.
-   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
-
-2. **Configure the Trigger**:
-
-   - Select **Trigger type** as `Cloud Pub/Sub`.
-   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic. (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
-
-3. **Set Environment Variables**:
-
-   - Set the following environment variables:
-     - `MONGO_DATABASE`
-     - `MONGO_COLLECTION`
-   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
-
-4. **Deploy the Cloud Function**:
-   - Click **Next** to proceed to the code section.
-   - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `microservices/cloud_functions/telemetryDataCF` directory.
-     - **Important** : Include both main.py and requirements.txt
-   - Click **Deploy** and wait for the function to build and deploy.
-
-#### Cloud Function #3: Application Data
-
-This service will be in charge of processing application data such as new route and disruption location. This data will only be published in the specified Pub/Sub topic when a change occurs, whilst other topics use a real-time continuous data publishing approach. To set it up follow the next steps:
-
-1. **Create the Cloud Function**:
-
-   - In the **GCP Console** search bar, type `Cloud Run functions`.
-   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
-
-2. **Configure the Trigger**:
-
-   - Select **Trigger type** as `Cloud Pub/Sub`.
-   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
-
-3. **Set Environment Variables**:
-
-   - Set the following environment variables:
-     - `MONGO_DATABASE`
-     - `MONGO_COLLECTION`
-   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
-
-4. **Deploy the Cloud Function**:
-   - Click **Next** to proceed to the code section.
-   - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `microservices/cloud_functions/applicationDataCF` directory.
-     - **Important** : Include both main.py and requirements.txt
-   - Click **Deploy** and wait for the function to build and deploy.
 
 ## In the end your app should look like this:
 
