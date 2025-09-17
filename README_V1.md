@@ -113,22 +113,10 @@ To create the database with all the needed collections and documents, you can us
    - `flight_realtime` (a time series collection)  
    - `flights`  
   
-3. **Verify the data**:  
+3. **Verify the data (Optional)**:  
   
    Use a MongoDB client (like MongoDB Compass or the MongoDB shell) to connect to your database and verify that the collections and documents have been created successfully. Open the database `flightDB` and inspect the collections; you should find the seeded sample data.  
   
-4. **Update your connection settings**:  
-  
-   Ensure that the connection information in your application’s `.env.local` file matches your MongoDB setup. If you're using MongoDB Atlas or another cloud database, update your connection string accordingly.  
-  
-   Example of a `.env.local` file:  
-  
-   ```plaintext  
-   MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/flightDB?retryWrites=true&w=majority  
-   MONGODB_DB=flightDB  
-   ```  
-  
-   Make sure to replace `<username>` and `<password>` with your actual MongoDB credentials.  
   
 #### **Helpful Tips**:  
 - If using MongoDB Compass, verify that the database and collections have been created by navigating to the database `flightDB`.  
