@@ -1,11 +1,12 @@
 const { MongoClient } = require('mongodb');  
   
 // Configuration  
-const uri = 'mongodb://localhost:27017'; // Replace with your MongoDB URI  
-const databaseName = 'flightDB';         // Replace with your desired database name  
-  
-// Sample data  
-const seedData = [  
+// Take the MongoDB connection string and database name from environment variables or replace with your own values
+const uri = process.env.MONGO_URI || 'mongodb://localhost:27017';
+const databaseName = process.env.MONGODB_DB || 'flightDB';        
+
+// Sample data
+const seedData = [
   {  
     collection: 'flight_costs',  
     options: {}, // No special options for this collection  

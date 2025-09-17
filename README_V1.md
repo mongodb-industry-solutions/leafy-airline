@@ -35,7 +35,7 @@ node --version
 ---
 
 <!-- ### First steps :  -->
-### *Step 1 : Github Repository*
+### *Step 1 : Github Repository and Local Setup*
 
 To begin your journey, open your preferred IDE and create a new terminal. Then navigate through your files into the directory in which you want to begin the setup process and where you would like to locate the project. Once you are located in your preferred directory, follow these simple steps:
 
@@ -58,15 +58,16 @@ To begin your journey, open your preferred IDE and create a new terminal. Then n
 
    ```bash
    <!-- MongoDB Credentials / Data -->
-   MONGODB_URI=your-mongodb-connection-string
+   MONGO_URI=your-mongodb-connection-string
    MONGODB_DB=your-mongodb-database-name
 
    <!-- GCP API Keys -->
    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-google-maps-api-key
    NEXT_PUBLIC_SIMULATION_APP_URL=your-simulation-app-url
    ```
+   Replace the placeholder values with your actual MongoDB connection string, database name, Google Maps API key, and the URL of your simulation app. We will explain how to access these values in the next steps.
 
-   Take into account these variables should not be included between "" or any other symbol. Also, don't worry if you still don't have the API keys, we will explain to you how to get them in following sections.
+   **Important:** Take into account these variables should not be included between "" or any other symbol.
 
 <!-- 4. **Run the development server:**
 
@@ -89,17 +90,18 @@ To create the database with all the needed collections and documents, you can us
   
 1. **Install MongoDB and dependencies**:  
   
-   Ensure you have MongoDB installed and running locally or connected to a cloud-based MongoDB instance (such as MongoDB Atlas). Next, install the required dependency for the seed script:  
+   Ensure you have **MongoDB installed and running locally or connected to a cloud-based MongoDB instance** (such as MongoDB Atlas). Next, install the required dependency for the seed script:  
      
    ```bash  
    npm install mongodb  
+   npm install dotenv  
    ```
 
    This will install the MongoDB driver necessary for the script to interact with the database.  
   
 2. **Run the seed script**:  
   
-   Make sure your MongoDB server is running locally or reachable via a connection string. Then, execute the following command in your terminal:  
+   Make sure your MongoDB server is running locally or reachable via a connection string. Then, update the `MONGO_URI` and `MONGODB_DB` variables in the `.env.local` file with your MongoDB connection string and desired database name. Finally, open a new terminal and execute the following command :  
   
    ```bash  
    node mongo-seed.js  
