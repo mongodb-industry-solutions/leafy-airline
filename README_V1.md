@@ -35,7 +35,7 @@ node --version
 ---
 
 <!-- ### First steps :  -->
-### *Github Repository*
+### *Step 1 : Github Repository*
 
 To begin your journey, open your preferred IDE and create a new terminal. Then navigate through your files into the directory in which you want to begin the setup process and where you would like to locate the project. Once you are located in your preferred directory, follow these simple steps:
 
@@ -79,8 +79,64 @@ To begin your journey, open your preferred IDE and create a new terminal. Then n
 Now that you already have your local repository, let's begin setting up microservices and your GCP project.
 
 ---
+### *Step 2: MongoDB Integration*  
+  
+This app uses MongoDB to store flight data and handle real-time updates. You can connect to a local MongoDB instance or a cloud database (e.g., MongoDB Atlas).  
+  
+To create the database with all the needed collections and documents, you can use the provided `mongo-seed.js` script located in the root folder of the project.  
+  
+#### **Steps to set up the MongoDB database:**  
+  
+1. **Install MongoDB and dependencies**:  
+  
+   Ensure you have MongoDB installed and running locally or connected to a cloud-based MongoDB instance (such as MongoDB Atlas). Next, install the required dependency for the seed script:  
+     
+   ```bash  
+   npm install mongodb  
+   ```
 
-### *GCP Integration*
+   This will install the MongoDB driver necessary for the script to interact with the database.  
+  
+2. **Run the seed script**:  
+  
+   Make sure your MongoDB server is running locally or reachable via a connection string. Then, execute the following command in your terminal:  
+  
+   ```bash  
+   node mongo-seed.js  
+   ```  
+  
+   This script will create a database named `flightDB` with the necessary collections and sample data:  
+   - `flight_costs`  
+   - `flight_plane_simulation`  
+   - `flight_realtime` (a time series collection)  
+   - `flights`  
+  
+3. **Verify the data**:  
+  
+   Use a MongoDB client (like MongoDB Compass or the MongoDB shell) to connect to your database and verify that the collections and documents have been created successfully. Open the database `flightDB` and inspect the collections; you should find the seeded sample data.  
+  
+4. **Update your connection settings**:  
+  
+   Ensure that the connection information in your application’s `.env.local` file matches your MongoDB setup. If you're using MongoDB Atlas or another cloud database, update your connection string accordingly.  
+  
+   Example of a `.env.local` file:  
+  
+   ```plaintext  
+   MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/flightDB?retryWrites=true&w=majority  
+   MONGODB_DB=flightDB  
+   ```  
+  
+   Make sure to replace `<username>` and `<password>` with your actual MongoDB credentials.  
+  
+#### **Helpful Tips**:  
+- If using MongoDB Compass, verify that the database and collections have been created by navigating to the database `flightDB`.  
+- Test your connection by running queries against the seeded collections to ensure your application can interact with the database.  
+  
+With the database set up, your application is ready to store and manage flight data efficiently!  
+
+---
+
+### *Step 3 : GCP Integration*
 
 #### What will you be using Google Cloud Services for?
 
@@ -192,7 +248,7 @@ After you cloned your repo, you will need to complete the following steps to set
 
 --- 
 
-### *Data simulation*
+### *Step 4: Data simulation*
 
 The last step required to fully enjoy this demo requires setting up the plane data simulation app. Follow these nexts steps to do so:
 
@@ -233,40 +289,6 @@ The last step required to fully enjoy this demo requires setting up the plane da
 
 
 --- 
-
-
-## MongoDB Integration
-
-This app uses MongoDB for storing flight data. You can connect to a local MongoDB instance or a cloud database (e.g., MongoDB Atlas). Ensure your connection string is correctly set in the `.env.local` file.
-
-### Example Model
-
-Here’s an example of a Mongoose model used for storing flight information:
-
-```javascript
-const mongoose = require("mongoose");
-
-const FlightSchema = new mongoose.Schema(
-  {
-    _id: mongoose.Schema.Types.ObjectId,
-    dep_time: { type: Date, required: true },
-    arr_time: { type: Date, required: true },
-    dep_arp: { type: Object, required: true }, // Departure airport details
-    arr_arp: { type: Object, required: true }, // Arrival airport details
-    airline: { type: String, required: true },
-    plane: { type: String, required: true },
-    ui_telemetry: { type: Object, required: true }, // UI telemetry data
-    flight_number: { type: String, required: true },
-    disruption_coords: { type: Object }, // Coordinates related to any disruptions
-    initial_path: { type: Array, required: true }, // Initial flight path
-    new_path: { type: Array }, // New path in case of re-routing
-  },
-  { timestamps: true }
-);
-
-module.exports =
-  mongoose.models.Flight || mongoose.model("Flight", FlightSchema);
-```
 
 ## Deployment
 
