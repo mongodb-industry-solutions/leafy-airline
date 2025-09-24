@@ -628,7 +628,7 @@ const FlightLayout = ({ children }) => {
                 Pub/Sub and time series collection, and powers analytical
                 insights using Pub/Sub, Vertex AI, and regular collections.
               </p>
-              <a href="https://www.mongodb.com/">See more</a>
+              <a href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines">See more</a>
             </Card>
           </div>
         </div>
