@@ -27,9 +27,7 @@ import Banner from "@leafygreen-ui/banner";
 import airports_dict from "../resources/airports.js";
 
 // // URL from the cloud run data-simulator microservice
-// const app_url =
-//   "https://simulation-app-final-v3-502454695591.europe-west1.run.app/";
-const app_url = "http://localhost:8000/";
+const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -278,7 +276,7 @@ const FlightLayout = ({ children }) => {
     setLoading(true); // Set loading to true
     console.log("Starting sim");
 
-    const start_url = app_url + "start-scheduler";
+    const start_url = app_url + "/start-scheduler";
     const app_data = {
       flight_id: flightId,
       dep_code: selectedFlight.dep_arp._id,
@@ -329,7 +327,7 @@ const FlightLayout = ({ children }) => {
   };
 
   const resetSimulation = async () => {
-    const reset_url = app_url + "reset-scheduler";
+    const reset_url = app_url + "/reset-scheduler";
 
     try {
       const response = await fetch(reset_url, {

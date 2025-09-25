@@ -9,6 +9,8 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
 
+  console.log("Rendering Home component with Simulation App URL:", process.env.NEXT_PUBLIC_SIMULATION_APP_URL);
+
   // New state for the flights
   const [flights, setFlights] = useState([]);
   const [dates, setDates] = useState([]);
