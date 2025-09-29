@@ -14,7 +14,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
-    "https://airplanedashboard-65jcrv6puq-ew.a.run.app"
+    "https://airplanedashboard-65jcrv6puq-ew.a.run.app",
     "https://airplanedashboard-test-502454695591.europe-west1.run.app"
     # "*"
     # Add other origins if needed
