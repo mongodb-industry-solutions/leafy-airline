@@ -703,29 +703,32 @@
 }  
 
 
-@media (max-width: 1930px) {  
-
-  .leftContent {  
-  width: 100%; /* Limit width to 40% of the card */
-  display: flex;  
-  flex-direction: column; /* Stack text elements */  
-  }  
-
-  /* Right: Video container */  
-  .rightContent {  
-    width: 100%; 
-    display: flex;    
-  } 
-
-  .highlightContent { 
-    /* color: black;  */
-    flex-direction: column; /* Stack text and multimedia sections vertically */  
-    gap: 25px;  
+@media (max-width: 1920px) {  
+  /* Highlight Content: Stack the text and multimedia sections vertically */  
+  .highlightContent {  
+    flex-direction: column; /* Makes the layout vertical */  
+    gap: 20px; /* Adds spacing between rows */  
+    justify-content: flex-start; /* Align elements to the top */  
+    align-items: center; /* Center the items horizontally */  
   }  
   
-  .youtubeVideo,  
-  .blogCoverImage {  
-    width: 50%; /* Full width for smaller screens */  
-    height: 100% 
+  /* Text content takes up full width */  
+  .leftContent {  
+    width: 100%; /* Text spans the full width */  
+    display: flex;  
+    flex-direction: column;  
+    text-align: left; /* Align text to the left */  
   }  
+  
+  /* Multimedia section (YouTube video and blog cover below text content) */  
+  .rightContent {  
+    width: 100%; /* Multimedia section spans full width */  
+    display: flex;  
+    flex-direction: row; /* Video and blog cover appear side-by-side */  
+    justify-content: center; /* Center the multimedia items */  
+    gap: 20px; /* Add spacing between video and blog cover */  
+  }  
+  
+  /* YouTube video and blog cover styling */  
+
 }  
