@@ -714,7 +714,32 @@ const FlightLayout = ({ children }) => {
                     time-series data. Its schema flexibility allows for seamless evolution as  
                     airline operations or data requirements change, ensuring scalability,  
                     adaptability, and future-proof design.  
-                  </p>  
+                  </p>
+
+                  {/* Sample Document */}  
+                  <pre className={styles.sampleDocument}>  
+                    {`{
+                      "_id": "flight123",  
+                      "departure": {  
+                        "airport": "ATL",  
+                        "geo_location": {  
+                          "lat": 33.6407,  
+                          "long": -84.4277  
+                        },  
+                        "scheduled_time": "2023-10-01T14:00:00Z"  
+                      },  
+                      "arrival": {  
+                        "airport": "JFK",  
+                        "geo_location": {  
+                          "lat": 40.6413,  
+                          "long": -73.7781  
+                        },  
+                        "scheduled_time": "2023-10-01T17:00:00Z"  
+                      },  
+                      "airline": "Leafy Airlines",  
+                      "status": "on-time"  
+                    }`}  
+                  </pre>    
                 </Card>  
               
                 <Card className={styles.card_styles} as="article">  

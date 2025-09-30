@@ -703,6 +703,25 @@
 }  
 
 
+
+/* Style for Sample Document in Cards */  
+.sampleDocument {  
+  background-color: #E3FCF7; /* Light-gray background */    
+  border-radius: 5px; /* Rounded corners */  
+  padding: 10px; /* Padding for readability */  
+  font-family: monospace; /* Use monospace font for JSON */  
+  font-size: 15px; /* Slightly smaller font for JSON */  
+  overflow: auto; /* Scrollable if content exceeds height */  
+}  
+  
+/* Card Image Styling */  
+.cardImage {  
+  margin-top: 15px; /* Spacing above the image */  
+  border-radius: 5px; /* Rounded edges for visuals */  
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */  
+}  
+
+
 @media (max-width: 1920px) {  
   /* Highlight Content: Stack the text and multimedia sections vertically */  
   .highlightContent {  
