@@ -557,12 +557,13 @@
 /* Highlight Card Styles */  
 .highlightCard {  
   background: linear-gradient(135deg, #00684A, #023430); /* MongoDB gradient */  
+  display: flex;
   color: #FFFFFF; /* White text for readability */  
   width: 93%; /* Full width */  
   padding: 20px; /* Spacious padding */  
   border-radius: 10px; /* Rounded corners */  
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Adds depth */  
-  text-align: center; /* Centers content */  
+  /* text-align: center; /* Centers content */   
   transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */  
 }  
   
@@ -599,4 +600,131 @@
 .ctaButton:hover {  
   background-color: #004d34; /* Darker green background on hover */  
   color: #FFFFFF; /* White text on hover */  
+}  
+
+
+/* Highlight card layout */  
+.highlightContent {  
+  display: flex; /* Arrange items in a row */  
+  gap: 20px; /* Space between text section and multimedia section */  
+  justify-content: flex-start; /* Align everything to the left */  
+  align-items: flex-start; /* Top-align content */  
+}  
+  
+/* Left: Text container */  
+.leftContent {  
+  width: 40%; /* Limit width to 40% of the card */
+  display: flex;  
+  flex-direction: column; /* Stack text elements */  
+  justify-content: flex-start; /* Align items to the top */  
+  text-align: left; /* Align text to the left */  
+}  
+
+/* Right: Video container */  
+.rightContent {  
+  width: 60%; 
+  height: 100%;
+  display: flex;  
+  justify-content: flex-start; /* Align content to the left edge */  
+  align-items: flex-start; /* Top-align content */  
+}  
+  
+/* Multimedia container inside the right content */  
+.multimediaContainer {  
+  display: flex;
+  align-items: left;
+  gap: 10px; /* Add space between video and image */  
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */   
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  gap: 15px;  
+}  
+  
+/* YouTube video styling */  
+.youtubeVideo {  
+  width: 40%; /* Fixed width for square shape */  
+  /* height: 250px;   */
+  height: auto;
+  border: none;  
+  border-radius: 10px; /* Rounded corners for consistency */  
+} 
+
+.youtubeVideo:hover {  
+  transform: scale(1.05); /* Slight zoom on hover */  
+  cursor: pointer; /* Show pointer to indicate it's clickable */  
+}  
+
+/* Blog cover container */  
+.blogCoverContainer {  
+  display: flex;  
+  align-items: flex-start; /* Align items to the left */ 
+  justify-content: center;
+  width: 50%;
+  height: auto;
+}  
+  
+.blogCoverImage { 
+  width: 100%; /* Full width of its container */ 
+  border-radius: 10px; /* Rounded corners */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visual appeal */  
+  transition: transform 0.2s ease-in-out; /* Add hover effect */  
+}  
+  
+/* Add hover effect for clickable image */  
+.blogCoverImage:hover {  
+  transform: scale(1.05); /* Slight zoom on hover */  
+  cursor: pointer; /* Show pointer to indicate it's clickable */  
+}  
+
+
+/* Button styling */  
+.ctaButton {  
+  margin-top: 10px; /* Space above the button */  
+}  
+
+/* Fallback content container */  
+.fallbackContent {  
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  align-items: center;  
+}  
+  
+.fallbackContent img {  
+  max-width: 100%; /* Ensure the image doesn't overflow */  
+  border-radius: 10px;  
+  margin-bottom: 15px;  
+}  
+  
+.fallbackContent .ctaButton {  
+  margin-top: 10px; /* Add space above the button */  
+}  
+
+
+@media (max-width: 1930px) {  
+
+  .leftContent {  
+  width: 100%; /* Limit width to 40% of the card */
+  display: flex;  
+  flex-direction: column; /* Stack text elements */  
+  }  
+
+  /* Right: Video container */  
+  .rightContent {  
+    width: 100%; 
+    display: flex;    
+  } 
+
+  .highlightContent { 
+    /* color: black;  */
+    flex-direction: column; /* Stack text and multimedia sections vertically */  
+    gap: 25px;  
+  }  
+  
+  .youtubeVideo,  
+  .blogCoverImage {  
+    width: 50%; /* Full width for smaller screens */  
+    height: 100% 
+  }  
 }  

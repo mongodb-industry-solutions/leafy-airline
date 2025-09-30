@@ -618,7 +618,7 @@ const FlightLayout = ({ children }) => {
                 </Button>
               </div>
             </div>
-
+{/* 
             <Card className={styles.highlightCard} as="article">  
                 <p className={styles.highlightTitle}>  
                   Curious about how MongoDB transforms airline operations?  
@@ -639,7 +639,60 @@ const FlightLayout = ({ children }) => {
                   Explore More  
                 </Button>  
               </Card> 
-            
+             */}
+
+            <Card className={styles.highlightCard} as="article">  
+              <div className={styles.highlightContent}>  
+                {/* Left: Text Content */}  
+                <div className={styles.leftContent}>  
+                  <p className={styles.highlightTitle}>  
+                    Curious about how MongoDB transforms airline operations?  
+                  </p>  
+                  <p className={styles.description}>  
+                    MongoDB's real-time capabilities and advanced data handling empower  
+                    airlines to achieve operational excellence. From optimized time series  
+                    collections to seamless integrations with Pub/Sub and Vertex AI—you can  
+                    explore the possibilities.  
+                  </p>  
+
+                  <p className={styles.title}>Check out our latest blog post and YouTube video for more insights!</p>
+                </div>  
+              
+                {/* Right: Video + Blog Cover */}  
+                <div className={styles.rightContent}>  
+                  <div className={styles.multimediaContainer}>  
+                    {/* YouTube Video */}  
+                    <iframe  
+                      className={styles.youtubeVideo}  
+                      src="https://www.youtube.com/embed/RgreCE1eMkU"  
+                      title="YouTube video"  
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  
+                      allowFullScreen  
+                    ></iframe>  
+              
+                    {/* Blog Cover (Clickable)   */}
+                    
+                    <div className={styles.blogCoverContainer}>  
+                      <a  
+                        href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines"  
+                        target="_blank"  
+                        rel="noopener noreferrer"  
+                      >  
+                        <Image  
+                          src="/blog-cover.png" // Correct path with leading slash  
+                          width={300}  
+                          height={300} // Adjust dimensions for square shape  
+                          alt="MongoDB Blog Cover"  
+                          className={styles.blogCoverImage}  
+                        />  
+                      </a>  
+                    </div>  
+                  </div>  
+                </div>  
+              </div>  
+            </Card>  
+
+
 
             {/* MongoDB Value Cards Section */}  
             <div className={styles.cardContainer}>    
