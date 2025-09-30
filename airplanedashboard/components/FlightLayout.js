@@ -700,7 +700,7 @@ const FlightLayout = ({ children }) => {
             <div className={styles.cardContainer}>    
 
               {/* Add title */}
-              <h2 className={styles.title}>  
+              <h2 className={styles.titleValues}>  
                 Why MongoDB for Flight Disruption Management?  
               </h2>
 

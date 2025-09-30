@@ -529,6 +529,14 @@
   background-color: #f8f9fa; /* Light background for scrollbar track */  
 }  
 
+
+.titleValues {  
+  font-size: 22px; /* Slightly larger font size for emphasis */  
+  font-weight: 600; /* Semi-bold for better visibility */  
+  margin-bottom: 20px; /* Space below the title */  
+  text-align: center; /* Center the title */  
+}
+
 .cardContainer {  
   display: flex;  
   flex-direction: column; /* Stack rows vertically */  
