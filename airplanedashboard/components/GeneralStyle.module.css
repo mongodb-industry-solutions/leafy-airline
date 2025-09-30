@@ -632,7 +632,7 @@
 /* Multimedia container inside the right content */  
 .multimediaContainer {  
   display: flex;
-  align-items: left;
+  align-items: center;
   gap: 10px; /* Add space between video and image */  
   flex-wrap: wrap; /* Allow wrapping for smaller screens */   
   width: 100%;
@@ -645,7 +645,7 @@
 .youtubeVideo {  
   width: 40%; /* Fixed width for square shape */  
   /* height: 250px;   */
-  height: auto;
+  height: 100%;
   border: none;  
   border-radius: 10px; /* Rounded corners for consistency */  
 } 
@@ -666,6 +666,7 @@
   
 .blogCoverImage { 
   width: 100%; /* Full width of its container */ 
+  height: 70%; /* Maintain aspect ratio */
   border-radius: 10px; /* Rounded corners */  
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visual appeal */  
   transition: transform 0.2s ease-in-out; /* Add hover effect */  

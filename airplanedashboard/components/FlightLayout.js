@@ -660,18 +660,10 @@ const FlightLayout = ({ children }) => {
               
                 {/* Right: Video + Blog Cover */}  
                 <div className={styles.rightContent}>  
-                  <div className={styles.multimediaContainer}>  
-                    {/* YouTube Video */}  
-                    <iframe  
-                      className={styles.youtubeVideo}  
-                      src="https://www.youtube.com/embed/RgreCE1eMkU"  
-                      title="YouTube video"  
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  
-                      allowFullScreen  
-                    ></iframe>  
-              
+                  <div className={styles.multimediaContainer}> 
+
                     {/* Blog Cover (Clickable)   */}
-                    
+
                     <div className={styles.blogCoverContainer}>  
                       <a  
                         href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines"  
@@ -687,6 +679,16 @@ const FlightLayout = ({ children }) => {
                         />  
                       </a>  
                     </div>  
+
+                    {/* YouTube Video */}  
+                    <iframe  
+                      className={styles.youtubeVideo}  
+                      src="https://www.youtube.com/embed/RgreCE1eMkU"  
+                      title="YouTube video"  
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  
+                      allowFullScreen  
+                    ></iframe>  
+                  
                   </div>  
                 </div>  
               </div>  
