@@ -48,6 +48,12 @@
   gap: 20px;
 }
 
+.main {  
+  flex: 1; /* Allow it to expand to fill the remaining space */  
+  display: flex; /* Enables flexible alignment */  
+  flex-direction: column; /* Align children top to bottom */  
+}
+
 .intro_container{
   background-color: #00684A;
   border-radius: 5px;
@@ -284,9 +290,6 @@
 }
 
 
-.rightContainer {
-  width: 100%;
-}
 
 .mapContainer {
   background-color: #ffffff;
@@ -301,7 +304,7 @@
 .title {
   font-size: 18px;
   font-weight: bold;
-
+  /* padding: 0px 25px 0px 0px; */
 }
 
 .card_styles { 
@@ -314,12 +317,16 @@
 /* CSS FOR COMPONENTS IN FLIGHT SPECIFICS TAB */
 
 /* General content container */
-.contentContainer{
-  display: flex; /* Aligns child elements horizontally */
-  flex: 1;
+
+.contentContainer {  
+  flex: 1; /* Dynamically adjusts to height of parent (main) */  
+  display: flex; /* Enables flex behavior for its children */  
+  flex-direction: row; /* Align child elements side-by-side */  
+  overflow: hidden; /* Prevent overflow outside the parent container */
   gap: 20px; /* Space between the flight overview and map */
-  box-sizing: border-box;
-}
+  box-sizing: border-box;  
+}  
+  
 
 /* CSS for containers inside the static part of Flight Overview */
 
@@ -494,19 +501,15 @@
   margin-bottom: 10px;
 }
 
-.rightContainer {  
-  width: 100%;  
-  height: calc(100vh - 200px); /* Adjust height to fit within the viewport */  
-  overflow-y: auto; /* Enables vertical scrolling */  
-  scrollbar-width: thin; /* Optional: Makes the scrollbar thinner */  
-}  
 
-.rightContainer {  
+.rightContainer { 
+  flex: 1; 
   display: flex; /* Use flex to align content */  
   flex-wrap: wrap; /* Allow wrapping if you have other items */  
   justify-content: center; /* Center horizontally */  
   align-items: center; /* Center vertically */  
-  overflow-y: auto; /* Enable scrollability in case content exceeds height */  
+  overflow-y: auto; /* Enable scrollability in case content exceeds height */ 
+  scrollbar-width: thin; /* Optional: Makes the scrollbar thinner */ 
   width: 100%;  
   height: calc(100vh - 200px); /* Constrain height relative to viewport */  
 }  
@@ -564,13 +567,13 @@
 }  
   
 .highlightCard:hover {  
-  transform: scale(1.05); /* Slightly enlarges on hover */  
+  transform: scale(1.03); /* Slightly enlarges on hover */  
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow gets stronger */  
 }  
   
 /* Title specific to the Highlight Card */  
 .highlightTitle {  
-  font-size: 1.8rem; /* Larger headline */  
+  font-size: 25px; /* Larger headline */  
   font-weight: 700; /* Slightly bolder for emphasis */  
   margin-bottom: 10px; /* Spacing beneath the title */  
 }  

@@ -644,6 +644,11 @@ const FlightLayout = ({ children }) => {
             {/* MongoDB Value Cards Section */}  
             <div className={styles.cardContainer}>    
 
+              {/* Add title */}
+              <h2 className={styles.title}>  
+                Why MongoDB for Flight Disruption Management?  
+              </h2>
+
               {/* Row 1 */}  
               <div className={styles.cardRow}>  
                 <Card className={styles.card_styles} as="article">  
