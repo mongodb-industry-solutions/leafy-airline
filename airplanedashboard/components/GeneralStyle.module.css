@@ -723,10 +723,17 @@
   /* Multimedia section (YouTube video and blog cover below text content) */  
   .rightContent {  
     width: 100%; /* Multimedia section spans full width */  
+    height: auto; /* Adjust height based on content */
     display: flex;  
     flex-direction: row; /* Video and blog cover appear side-by-side */  
     justify-content: center; /* Center the multimedia items */  
     gap: 20px; /* Add spacing between video and blog cover */  
+  }  
+
+  .youtubeVideo,  
+  .blogCoverImage {  
+    height:90%; 
+    border-radius: 10px; /* Rounded corners */  
   }  
   
   /* YouTube video and blog cover styling */  
