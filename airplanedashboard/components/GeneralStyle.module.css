@@ -500,6 +500,17 @@
   overflow-y: auto; /* Enables vertical scrolling */  
   scrollbar-width: thin; /* Optional: Makes the scrollbar thinner */  
 }  
+
+.rightContainer {  
+  display: flex; /* Use flex to align content */  
+  flex-wrap: wrap; /* Allow wrapping if you have other items */  
+  justify-content: center; /* Center horizontally */  
+  align-items: center; /* Center vertically */  
+  overflow-y: auto; /* Enable scrollability in case content exceeds height */  
+  width: 100%;  
+  height: calc(100vh - 200px); /* Constrain height relative to viewport */  
+}  
+
   
 /* Style for the scrollbar */  
 .rightContainer::-webkit-scrollbar {  
@@ -515,3 +526,74 @@
   background-color: #f8f9fa; /* Light background for scrollbar track */  
 }  
 
+.cardContainer {  
+  display: flex;  
+  flex-direction: column; /* Stack rows vertically */  
+  gap: 35px; /* Space between rows */  
+  width: 100%; /* Ensure container spans the parent width */ 
+  padding: 35px 0px 35px 0px; /* Optional padding around the container */ 
+}  
+  
+.cardRow {  
+  display: flex; /* Align cards horizontally */  
+  gap: 20px; /* Space between cards */  
+  justify-content: space-around; /* Distribute cards evenly */  
+}  
+ 
+  
+.card_styles {  
+  background-color: #E3FCF7; /* Light green background */  
+  color: #023430; /* Darker green font color */  
+  width: 30%; /* Ensure cards take appropriate width */  
+  padding: 15px; /* Add padding for better readability */  
+  border-radius: 8px; /* Rounded edges */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+  font-family: 'Lexend Deca', sans-serif; /* Professional font */  
+}  
+
+/* Highlight Card Styles */  
+.highlightCard {  
+  background: linear-gradient(135deg, #00684A, #023430); /* MongoDB gradient */  
+  color: #FFFFFF; /* White text for readability */  
+  width: 93%; /* Full width */  
+  padding: 20px; /* Spacious padding */  
+  border-radius: 10px; /* Rounded corners */  
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Adds depth */  
+  text-align: center; /* Centers content */  
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */  
+}  
+  
+.highlightCard:hover {  
+  transform: scale(1.05); /* Slightly enlarges on hover */  
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow gets stronger */  
+}  
+  
+/* Title specific to the Highlight Card */  
+.highlightTitle {  
+  font-size: 1.8rem; /* Larger headline */  
+  font-weight: 700; /* Slightly bolder for emphasis */  
+  margin-bottom: 10px; /* Spacing beneath the title */  
+}  
+  
+/* Description styling for Highlight Card */  
+.description {  
+  font-size: 1rem; /* Standard paragraph size */  
+  font-weight: 300; /* Light text for contrast */  
+  margin-bottom: 15px; /* Space below the paragraph */  
+}  
+  
+/* Special button for call-to-action - CTA */  
+.ctaButton {  
+  background-color: #FFFFFF; /* Light button color */  
+  color: #00684A; /* MongoDB green text */  
+  border-radius: 5px; /* Rounded corners */  
+  padding: 10px 15px; /* Button padding */  
+  font-weight: 600; /* Bold text */  
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover */  
+  text-decoration: none; /* Remove underline */  
+}  
+  
+.ctaButton:hover {  
+  background-color: #004d34; /* Darker green background on hover */  
+  color: #FFFFFF; /* White text on hover */  
+}  
