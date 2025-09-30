@@ -494,3 +494,24 @@
   margin-bottom: 10px;
 }
 
+.rightContainer {  
+  width: 100%;  
+  height: calc(100vh - 200px); /* Adjust height to fit within the viewport */  
+  overflow-y: auto; /* Enables vertical scrolling */  
+  scrollbar-width: thin; /* Optional: Makes the scrollbar thinner */  
+}  
+  
+/* Style for the scrollbar */  
+.rightContainer::-webkit-scrollbar {  
+  width: 8px; /* Width of the scrollbar */  
+}  
+  
+.rightContainer::-webkit-scrollbar-thumb {  
+  background-color: #00684A; /* MongoDB green for the scrollbar thumb */  
+  border-radius: 8px; /* Rounded scrollbar thumb */  
+}  
+  
+.rightContainer::-webkit-scrollbar-track {  
+  background-color: #f8f9fa; /* Light background for scrollbar track */  
+}  
+

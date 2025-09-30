@@ -618,16 +618,70 @@ const FlightLayout = ({ children }) => {
                 </Button>
               </div>
             </div>
-
-            <Card className={styles.card_styles} as="article">
-              <p className={styles.title}>MongoDB Benefits</p>
-              <p>
-                MongoDB efficiently handles operational time series data via
-                Pub/Sub and time series collection, and powers analytical
-                insights using Pub/Sub, Vertex AI, and regular collections.
-              </p>
-              <a href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines">See more</a>
-            </Card>
+            
+            {/* New section: MongoDB value in the demo */}
+            {/* MongoDB Value Cards Section */}  
+            <div className={styles.cardContainer}>  
+              {/* Card 1: Flexible Schema */}  
+              <Card className={styles.card_styles} as="article">  
+                <p className={styles.title}>Flexible Schema</p>  
+                <p>  
+                  MongoDB's document model allows you to store complex and  
+                  evolving flight data in a flexible way, including telemetry,  
+                  geolocations, and time-series information.  
+                </p>  
+              </Card>  
+  
+              {/* Card 2: Real-Time Updates */}  
+              <Card className={styles.card_styles} as="article">  
+                <p className={styles.title}>Real-Time Updates</p>  
+                <p>  
+                  With MongoDB Change Streams, flight data can be updated in  
+                  real-time, ensuring airlines have the latest information on  
+                  disruptions and route changes.  
+                </p>  
+              </Card>  
+  
+              {/* Card 3: Scalability */}  
+              <Card className={styles.card_styles} as="article">  
+                <p className={styles.title}>Scalability</p>  
+                <p>  
+                  MongoDB handles burst traffic during disruptions by scaling  
+                  horizontally across nodes, ensuring no delay in handling  
+                  increased flight data volumes.  
+                </p>  
+              </Card>  
+  
+              {/* Card 4: Geospatial Queries */}  
+              <Card className={styles.card_styles} as="article">  
+                <p className={styles.title}>Geospatial Queries</p>  
+                <p>  
+                  MongoDB provides native geospatial querying to recalculate  
+                  flight paths dynamically and efficiently respond to  
+                  disruptions.  
+                </p>  
+              </Card>  
+  
+              {/* Card 5: Time-Series Data */}  
+              <Card className={styles.card_styles} as="article">  
+                <p className={styles.title}>Time-Series Storage</p>  
+                <p>  
+                  Handle time-series telemetry data optimally for flight tracking  
+                  and predictive analytics using MongoDB's Time Series  
+                  Collections.  
+                </p>  
+              </Card>  
+  
+              {/* Card 6: Integration with AI */}  
+              <Card className={styles.card_styles} as="article">  
+                <p className={styles.title}>Seamless AI Integration</p>  
+                <p>  
+                  Provides enriched data pipelines to feed Vertex AI with  
+                  real-time flight insights and predictive disruption models.  
+                </p>  
+              </Card>  
+            </div>  
+            
           </div>
         </div>
       </div>
