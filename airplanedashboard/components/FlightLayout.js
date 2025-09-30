@@ -26,9 +26,8 @@ import Banner from "@leafygreen-ui/banner";
 
 import airports_dict from "../resources/airports.js";
 
-// URL from the cloud run data-simulator microservice
-const app_url =
-  "https://simulation-app-final-v3-502454695591.europe-west1.run.app/";
+// // URL from the cloud run data-simulator microservice
+const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -57,6 +56,10 @@ const FlightLayout = ({ children }) => {
   const [newDisrup, setDisruption] = useState({});
   const [disrupEmpty, setDisrupEmpty] = useState(true);
 
+  // Debugging
+  // console.log("Query Parameters:", router.query);
+  // console.log("Flight ID in FlightLayout:", flightId);
+
   const googleAPI = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   async function fetchData() {
@@ -64,6 +67,9 @@ const FlightLayout = ({ children }) => {
       const res = await fetch("/api/flights");
       const data = await res.json();
       setFlightData(data);
+
+      // Debugging 
+      console.log("All Flights Data:", data);
 
       if (flightId) {
         console.log("Flight ID from query:", flightId);
@@ -95,6 +101,8 @@ const FlightLayout = ({ children }) => {
       try {
         const res = await fetch("/api/googleMapsKey");
         const data = await res.json();
+
+        console.log("Google Maps API Key:", data.apiKey);
         setApiKey(data.apiKey);
       } catch (error) {
         console.error("Error fetching API key:", error);
@@ -268,7 +276,7 @@ const FlightLayout = ({ children }) => {
     setLoading(true); // Set loading to true
     console.log("Starting sim");
 
-    const start_url = app_url + "start-scheduler";
+    const start_url = app_url + "/start-scheduler";
     const app_data = {
       flight_id: flightId,
       dep_code: selectedFlight.dep_arp._id,
@@ -319,7 +327,7 @@ const FlightLayout = ({ children }) => {
   };
 
   const resetSimulation = async () => {
-    const reset_url = app_url + "reset-scheduler";
+    const reset_url = app_url + "/reset-scheduler";
 
     try {
       const response = await fetch(reset_url, {
@@ -618,7 +626,7 @@ const FlightLayout = ({ children }) => {
                 Pub/Sub and time series collection, and powers analytical
                 insights using Pub/Sub, Vertex AI, and regular collections.
               </p>
-              <a href="https://www.mongodb.com/">See more</a>
+              <a href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines">See more</a>
             </Card>
           </div>
         </div>

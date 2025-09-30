@@ -14,12 +14,15 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
-    "https://airplanedashboard-65jcrv6puq-ew.a.run.app"
+    "https://airplanedashboard-65jcrv6puq-ew.a.run.app",
+    "https://airplanedashboard-test-502454695591.europe-west1.run.app"
+    # "*"
     # Add other origins if needed
 ]
 
 app.add_middleware(
     CORSMiddleware,
+    # allow_origins=["*"],
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
@@ -45,15 +48,21 @@ docs = []
 
 
 # PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions
-project_id = "gcp-project-id"
+project_id = "connected-aircraft-ist"
 
-data_topic_id = "real-time-data-topic-name"
-path_topic_id = "application-data-topic-name"
+data_topic_id = "leafyAirlineData"
+path_topic_id = "leafyAirlinePath"
 
-service_account_file = "path-to-your-json-key-file"
+# Path to your service account key file = JSON File generated only once when creating the service account key
+# To access : GCP Console - IAM & Admin - Service Accounts - Select your service account - Keys - Add Key - Create new key - JSON
 
-data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
-path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+# service_account_file = "json_keys/connected-aircraft-ist-4fa26b67848a.json"
+# data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+# path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
+
+# Use this to avoid using service accounts
+data_publisher = pubsub_v1.PublisherClient()
+path_publisher = pubsub_v1.PublisherClient()
 
 data_topic = data_publisher.topic_path(project_id, data_topic_id)
 path_topic = path_publisher.topic_path(project_id, path_topic_id)
@@ -79,8 +88,12 @@ def publish_data(simulator : DataSimulator):
         scheduler.pause()
         
     data = json.dumps(data).encode("utf-8")
+
+    # Un comment when ready to publish the message to the Pub/Sub topic
     future = data_publisher.publish(data_topic, data)
     logging.info(future)
+
+    print("Data published: ", data)
 
     return {"status": "New data published"}
 
@@ -95,8 +108,12 @@ def publish_path(flight_id, path_data):
     
     data = json.dumps(msg).encode("utf-8")
     future = path_publisher.publish(path_topic, data)
+
+    # Un comment when ready to publish the message to the Pub/Sub topic
     
     logging.info(future)
+
+    print("Path published: ", data)
 
     return {"status": "New path published"}
 
@@ -171,5 +188,9 @@ async def reset_scheduler():
     return {"status": "Reset complete"}
 
 
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8080))  # Use PORT env var if provided by Cloud Run
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 

@@ -8,6 +8,7 @@ function FlightList({flights}) {
     const router = useRouter(); // Initialize useRouter
 
     const handleViewFlight = (flightId) => {
+      console.log("Viewing flight with ID:", flightId);
         router.push(`/index1?flightId=${flightId}`); // Navigate to /index1 with the flightId query parameter
       };
 
@@ -24,6 +25,8 @@ function FlightList({flights}) {
         return <div 
             key={index} className={styles.resultItem}>
             <div><strong>Airline:</strong> {flight_info.airline}</div>
+            {/* Debugging : Add ID */}
+            <div><strong>Flight ID:</strong> {flight_info._id}</div>
             <div><strong>Plane:</strong> {flight_info.plane}</div>
             <div><strong>Flight Date:</strong> {formattedDate}</div>
             <div><strong>Departure Airport:</strong> {flight_info.dep_arp.city + ", " + flight_info.dep_arp.country }</div>

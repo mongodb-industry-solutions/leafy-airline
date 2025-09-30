@@ -28,7 +28,9 @@ export default async function handler(req, res) {
 
     // Exclude the flights_costs collection since it's no longer needed
     // And return only the flight data
+    // res.setHeader('Cache-Control', 'no-store');
     res.status(200).json(flights);
+    
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     res.status(500).json({ error: 'Failed to fetch data' });
