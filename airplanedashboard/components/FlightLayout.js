@@ -57,6 +57,10 @@ const FlightLayout = ({ children }) => {
   const [newDisrup, setDisruption] = useState({});
   const [disrupEmpty, setDisrupEmpty] = useState(true);
 
+  // New modal for architecture images
+  const [modalImage, setModalImage] = useState(null); // State for currently selected image
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+
   // Debugging
   // console.log("Query Parameters:", router.query);
   // console.log("Flight ID in FlightLayout:", flightId);
@@ -392,6 +396,16 @@ const FlightLayout = ({ children }) => {
     lng: selectedFlight ? selectedFlight.arr_arp.geo_loc.long : 0,
   };
 
+  const openModal = (imageSrc) => {  
+    setModalImage(imageSrc); // Set image to display inside modal  
+    setIsModalOpen(true); // Open the modal  
+  };  
+  
+  const closeModal = () => {  
+    setModalImage(null); // Clear modal image  
+    setIsModalOpen(false); // Close the modal  
+  };  
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -725,6 +739,7 @@ const FlightLayout = ({ children }) => {
                     width={300}  
                     height={200}  
                     className={styles.cardImage}  
+                    onClick={() => openModal("/architecture-diagram.png")} /* Open modal with the image */  
                   />  
                 </div>
               </Card> 
@@ -782,7 +797,7 @@ const FlightLayout = ({ children }) => {
                   </p>  
 
                    <Image  
-                    src="/real-time-diagram.png"
+                    src="/realtime-architecture.png"
                     alt="Real-Time Updates"
                     width={300}
                     height={200}
@@ -821,8 +836,8 @@ const FlightLayout = ({ children }) => {
                   <Image
                     src="/ai-integration.png"
                     alt="Vertex AI Integration" 
-                    width={300}
-                    height={200}
+                    width={200}
+                    height={100}
                     className={styles.cardImage}
                   />
                 </Card>  
@@ -840,10 +855,7 @@ const FlightLayout = ({ children }) => {
                   <pre className={styles.sampleDocument}>
                     {`{
                     ...
-                    "flight_id": "ABC1234",
                     "ts": "2024-07-16T16:15:41.608793",
-                    "disrupted": false,
-                    "extra_length": 0,
                     "distance_to_arrival": 291.22170366055457,
                     "location": {
                       "lat": 40.48532197555584,
