@@ -2,12 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
 
+
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
     font-family: 'Lexend Deca', sans-serif;
-    padding-bottom: 40px;
+    padding-bottom: 0px;
   }
   
 .header {
@@ -51,7 +52,11 @@
 .main {  
   flex: 1; /* Allow it to expand to fill the remaining space */  
   display: flex; /* Enables flexible alignment */  
-  flex-direction: column; /* Align children top to bottom */  
+  flex-direction: column; /* Align children top to bottom */
+  
+  /* NEW */
+  height: calc(100vh - 95px); /* Adjust height to fit the viewport minus header/footer */  
+  /* overflow: hidden;    */
 }
 
 .intro_container{
@@ -231,13 +236,20 @@
   width: 30%;
   min-width: 200px;
   /*margin-right: 40rem;*/
-  height: auto;
+  /* height: auto; */
   font-family: 'Lexend Deca', sans-serif;
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
   margin-right:10px;
   margin-top: 1rem;
+
+  /* NEW */
+  padding-bottom: 25px;
+  flex: 0 0 auto;
+  height: 90%;
+  overflow-y: auto; 
+  overflow-x: hidden;
 
 }
 
@@ -511,7 +523,11 @@
   overflow-y: auto; /* Enable scrollability in case content exceeds height */ 
   scrollbar-width: thin; /* Optional: Makes the scrollbar thinner */ 
   width: 100%;  
-  height: calc(100vh - 200px); /* Constrain height relative to viewport */  
+  /* height: calc(100vh - 200px);    */
+
+  /* NEW */
+  height: 100%; /* Match the parent's height */
+  overflow-y: auto; 
 }  
 
   
