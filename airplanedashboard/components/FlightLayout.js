@@ -764,26 +764,26 @@ const FlightLayout = ({ children }) => {
                   {/* Sample Document */}  
                   <pre className={styles.sampleDocument}>  
                     {`{
-                      "_id": "flight123",  
-                      "departure": {  
-                        "airport": "ATL",  
-                        "geo_location": {  
-                          "lat": 33.6407,  
-                          "long": -84.4277  
-                        },  
-                        "scheduled_time": "2023-10-01T14:00:00Z"  
-                      },  
-                      "arrival": {  
-                        "airport": "JFK",  
-                        "geo_location": {  
-                          "lat": 40.6413,  
-                          "long": -73.7781  
-                        },  
-                        "scheduled_time": "2023-10-01T17:00:00Z"  
-                      },  
-                      "airline": "Leafy Airlines",  
-                      "status": "on-time"  
-                    }`}  
+      "_id": "flight123",  
+      "departure": {  
+        "airport": "ATL",  
+        "geo_location": {  
+          "lat": 33.6407,  
+          "long": -84.4277  
+        },  
+        "scheduled_time": "2023-10-01T14:00:00Z"  
+      },  
+      "arrival": {  
+        "airport": "JFK",  
+        "geo_location": {  
+          "lat": 40.6413,  
+          "long": -73.7781  
+        },  
+        "scheduled_time": "2023-10-01T17:00:00Z"  
+      },  
+      "airline": "Leafy Airlines",  
+      "status": "on-time"  
+  }`}  
                   </pre>    
                 </Card>  
               
@@ -854,19 +854,19 @@ const FlightLayout = ({ children }) => {
                   {/* Sample Time-Series Data */}
                   <pre className={styles.sampleDocument}>
                     {`{
-                    ...
-                    "ts": "2024-07-16T16:15:41.608793",
-                    "distance_to_arrival": 291.22170366055457,
-                    "location": {
-                      "lat": 40.48532197555584,
-                      "long": -3.5270251738005025
-                    },
-                    "velocity": {
-                      "speed": 244.0087836688688,
-                      "heading": "north"
-                    }
-                    ...
-                  }`}
+      ...
+      "ts": "2024-07-16T16:15:41.608793",
+      "distance_to_arrival": 291.22170366055457,
+      "location": {
+        "lat": 40.48532197555584,
+        "long": -3.5270251738005025
+      },
+      "velocity": {
+        "speed": 244.0087836688688,
+        "heading": "north"
+      }
+      ...
+    }`}
                   </pre>
                 </Card>  
               </div>  
