@@ -25,6 +25,7 @@ import Image from "next/image";
 import Banner from "@leafygreen-ui/banner";
 
 import airports_dict from "../resources/airports.js";
+import { TbBackground } from "react-icons/tb";
 
 // // URL from the cloud run data-simulator microservice
 const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
@@ -704,14 +705,43 @@ const FlightLayout = ({ children }) => {
                 Why MongoDB for Flight Disruption Management?  
               </h2>
 
+              <Card className={styles.extended_card_styles} as="article">  
+
+                <div className={styles.leftContent}>
+                  <p className={styles.title}>Event-Driven Architecture</p>  
+                  <p>  
+                    MongoDB is ideal for event-driven architectures, enabling seamless handling  
+                    of dynamic events like flight schedule changes or delays. Real-time integrations  
+                    with mechanisms like Pub/Sub, Cloud Functions, and Change Streams ensure  
+                    faster data processing and reaction to disruptions across decentralized systems.  
+                  </p>  
+
+                </div>
+                <div className={styles.rightContent}>
+                  {/* Suggested Workflow Diagram */}  
+                  <Image  
+                    src="/architecture-diagram.png"
+                    alt="Event-Driven Architecture Workflow"  
+                    width={300}  
+                    height={200}  
+                    className={styles.cardImage}  
+                  />  
+                </div>
+              </Card> 
+
               {/* Row 1 */}  
-              <div className={styles.cardRow}>  
+              <div className={styles.cardRow}>   
+
                 <Card className={styles.card_styles} as="article">  
                   <p className={styles.title}>Flexible Schema</p>  
                   <p>  
                     MongoDB's document model makes it simple to store diverse flight data,  
                     including telemetry, geospatial locations, disruption paths, and  
-                    time-series data. Its schema flexibility allows for seamless evolution as  
+                    time-series data. 
+                  </p>
+                  <p>
+                    
+                    Its schema flexibility allows for <b>seamless evolution</b> as  
                     airline operations or data requirements change, ensuring scalability,  
                     adaptability, and future-proof design.  
                   </p>
@@ -742,25 +772,24 @@ const FlightLayout = ({ children }) => {
                   </pre>    
                 </Card>  
               
-                <Card className={styles.card_styles} as="article">  
+                <Card className={styles.clear_card_styles} as="article">  
                   <p className={styles.title}>Real-Time Updates</p>  
                   <p>  
-                    MongoDB's Change Streams enable real-time notifications, allowing airlines  
-                    to instantly react to disruptions, reroutes, or cascading delays. This  
+                    MongoDB's <b>Change Streams</b> enable real-time notifications, allowing airlines  
+                    to <b>instantly react to disruptions, reroutes, or cascading delays</b>. This  
                     ensures that both operational teams and passengers have access to live  
                     updates, improving efficiency and customer experience.  
                   </p>  
+
+                   <Image  
+                    src="/real-time-diagram.png"
+                    alt="Real-Time Updates"
+                    width={300}
+                    height={200}
+                    className={styles.cardImage}
+                  />
                 </Card>  
-              
-                <Card className={styles.card_styles} as="article">  
-                  <p className={styles.title}>Scalability</p>  
-                  <p>  
-                    MongoDB supports horizontal scaling to handle peak loads during disruptions  
-                    or busy travel times. Its distributed architecture ensures consistent  
-                    performance no matter how large or diverse the dataset grows, keeping  
-                    mission-critical flight management operations running smoothly.  
-                  </p>  
-                </Card>  
+               
               </div>  
               
               {/* Row 2 */}  
@@ -770,22 +799,16 @@ const FlightLayout = ({ children }) => {
                   <p>  
                     MongoDB's native geospatial querying powers dynamic calculations for route  
                     adjustments based on flight disruptions, weather patterns, or other  
-                    changes. Airlines can use its advanced algorithms to make instant,  
+                    changes. 
+                  </p>  
+                  <p>
+                    Airlines can use its advanced algorithms to make instant,  
                     data-driven decisions with minimal latency.  
                   </p>  
                 </Card>  
               
-                <Card className={styles.card_styles} as="article">  
-                  <p className={styles.title}>Time-Series Data</p>  
-                  <p>  
-                    Optimized for telemetry and flight tracking, MongoDB's Time Series  
-                    Collections enable efficient storage, querying, and analysis of complex  
-                    time-series datasets, such as speed metrics or historical flight paths.  
-                    This capability enhances predictive analytics and operational reporting.  
-                  </p>  
-                </Card>  
               
-                <Card className={styles.card_styles} as="article">  
+                <Card className={styles.clear_card_styles} as="article">  
                   <p className={styles.title}>Integration with AI</p>  
                   <p>  
                     MongoDB simplifies the pipeline for Vertex AI and similar machine  
@@ -793,6 +816,46 @@ const FlightLayout = ({ children }) => {
                     Airlines can harness this integration to improve disruption prediction,  
                     optimize costs, and deliver insights that drive organizational decisions.  
                   </p>  
+
+                  {/* Vertex AI Diagram */}
+                  <Image
+                    src="/ai-integration.png"
+                    alt="Vertex AI Integration" 
+                    width={300}
+                    height={200}
+                    className={styles.cardImage}
+                  />
+                </Card>  
+
+                <Card className={styles.card_styles} as="article">  
+                  <p className={styles.title}>Time-Series Data</p>  
+                  <p>  
+                    Optimized for telemetry and flight tracking, MongoDB's Time Series  
+                    Collections enable <b>efficient storage, querying, and analysis of complex  
+                    time-series datasets</b>, such as speed metrics or historical flight paths.  
+                    This capability enhances predictive analytics and operational reporting.  
+                  </p>  
+
+                  {/* Sample Time-Series Data */}
+                  <pre className={styles.sampleDocument}>
+                    {`{
+                    ...
+                    "flight_id": "ABC1234",
+                    "ts": "2024-07-16T16:15:41.608793",
+                    "disrupted": false,
+                    "extra_length": 0,
+                    "distance_to_arrival": 291.22170366055457,
+                    "location": {
+                      "lat": 40.48532197555584,
+                      "long": -3.5270251738005025
+                    },
+                    "velocity": {
+                      "speed": 244.0087836688688,
+                      "heading": "north"
+                    }
+                    ...
+                  }`}
+                  </pre>
                 </Card>  
               </div>  
             </div>  

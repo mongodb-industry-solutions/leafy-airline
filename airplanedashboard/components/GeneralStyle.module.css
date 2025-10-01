@@ -555,12 +555,34 @@
 .card_styles {  
   background-color: #E3FCF7; /* Light green background */  
   color: #023430; /* Darker green font color */  
-  width: 30%; /* Ensure cards take appropriate width */  
+  width: auto; /* Ensure cards take appropriate width */  
   padding: 15px; /* Add padding for better readability */  
   border-radius: 8px; /* Rounded edges */  
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
   font-family: 'Lexend Deca', sans-serif; /* Professional font */  
 }  
+
+.extended_card_styles {  
+  background-color: #FFFFFF;   
+  color: #023430; /* Darker green font color */  
+  width: auto; /* Ensure cards take appropriate width */  
+  padding: 15px; /* Add padding for better readability */  
+  border-radius: 8px; /* Rounded edges */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+  font-family: 'Lexend Deca', sans-serif; /* Professional font */  
+  display: flex;
+}  
+
+.clear_card_styles {  
+  background-color: #ffffff; /* White background */  
+  color: #023430; /* Darker green font color */  
+  width: auto;  
+  padding: 15px; /* Add padding for better readability */  
+  border-radius: 8px; /* Rounded edges */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+  font-family: 'Lexend Deca', sans-serif; /* Professional font */  
+}  
+
 
 /* Highlight Card Styles */  
 .highlightCard {  
@@ -718,15 +740,16 @@
   border-radius: 5px; /* Rounded corners */  
   padding: 10px; /* Padding for readability */  
   font-family: monospace; /* Use monospace font for JSON */  
-  font-size: 15px; /* Slightly smaller font for JSON */  
+  font-size: 12px; /* Slightly smaller font for JSON */  
   overflow: auto; /* Scrollable if content exceeds height */  
 }  
   
-/* Card Image Styling */  
+/* Card Image Styling */ 
 .cardImage {  
+  justify-content: center;
+  width: 100%; /* Full width of the card */
+  height: auto; /* Maintain aspect ratio */
   margin-top: 15px; /* Spacing above the image */  
-  border-radius: 5px; /* Rounded edges for visuals */  
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */  
 }  
 
 
