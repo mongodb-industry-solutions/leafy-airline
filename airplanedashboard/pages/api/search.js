@@ -19,16 +19,16 @@ export default async function handler(req, res) {
       results = await collection.aggregate([
         {
           $search: {
-            index: 'default', // Replace with your actual index name
+            index: 'flights-index',
             text: {
               query: query,
-              path: ['dep_arp.city', 'dep_arp.country', 'arr_arp.city','arr_arp.country','airline', 'plane'] // Field you want to search on
+              path: ['dep_arp.city', 'dep_arp.country', 'arr_arp.city','arr_arp.country','airline', 'plane']
             }
           }
         }
       ]).toArray();
     } else {
-      results = await collection.find({}).toArray(); // Return all documents if no query
+      results = await collection.find({}).toArray();
     }
 
     res.status(200).json(results);
