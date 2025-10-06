@@ -397,11 +397,13 @@ const FlightLayout = ({ children }) => {
   };
 
   const openModal = (imageSrc) => {  
+    console.log("Opening modal for image:", imageSrc);
     setModalImage(imageSrc); // Set image to display inside modal  
     setIsModalOpen(true); // Open the modal  
   };  
   
   const closeModal = () => {  
+    console.log("Closing modal");
     setModalImage(null); // Clear modal image  
     setIsModalOpen(false); // Close the modal  
   };  
@@ -802,6 +804,7 @@ const FlightLayout = ({ children }) => {
                     width={300}
                     height={200}
                     className={styles.cardImage}
+                    onClick={() => openModal("/realtime-architecture.png")} /* Open modal with the image */
                   />
                 </Card>  
                
@@ -839,6 +842,7 @@ const FlightLayout = ({ children }) => {
                     width={200}
                     height={100}
                     className={styles.cardImage}
+                    onClick={() => openModal("/ai-integration.png")} /* Open modal with the image */
                   />
                 </Card>  
 
@@ -874,6 +878,31 @@ const FlightLayout = ({ children }) => {
             
           </div>
         </div>
+      
+            {/* Modal para ampliar imágenes */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
+          onClick={closeModal}
+        >
+          <div className="relative">
+            <Image
+              src={modalImage}
+              alt="Expanded view"
+              width={900}
+              height={600}
+              className="rounded-lg shadow-lg max-w-[90vw] max-h-[90vh]"
+            />
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-4 text-white text-3xl font-bold hover:text-gray-300"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )} 
+      
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>

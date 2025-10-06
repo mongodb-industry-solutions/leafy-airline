@@ -774,6 +774,15 @@
   margin-top: 15px; /* Spacing above the image */  
 }  
 
+.cardImage {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.cardImage:hover {
+  transform: scale(1.05);
+}
+
 
 @media (max-width: 1920px) {  
   /* Highlight Content: Stack the text and multimedia sections vertically */  
