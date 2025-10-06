@@ -64,6 +64,17 @@ export default async function handler(req, res) {
             { $sort: { count: -1 } },
 
           ],  
+
+          // Facet for grouped results by dates (dep_time)  
+          dates: [  
+            {  
+              $group: {   
+                _id: { $dateToString: { format: "%d-%m-%Y", date: "$dep_time" } },   
+                count: { $sum: 1 }   
+              }  
+            },  
+            { $sort: { _id: 1 } }, // Sort dates in ascending order  
+          ],  
   
           // Facet for full filtered flight results  
           filteredFlights: [  
