@@ -880,29 +880,31 @@ const FlightLayout = ({ children }) => {
         </div>
       
             {/* Modal para ampliar imágenes */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
-          onClick={closeModal}
-        >
-          <div className="relative">
-            <Image
-              src={modalImage}
-              alt="Expanded view"
-              width={900}
-              height={600}
-              className="rounded-lg shadow-lg max-w-[90vw] max-h-[90vh]"
-            />
-            <button
+            {isModalOpen && (
+            <div
+              className={styles.modalOverlay}
               onClick={closeModal}
-              className="absolute top-2 right-4 text-white text-3xl font-bold hover:text-gray-300"
             >
-              ×
-            </button>
-          </div>
-        </div>
-      )} 
-      
+              <div
+                className={styles.modalContent}
+                onClick={(e) => e.stopPropagation()} // evita cerrar el modal al hacer clic en la imagen
+              >
+                <Image
+                  src={modalImage}
+                  alt="Expanded view"
+                  width={1200}
+                  height={900}
+                  className={styles.modalImage}
+                />
+                <button
+                  onClick={closeModal}
+                  className={styles.closeButton}
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          )}
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>
