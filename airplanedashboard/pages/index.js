@@ -14,30 +14,46 @@ export default function Home() {
   // New state for the flights
   const [flights, setFlights] = useState([]);
   const [dates, setDates] = useState([]);
-  const [airports , setAirports] = useState([]);
+  const [departureOptions, setDepartureOptions] = useState([]); // State for departure airports  
+  const [arrivalOptions, setArrivalOptions] = useState([]);     // State for arrival airports  
+
+  // const [airports, setAirports] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
     try {
-      // Fetch dates
-      const datesResponse = await fetch('/api/dates');
-      if (!datesResponse.ok) {
-        throw new Error('Network response was not ok for dates');
-      }
-      const datesData = await datesResponse.json();
-      setDates(datesData);
-      console.log('Dates fetched:', datesData);
 
-      // Fetch airports
-      const airportsResponse = await fetch('/api/airports');
-      if (!airportsResponse.ok) {
+      // Fetch airports and dates with facets
+      const facetsResponse = await fetch('/api/filters'); // Using the filters endpoint to get facets
+      if (!facetsResponse.ok) {
         throw new Error('Network response was not ok for airports');
       }
-      const airportsData = await airportsResponse.json();
-      setAirports(airportsData);
-      console.log('Airports fetched:', airportsData);
+
+      // Dates and airports fetched successfully
+      const facetsData = await facetsResponse.json();
+      console.log('Facets Data:', facetsData);
+
+      // Extract dates and format to show count
+      const datesData = facetsData.dates.map((date) => ({
+        value: date._id,
+        label: `${date._id} (${date.count} flights)`,
+      }));
+      setDates(datesData);
+
+      // Extract and format departure and arrival airports
+      const departureOptions = facetsData.departureAirports.map((airport) => ({
+        value: airport._id,
+        label: `${airport._id} - ${airport.city}, ${airport.country} (${airport.count} flights)`,
+      }));
+      const arrivalOptions = facetsData.arrivalAirports.map((airport) => ({
+        value: airport._id,
+        label: `${airport._id} - ${airport.city}, ${airport.country} (${airport.count} flights)`,
+      }));
+
+      setDepartureOptions(departureOptions);
+      setArrivalOptions(arrivalOptions);
 
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -63,7 +79,7 @@ export default function Home() {
     <GeneralLayout>
       {/* Integrate the SearchBar component here */}
       <aside className={styles.sidebar}>
-        <FilterSection response={flights} setResponse={setFlights} dates_list={dates} airports_list = {airports}/>
+        <FilterSection response={flights} setResponse={setFlights} dates_list={dates} departureOptions={departureOptions} arrivalOptions={arrivalOptions} />
       </aside>
       <div className={styles.searchList}>
         <div className={styles.intro_container}>
