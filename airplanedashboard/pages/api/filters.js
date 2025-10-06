@@ -78,7 +78,7 @@ export default async function handler(req, res) {
   
           // Facet for full filtered flight results  
           filteredFlights: [  
-            { $project: { dep_time: 1, arr_time: 1, dep_arp: 1, arr_arp: 1 } }, // Fields to include  
+            { $project: { dep_time: 1, arr_time: 1, dep_arp: 1, arr_arp: 1, airline:1, plane:1, flight_number: 1 } }, // Fields to include  
           ],  
         },  
       },  
