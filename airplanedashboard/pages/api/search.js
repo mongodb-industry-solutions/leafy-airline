@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       results = await collection.aggregate([
         {
           $search: {
-            index: 'default', // Replace with your actual index name
+            index: 'flights-index', // Name of the Atlas Search index
             text: {
               query: query,
               path: ['dep_arp.city', 'dep_arp.country', 'arr_arp.city','arr_arp.country','airline', 'plane'] // Field you want to search on
