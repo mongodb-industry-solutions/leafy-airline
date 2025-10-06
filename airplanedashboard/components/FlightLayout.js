@@ -25,6 +25,7 @@ import Image from "next/image";
 import Banner from "@leafygreen-ui/banner";
 
 import airports_dict from "../resources/airports.js";
+import { TbBackground } from "react-icons/tb";
 
 // // URL from the cloud run data-simulator microservice
 const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
@@ -55,6 +56,10 @@ const FlightLayout = ({ children }) => {
   const [newPath, setNewPath] = useState([]);
   const [newDisrup, setDisruption] = useState({});
   const [disrupEmpty, setDisrupEmpty] = useState(true);
+
+  // New modal for architecture images
+  const [modalImage, setModalImage] = useState(null); // State for currently selected image
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
 
   // Debugging
   // console.log("Query Parameters:", router.query);
@@ -391,6 +396,18 @@ const FlightLayout = ({ children }) => {
     lng: selectedFlight ? selectedFlight.arr_arp.geo_loc.long : 0,
   };
 
+  const openModal = (imageSrc) => {  
+    console.log("Opening modal for image:", imageSrc);
+    setModalImage(imageSrc); // Set image to display inside modal  
+    setIsModalOpen(true); // Open the modal  
+  };  
+  
+  const closeModal = () => {  
+    console.log("Closing modal");
+    setModalImage(null); // Clear modal image  
+    setIsModalOpen(false); // Close the modal  
+  };  
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -618,18 +635,276 @@ const FlightLayout = ({ children }) => {
                 </Button>
               </div>
             </div>
+{/* 
+            <Card className={styles.highlightCard} as="article">  
+                <p className={styles.highlightTitle}>  
+                  Curious about how MongoDB transforms airline operations?  
+                </p>  
+                <p className={styles.description}>  
+                  MongoDB's real-time capabilities and advanced data handling  
+                  empower airlines to achieve operational excellence. From   
+                  optimized time series collections to seamless integrations   
+                  with Pub/Sub and Vertex AI—you can explore the possibilities.  
+                </p>  
+                <Button  
+                  className={styles.ctaButton}  
+                  as="a"  
+                  href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines"  
+                  target="_blank"  
+                  rel="noopener noreferrer"  
+                >  
+                  Explore More  
+                </Button>  
+              </Card> 
+             */}
 
-            <Card className={styles.card_styles} as="article">
-              <p className={styles.title}>MongoDB Benefits</p>
-              <p>
-                MongoDB efficiently handles operational time series data via
-                Pub/Sub and time series collection, and powers analytical
-                insights using Pub/Sub, Vertex AI, and regular collections.
-              </p>
-              <a href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines">See more</a>
-            </Card>
+            <Card className={styles.highlightCard} as="article">  
+              <div className={styles.highlightContent}>  
+                {/* Left: Text Content */}  
+                <div className={styles.leftContent}>  
+                  <p className={styles.highlightTitle}>  
+                    Curious about how MongoDB transforms airline operations?  
+                  </p>  
+                  <p className={styles.description}>  
+                    MongoDB's real-time capabilities and advanced data handling empower  
+                    airlines to achieve operational excellence. From optimized time series  
+                    collections to seamless integrations with Pub/Sub and Vertex AI—you can  
+                    explore the possibilities.  
+                  </p>  
+
+                  <p className={styles.title}>Check out our latest blog post and YouTube video for more insights!</p>
+                </div>  
+              
+                {/* Right: Video + Blog Cover */}  
+                <div className={styles.rightContent}>  
+                  <div className={styles.multimediaContainer}> 
+
+                    {/* Blog Cover (Clickable)   */}
+
+                    <div className={styles.blogCoverContainer}>  
+                      <a  
+                        href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines"  
+                        target="_blank"  
+                        rel="noopener noreferrer"  
+                      >  
+                        <Image  
+                          src="/blog-cover.png" // Correct path with leading slash  
+                          width={300}  
+                          height={300} // Adjust dimensions for square shape  
+                          alt="MongoDB Blog Cover"  
+                          className={styles.blogCoverImage}  
+                        />  
+                      </a>  
+                    </div>  
+
+                    {/* YouTube Video */}  
+                    <iframe  
+                      className={styles.youtubeVideo}  
+                      src="https://www.youtube.com/embed/RgreCE1eMkU"  
+                      title="YouTube video"  
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  
+                      allowFullScreen  
+                    ></iframe>  
+                  
+                  </div>  
+                </div>  
+              </div>  
+            </Card>  
+
+
+
+            {/* MongoDB Value Cards Section */}  
+            <div className={styles.cardContainer}>    
+
+              {/* Add title */}
+              <h2 className={styles.titleValues}>  
+                Why MongoDB for Flight Disruption Management?  
+              </h2>
+
+              <Card className={styles.extended_card_styles} as="article">  
+
+                <div className={styles.leftContent}>
+                  <p className={styles.title}>Event-Driven Architecture</p>  
+                  <p>  
+                    MongoDB is ideal for event-driven architectures, enabling seamless handling  
+                    of dynamic events like flight schedule changes or delays. Real-time integrations  
+                    with mechanisms like Pub/Sub, Cloud Functions, and Change Streams ensure  
+                    faster data processing and reaction to disruptions across decentralized systems.  
+                  </p>  
+
+                </div>
+                <div className={styles.rightContent}>
+                  {/* Suggested Workflow Diagram */}  
+                  <Image  
+                    src="/architecture-diagram.png"
+                    alt="Event-Driven Architecture Workflow"  
+                    width={300}  
+                    height={200}  
+                    className={styles.cardImage}  
+                    onClick={() => openModal("/architecture-diagram.png")} /* Open modal with the image */  
+                  />  
+                </div>
+              </Card> 
+
+              {/* Row 1 */}  
+              <div className={styles.cardRow}>   
+
+                <Card className={styles.card_styles} as="article">  
+                  <p className={styles.title}>Flexible Schema</p>  
+                  <p>  
+                    MongoDB's document model makes it simple to store diverse flight data,  
+                    including telemetry, geospatial locations, disruption paths, and  
+                    time-series data. 
+                  </p>
+                  <p>
+                    
+                    Its schema flexibility allows for <b>seamless evolution</b> as  
+                    airline operations or data requirements change, ensuring scalability,  
+                    adaptability, and future-proof design.  
+                  </p>
+
+                  {/* Sample Document */}  
+                  <pre className={styles.sampleDocument}>  
+                    {`{
+      "_id": "flight123",  
+      "departure": {  
+        "airport": "ATL",  
+        "geo_location": {  
+          "lat": 33.6407,  
+          "long": -84.4277  
+        },  
+        "scheduled_time": "2023-10-01T14:00:00Z"  
+      },  
+      "arrival": {  
+        "airport": "JFK",  
+        "geo_location": {  
+          "lat": 40.6413,  
+          "long": -73.7781  
+        },  
+        "scheduled_time": "2023-10-01T17:00:00Z"  
+      },  
+      "airline": "Leafy Airlines",  
+      "status": "on-time"  
+  }`}  
+                  </pre>    
+                </Card>  
+              
+                <Card className={styles.clear_card_styles} as="article">  
+                  <p className={styles.title}>Real-Time Updates</p>  
+                  <p>  
+                    MongoDB's <b>Change Streams</b> enable real-time notifications, allowing airlines  
+                    to <b>instantly react to disruptions, reroutes, or cascading delays</b>. This  
+                    ensures that both operational teams and passengers have access to live  
+                    updates, improving efficiency and customer experience.  
+                  </p>  
+
+                   <Image  
+                    src="/realtime-architecture.png"
+                    alt="Real-Time Updates"
+                    width={300}
+                    height={200}
+                    className={styles.cardImage}
+                    onClick={() => openModal("/realtime-architecture.png")} /* Open modal with the image */
+                  />
+                </Card>  
+               
+              </div>  
+              
+              {/* Row 2 */}  
+              <div className={styles.cardRow}>  
+                <Card className={styles.card_styles} as="article">  
+                  <p className={styles.title}>Geospatial Queries</p>  
+                  <p>  
+                    MongoDB's native geospatial querying powers dynamic calculations for route  
+                    adjustments based on flight disruptions, weather patterns, or other  
+                    changes. 
+                  </p>  
+                  <p>
+                    Airlines can use its advanced algorithms to make instant,  
+                    data-driven decisions with minimal latency.  
+                  </p>  
+                </Card>  
+              
+              
+                <Card className={styles.clear_card_styles} as="article">  
+                  <p className={styles.title}>Integration with AI</p>  
+                  <p>  
+                    MongoDB simplifies the pipeline for Vertex AI and similar machine  
+                    learning services by providing enriched, real-time operational data.  
+                    Airlines can harness this integration to improve disruption prediction,  
+                    optimize costs, and deliver insights that drive organizational decisions.  
+                  </p>  
+
+                  {/* Vertex AI Diagram */}
+                  <Image
+                    src="/ai-integration.png"
+                    alt="Vertex AI Integration" 
+                    width={200}
+                    height={100}
+                    className={styles.cardImage}
+                    onClick={() => openModal("/ai-integration.png")} /* Open modal with the image */
+                  />
+                </Card>  
+
+                <Card className={styles.card_styles} as="article">  
+                  <p className={styles.title}>Time-Series Data</p>  
+                  <p>  
+                    Optimized for telemetry and flight tracking, MongoDB's Time Series  
+                    Collections enable <b>efficient storage, querying, and analysis of complex  
+                    time-series datasets</b>, such as speed metrics or historical flight paths.  
+                    This capability enhances predictive analytics and operational reporting.  
+                  </p>  
+
+                  {/* Sample Time-Series Data */}
+                  <pre className={styles.sampleDocument}>
+                    {`{
+      ...
+      "ts": "2024-07-16T16:15:41.608793",
+      "distance_to_arrival": 291.22170366055457,
+      "location": {
+        "lat": 40.48532197555584,
+        "long": -3.5270251738005025
+      },
+      "velocity": {
+        "speed": 244.0087836688688,
+        "heading": "north"
+      }
+      ...
+    }`}
+                  </pre>
+                </Card>  
+              </div>  
+            </div>  
+            
           </div>
         </div>
+      
+            {/* Modal para ampliar imágenes */}
+            {isModalOpen && (
+            <div
+              className={styles.modalOverlay}
+              onClick={closeModal}
+            >
+              <div
+                className={styles.modalContent}
+                onClick={(e) => e.stopPropagation()} // evita cerrar el modal al hacer clic en la imagen
+              >
+                <Image
+                  src={modalImage}
+                  alt="Expanded view"
+                  width={1200}
+                  height={900}
+                  className={styles.modalImage}
+                />
+                <button
+                  onClick={closeModal}
+                  className={styles.closeButton}
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          )}
       </div>
       <footer className={footerStyles.footer}>
         <div className={footerStyles.footerContent}>

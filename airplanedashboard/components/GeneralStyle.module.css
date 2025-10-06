@@ -2,12 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
 
+
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
     font-family: 'Lexend Deca', sans-serif;
-    padding-bottom: 40px;
+    padding-bottom: 0px;
   }
   
 .header {
@@ -46,6 +47,16 @@
   display: flex;
   flex: 1;
   gap: 20px;
+}
+
+.main {  
+  flex: 1; /* Allow it to expand to fill the remaining space */  
+  display: flex; /* Enables flexible alignment */  
+  flex-direction: column; /* Align children top to bottom */
+  
+  /* NEW */
+  height: calc(100vh - 95px); /* Adjust height to fit the viewport minus header/footer */  
+  /* overflow: hidden;    */
 }
 
 .intro_container{
@@ -225,13 +236,20 @@
   width: 30%;
   min-width: 200px;
   /*margin-right: 40rem;*/
-  height: auto;
+  /* height: auto; */
   font-family: 'Lexend Deca', sans-serif;
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
   margin-right:10px;
   margin-top: 1rem;
+
+  /* NEW */
+  padding-bottom: 25px;
+  flex: 0 0 auto;
+  height: 90%;
+  overflow-y: auto; 
+  overflow-x: hidden;
 
 }
 
@@ -284,9 +302,6 @@
 }
 
 
-.rightContainer {
-  width: 100%;
-}
 
 .mapContainer {
   background-color: #ffffff;
@@ -301,7 +316,7 @@
 .title {
   font-size: 18px;
   font-weight: bold;
-
+  /* padding: 0px 25px 0px 0px; */
 }
 
 .card_styles { 
@@ -314,12 +329,16 @@
 /* CSS FOR COMPONENTS IN FLIGHT SPECIFICS TAB */
 
 /* General content container */
-.contentContainer{
-  display: flex; /* Aligns child elements horizontally */
-  flex: 1;
+
+.contentContainer {  
+  flex: 1; /* Dynamically adjusts to height of parent (main) */  
+  display: flex; /* Enables flex behavior for its children */  
+  flex-direction: row; /* Align child elements side-by-side */  
+  overflow: hidden; /* Prevent overflow outside the parent container */
   gap: 20px; /* Space between the flight overview and map */
-  box-sizing: border-box;
-}
+  box-sizing: border-box;  
+}  
+  
 
 /* CSS for containers inside the static part of Flight Overview */
 
@@ -494,3 +513,356 @@
   margin-bottom: 10px;
 }
 
+
+.rightContainer { 
+  flex: 1; 
+  display: flex; /* Use flex to align content */  
+  flex-wrap: wrap; /* Allow wrapping if you have other items */  
+  justify-content: center; /* Center horizontally */  
+  align-items: center; /* Center vertically */  
+  overflow-y: auto; /* Enable scrollability in case content exceeds height */ 
+  scrollbar-width: thin; /* Optional: Makes the scrollbar thinner */ 
+  width: 100%;  
+  /* height: calc(100vh - 200px);    */
+
+  /* NEW */
+  height: 100%; /* Match the parent's height */
+  overflow-y: auto; 
+}  
+
+  
+/* Style for the scrollbar */  
+.rightContainer::-webkit-scrollbar {  
+  width: 8px; /* Width of the scrollbar */  
+}  
+  
+.rightContainer::-webkit-scrollbar-thumb {  
+  background-color: #00684A; /* MongoDB green for the scrollbar thumb */  
+  border-radius: 8px; /* Rounded scrollbar thumb */  
+}  
+  
+.rightContainer::-webkit-scrollbar-track {  
+  background-color: #f8f9fa; /* Light background for scrollbar track */  
+}  
+
+
+.titleValues {  
+  font-size: 22px; /* Slightly larger font size for emphasis */  
+  font-weight: 600; /* Semi-bold for better visibility */  
+  margin-bottom: 20px; /* Space below the title */  
+  text-align: center; /* Center the title */  
+}
+
+.cardContainer {  
+  display: flex;  
+  flex-direction: column; /* Stack rows vertically */  
+  gap: 35px; /* Space between rows */  
+  width: 100%; /* Ensure container spans the parent width */ 
+  padding: 35px 0px 35px 0px; /* Optional padding around the container */ 
+}  
+  
+.cardRow {  
+  display: flex; /* Align cards horizontally */  
+  gap: 20px; /* Space between cards */  
+  justify-content: space-around; /* Distribute cards evenly */  
+}  
+ 
+  
+.card_styles {  
+  background-color: #E3FCF7; /* Light green background */  
+  color: #023430; /* Darker green font color */  
+  width: auto; /* Ensure cards take appropriate width */  
+  padding: 15px; /* Add padding for better readability */  
+  border-radius: 8px; /* Rounded edges */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+  font-family: 'Lexend Deca', sans-serif; /* Professional font */  
+}  
+
+.extended_card_styles {  
+  background-color: #FFFFFF;   
+  color: #023430; /* Darker green font color */  
+  width: auto; /* Ensure cards take appropriate width */  
+  padding: 15px; /* Add padding for better readability */  
+  border-radius: 8px; /* Rounded edges */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+  font-family: 'Lexend Deca', sans-serif; /* Professional font */  
+  display: flex;
+}  
+
+.clear_card_styles {  
+  background-color: #ffffff; /* White background */  
+  color: #023430; /* Darker green font color */  
+  width: auto;  
+  padding: 15px; /* Add padding for better readability */  
+  border-radius: 8px; /* Rounded edges */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */  
+  font-family: 'Lexend Deca', sans-serif; /* Professional font */  
+}  
+
+.clear_card_styles p,
+.card_styles p,
+.extended_card_styles p {
+  text-align: justify; /* Justify text for better readability */
+}
+
+
+/* Highlight Card Styles */  
+.highlightCard {  
+  background: linear-gradient(135deg, #00684A, #023430); /* MongoDB gradient */  
+  display: flex;
+  color: #FFFFFF; /* White text for readability */  
+  width: 93%; /* Full width */  
+  padding: 20px; /* Spacious padding */  
+  border-radius: 10px; /* Rounded corners */  
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Adds depth */  
+  /* text-align: center; /* Centers content */   
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */  
+}  
+  
+.highlightCard:hover {  
+  /* transform: scale(1.03);  */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow gets stronger */  
+}  
+  
+/* Title specific to the Highlight Card */  
+.highlightTitle {  
+  font-size: 25px; /* Larger headline */  
+  font-weight: 700; /* Slightly bolder for emphasis */  
+  margin-bottom: 10px; /* Spacing beneath the title */  
+}  
+  
+/* Description styling for Highlight Card */  
+.description {  
+  font-size: 1rem; /* Standard paragraph size */  
+  font-weight: 300; /* Light text for contrast */  
+  margin-bottom: 15px; /* Space below the paragraph */  
+}  
+  
+/* Special button for call-to-action - CTA */  
+.ctaButton {  
+  background-color: #FFFFFF; /* Light button color */  
+  color: #00684A; /* MongoDB green text */  
+  border-radius: 5px; /* Rounded corners */  
+  padding: 10px 15px; /* Button padding */  
+  font-weight: 600; /* Bold text */  
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover */  
+  text-decoration: none; /* Remove underline */  
+}  
+  
+.ctaButton:hover {  
+  background-color: #004d34; /* Darker green background on hover */  
+  color: #FFFFFF; /* White text on hover */  
+}  
+
+
+/* Highlight card layout */  
+.highlightContent {  
+  display: flex; /* Arrange items in a row */  
+  gap: 20px; /* Space between text section and multimedia section */  
+  justify-content: flex-start; /* Align everything to the left */  
+  align-items: flex-start; /* Top-align content */  
+}  
+  
+/* Left: Text container */  
+.leftContent {  
+  width: 40%; /* Limit width to 40% of the card */
+  display: flex;  
+  flex-direction: column; /* Stack text elements */  
+  justify-content: flex-start; /* Align items to the top */  
+  text-align: left; /* Align text to the left */  
+}  
+
+/* Right: Video container */  
+.rightContent {  
+  width: 60%; 
+  height: 100%;
+  display: flex;  
+  justify-content: flex-start; /* Align content to the left edge */  
+  align-items: flex-start; /* Top-align content */  
+}  
+  
+/* Multimedia container inside the right content */  
+.multimediaContainer {  
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add space between video and image */  
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */   
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  gap: 15px;  
+}  
+  
+/* YouTube video styling */  
+.youtubeVideo {  
+  width: 40%; /* Fixed width for square shape */  
+  /* height: 250px;   */
+  height: 100%;
+  border: none;  
+  border-radius: 10px; /* Rounded corners for consistency */  
+} 
+
+.youtubeVideo:hover {  
+  transform: scale(1.05); /* Slight zoom on hover */  
+  cursor: pointer; /* Show pointer to indicate it's clickable */  
+}  
+
+/* Blog cover container */  
+.blogCoverContainer {  
+  display: flex;  
+  align-items: flex-start; /* Align items to the left */ 
+  justify-content: center;
+  width: 50%;
+  height: auto;
+}  
+  
+.blogCoverImage { 
+  width: 100%; /* Full width of its container */ 
+  height: 70%; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners */  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better visual appeal */  
+  transition: transform 0.2s ease-in-out; /* Add hover effect */  
+}  
+  
+/* Add hover effect for clickable image */  
+.blogCoverImage:hover {  
+  transform: scale(1.05); /* Slight zoom on hover */  
+  cursor: pointer; /* Show pointer to indicate it's clickable */  
+}  
+
+
+/* Button styling */  
+.ctaButton {  
+  margin-top: 10px; /* Space above the button */  
+}  
+
+/* Fallback content container */  
+.fallbackContent {  
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  align-items: center;  
+}  
+  
+.fallbackContent img {  
+  max-width: 100%; /* Ensure the image doesn't overflow */  
+  border-radius: 10px;  
+  margin-bottom: 15px;  
+}  
+  
+.fallbackContent .ctaButton {  
+  margin-top: 10px; /* Add space above the button */  
+}  
+
+
+
+/* Style for Sample Document in Cards */  
+.sampleDocument {  
+  background-color: #E3FCF7; /* Light-gray background */    
+  border-radius: 5px; /* Rounded corners */  
+  padding: 10px; /* Padding for readability */  
+  font-family: monospace; /* Use monospace font for JSON */  
+  font-size: 12px; /* Slightly smaller font for JSON */  
+  overflow: auto; /* Scrollable if content exceeds height */  
+}  
+  
+/* Card Image Styling */ 
+.cardImage {  
+  justify-content: center;
+  width: 100%; /* Full width of the card */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 15px; /* Spacing above the image */  
+}  
+
+.cardImage {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.cardImage:hover {
+  transform: scale(1.025);
+}
+
+/* === Modal Styles === */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.modalImage {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #cccccc;
+}
+
+
+
+@media (max-width: 1920px) {  
+  /* Highlight Content: Stack the text and multimedia sections vertically */  
+  .highlightContent {  
+    flex-direction: column; /* Makes the layout vertical */  
+    gap: 20px; /* Adds spacing between rows */  
+    justify-content: flex-start; /* Align elements to the top */  
+    align-items: center; /* Center the items horizontally */  
+  }  
+  
+  /* Text content takes up full width */  
+  .leftContent {  
+    width: 100%; /* Text spans the full width */  
+    display: flex;  
+    flex-direction: column;  
+    text-align: left; /* Align text to the left */  
+  }  
+  
+  /* Multimedia section (YouTube video and blog cover below text content) */  
+  .rightContent {  
+    width: 100%; /* Multimedia section spans full width */  
+    height: auto; /* Adjust height based on content */
+    display: flex;  
+    flex-direction: row; /* Video and blog cover appear side-by-side */  
+    justify-content: center; /* Center the multimedia items */  
+    gap: 20px; /* Add spacing between video and blog cover */  
+  }  
+
+  .youtubeVideo,  
+  .blogCoverImage {  
+    height:90%; 
+    border-radius: 10px; /* Rounded corners */  
+  }  
+  
+  /* YouTube video and blog cover styling */  
+
+}  
