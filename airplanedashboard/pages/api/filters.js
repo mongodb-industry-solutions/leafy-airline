@@ -6,6 +6,12 @@ const endOfDay = (dateStr) => {
   date.setHours(23, 50, 0, 0);  
   return date;  
 };  
+
+const startOfDay = (dateStr) => {
+  const date = new Date(dateStr);
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
   
 export default async function handler(req, res) {  
   if (req.method !== 'GET') {  
@@ -22,7 +28,7 @@ export default async function handler(req, res) {
     matchStage['dep_time'] = { $gte: new Date(params.dep_time), $lte: endOfDay(params.dep_time) };  
   }  
   if (params.arr_time) {  
-    matchStage['arr_time'] = { $gte: new Date(params.arr_time), $lte: endOfDay(params.arr_time) };  
+    matchStage['arr_time'] = { $gte: startOfDay(params.arr_time), $lte: new Date(params.arr_time)};  
   }  
   if (params['dep_arp._id']) {  
     matchStage['dep_arp._id'] = params['dep_arp._id'];  
