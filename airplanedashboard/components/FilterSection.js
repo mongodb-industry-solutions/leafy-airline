@@ -15,7 +15,7 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [departureTime, setDepartureTime] = useState('00:00');
-  const [arrivalTime, setArrivalTime] = useState('00:00');
+  const [arrivalTime, setArrivalTime] = useState('23:50');
   const [selectedDeparture, setSelectedDeparture] = useState('');
   const [selectedArrival, setSelectedArrival] = useState('');
   const initial_filters = {};
@@ -85,7 +85,7 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   const resetFilters = () => {
     setSelectedDate('');
     setDepartureTime('00:00');
-    setArrivalTime('00:00');
+    setArrivalTime('23:50');
     setSelectedDeparture('');
     setSelectedArrival('');
     setFilters(initial_filters);
