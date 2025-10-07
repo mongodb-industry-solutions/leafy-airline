@@ -1,6 +1,5 @@
-// TimeSlider.js
 import React from 'react';
-import styles from './TimeSlider.module.css'; // Assuming you use CSS modules for styling
+import styles from './TimeSlider.module.css';
 
 const TimeSlider = ({ label, state, setter }) => {
   
@@ -17,7 +16,6 @@ const TimeSlider = ({ label, state, setter }) => {
     return times;
   };
 
-  // List of time values
   const timeValues = generateTimeValues();
 
   const handleSliderChange = (e) => {
