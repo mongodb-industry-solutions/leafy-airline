@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './GeneralStyle.module.css';
-import headerStyles from './Header.module.css'; // Import the new header CSS file
-import footerStyles from './Footer.module.css'; // Import the footer CSS file
+import headerStyles from './Header.module.css'; 
+import footerStyles from './Footer.module.css'; 
 import Logo from '@leafygreen-ui/logo';
 import Icon from "@leafygreen-ui/icon";
 import Image from "next/image";
-import Button from "@leafygreen-ui/button";
 
 const GeneralLayout = ({ children }) => {
   return (
