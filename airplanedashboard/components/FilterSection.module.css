@@ -8,10 +8,11 @@
 
 .filterSelection h2 {
     font-family: 'Lexend Deca', sans-serif;
+    align-items: left;
+    text-align: left;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 5px;
-    color: #00684A; /* Dark green color */
 }
 
 
