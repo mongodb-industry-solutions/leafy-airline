@@ -29,9 +29,7 @@ function FlightList({flights}) {
         return <div 
             key={index} className={styles.resultItem}>
             <div><strong>Airline:</strong> {flight_info.airline}</div>
-            {/* Debugging : Add ID */}
-            {/* <div><strong>Flight ID:</strong> {flight_info._id}</div> */}
-            <div><strong>Plane:</strong> {flight_info.plane}</div>
+            <div><strong>Flight Number:</strong> {flight_info.flight_number}</div>
             <div><strong>Flight Date:</strong> {formattedDate}</div>
             <div><strong>Departure Airport:</strong> {flight_info.dep_arp.city + ", " + flight_info.dep_arp.country }</div>
             <div><strong>Arrival Airport:</strong> {flight_info.arr_arp.city + ", " + flight_info.arr_arp.country }</div>

@@ -1,6 +1,4 @@
-// components/SearchBar.js
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'; // Import useRouter from next/router
 import styles from './Searchbar.module.css';
 
 function SearchBar({response, setResponse}) {
@@ -8,7 +6,6 @@ function SearchBar({response, setResponse}) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const router = useRouter(); // Initialize useRouter
 
   const fetchResults = async (searchQuery) => {
     setLoading(true);
@@ -29,15 +26,12 @@ function SearchBar({response, setResponse}) {
   };
 
   useEffect(() => {
-    fetchResults(''); // Fetch all documents on component mount
+    fetchResults('');
   }, []);
 
   const handleSearch = async (event) => {
     event.preventDefault();
-    fetchResults(query); // Fetch results based on query
-
-    // Update general response state
-    console.log('New response setted from SearchBar2')
+    fetchResults(query); 
   };
 
 
