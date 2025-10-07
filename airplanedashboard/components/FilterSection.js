@@ -83,14 +83,11 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
       params['arr_time'] = arr_time;
     }
 
-    // console.log(params);
-
     setFilters(params);
     fetchResults(params);
   };
 
   const resetFilters = () => {
-    // Reset the filters after applying the previous ones
     setSelectedDate('');
     setDepartureTime('00:00');
     setArrivalTime('00:00');
@@ -98,9 +95,7 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
     setSelectedArrival('');
     setFilters(initial_filters);
 
-    // Fetch data without params
     fetchResults(initial_filters);
-    console.log(filters);
   };
 
 
@@ -112,9 +107,6 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   };
 
   const convertTimeToISO = (timeString) => {
-
-    // console.log('Selected date:', selectedDate);
-
     const [day, month, year] = String(selectedDate).split('-');
     const [hours, minutes] = timeString.split(':');
     const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);

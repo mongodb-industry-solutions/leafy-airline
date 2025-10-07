@@ -42,7 +42,7 @@ function SearchBar({response, setResponse}) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for flights"
+          placeholder="Search by flight number, airport, airline..."
         />
         <button type="submit" disabled={loading}>
           {loading ? 'Searching...' : 'Search'}
