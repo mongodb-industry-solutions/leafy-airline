@@ -22,8 +22,8 @@ const TimeSlider = ({ label, state, setter }) => {
     setter(timeValues[e.target.value]);
   };
 
-  return (<div>
-      {label === "Departure Time: " ? (
+  if (label === "Departure Time: ") {
+    return (
         <div className={styles.filterTimeSlider}>
         <div>{label}</div>
         <input
@@ -44,7 +44,11 @@ const TimeSlider = ({ label, state, setter }) => {
         />
         <label>Departing after: {state}</label>
       </div>
-      ) : (
+
+    );
+  }
+  else {
+    return (
         <div className={styles.filterTimeSlider}>
         <div>{label}</div>
         <input
@@ -67,9 +71,8 @@ const TimeSlider = ({ label, state, setter }) => {
         />
         <label>Arriving before: {state}</label>
       </div>
-      )}
-    </div>
-  );
+    );
+  }
 };
 
 export default TimeSlider;
