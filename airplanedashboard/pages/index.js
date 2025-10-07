@@ -9,18 +9,22 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
 
-  console.log("Rendering Home component with Simulation App URL:", process.env.NEXT_PUBLIC_SIMULATION_APP_URL);
+  // console.log("Rendering Home component with Simulation App URL:", process.env.NEXT_PUBLIC_SIMULATION_APP_URL);
 
   // New state for the flights
   const [flights, setFlights] = useState([]);
   const [dates, setDates] = useState([]);
-  const [departureOptions, setDepartureOptions] = useState([]); // State for departure airports  
-  const [arrivalOptions, setArrivalOptions] = useState([]);     // State for arrival airports  
-
-  // const [airports, setAirports] = useState([]);
-
+  const [departureOptions, setDepartureOptions] = useState([]);
+  const [arrivalOptions, setArrivalOptions] = useState([]);   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Create a unique session ID for the user
+  const [sessionId, setSessionId] = useState(crypto.randomUUID());
+  // useEffect(() => {
+  //   const id = crypto.randomUUID();
+  //   setSessionId(id);
+  // }, []);
 
   const fetchData = async () => {
     try {
@@ -95,7 +99,7 @@ export default function Home() {
         </div>
         <SearchBar response={flights} setResponse={setFlights}/>
         <div className={styles.flightsList}>
-          <FlightList flights={flights} />
+          <FlightList flights={flights} sessionId={sessionId} />
         </div>
       </div>
     </GeneralLayout>
