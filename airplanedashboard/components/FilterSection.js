@@ -35,11 +35,6 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
 
       const data = await response.json();
 
-      // if (data.filteredFlights.length === 1) {
-      //   // Include the document in a list
-      //   data.filteredFlights = [data.filteredFlights];
-      // }
-
       setResults(data.filteredFlights);
       setResponse(data.filteredFlights);
 
