@@ -111,7 +111,7 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
 
   return (
     <div className={styles.filterSelection}>
-      <h2>Filter Selection</h2>
+      <h2>Filters</h2>
       <SeparationBar />
 
       <Select
