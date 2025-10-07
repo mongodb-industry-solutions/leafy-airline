@@ -59,19 +59,14 @@ const FlightLayout = ({ children }) => {
       const data = await res.json();
       setFlightData(data);
 
-      // Debugging 
-      console.log("All Flights Data:", data);
 
       if (flightId) {
-        console.log("Flight ID from query:", flightId);
 
         const flight = data.find(
           (flight) =>
             flight._id && flight._id.toString() === flightId.toString()
         );
         if (flight) {
-          console.log("Flight Data");
-          console.log(flight);
           setSelectedFlight(flight);
 
           if (simulationStarted) {
@@ -92,8 +87,6 @@ const FlightLayout = ({ children }) => {
       try {
         const res = await fetch("/api/googleMapsKey");
         const data = await res.json();
-
-        console.log("Google Maps API Key:", data.apiKey);
         setApiKey(data.apiKey);
       } catch (error) {
         console.error("Error fetching API key:", error);
@@ -164,7 +157,6 @@ const FlightLayout = ({ children }) => {
       try {
         const response = await fetch("/api/fetchNewestDocument");
         const data = await response.json();
-        console.log("Fetched Data:", data);
         if (
           data &&
           data.mostRecentLat !== undefined &&
@@ -252,7 +244,6 @@ const FlightLayout = ({ children }) => {
   };
 
   const getNewPath = (flight) => {
-    console.log("Entered newpath");
     const path =
       flight && Array.isArray(flight.new_path) ? flight.new_path : [];
 
@@ -265,7 +256,7 @@ const FlightLayout = ({ children }) => {
 
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
-    console.log("Starting sim");
+    console.log("Starting simulation");
 
     const start_url = app_url + "/start-scheduler";
     const app_data = {
@@ -294,7 +285,6 @@ const FlightLayout = ({ children }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log(data);
 
       // // Trigger Aggregation API after starting the simulation
       // const aggregationResponse = await fetch('/api/aggregation', { method: 'POST' });
@@ -328,7 +318,6 @@ const FlightLayout = ({ children }) => {
         },
       });
       const data = await response.json();
-      console.log(data);
 
       // Clear flight path and stop fetching
       setFlightPath([]);
@@ -379,13 +368,11 @@ const FlightLayout = ({ children }) => {
   };
 
   const openModal = (imageSrc) => {  
-    console.log("Opening modal for image:", imageSrc);
     setModalImage(imageSrc);
     setIsModalOpen(true);
   };  
   
   const closeModal = () => {  
-    console.log("Closing modal");
     setModalImage(null); 
     setIsModalOpen(false);  
   };  
