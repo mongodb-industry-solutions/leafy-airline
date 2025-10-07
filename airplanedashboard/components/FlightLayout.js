@@ -22,7 +22,12 @@ const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
-  const { flightId } = router.query; 
+  const { flightId, sessionId } = router.query; 
+
+  console.log("FlightLayout received flightId:", flightId);
+  console.log("FlightLayout received sessionId:", sessionId);
+  
+  const [sessionIdState, setSessionIdState] = useState(sessionId || null);
   const [flightData, setFlightData] = useState([]);
   const [selectedFlight, setSelectedFlight] = useState(null);
   const [apiKey, setApiKey] = useState("");
