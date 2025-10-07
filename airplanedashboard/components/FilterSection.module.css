@@ -1,3 +1,21 @@
+.filterSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.filterSelection h2 {
+    font-family: 'Lexend Deca', sans-serif;
+    align-items: left;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+
 .sidebar .filterSelection {
     width: 90%;
     padding: 10px;
@@ -10,13 +28,14 @@ margin-bottom: 1rem;
 
 .filterTimeSlider{
     margin-top: 5px;
-    padding: 5px;
+    padding: 10px;
     width: 100%;
 }
 
 .filterTimeSlider div{
+    font-family: 'Lexend Deca', sans-serif;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 15px;
     padding-left: 5px;
 }
 
@@ -32,7 +51,7 @@ margin-bottom: 1rem;
 
 .filterSelect label{
     font-family: 'Lexend Deca', sans-serif;
-    font-size : 17px;
+    font-size : 15px;
     padding: 5px;
 }
 
@@ -60,8 +79,9 @@ margin-bottom: 1rem;
 
 .separationBar {
     border: 0;
+    width: 100%;
     height: 1px;
-    background: #ccc;
+    background: #bfbfbf;
     margin: 1rem 0;
   }
   
@@ -69,3 +89,4 @@ margin-bottom: 1rem;
 position: relative;
 width: 200px;
 }
+

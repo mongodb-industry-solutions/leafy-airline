@@ -1,5 +1,3 @@
-// components/InstructionsLayout.js
-import React from 'react';
 import styles from './Instructions.module.css';
 import ExpandableCard from "@leafygreen-ui/expandable-card";
 import Banner from '@leafygreen-ui/banner';

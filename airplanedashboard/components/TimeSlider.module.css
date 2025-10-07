@@ -1,13 +1,12 @@
 .filterTimeSlider{
     margin-top: 5px;
-    padding: 5px;
+    padding-bottom: 10px;
     width: 100%;
 }
 
 .filterTimeSlider div{
     font-weight: bold;
-    font-size: 17px;
-    padding-left: 5px;
+    font-size: 15px;
 }
 
 .filterTimeSlider input {
@@ -33,6 +32,7 @@
     width: 15px; /* Width of the thumb */
     height: 15px; /* Height of the thumb */
     background: #00684A; /* Thumb color */
+    border-width: 10px;
     cursor: pointer; /* Cursor on hover */
     border-radius: 50%; /* Round thumb */
 }

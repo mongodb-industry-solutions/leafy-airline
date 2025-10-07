@@ -3,14 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./GeneralStyle.module.css"; // Ensure this path is correct
 import footerStyles from "./Footer.module.css";
-
 import InformationCard from "./InformationCard";
-
 import Logo from "@leafygreen-ui/logo";
 import Button from "@leafygreen-ui/button";
-import ExpandableCard from "@leafygreen-ui/expandable-card";
 import Card from "@leafygreen-ui/card";
-
 import {
   GoogleMap,
   LoadScript,
@@ -18,27 +14,21 @@ import {
   Polyline,
 } from "@react-google-maps/api";
 import io from "socket.io-client"; // Import socket.io-client
-import PlaneIcon from "../public/plane-solid.svg";
-
-import Icon from "@leafygreen-ui/icon";
 import Image from "next/image";
-import Banner from "@leafygreen-ui/banner";
-
 import airports_dict from "../resources/airports.js";
-import { TbBackground } from "react-icons/tb";
 
-// // URL from the cloud run data-simulator microservice
+// URL from the cloud run data-simulator microservice
 const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
-  const { flightId } = router.query; // Get flightId from query parameters
+  const { flightId } = router.query; 
   const [flightData, setFlightData] = useState([]);
   const [selectedFlight, setSelectedFlight] = useState(null);
   const [apiKey, setApiKey] = useState("");
-  const [delayTime, setDelayTime] = useState(null); // State for Delay_Time
-  const [delayCost, setDelayCost] = useState(null); // State for Delay_Cost
-  const [fuelCostPerHour, setFuelCostPerHour] = useState(null); // State for Fuel_Cost_per_Hour
+  const [delayTime, setDelayTime] = useState(null);
+  const [delayCost, setDelayCost] = useState(null);
+  const [fuelCostPerHour, setFuelCostPerHour] = useState(null); 
   const [airplanePosition, setAirplanePosition] = useState(null);
   const [flightPath, setFlightPath] = useState([]);
   const [totalCost, setTotalCost] = useState(null);
@@ -46,9 +36,9 @@ const FlightLayout = ({ children }) => {
   const [extraFuelCost, setExtraFuelCost] = useState(null);
 
   const [simulationStarted, setSimulationStarted] = useState(false);
-  const [fetchingStarted, setFetchingStarted] = useState(false); // State to manage fetching delay
+  const [fetchingStarted, setFetchingStarted] = useState(false); 
 
-  const [loading, setLoading] = useState(false); // State for loading
+  const [loading, setLoading] = useState(false); 
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
@@ -58,12 +48,8 @@ const FlightLayout = ({ children }) => {
   const [disrupEmpty, setDisrupEmpty] = useState(true);
 
   // New modal for architecture images
-  const [modalImage, setModalImage] = useState(null); // State for currently selected image
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
-
-  // Debugging
-  // console.log("Query Parameters:", router.query);
-  // console.log("Flight ID in FlightLayout:", flightId);
+  const [modalImage, setModalImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const googleAPI = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -381,10 +367,6 @@ const FlightLayout = ({ children }) => {
     router.push("/");
   };
 
-  const mapContainerStyle = {
-    width: "100%",
-    height: "400px",
-  };
 
   const depCoords = {
     lat: selectedFlight ? selectedFlight.dep_arp.geo_loc.lat : 0,
@@ -398,14 +380,14 @@ const FlightLayout = ({ children }) => {
 
   const openModal = (imageSrc) => {  
     console.log("Opening modal for image:", imageSrc);
-    setModalImage(imageSrc); // Set image to display inside modal  
-    setIsModalOpen(true); // Open the modal  
+    setModalImage(imageSrc);
+    setIsModalOpen(true);
   };  
   
   const closeModal = () => {  
     console.log("Closing modal");
-    setModalImage(null); // Clear modal image  
-    setIsModalOpen(false); // Close the modal  
+    setModalImage(null); 
+    setIsModalOpen(false);  
   };  
 
   return (
@@ -431,7 +413,6 @@ const FlightLayout = ({ children }) => {
 
       <div className={styles.main}>
         <div className={styles.contentContainer}>
-          {/* Flight Overview Box */}
           <div className={styles.flightOverviewBox}>
             <h3>Flight Overview</h3>
             {selectedFlight ? (
@@ -547,7 +528,6 @@ const FlightLayout = ({ children }) => {
             )}
           </div>
 
-          {/* Google Map Component */}
           <div className={styles.rightContainer}>
             <div className={styles.mapContainer}>
               {apiKey ? (
@@ -635,32 +615,9 @@ const FlightLayout = ({ children }) => {
                 </Button>
               </div>
             </div>
-{/* 
-            <Card className={styles.highlightCard} as="article">  
-                <p className={styles.highlightTitle}>  
-                  Curious about how MongoDB transforms airline operations?  
-                </p>  
-                <p className={styles.description}>  
-                  MongoDB's real-time capabilities and advanced data handling  
-                  empower airlines to achieve operational excellence. From   
-                  optimized time series collections to seamless integrations   
-                  with Pub/Sub and Vertex AI—you can explore the possibilities.  
-                </p>  
-                <Button  
-                  className={styles.ctaButton}  
-                  as="a"  
-                  href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines"  
-                  target="_blank"  
-                  rel="noopener noreferrer"  
-                >  
-                  Explore More  
-                </Button>  
-              </Card> 
-             */}
 
             <Card className={styles.highlightCard} as="article">  
               <div className={styles.highlightContent}>  
-                {/* Left: Text Content */}  
                 <div className={styles.leftContent}>  
                   <p className={styles.highlightTitle}>  
                     Curious about how MongoDB transforms airline operations?  
@@ -671,16 +628,10 @@ const FlightLayout = ({ children }) => {
                     collections to seamless integrations with Pub/Sub and Vertex AI—you can  
                     explore the possibilities.  
                   </p>  
-
                   <p className={styles.title}>Check out our latest blog post and YouTube video for more insights!</p>
                 </div>  
-              
-                {/* Right: Video + Blog Cover */}  
                 <div className={styles.rightContent}>  
                   <div className={styles.multimediaContainer}> 
-
-                    {/* Blog Cover (Clickable)   */}
-
                     <div className={styles.blogCoverContainer}>  
                       <a  
                         href="https://www.mongodb.com/company/blog/innovationfrom-chaos-to-control-real-time-data-analytics-for-airlines"  
@@ -688,16 +639,15 @@ const FlightLayout = ({ children }) => {
                         rel="noopener noreferrer"  
                       >  
                         <Image  
-                          src="/blog-cover.png" // Correct path with leading slash  
+                          src="/blog-cover.png" 
                           width={300}  
-                          height={300} // Adjust dimensions for square shape  
+                          height={300} 
                           alt="MongoDB Blog Cover"  
                           className={styles.blogCoverImage}  
                         />  
                       </a>  
                     </div>  
 
-                    {/* YouTube Video */}  
                     <iframe  
                       className={styles.youtubeVideo}  
                       src="https://www.youtube.com/embed/RgreCE1eMkU"  
@@ -711,12 +661,7 @@ const FlightLayout = ({ children }) => {
               </div>  
             </Card>  
 
-
-
-            {/* MongoDB Value Cards Section */}  
             <div className={styles.cardContainer}>    
-
-              {/* Add title */}
               <h2 className={styles.titleValues}>  
                 Why MongoDB for Flight Disruption Management?  
               </h2>
@@ -734,14 +679,13 @@ const FlightLayout = ({ children }) => {
 
                 </div>
                 <div className={styles.rightContent}>
-                  {/* Suggested Workflow Diagram */}  
                   <Image  
                     src="/architecture-diagram.png"
                     alt="Event-Driven Architecture Workflow"  
                     width={300}  
                     height={200}  
                     className={styles.cardImage}  
-                    onClick={() => openModal("/architecture-diagram.png")} /* Open modal with the image */  
+                    onClick={() => openModal("/architecture-diagram.png")}
                   />  
                 </div>
               </Card> 

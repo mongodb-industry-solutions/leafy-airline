@@ -6,19 +6,20 @@ import TimeSlider from './TimeSlider'; // Import the TimeSlider component
 
 const SeparationBar = () => <hr className={styles.separationBar} />;
 
-function FilterSection({ response, setResponse, dates_list, airports_list }) {
-  dates_list.sort((a, b) => new Date(b) - new Date(a));
+function FilterSection({ response, setResponse, dates_list, departureOptions, arrivalOptions}) {
+  // dates_list.sort((a, b) => new Date(b) - new Date(a));
 
   const [filters, setFilters] = useState({});
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(dates_list[0]);
+  const [selectedDate, setSelectedDate] = useState('');
   const [departureTime, setDepartureTime] = useState('00:00');
-  const [arrivalTime, setArrivalTime] = useState('00:00');
+  const [arrivalTime, setArrivalTime] = useState('23:50');
   const [selectedDeparture, setSelectedDeparture] = useState('');
   const [selectedArrival, setSelectedArrival] = useState('');
   const initial_filters = {};
+
     
   const fetchResults = async (params) => {
     setLoading(true);
@@ -31,9 +32,11 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+
       const data = await response.json();
-      setResults(data);
-      setResponse(data);
+
+      setResults(data.filteredFlights);
+      setResponse(data.filteredFlights);
 
     } catch (error) {
       setError(error.message);
@@ -44,11 +47,18 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
 
   const applyFilters = () => {
     console.log('Applying filters');
-    console.log(filters);
 
-    // Get the parsed time
-    const dep_time = convertTimeToISO(departureTime);
-    const arr_time = convertTimeToISO(arrivalTime);
+    // Get the parsed time only if date is selected
+    const dep_time = selectedDate !== '' ? convertTimeToISO(departureTime) : null;
+    const arr_time = selectedDate !== '' ? convertTimeToISO(arrivalTime) : null;
+    // const dep_time_UTC = selectedDate !== '' ? convertLocalToUTC(selectedDate, departureTime) : null;
+    // const arr_time_UTC = selectedDate !== '' ? convertLocalToUTC(selectedDate, arrivalTime) : null;
+
+    // If no date selected, rise open a designed modal
+    if (selectedDate === '') {
+      alert('Please select a date before applying time filters.');
+      return;
+    }
 
     // Checking if the params have to be included or not
     const params = {};
@@ -61,36 +71,30 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
       params['arr_arp._id'] = selectedArrival;
     }
 
-    if (dep_time) {
+    if (dep_time !== null) {
       params['dep_time'] = dep_time;
     }
-    if (arr_time) {
+    if (arr_time !== null) {
       params['arr_time'] = arr_time;
     }
 
-    console.log(params);
+    console.log('Params to be sent:', params);
 
     setFilters(params);
     fetchResults(params);
   };
 
   const resetFilters = () => {
-    // Reset the filters after applying the previous ones
-    setSelectedDate(dates_list[0]);
+    setSelectedDate('');
     setDepartureTime('00:00');
-    setArrivalTime('00:00');
+    setArrivalTime('23:50');
     setSelectedDeparture('');
     setSelectedArrival('');
     setFilters(initial_filters);
 
-    // Fetch data without params
     fetchResults(initial_filters);
-    console.log(filters);
   };
 
-  const handleAirportChanges = (setter, value) => {
-    setter(value ? value.substring(0, 3) : []);
-  };
 
   const handleArrivalChange = (e) => setSelectedArrival(e);
   const handleDepartureChange = (e) => setSelectedDeparture(e);
@@ -100,17 +104,15 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
   };
 
   const convertTimeToISO = (timeString) => {
-    // Create the timestamp value for the filtering based on the selected date
-    const [year, month, day] = String(selectedDate).split('-');
+    const [day, month, year] = String(selectedDate).split('-');
     const [hours, minutes] = timeString.split(':');
-    const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
+    const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000`);
     return date.toISOString();
   };
 
-
   return (
     <div className={styles.filterSelection}>
-      <h2>Filter Selection</h2>
+      <h2>Filters</h2>
       <SeparationBar />
 
       <Select
@@ -122,7 +124,7 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
         onChange={(e) => handleDateChange(setSelectedDate, e)}
       >
         {dates_list.map((option) => (
-          <Option key={option} value={option}>{option}</Option>
+          <Option key={option.value} value={option.value}>{option.label}</Option>
         ))}
       </Select>
 
@@ -147,8 +149,8 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
         size={Size.Default}
         onChange={(e) => handleDepartureChange(e)}
       >
-        {airports_list.map((option) => (
-          <Option key={option} value={option}>{option}</Option>
+        {departureOptions.map((option) => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
         ))}
       </Select>
 
@@ -160,8 +162,8 @@ function FilterSection({ response, setResponse, dates_list, airports_list }) {
         size={Size.Default}
         onChange={(e) => handleArrivalChange(e)}
       >
-        {airports_list.map((option) => (
-          <Option key={option} value={option}>{option}</Option>
+        {arrivalOptions.map((option) => (
+          <Option key={option.value} value={option.value}>{option.label}</Option>
         ))}
       </Select>
 

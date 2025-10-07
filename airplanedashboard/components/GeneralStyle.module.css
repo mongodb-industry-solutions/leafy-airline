@@ -96,8 +96,9 @@
 .sidebar {
   background-color: #f8f9fa;
   width: 30%;
-  padding: 1rem;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  /* border-top: 1px solid #ddd; */
 }
 
 .sidebar .filterSelection {
@@ -107,7 +108,6 @@
 
 .content {
   flex: 1;
-  padding: 1rem;
 }
 
 .logo {
@@ -253,8 +253,6 @@
 
 }
 
-
-
 .resultsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -267,7 +265,7 @@
   background: #f4f4f4; /* Background color of the box */
   border: 1px solid #ddd; /* Border color */
   border-radius: 10px; /* Rounded edges */
-  padding: 15px; /* Padding inside the box */
+  padding: 25px; /* Padding inside the box */
   width: calc(50% - 10px); 
   min-width: 350px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */

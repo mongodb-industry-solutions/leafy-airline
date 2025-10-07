@@ -1,9 +1,8 @@
-// pages/api/search.js
-import client from '../../lib/mongodb'; // Importing the MongoClient instance
+import client from '../../lib/mongodb';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
-    res.status(405).end(); // Method Not Allowed
+    res.status(405).end();
     return;
   }
 
