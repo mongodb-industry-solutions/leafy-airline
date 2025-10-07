@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router'; 
 import styles from './GeneralStyle.module.css';
 
+const SeparationBar = () => <hr className={styles.separationBar} />;
 
 function FlightList({flights}) {
     const router = useRouter(); 
@@ -17,19 +18,30 @@ function FlightList({flights}) {
 
       console.log("Rendering flight:", flight_info);
 
-      const date = new Date(flight_info.dep_time);
+      const departDate = new Date(flight_info.dep_time);
+      const arrivalDate = new Date(flight_info.arr_time);
 
-      const day = String(date.getUTCDate()).padStart(2, '0');
-      const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth() returns a zero-based index
-      const year = date.getUTCFullYear();
+      const departTime = String(departDate.getUTCHours()).padStart(2, '0') + ':' + String(departDate.getUTCMinutes()).padStart(2, '0');
+      const departDay = String(departDate.getUTCDate()).padStart(2, '0');
+      const departMonth = String(departDate.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth() returns a zero-based index
+      const departYear = departDate.getUTCFullYear();
 
-      const formattedDate = `${day}-${month}-${year}`;
+      const arrivalTime = String(arrivalDate.getUTCHours()).padStart(2, '0') + ':' + String(arrivalDate.getUTCMinutes()).padStart(2, '0');
+      const arrivalDay = String(arrivalDate.getUTCDate()).padStart(2, '0');
+      const arrivalMonth = String(arrivalDate.getUTCMonth() + 1).padStart(2, '0');
+      const arrivalYear = arrivalDate.getUTCFullYear();
+
+      const formattedArrivalDate = `${arrivalDay}-${arrivalMonth}-${arrivalYear}`;
+      const formattedDepartDate = `${departDay}-${departMonth}-${departYear}`;
 
         return <div 
             key={index} className={styles.resultItem}>
-            <div><strong>Airline:</strong> {flight_info.airline}</div>
             <div><strong>Flight Number:</strong> {flight_info.flight_number}</div>
-            <div><strong>Flight Date:</strong> {formattedDate}</div>
+            <div><strong>Airline:</strong> {flight_info.airline}</div>
+            <SeparationBar />
+            <div><strong>Scheduled Departure:</strong> {departTime} ¦ {formattedDepartDate}</div>
+            <div><strong>Scheduled Arrival:</strong> {arrivalTime} ¦ {formattedArrivalDate}</div>
+
             <div><strong>Departure Airport:</strong> {flight_info.dep_arp.city + ", " + flight_info.dep_arp.country }</div>
             <div><strong>Arrival Airport:</strong> {flight_info.arr_arp.city + ", " + flight_info.arr_arp.country }</div>
             <button onClick={() => handleViewFlight(flight_info._id)} className={styles.viewFlightButton}>View flight</button>
