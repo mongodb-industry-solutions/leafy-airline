@@ -48,17 +48,17 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   const applyFilters = () => {
     console.log('Applying filters');
 
-    // Get selected data
-    console.log('Selected date:', selectedDate);
-    console.log('Selected departure time:', departureTime);
-    console.log('Selected arrival time:', arrivalTime);
-    console.log('Selected departure airport:', selectedDeparture);
-    console.log('Selected arrival airport:', selectedArrival);
-
     // Get the parsed time only if date is selected
     const dep_time = selectedDate !== '' ? convertTimeToISO(departureTime) : null;
     const arr_time = selectedDate !== '' ? convertTimeToISO(arrivalTime) : null;
+    // const dep_time_UTC = selectedDate !== '' ? convertLocalToUTC(selectedDate, departureTime) : null;
+    // const arr_time_UTC = selectedDate !== '' ? convertLocalToUTC(selectedDate, arrivalTime) : null;
 
+    // If no date selected, rise open a designed modal
+    if (selectedDate === '') {
+      alert('Please select a date before applying time filters.');
+      return;
+    }
 
     // Checking if the params have to be included or not
     const params = {};
@@ -77,6 +77,8 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
     if (arr_time !== null) {
       params['arr_time'] = arr_time;
     }
+
+    console.log('Params to be sent:', params);
 
     setFilters(params);
     fetchResults(params);
@@ -104,10 +106,9 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   const convertTimeToISO = (timeString) => {
     const [day, month, year] = String(selectedDate).split('-');
     const [hours, minutes] = timeString.split(':');
-    const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000Z`);
+    const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000`);
     return date.toISOString();
   };
-
 
   return (
     <div className={styles.filterSelection}>

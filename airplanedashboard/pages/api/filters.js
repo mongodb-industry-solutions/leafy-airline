@@ -26,9 +26,11 @@ export default async function handler(req, res) {
   // Adding filters based on query parameters  
   if (params.dep_time) {  
     matchStage['dep_time'] = { $gte: new Date(params.dep_time), $lte: endOfDay(params.dep_time) };  
+    console.log('dep_time filter applied:', matchStage['dep_time']);
   }  
   if (params.arr_time) {  
     matchStage['arr_time'] = { $gte: startOfDay(params.arr_time), $lte: new Date(params.arr_time)};  
+    console.log('arr_time filter applied:', matchStage['arr_time']);
   }  
   if (params['dep_arp._id']) {  
     matchStage['dep_arp._id'] = params['dep_arp._id'];  
