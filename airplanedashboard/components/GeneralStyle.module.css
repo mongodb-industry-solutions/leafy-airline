@@ -96,8 +96,9 @@
 .sidebar {
   background-color: #f8f9fa;
   width: 30%;
-  padding: 1rem;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  /* border-top: 1px solid #ddd; */
 }
 
 .sidebar .filterSelection {
@@ -107,7 +108,6 @@
 
 .content {
   flex: 1;
-  padding: 1rem;
 }
 
 .logo {
