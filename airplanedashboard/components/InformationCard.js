@@ -1,5 +1,4 @@
-import React from 'react';
-import styles from'./InformationCard.module.css'; // Import the CSS file
+import styles from'./InformationCard.module.css';
 import Icon from '@leafygreen-ui/icon';
 
 const InformationCard = ({title, text}) => {
