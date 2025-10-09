@@ -163,7 +163,13 @@ const FlightLayout = ({ children }) => {
 
     const interval = setInterval(async () => {
       try {
-        const response = await fetch("/api/fetchNewestDocument");
+
+        console.log("Fetching newest document for session:", sessionIdState);
+        const response = await fetch("/api/fetchNewestDocument", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ session_id: sessionIdState }),
+        });
         const data = await response.json();
         if (
           data &&
@@ -194,10 +200,15 @@ const FlightLayout = ({ children }) => {
   }, [fetchingStarted, prevAirplanePosition]);
 
   const performAggregation = async () => {
-    // Trigger Aggregation API after starting the simulation
+    
+    console.log("Performing aggregation for session:", sessionIdState);
+
     const aggregationResponse = await fetch("/api/aggregate", {
-      method: "POST",
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ session_id: sessionIdState }),
     });
+
     if (aggregationResponse.ok) {
       console.log("Aggregation triggered successfully.");
     } else {

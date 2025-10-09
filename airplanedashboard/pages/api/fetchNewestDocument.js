@@ -6,8 +6,16 @@ const uri = process.env.MONGO_URI; // Replace with your MongoDB connection strin
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ message: 'Method not allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
+
+  console.log("Inside fetchNewestDocument API");
+  const { session_id } = req.body || {};
+  console.log("Received session_id:", session_id);
+
+  if (!session_id) {
+    return res.status(400).json({ message: "Missing session_id in request body" });
   }
 
   try {
@@ -15,14 +23,22 @@ export default async function handler(req, res) {
     const db = client.db('leafy_airline'); // Replace with your database name
     const collection = db.collection('flight_plane_simulation');
 
-    const newestDocument = await collection.find().sort({ _id: -1 }).limit(1).toArray();
+    // Find latest doc for this session
+    const newestDocument = await collection
+      .find({ session_id })
+      .sort({ _id: -1 })
+      .limit(1)
+      .toArray();
+    
+
     if (newestDocument.length > 0) {
-      console.log('Newest Document:', newestDocument[0]);
-      res.status(200).json(newestDocument[0]);
+      console.log(`Newest document for session ${session_id}:`, newestDocument[0]);
+      return res.status(200).json(newestDocument[0]);
     } else {
-      console.log('No documents found in the collection.');
-      res.status(200).json({ message: 'No documents found' });
+      console.log(`No documents found for session ${session_id}`);
+      return res.status(404).json({ message: `No data found for session ${session_id}` });
     }
+
   } catch (error) {
     console.error('Error retrieving the newest document:', error);
     res.status(500).json({ message: 'Internal Server Error' });
