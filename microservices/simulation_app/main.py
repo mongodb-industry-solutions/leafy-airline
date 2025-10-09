@@ -150,6 +150,9 @@ async def start_scheduler(flight_info:dict):
     # Publish the initial and new path in path topic
     publish_path(flight_info["flight_id"], path_data)
 
+    # Check session id
+    # logging.info("Session ID: %s", flight_info["session_id"])
+
     # Create our Data Simulator for this flight
     simulator = DataSimulator(session_ID = flight_info["session_id"],
                               flight_ID = flight_info["flight_id"],
