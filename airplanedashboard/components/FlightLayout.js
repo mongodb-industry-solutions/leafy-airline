@@ -24,7 +24,7 @@ const FlightLayout = ({ children }) => {
   const router = useRouter();
   const { flightId, sessionId } = router.query; 
 
-  console.log("FlightLayout received flightId:", flightId);
+  // console.log("FlightLayout received flightId:", flightId);
   console.log("FlightLayout received sessionId:", sessionId);
   
   const [sessionIdState, setSessionIdState] = useState(sessionId || null);
@@ -265,6 +265,8 @@ const FlightLayout = ({ children }) => {
 
     const start_url = app_url + "/start-scheduler";
     const app_data = {
+      // Adding sessionId to the payload
+      session_id: sessionIdState,
       flight_id: flightId,
       dep_code: selectedFlight.dep_arp._id,
       arr_code: selectedFlight.arr_arp._id,

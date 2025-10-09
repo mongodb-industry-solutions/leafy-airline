@@ -5,8 +5,8 @@ const uri = process.env.MONGO_URI;
 const options = { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 5000 };
 
 let client;
-let changeStream;
 let io;
+let changeStream;
 
 const connectToDatabase = async () => {
   if (!client) {
@@ -26,7 +26,7 @@ const connectToDatabase = async () => {
 const changeStreamHandler = async () => {
   console.log("Starting change stream handler...");
   const db = await connectToDatabase();
-  const collection = db.collection('flight_plane_simulation');
+  const collection = db.collection('flight_costs1');
 
   changeStream = collection.watch([
     { $match: { $or: [{ 'operationType': 'insert' }, { 'operationType': 'update' }] } }
@@ -35,23 +35,23 @@ const changeStreamHandler = async () => {
   changeStream.on('change', async (change) => {
     console.log("Change detected:", change);
 
-    let updateData = null;
+    let alert = null;
 
     if (change.operationType === 'insert') {
       const document = change.fullDocument;
-      if (document.mostRecentLat !== undefined && document.mostRecentLong !== undefined) {
-        updateData = document;
+      if (document.input.Delay_Time !== undefined) {
+        alert = document;
       }
     } else if (change.operationType === 'update') {
       const updatedFields = change.updateDescription?.updatedFields;
-      if (updatedFields?.mostRecentLat !== undefined || updatedFields?.mostRecentLong !== undefined) {
+      if (updatedFields?.input.Delay_Time !== undefined) {
         const document = await collection.findOne({ _id: change.documentKey._id });
-        updateData = { ...document, ...updatedFields };
+        alert = { ...document, ...updatedFields };
       }
     }
 
-    if (updateData && io) {
-      io.of('/flight_plane_simulation').emit('flight_plane_simulation_update', updateData);
+    if (alert && io) {
+      io.emit('alert', alert);
     }
   });
 
@@ -68,7 +68,7 @@ const changeStreamHandler = async () => {
   });
 };
 
-const flightPlaneSimulationSocketHandler = (req, res) => {
+const socketHandler = (req, res) => {
   if (res.socket.server.io) {
     console.log("Socket.IO already initialized.");
     return res.end();
@@ -78,11 +78,8 @@ const flightPlaneSimulationSocketHandler = (req, res) => {
   io = new Server(res.socket.server);
   res.socket.server.io = io;
 
-  const namespace = io.of('/flight_plane_simulation');
-  namespace.on('connection', (socket) => {
-    console.log('Client connected to flight_plane_simulation namespace');
-    socket.emit('flight_plane_simulation_update', { mostRecentLat: null, mostRecentLong: null });
-  });
+  io.emit('alert', { Delay_Time: null });
+  console.log('Initial alert emitted to clients: No Delay');
 
   changeStreamHandler();
   res.end();
@@ -99,4 +96,4 @@ process.on('SIGINT', async () => {
   process.exit(0);
 });
 
-export default flightPlaneSimulationSocketHandler;
+export default socketHandler;
