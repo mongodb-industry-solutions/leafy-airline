@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar';
 import FilterSection from '../components/FilterSection';
 import styles from '../components/GeneralStyle.module.css';
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
 
@@ -21,10 +22,6 @@ export default function Home() {
 
   // Create a unique session ID for the user
   const [sessionId, setSessionId] = useState(crypto.randomUUID());
-  // useEffect(() => {
-  //   const id = crypto.randomUUID();
-  //   setSessionId(id);
-  // }, []);
 
   const fetchData = async () => {
     try {
@@ -70,6 +67,19 @@ export default function Home() {
   useEffect(() => {
     fetchData();
   }, []); // Empty dependency array ensures this runs only once
+
+  useEffect(() => {
+    // Check if session_id already exists in this browser tab
+    let storedId = sessionStorage.getItem('session_id');
+    if (!storedId) {
+      storedId = uuidv4(); // generate once
+      sessionStorage.setItem('session_id', storedId);
+      console.log('Generated new session_id:', storedId);
+    } else {
+      console.log('Reusing existing session_id:', storedId);
+    }
+    setSessionId(storedId);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
