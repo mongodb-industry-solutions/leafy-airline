@@ -127,6 +127,7 @@ async def start_scheduler(flight_info:dict):
     for the selected flight.
     This data will be provided in the POST call that will trigger this function
     and it will be a dictionary containing:
+        - session_id
         - flight_id
         - dep_code
         - arr_code
@@ -150,7 +151,8 @@ async def start_scheduler(flight_info:dict):
     publish_path(flight_info["flight_id"], path_data)
 
     # Create our Data Simulator for this flight
-    simulator = DataSimulator(flight_info["flight_id"],
+    simulator = DataSimulator(session_ID = flight_info["session_id"],
+                              flight_ID = flight_info["flight_id"],
                               disruption = disrupted,
                               path_atrib = path_data, 
                               seconds_per_iter= 300)
