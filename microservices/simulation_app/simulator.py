@@ -97,8 +97,9 @@ class CoordinateTransformer:
 
 class DataSimulator:
 
-    def __init__(self, flight_ID : str, disruption : bool,  path_atrib: dict, seconds_per_iter: int):
-        
+    def __init__(self, session_ID : str, flight_ID : str, disruption : bool,  path_atrib: dict, seconds_per_iter: int):
+
+        self.SID = session_ID
         self.FID = flight_ID
         self.disruption = disruption
 
@@ -204,6 +205,7 @@ class DataSimulator:
         Returns:
         1. finished : Boolean that states if we've reached our arrival point
         2. Simulated data : dict containing
+            - session_id
             - flight_id
             - ts 
             - disrupted : Boolean that shows if the route was disrupted
@@ -265,6 +267,7 @@ class DataSimulator:
 
 
         return (self.arrived, {
+            "session_id": self.SID,
             "flight_id": self.FID,
             "ts": new_ts.isoformat(),
 

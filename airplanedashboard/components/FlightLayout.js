@@ -109,7 +109,10 @@ const FlightLayout = ({ children }) => {
   useEffect(() => {
     if (apiKey) {
       // Connect to WebSocket server
-      const socket = io(); // Connect to the WebSocket server
+      // const socket = io(); 
+      const socket = io({
+        query: { session_id: sessionIdState },
+      });
 
       socket.on("alert", (alert) => {
         console.log("Alert received:", alert);

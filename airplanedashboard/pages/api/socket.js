@@ -2,7 +2,9 @@ import { MongoClient } from 'mongodb';
 import { Server } from 'socket.io';
 
 const uri = process.env.MONGO_URI;
-const options = { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 5000 };
+const options = { useNewUrlParser: true,
+                  useUnifiedTopology: true,
+                  serverSelectionTimeoutMS: 5000 };
 
 let client;
 let io;
@@ -10,7 +12,7 @@ let changeStream;
 
 const connectToDatabase = async () => {
   if (!client) {
-    console.log("Connecting to MongoDB...");
+    // console.log("Connecting to MongoDB...");
     client = new MongoClient(uri, options);
     try {
       await client.connect();
@@ -39,19 +41,24 @@ const changeStreamHandler = async () => {
 
     if (change.operationType === 'insert') {
       const document = change.fullDocument;
-      if (document.input.Delay_Time !== undefined) {
+      if (document.input?.Delay_Time !== undefined && document.session_id) {
         alert = document;
       }
+
     } else if (change.operationType === 'update') {
       const updatedFields = change.updateDescription?.updatedFields;
       if (updatedFields?.input.Delay_Time !== undefined) {
         const document = await collection.findOne({ _id: change.documentKey._id });
-        alert = { ...document, ...updatedFields };
+        if (document?.session_id) {
+          alert = { ...document, ...updatedFields };
+        }
       }
     }
 
-    if (alert && io) {
-      io.emit('alert', alert);
+    // Emit the alert only to the corresponding session room
+    if (alert && io && alert.session_id) {
+      console.log(`Emitting alert to session room: ${alert.session_id}`);
+      io.to(alert.session_id).emit('alert', alert);
     }
   });
 
@@ -78,10 +85,31 @@ const socketHandler = (req, res) => {
   io = new Server(res.socket.server);
   res.socket.server.io = io;
 
-  io.emit('alert', { Delay_Time: null });
-  console.log('Initial alert emitted to clients: No Delay');
+  // Handle client connections
+  io.on('connection', (socket) => {
+    const { session_id } = socket.handshake.query;
+    console.log(`Client connected with session_id: ${session_id}`);
 
-  changeStreamHandler();
+    if (session_id) {
+      // Join the user into their own session room
+      socket.join(session_id);
+      socket.emit('session_ack', { message: `Joined session room ${session_id}` });
+      console.log(`Client joined room: ${session_id}`);
+    }
+
+    socket.on('disconnect', () => {
+      console.log(`Client disconnected from session ${session_id}`);
+    });
+  });
+
+  // io.emit('alert', { Delay_Time: null });
+  // console.log('Initial alert emitted to clients: No Delay');
+
+  // changeStreamHandler();
+  // res.end();
+
+  // Start MongoDB change stream
+  changeStreamHandler().catch(console.error);
   res.end();
 };
 
