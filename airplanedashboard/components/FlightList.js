@@ -22,7 +22,7 @@ function FlightList({flights, sessionId}) {
 
     function FlightCard({index, flight_info}) {
 
-      console.log("Rendering flight:", flight_info);
+      // console.log("Rendering flight:", flight_info);
 
       const departDate = new Date(flight_info.dep_time);
       const arrivalDate = new Date(flight_info.arr_time);
