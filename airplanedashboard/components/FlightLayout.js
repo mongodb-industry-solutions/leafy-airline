@@ -204,7 +204,7 @@ const FlightLayout = ({ children }) => {
       } catch (error) {
         console.error("Error fetching the newest document:", error);
       }
-    }, 3500); // Fetch every 3.5 seconds
+    }, 3500); // Fetch every 2.5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);
@@ -231,7 +231,7 @@ const FlightLayout = ({ children }) => {
 
   useEffect(() => {
     if (simulationStarted) {
-      const aggregationInterval = setInterval(performAggregation, 2500); // 5 seconds in milliseconds
+      const aggregationInterval = setInterval(performAggregation, 3500); // 5 seconds in milliseconds
       return () => clearInterval(aggregationInterval);
     }
   }, [simulationStarted]);

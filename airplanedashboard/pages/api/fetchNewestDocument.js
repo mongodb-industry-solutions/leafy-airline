@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     // Find latest doc for this session
     const newestDocument = await collection
-      .find({ session_id })
+      .find({ "session_id": session_id })
       .sort({ _id: -1 })
       .limit(1)
       .toArray();
