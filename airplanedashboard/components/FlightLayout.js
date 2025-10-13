@@ -63,7 +63,7 @@ const FlightLayout = ({ children }) => {
       // Fetch data from flight_info API with flightId filter
       if (flightIdState) {
 
-        console.log("Fetching data for flightId:", flightIdState);
+        // console.log("Fetching data for flightId:", flightIdState);
 
         const res = await fetch("/api/flight_info",
           { method: "POST",
@@ -122,7 +122,7 @@ const FlightLayout = ({ children }) => {
       });
 
       socket.on("alert", (alert) => {
-        console.log("Alert received:", alert);
+        // console.log("Alert received:", alert);
         if (alert && alert.input.Delay_Time !== undefined) {
           setDelayTime(alert.input.Delay_Time); // Round the delay time before setting it
         }
@@ -173,7 +173,7 @@ const FlightLayout = ({ children }) => {
     const interval = setInterval(async () => {
       try {
 
-        console.log("Fetching newest document for session:", sessionIdState);
+        // console.log("Fetching newest document for session:", sessionIdState);
         const response = await fetch("/api/fetchNewestDocument", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -211,7 +211,7 @@ const FlightLayout = ({ children }) => {
 
   const performAggregation = async () => {
     
-    console.log("Performing aggregation for session:", sessionIdState);
+    // console.log("Performing aggregation for session:", sessionIdState);
 
     const aggregationResponse = await fetch("/api/aggregate", {
     method: "POST",
@@ -268,7 +268,7 @@ const FlightLayout = ({ children }) => {
       lat: flight.disruption_coords.lat,
       lng: flight.disruption_coords.long,
     });
-    console.log("Disruption setted");
+    // console.log("Disruption setted");
     setDisrupEmpty(false);
   };
 
@@ -280,12 +280,12 @@ const FlightLayout = ({ children }) => {
     const resolvedPath = path.map((code) => airports_dict[code] || code);
 
     setNewPath(resolvedPath);
-    console.log(resolvedPath);
+    // console.log(resolvedPath);
   };
 
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
-    console.log("Starting simulation");
+    // console.log("Starting simulation");
 
     const start_url = app_url + "/start-scheduler";
     const app_data = {

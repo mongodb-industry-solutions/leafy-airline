@@ -7,7 +7,7 @@ const SeparationBar = () => <hr className={styles.separationBar} />;
 function FlightList({flights, sessionId}) {
     const router = useRouter(); 
 
-    console.log("Rendering FlightList with flights:", flights);
+    // console.log("Rendering FlightList with flights:", flights);
 
     const handleViewFlight = (flightId) => {
       // console.log("Viewing flight with ID:", flightId);

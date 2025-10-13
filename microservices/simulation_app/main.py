@@ -98,7 +98,7 @@ def publish_path(flight_id, path_data):
     path_publisher.publish(path_topic, data)
 
 
-    print("Path published: ", data)
+    # print("Path published: ", data)
 
     return {"status": "New path published"}
 

@@ -226,7 +226,7 @@ class DataSimulator:
 
         if not self.arrived:
 
-            print('\nNew measurements: ')
+            # print('\nNew measurements: ')
 
             # Distance to next point in km
             distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
@@ -252,8 +252,8 @@ class DataSimulator:
             distance_to_arrival = self.dist_to_arrival(new_loc)
             new_dist_to_head = self.get_real_distance(new_loc, self.headed_point)
 
-            print('Distance to headed: ', new_dist_to_head)
-            print('Distance to arrival: ', distance_to_arrival)
+            # print('Distance to headed: ', new_dist_to_head)
+            # print('Distance to arrival: ', distance_to_arrival)
         
             new_ts = datetime.now(pytz.utc)
 
@@ -264,6 +264,8 @@ class DataSimulator:
             self.prev_location = new_loc
             self.prev_speed = new_speed
             self.timestamp = new_ts
+
+            print("Session ", self.SID," - Location: ", new_loc, " - Dist to arr: ", distance_to_arrival)
 
 
         return (self.arrived, {
