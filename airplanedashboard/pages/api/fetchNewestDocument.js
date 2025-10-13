@@ -1,26 +1,25 @@
 // pages/api/fetchNewestDocument.js
+// import { MongoClient } from 'mongodb';
+import clientPromise from '../../lib/mongo';
 
-import { MongoClient } from 'mongodb';
-
-const uri = process.env.MONGO_URI; // Replace with your MongoDB connection string
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = await clientPromise;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  console.log("Inside fetchNewestDocument API");
+  // console.log("Inside fetchNewestDocument API");
   const { session_id } = req.body || {};
-  console.log("Received session_id:", session_id);
+  // console.log("Received session_id:", session_id);
 
   if (!session_id) {
     return res.status(400).json({ message: "Missing session_id in request body" });
   }
 
   try {
-    await client.connect();
-    const db = client.db('leafy_airline'); // Replace with your database name
+    // await client.connect();
+    const db = client.db('leafy_airline');
     const collection = db.collection('flight_plane_simulation');
 
     // Find latest doc for this session
@@ -43,6 +42,6 @@ export default async function handler(req, res) {
     console.error('Error retrieving the newest document:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   } finally {
-    await client.close();
+    // await client.close();
   }
 }

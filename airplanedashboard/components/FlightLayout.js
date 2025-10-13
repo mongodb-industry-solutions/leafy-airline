@@ -60,34 +60,11 @@ const FlightLayout = ({ children }) => {
 
   async function fetchData() {
     try {
-      // const res = await fetch("/api/flights");
-      // const data = await res.json();
-      // setFlightData(data);
-
-
-      // if (flightId) {
-
-      //   const flight = data.find(
-      //     (flight) =>
-      //       flight._id && flight._id.toString() === flightId.toString()
-      //   );
-      //   if (flight) {
-      //     setSelectedFlight(flight);
-
-      //     if (simulationStarted) {
-      //       getNewPath(flight);
-      //       getNewDisrup(flight);
-      //     }
-      //   } else {
-      //     console.error("No flight found with ID:", flightId);
-      //   }
-      // }
-
       // Fetch data from flight_info API with flightId filter
       if (flightIdState) {
 
         console.log("Fetching data for flightId:", flightIdState);
-        
+
         const res = await fetch("/api/flight_info",
           { method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -111,6 +88,7 @@ const FlightLayout = ({ children }) => {
     }
   }
 
+  // Fetch Google Maps API key from backend
   useEffect(() => {
     async function fetchApiKey() {
       try {
@@ -124,16 +102,21 @@ const FlightLayout = ({ children }) => {
     fetchApiKey();
   }, []);
 
+  // Update params when we get the apiKey
   useEffect(() => {
     if (apiKey) {
       fetchData();
     }
-  }, [flightId, simulationStarted, apiKey]);
+  }, [flightIdState, simulationStarted, apiKey]);
 
+
+  // Connect to WebSocket server when apiKey is available
   useEffect(() => {
     if (apiKey) {
       // Connect to WebSocket server
       // const socket = io(); 
+
+      // Pass session_id as a query parameter to identify the session 
       const socket = io({
         query: { session_id: sessionIdState },
       });
@@ -168,6 +151,7 @@ const FlightLayout = ({ children }) => {
     }
   }, [apiKey]);
 
+  //  Update sumCost whenever totalExpectedFuelCost or delayCost changes
   useEffect(() => {
     if (apiKey) {
       if (totalExpectedFuelCost !== null && delayCost !== null) {
@@ -182,6 +166,7 @@ const FlightLayout = ({ children }) => {
     }
   }, [totalExpectedFuelCost, delayCost, apiKey]);
 
+
   useEffect(() => {
     if (!fetchingStarted) return;
 
@@ -194,6 +179,7 @@ const FlightLayout = ({ children }) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ session_id: sessionIdState }),
         });
+
         const data = await response.json();
         if (
           data &&
@@ -218,7 +204,7 @@ const FlightLayout = ({ children }) => {
       } catch (error) {
         console.error("Error fetching the newest document:", error);
       }
-    }, 2500); // Fetch every 2.5 seconds
+    }, 3500); // Fetch every 3.5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);

@@ -1,28 +1,12 @@
 import { MongoClient, ObjectId} from 'mongodb';
+import clientPromise from '../../lib/mongo';
 
-const uri = process.env.MONGO_URI;
-
-let cachedClient = null;
-let cachedDb = null;
-
-async function connectToDatabase() {
-  if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
-  }
-
-  const client = new MongoClient(uri);
-  await client.connect();
-  const db = client.db('leafy_airline'); 
-
-  cachedClient = client;
-  cachedDb = db;
-  return { client, db };
-}
+const client = await clientPromise;
+const db = client.db('leafy_airline');
 
 export default async function handler(req, res) {
   try {
-    const { db } = await connectToDatabase();
-
+    
     const flightsCollection = db.collection('flights');
 
     // Get flightId from body parameters

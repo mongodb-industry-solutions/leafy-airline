@@ -1,8 +1,9 @@
 import { MongoClient } from "mongodb";
+import clientPromise from "../../lib/mongo";
 
 export async function runAggregation(session_id) {
-  const MONGO_URI = process.env.MONGO_URI;
-  const client = new MongoClient(MONGO_URI);
+
+  const client = await clientPromise;
   const dbName = "leafy_airline";
   const collectionName = "flight_realtimeCF";
   const outputCollection = "flight_plane_simulation";
@@ -14,7 +15,7 @@ export async function runAggregation(session_id) {
   console.log(`Starting aggregation for session ${session_id}`);
 
   try {
-    await client.connect();
+
     const database = client.db(dbName);
     const collection = database.collection(collectionName);
 
@@ -53,7 +54,7 @@ export async function runAggregation(session_id) {
   } catch (error) {
     console.error(`Error during aggregation for ${session_id}:`, error);
   } finally {
-    await client.close();
+    // await client.close();
   }
 }
 
