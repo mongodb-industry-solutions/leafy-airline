@@ -1,33 +1,26 @@
-import { MongoClient } from 'mongodb';
+// import { MongoClient } from 'mongodb';
 import { Server } from 'socket.io';
+import clientPromise from '../../lib/mongo';
 
 const uri = process.env.MONGO_URI;
 const options = { useNewUrlParser: true,
                   useUnifiedTopology: true,
                   serverSelectionTimeoutMS: 5000 };
 
-let client;
 let io;
 let changeStream;
+let client;
 
-const connectToDatabase = async () => {
-  if (!client) {
-    // console.log("Connecting to MongoDB...");
-    client = new MongoClient(uri, options);
-    try {
-      await client.connect();
-      console.log("Connected to MongoDB.");
-    } catch (error) {
-      console.error("Failed to connect to MongoDB:", error);
-      throw error;
-    }
-  }
-  return client.db('leafy_airline');
-};
 
 const changeStreamHandler = async () => {
   console.log("Starting change stream handler...");
-  const db = await connectToDatabase();
+  
+  
+  const client = await clientPromise;
+  const db = client.db('leafy_airline');
+
+  console.log("Connected to MongoDB");
+
   const collection = db.collection('flight_costs1');
 
   changeStream = collection.watch([
@@ -114,13 +107,13 @@ const socketHandler = (req, res) => {
 };
 
 process.on('SIGINT', async () => {
-  console.log("Closing MongoDB client and change stream...");
+  // console.log("Closing MongoDB client and change stream...");
   if (changeStream) {
     await changeStream.close();
   }
-  if (client) {
-    await client.close();
-  }
+  // if (client) {
+  //   // await client.close();
+  // }
   process.exit(0);
 });
 

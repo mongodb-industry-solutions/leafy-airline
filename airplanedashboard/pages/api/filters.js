@@ -1,10 +1,9 @@
+import clientPromise from "../../lib/mongo";
 
-import client from '../../lib/mongodb'; // Import the MongoClient instance  
-  
-const endOfDay = (dateStr) => {  
-  const date = new Date(dateStr);  
-  date.setHours(23, 50, 0, 0);  
-  return date;  
+const endOfDay = (dateStr) => {
+  const date = new Date(dateStr);
+  date.setHours(23, 50, 0, 0);
+  return date;
 };  
 
 const startOfDay = (dateStr) => {
@@ -20,7 +19,6 @@ export default async function handler(req, res) {
   }  
   
   const params = req.query;  
-  
   const matchStage = {}; // Initial `$match` stage for filtering documents  
   
   // Adding filters based on query parameters  
@@ -38,13 +36,14 @@ export default async function handler(req, res) {
   if (params['arr_arp._id']) {  
     matchStage['arr_arp._id'] = params['arr_arp._id'];  
   }  
-  
-  try {  
-    const db = client.db('leafy_airline');  
-    const collection = db.collection('flights');  
-  
-    // Aggregation pipeline with `$facet`  
-    const aggregationPipeline = [  
+
+  try {
+    const client = await clientPromise;
+    const db = client.db('leafy_airline');
+    const collection = db.collection('flights');
+
+    // Aggregation pipeline with `$facet`
+    const aggregationPipeline = [
       { $match: matchStage }, // Match stage to filter results  
   
       {  
