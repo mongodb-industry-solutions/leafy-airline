@@ -28,7 +28,7 @@ const changeStreamHandler = async () => {
   ]);
 
   changeStream.on('change', async (change) => {
-    console.log("Change detected:", change);
+    // console.log("Change detected:", change);
 
     let alert = null;
 

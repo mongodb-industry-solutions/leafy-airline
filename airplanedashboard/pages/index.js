@@ -34,7 +34,7 @@ export default function Home() {
 
       // Dates and airports fetched successfully
       const facetsData = await facetsResponse.json();
-      console.log('Facets Data:', facetsData);
+      // console.log('Facets Data:', facetsData);
 
       // Extract dates and format to show count
       const datesData = facetsData.dates.map((date) => ({
@@ -76,7 +76,7 @@ export default function Home() {
       sessionStorage.setItem('session_id', storedId);
       console.log('Generated new session_id:', storedId);
     } else {
-      console.log('Reusing existing session_id:', storedId);
+      // console.log('Reusing existing session_id:', storedId);
     }
     setSessionId(storedId);
   }, []);

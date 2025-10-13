@@ -31,7 +31,7 @@ export default async function handler(req, res) {
     
 
     if (newestDocument.length > 0) {
-      console.log(`Newest document for session ${session_id}:`, newestDocument[0]);
+      // console.log(`Newest document for session ${session_id}:`, newestDocument[0]);
       return res.status(200).json(newestDocument[0]);
     } else {
       console.log(`No documents found for session ${session_id}`);
