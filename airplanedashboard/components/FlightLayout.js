@@ -24,11 +24,11 @@ const FlightLayout = ({ children }) => {
   const router = useRouter();
   const { flightId, sessionId } = router.query; 
 
-  // console.log("FlightLayout received flightId:", flightId);
-  console.log("FlightLayout received sessionId:", sessionId);
+  console.log("FlightLayout received flightId:", flightId);
+  // console.log("FlightLayout received sessionId:", sessionId);
   
   const [sessionIdState, setSessionIdState] = useState(sessionId || null);
-  const [flightData, setFlightData] = useState([]);
+  const [flightIdState, setFlightIdState] = useState(flightId || null);
   const [selectedFlight, setSelectedFlight] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [delayTime, setDelayTime] = useState(null);
@@ -60,29 +60,53 @@ const FlightLayout = ({ children }) => {
 
   async function fetchData() {
     try {
-      const res = await fetch("/api/flights");
-      const data = await res.json();
-      setFlightData(data);
+      // const res = await fetch("/api/flights");
+      // const data = await res.json();
+      // setFlightData(data);
 
 
-      if (flightId) {
+      // if (flightId) {
 
-        const flight = data.find(
-          (flight) =>
-            flight._id && flight._id.toString() === flightId.toString()
-        );
-        if (flight) {
-          setSelectedFlight(flight);
+      //   const flight = data.find(
+      //     (flight) =>
+      //       flight._id && flight._id.toString() === flightId.toString()
+      //   );
+      //   if (flight) {
+      //     setSelectedFlight(flight);
 
-          if (simulationStarted) {
-            getNewPath(flight);
-            getNewDisrup(flight);
+      //     if (simulationStarted) {
+      //       getNewPath(flight);
+      //       getNewDisrup(flight);
+      //     }
+      //   } else {
+      //     console.error("No flight found with ID:", flightId);
+      //   }
+      // }
+
+      // Fetch data from flight_info API with flightId filter
+      if (flightIdState) {
+
+        console.log("Fetching data for flightId:", flightIdState);
+        
+        const res = await fetch("/api/flight_info",
+          { method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ flight_id: flightIdState })
           }
-        } else {
-          console.error("No flight found with ID:", flightId);
+        );
+
+        const flight = await res.json();
+        setSelectedFlight(flight);
+
+        if (simulationStarted) {
+          getNewPath(flight);
+          getNewDisrup(flight);
         }
+      } else {
+        console.error("flightId is not defined in the query parameters.");
       }
-    } catch (error) {
+        
+      } catch (error) {
       console.error("Error fetching data:", error);
     }
   }
