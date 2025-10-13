@@ -339,7 +339,7 @@ const FlightLayout = ({ children }) => {
   };
 
   const resetSimulation = async () => {
-    const reset_url = app_url + "/reset-scheduler";
+    const reset_url = `${app_url}/reset-scheduler/${sessionIdState}`;
 
     try {
       const response = await fetch(reset_url, {
