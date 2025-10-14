@@ -192,6 +192,8 @@ const FlightLayout = ({ children }) => {
             lng: data.mostRecentLong,
           };
 
+          console.log("Latest position:", newPosition);
+
           if (prevAirplanePosition) {
             // Check if simulation has ended (no movement)
             const sameLat = newPosition.lat === prevAirplanePosition.lat;
@@ -218,7 +220,7 @@ const FlightLayout = ({ children }) => {
       } catch (error) {
         console.error("Error fetching the newest document:", error);
       }
-    }, 3500); // Fetch every 2.5 seconds
+    }, 5000); // Fetch every 2.5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);
@@ -227,11 +229,15 @@ const FlightLayout = ({ children }) => {
     
     // console.log("Performing aggregation for session:", sessionIdState);
 
+
+    console.time(`agg-${sessionIdState}`);
     const aggregationResponse = await fetch("/api/aggregate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ session_id: sessionIdState }),
     });
+
+    console.timeEnd(`agg-${sessionIdState}`);
 
     if (aggregationResponse.ok) {
       console.log("Aggregation triggered successfully.");
@@ -245,7 +251,7 @@ const FlightLayout = ({ children }) => {
 
   useEffect(() => {
   if (simulationStarted && !simulationEnded) {
-    const aggregationInterval = setInterval(performAggregation, 3500);
+    const aggregationInterval = setInterval(performAggregation, 5000);
     return () => clearInterval(aggregationInterval);
   }
 }, [simulationStarted, simulationEnded]);
