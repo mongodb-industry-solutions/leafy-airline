@@ -641,7 +641,7 @@ const FlightLayout = ({ children }) => {
                 <Button
                   className={styles.simulationButton}
                   onClick={startSimulation}
-                  disabled={simulationStarted && !simulationEnded}
+                  disabled={simulationStarted}
                 >
                   Start Simulation
                 </Button>
