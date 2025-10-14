@@ -42,6 +42,7 @@ const FlightLayout = ({ children }) => {
 
   const [simulationStarted, setSimulationStarted] = useState(false);
   const [fetchingStarted, setFetchingStarted] = useState(false); 
+  const [simulationEnded, setSimulationEnded] = useState(false);
 
   const [loading, setLoading] = useState(false); 
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
@@ -192,15 +193,28 @@ const FlightLayout = ({ children }) => {
           };
 
           if (prevAirplanePosition) {
+            // Check if simulation has ended (no movement)
+            const sameLat = newPosition.lat === prevAirplanePosition.lat;
+            const sameLng = newPosition.lng === prevAirplanePosition.lng;
+
+            if (sameLat && sameLng && !simulationEnded) {
+              console.log("Simulation has ended.");
+              setSimulationEnded(true);
+              clearInterval(interval); // stop polling
+              return;
+            }
+
+            // If plane moved, update heading and continue
             const heading = calculateHeading(prevAirplanePosition, newPosition);
             setAirplanePosition({ ...newPosition, heading });
           } else {
             setAirplanePosition(newPosition);
           }
 
-          setFlightPath((prevPath) => [...prevPath, newPosition]); // Append to flight path
-          setPrevAirplanePosition(newPosition); // Update previous position
+          setFlightPath((prevPath) => [...prevPath, newPosition]);
+          setPrevAirplanePosition(newPosition);
         }
+
       } catch (error) {
         console.error("Error fetching the newest document:", error);
       }
@@ -230,11 +244,11 @@ const FlightLayout = ({ children }) => {
   };
 
   useEffect(() => {
-    if (simulationStarted) {
-      const aggregationInterval = setInterval(performAggregation, 3500); // 5 seconds in milliseconds
-      return () => clearInterval(aggregationInterval);
-    }
-  }, [simulationStarted]);
+  if (simulationStarted && !simulationEnded) {
+    const aggregationInterval = setInterval(performAggregation, 3500);
+    return () => clearInterval(aggregationInterval);
+  }
+}, [simulationStarted, simulationEnded]);
 
   const calculateHeading = (from, to) => {
     const lat1 = (from.lat * Math.PI) / 180;
