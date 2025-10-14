@@ -388,6 +388,7 @@ const FlightLayout = ({ children }) => {
 
       // Reset the simulation status
       setSimulationStarted(false);
+      setSimulationEnded(false);
       setNewPath([]);
       setDisruption({});
       setDisrupEmpty(true);
@@ -640,6 +641,7 @@ const FlightLayout = ({ children }) => {
                 <Button
                   className={styles.simulationButton}
                   onClick={startSimulation}
+                  disabled={simulationStarted && !simulationEnded}
                 >
                   Start Simulation
                 </Button>
