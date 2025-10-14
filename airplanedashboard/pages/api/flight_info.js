@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const { flight_id } = req.body;
     console.log("Received flightId:", flight_id);
     const flight = await flightsCollection.find({ _id: new ObjectId(flight_id) }).toArray();
-    console.log("Fetched flight:", flight);
+    // console.log("Fetched flight:", flight);
 
     if (!flight) {
       return res.status(404).json({ error: 'Flight not found' });

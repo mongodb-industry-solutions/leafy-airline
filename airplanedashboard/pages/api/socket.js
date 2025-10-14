@@ -50,7 +50,7 @@ const changeStreamHandler = async () => {
 
     // Emit the alert only to the corresponding session room
     if (alert && io && alert.session_id) {
-      console.log(`Emitting alert to session room: ${alert.session_id}`);
+      // console.log(`Emitting alert to session room: ${alert.session_id}`);
       io.to(alert.session_id).emit('alert', alert);
     }
   });

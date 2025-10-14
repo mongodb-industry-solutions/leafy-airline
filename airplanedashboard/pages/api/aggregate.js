@@ -12,7 +12,7 @@ export async function runAggregation(session_id) {
     throw new Error("Missing session_id for aggregation");
   }
 
-  console.log(`Starting aggregation for session ${session_id}`);
+  // console.log(`Starting aggregation for session ${session_id}`);
 
   try {
 
@@ -50,7 +50,7 @@ export async function runAggregation(session_id) {
     ];
 
     const result = await collection.aggregate(pipeline).toArray();
-    console.log(`Aggregation for session ${session_id} completed`);
+    // console.log(`Aggregation for session ${session_id} completed`);
   } catch (error) {
     console.error(`Error during aggregation for ${session_id}:`, error);
   } finally {
