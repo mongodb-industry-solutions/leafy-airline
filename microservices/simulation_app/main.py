@@ -7,6 +7,7 @@ import logging
 import os
 import json
 from google.cloud import pubsub_v1
+import threading
 
 
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
@@ -40,6 +41,7 @@ logging.basicConfig(
 # SCHEDULER : Calls my function (simulator) every x seconds
 measurement_interval = 2.5
 sessions = {}
+sessions_lock = threading.Lock()
 
 scheduler = BackgroundScheduler()
 scheduler.start()
@@ -71,18 +73,36 @@ def publish_data(simulator : DataSimulator):
     data_publisher.publish(data_topic, data_bytes)
     print(f"[{simulator.SID}] Data published")
 
+    # IMPORTANT - IF THREADING ISSUES, UNCOMMENT THIS AND COMMENT BELOW
+    # if finished:
+
+    #     sid = simulator.SID
+    #     if sid in sessions:
+    #         try:
+    #             sessions[sid]["scheduler"].remove_job(sid)
+    #             del sessions[sid]
+    #             logging.info(f"Session {sid} finished — job removed and session cleared.")
+    #         except Exception as e:
+    #             logging.error(f"Error stopping finished session {sid}: {e}")
+
+
+    # return {"status": "New data published"}
+
     if finished:
-
         sid = simulator.SID
-        if sid in sessions:
-            try:
-                sessions[sid]["scheduler"].remove_job(sid)
-                del sessions[sid]
-                logging.info(f"Session {sid} finished — job removed and session cleared.")
-            except Exception as e:
-                logging.error(f"Error stopping finished session {sid}: {e}")
-
-
+        # Use scheduler.remove_job directly and protect sessions dict with a lock
+        with sessions_lock:
+            if sid in sessions:
+                try:
+                    # remove job by id
+                    scheduler.remove_job(sid)
+                except Exception as e:
+                    logging.error(f"Error removing job {sid}: {e}")
+                try:
+                    del sessions[sid]
+                    logging.info(f"Session {sid} finished — job removed and session cleared.")
+                except KeyError:
+                    logging.error(f"Tried to delete session {sid} but it was already removed.")
     return {"status": "New data published"}
 
 def publish_path(flight_id, path_data):
