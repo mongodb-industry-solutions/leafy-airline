@@ -18,14 +18,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    // await client.connect();
+    const collectionName = 'flight_plane_simulation'
     const db = client.db('leafy_airline');
-    const collection = db.collection('flight_plane_simulation');
+    const collection = db.collection(collectionName);
 
     // Find latest doc for this session
     const newestDocument = await collection
       .find({ "session_id": session_id })
-      .sort({ _id: -1 })
+      .sort({ "mostRecentTs": -1 })
       .limit(1)
       .toArray();
     

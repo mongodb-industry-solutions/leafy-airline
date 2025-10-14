@@ -12,45 +12,56 @@ export async function runAggregation(session_id) {
     throw new Error("Missing session_id for aggregation");
   }
 
-  // console.log(`Starting aggregation for session ${session_id}`);
 
   try {
 
     const database = client.db(dbName);
     const collection = database.collection(collectionName);
+    const output = database.collection(outputCollection);
 
-    const pipeline = [
-      { $match: { session_id } },
-      {
-        $addFields: {
-          bucket: {
-            $dateTrunc: { date: "$ts", unit: "second", binSize: 20 },
+        const pipeline = [
+        { $match: { session_id : session_id } },
+        {
+          $addFields: {
+            bucket: {
+              $dateTrunc: { date: "$ts", unit: "second", binSize: 20 },
+            },
           },
         },
-      },
-      { $sort: { ts: -1 } },
-      {
-        $group: {
-          _id: "$bucket",
-          count: { $sum: 1 },
-          mostRecentLat: { $first: "$location.lat" },
-          mostRecentLong: { $first: "$location.long" },
-          mostRecentTs: { $first: "$ts" },
-          session_id: { $first: "$session_id" },
+        { $sort: { ts: -1 } },
+        {
+          $group: {
+            _id: "$bucket",
+            count: { $sum: 1 },
+            mostRecentLat: { $first: "$location.lat" },
+            mostRecentLong: { $first: "$location.long" },
+            mostRecentTs: { $first: "$ts" },
+            session_id: { $first: "$session_id" },
+          },
+        },
+        {
+        $project: {
+          _id: 0,
+          bucket_id: "$_id",
+          count: 1,
+          mostRecentLat: 1,
+          mostRecentLong: 1,
+          mostRecentTs: 1,
+          session_id: 1,
         },
       },
-      { $sort: { _id: -1 } },
-      {
-        $merge: {
-          into: outputCollection,
-          whenMatched: "merge",
-          whenNotMatched: "insert",
-        },
-      },
-    ];
+        { $sort: { bucket_id: -1 } },
+      ];
+
 
     const result = await collection.aggregate(pipeline).toArray();
     // console.log(`Aggregation for session ${session_id} completed`);
+
+    await output.insertMany(result, { ordered: false });
+    console.log(
+      `Inserted/updated ${result.length} docs for session ${session_id}`
+    );
+
   } catch (error) {
     console.error(`Error during aggregation for ${session_id}:`, error);
   } finally {
