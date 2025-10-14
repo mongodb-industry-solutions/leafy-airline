@@ -265,7 +265,7 @@ class DataSimulator:
             self.prev_speed = new_speed
             self.timestamp = new_ts
 
-            print("Session ", self.SID," - Location: ", new_loc, " - Dist to arr: ", distance_to_arrival)
+            print("Session ", self.SID," - Dist to arr: ", distance_to_arrival)
 
 
         return (self.arrived, {

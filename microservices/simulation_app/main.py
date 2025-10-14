@@ -71,7 +71,7 @@ def publish_data(simulator : DataSimulator):
 
     data_bytes = json.dumps(data).encode("utf-8")
     data_publisher.publish(data_topic, data_bytes)
-    print(f"[{simulator.SID}] Data published")
+    # print(f"[{simulator.SID}] Data published")
 
     # IMPORTANT - IF THREADING ISSUES, UNCOMMENT THIS AND COMMENT BELOW
     # if finished:
