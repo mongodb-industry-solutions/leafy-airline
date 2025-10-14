@@ -345,7 +345,7 @@ const FlightLayout = ({ children }) => {
       setTimeout(() => {
         setFetchingStarted(true);
         setLoading(false); // Set loading to false after delay
-      }, 3000); // 3 seconds delay
+      }, 5000); // 5 seconds delay
     } catch (error) {
       console.error("Error starting process:", error);
       setLoading(false); // Set loading to false if there is an error
@@ -627,6 +627,10 @@ const FlightLayout = ({ children }) => {
                   </LoadScript>
                   {loading && (
                     <div className={styles.loadingOverlay}>Loading...</div>
+                  )}
+
+                  {simulationEnded && !loading && (
+                    <div className={styles.loadingOverlay}>Simulation Ended</div>
                   )}
                 </div>
               ) : (
