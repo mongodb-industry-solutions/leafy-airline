@@ -30,10 +30,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+os.makedirs("/logs", exist_ok=True)
 
 # LOGGING CONFIG TO ANALYZE DATA
 logging.basicConfig(
-    filename='logs/app.log',
+    filename='/logs/app.log',
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )
