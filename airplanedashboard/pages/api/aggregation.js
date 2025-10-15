@@ -1,24 +1,22 @@
 import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
+import clientPromise from "../../lib/mongo";
 // import React, { useEffect, useState } from 'react';
 
 // const [schedulerStarted, setSchedulerStatus] = useState(false);
 
 export async function runAggregation() {
-  
-  const MONGO_URI = process.env.MONGO_URI;
-  const client = new MongoClient(MONGO_URI);
+
+  const client = await clientPromise;
   const dbName = 'leafy_airline';
   const collectionName = 'flight_realtimeCF';
   const outputCollection = 'flight_plane_simulation';
   console.log('Starting aggregation');
 
   try {
-    console.log('Connecting to MongoDB...');
-    const start = Date.now();
-    await client.connect();
-    console.log(`Connected to MongoDB in ${Date.now() - start} ms`);
 
+    const start = Date.now();
+    console.log(`Connected to MongoDB in ${Date.now() - start} ms`);
     const database = client.db(dbName);
     const collection = database.collection(collectionName);
 
@@ -85,11 +83,11 @@ export async function runAggregation() {
   } catch (error) {
     console.error('Error during aggregation:', error);
   } finally {
-    console.log('Closing MongoDB connection');
-    const closeStart = Date.now();
-    await client.close();
-    console.log(`Closed MongoDB connection in ${Date.now() - closeStart} ms`);
-    console.log('Aggregation finished');
+    // console.log('Closing MongoDB connection');
+    // const closeStart = Date.now();
+    // await client.close();
+    // console.log(`Closed MongoDB connection in ${Date.now() - closeStart} ms`);
+    // console.log('Aggregation finished');
   }
 };
 

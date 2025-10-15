@@ -217,6 +217,13 @@
   color: white;
 }
 
+.simulationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+
 .separationBar {
   border: 0;
   height: 1px;

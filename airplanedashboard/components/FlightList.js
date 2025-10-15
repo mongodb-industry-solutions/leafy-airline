@@ -4,19 +4,25 @@ import styles from './GeneralStyle.module.css';
 
 const SeparationBar = () => <hr className={styles.separationBar} />;
 
-function FlightList({flights}) {
+function FlightList({flights, sessionId}) {
     const router = useRouter(); 
 
-    console.log("Rendering FlightList with flights:", flights);
+    // console.log("Rendering FlightList with flights:", flights);
 
     const handleViewFlight = (flightId) => {
-      console.log("Viewing flight with ID:", flightId);
-        router.push(`/index1?flightId=${flightId}`); // Navigate to /index1 with the flightId query parameter
+      // console.log("Viewing flight with ID:", flightId);
+
+      // Include sessionId in a secure way using params
+        // router.push(`/index1?flightId=${flightId}`); // Navigate to /index1 with the flightId query parameter
+        router.push({
+          pathname: '/index1',
+          query: { flightId, sessionId }, // Pass both flight
+        });
       };
 
     function FlightCard({index, flight_info}) {
 
-      console.log("Rendering flight:", flight_info);
+      // console.log("Rendering flight:", flight_info);
 
       const departDate = new Date(flight_info.dep_time);
       const arrivalDate = new Date(flight_info.arr_time);

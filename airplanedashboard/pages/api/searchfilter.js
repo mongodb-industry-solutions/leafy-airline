@@ -1,5 +1,4 @@
-// pages/api/searchfilter.js
-import client from '../../lib/mongodb'; // Import the MongoClient instance
+import clientPromise from "../../lib/mongo";
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -10,6 +9,7 @@ export default async function handler(req, res) {
   const { query, filters } = req.body; // Assume you send query and filters in the request body
 
   try {
+    const client = await clientPromise;
     const db = client.db('leafy_airline');
     const collection = db.collection('flights');
 
