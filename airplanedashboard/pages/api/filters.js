@@ -1,10 +1,9 @@
+import clientPromise from "../../lib/mongo";
 
-import client from '../../lib/mongodb'; // Import the MongoClient instance  
-  
-const endOfDay = (dateStr) => {  
-  const date = new Date(dateStr);  
-  date.setHours(23, 50, 0, 0);  
-  return date;  
+const endOfDay = (dateStr) => {
+  const date = new Date(dateStr);
+  date.setHours(23, 50, 0, 0);
+  return date;
 };  
 
 const startOfDay = (dateStr) => {
@@ -20,17 +19,16 @@ export default async function handler(req, res) {
   }  
   
   const params = req.query;  
-  
   const matchStage = {}; // Initial `$match` stage for filtering documents  
   
   // Adding filters based on query parameters  
   if (params.dep_time) {  
     matchStage['dep_time'] = { $gte: new Date(params.dep_time), $lte: endOfDay(params.dep_time) };  
-    console.log('dep_time filter applied:', matchStage['dep_time']);
+    // console.log('dep_time filter applied:', matchStage['dep_time']);
   }  
   if (params.arr_time) {  
     matchStage['arr_time'] = { $gte: startOfDay(params.arr_time), $lte: new Date(params.arr_time)};  
-    console.log('arr_time filter applied:', matchStage['arr_time']);
+    // console.log('arr_time filter applied:', matchStage['arr_time']);
   }  
   if (params['dep_arp._id']) {  
     matchStage['dep_arp._id'] = params['dep_arp._id'];  
@@ -38,13 +36,14 @@ export default async function handler(req, res) {
   if (params['arr_arp._id']) {  
     matchStage['arr_arp._id'] = params['arr_arp._id'];  
   }  
-  
-  try {  
-    const db = client.db('leafy_airline');  
-    const collection = db.collection('flights');  
-  
-    // Aggregation pipeline with `$facet`  
-    const aggregationPipeline = [  
+
+  try {
+    const client = await clientPromise;
+    const db = client.db('leafy_airline');
+    const collection = db.collection('flights');
+
+    // Aggregation pipeline with `$facet`
+    const aggregationPipeline = [
       { $match: matchStage }, // Match stage to filter results  
   
       {  
@@ -95,8 +94,8 @@ export default async function handler(req, res) {
     const results = await collection.aggregate(aggregationPipeline).toArray();  
   
     res.status(200).json(results[0]); // Only one document is returned by `$facet` 
-    console.log('Results sent:');
-    console.log(results[0]); 
+    // console.log('Results sent:');
+    // console.log(results[0]); 
   } catch (error) {  
     console.error('Error:', error);  
     res.status(500).json({ error: 'Internal Server Error', details: error.message });  

@@ -1,104 +1,91 @@
-import cron from 'node-cron';
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
+import clientPromise from "../../lib/mongo";
 
-export async function runAggregation() {
-  const MONGO_URI = process.env.MONGO_URI;
-  const client = new MongoClient(MONGO_URI);
-  const dbName = 'leafy_airline';
-  const collectionName = 'flight_realtimeCF';
-  const outputCollection = 'flight_plane_simulation';
-  console.log('Starting aggregation');
+export async function runAggregation(session_id) {
+
+  const client = await clientPromise;
+  const dbName = "leafy_airline";
+  const collectionName = "flight_realtimeCF";
+  const outputCollection = "flight_plane_simulation";
+
+  if (!session_id) {
+    throw new Error("Missing session_id for aggregation");
+  }
+
 
   try {
-    console.log('Connecting to MongoDB...');
-    const start = Date.now();
-    await client.connect();
-    console.log(`Connected to MongoDB in ${Date.now() - start} ms`);
 
     const database = client.db(dbName);
     const collection = database.collection(collectionName);
+    const output = database.collection(outputCollection);
 
-    console.log('Running aggregation pipeline...');
-    const pipelineStart = Date.now();
-    const pipeline = [
-      {
-        $addFields: {
-          bucket: {
-            $dateTrunc: {
-              date: "$ts",
-              unit: "second",
-              binSize: 20
-            }
-          }
-        }
-      },
-      {
-        $sort: {
-          ts: -1
-        }
-      },
-      {
-        $group: {
-          _id: "$bucket",
-          count: {
-            $sum: 1
+        const pipeline = [
+        { $match: { session_id : session_id } },
+        {
+          $addFields: {
+            bucket: {
+              $dateTrunc: { date: "$ts", unit: "second", binSize: 20 },
+            },
           },
-          mostRecentLat: {
-            $first: "$location.lat"
+        },
+        { $sort: { ts: -1 } },
+        {
+          $group: {
+            _id: "$bucket",
+            count: { $sum: 1 },
+            mostRecentLat: { $first: "$location.lat" },
+            mostRecentLong: { $first: "$location.long" },
+            mostRecentTs: { $first: "$ts" },
+            session_id: { $first: "$session_id" },
           },
-          mostRecentLong: {
-            $first: "$location.long"
-          },
-          mostRecentTs: {
-            $first: "$ts"
-          }
-        }
+        },
+        {
+        $project: {
+          _id: 0,
+          bucket_id: "$_id",
+          count: 1,
+          mostRecentLat: 1,
+          mostRecentLong: 1,
+          mostRecentTs: 1,
+          session_id: 1,
+        },
       },
-      {
-        $sort: {
-          _id: -1
-        }
-      },
-      {
-        $merge: {
-          into: outputCollection,
-          whenMatched: "merge",
-          whenNotMatched: "insert"
-        }
-      }
-    ];
+        { $sort: { bucket_id: -1 } },
+      ];
 
-    const cursor = collection.aggregate(pipeline);
-    const results = await cursor.toArray();
-    console.log(`Aggregation pipeline completed in ${Date.now() - pipelineStart} ms`);
 
-    console.log('Aggregation results:');
-    results.forEach(doc => {
-      console.log(`Most recent latitude: ${doc.mostRecentLat}, Most recent longitude: ${doc.mostRecentLong}`);
-    });
+    const result = await collection.aggregate(pipeline).toArray();
+    // console.log(`Aggregation for session ${session_id} completed`);
+
+    // Wrap to avoid empty batch error
+    if (result.length === 0) {
+      console.log(`No documents to insert for session ${session_id}`);
+      return;
+    }
+    await output.insertMany(result, { ordered: false });
+    // console.log(
+    //   `Inserted/updated ${result.length} docs for session ${session_id}`
+    // );
 
   } catch (error) {
-    console.error('Error during aggregation:', error);
+    console.error(`Error during aggregation for ${session_id}:`, error);
   } finally {
-    console.log('Closing MongoDB connection');
-    const closeStart = Date.now();
-    await client.close();
-    console.log(`Closed MongoDB connection in ${Date.now() - closeStart} ms`);
-    console.log('Aggregation finished');
+    // await client.close();
   }
-};
-
-// Create a cron job to run the aggregation every 5 seconds
-// cron.schedule('*/2.5 * * * * *', runAggregation);
+}
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    // Start the cron job
-    await runAggregation();
-    res.status(200).json({ message: 'Scheduler started' });
+  if (req.method === "POST") {
+    const { session_id } = req.body || {};
+
+    if (!session_id) {
+      return res.status(400).json({ message: "Missing session_id" });
+    }
+
+    await runAggregation(session_id);
+    return res.status(200).json({ message: `Aggregation run for session ${session_id}` });
   } else {
-    // Handle unsupported HTTP methods
-    res.setHeader('Allow', ['POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    res.setHeader("Allow", ["POST"]);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

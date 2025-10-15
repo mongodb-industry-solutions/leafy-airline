@@ -6,21 +6,22 @@ import SearchBar from '../components/SearchBar';
 import FilterSection from '../components/FilterSection';
 import styles from '../components/GeneralStyle.module.css';
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
 
-  console.log("Rendering Home component with Simulation App URL:", process.env.NEXT_PUBLIC_SIMULATION_APP_URL);
+  // console.log("Rendering Home component with Simulation App URL:", process.env.NEXT_PUBLIC_SIMULATION_APP_URL);
 
   // New state for the flights
   const [flights, setFlights] = useState([]);
   const [dates, setDates] = useState([]);
-  const [departureOptions, setDepartureOptions] = useState([]); // State for departure airports  
-  const [arrivalOptions, setArrivalOptions] = useState([]);     // State for arrival airports  
-
-  // const [airports, setAirports] = useState([]);
-
+  const [departureOptions, setDepartureOptions] = useState([]);
+  const [arrivalOptions, setArrivalOptions] = useState([]);   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Create a unique session ID for the user
+  const [sessionId, setSessionId] = useState(crypto.randomUUID());
 
   const fetchData = async () => {
     try {
@@ -33,7 +34,7 @@ export default function Home() {
 
       // Dates and airports fetched successfully
       const facetsData = await facetsResponse.json();
-      console.log('Facets Data:', facetsData);
+      // console.log('Facets Data:', facetsData);
 
       // Extract dates and format to show count
       const datesData = facetsData.dates.map((date) => ({
@@ -67,6 +68,19 @@ export default function Home() {
     fetchData();
   }, []); // Empty dependency array ensures this runs only once
 
+  useEffect(() => {
+    // Check if session_id already exists in this browser tab
+    let storedId = sessionStorage.getItem('session_id');
+    if (!storedId) {
+      storedId = uuidv4(); // generate once
+      sessionStorage.setItem('session_id', storedId);
+      console.log('Generated new session_id:', storedId);
+    } else {
+      // console.log('Reusing existing session_id:', storedId);
+    }
+    setSessionId(storedId);
+  }, []);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -95,7 +109,7 @@ export default function Home() {
         </div>
         <SearchBar response={flights} setResponse={setFlights}/>
         <div className={styles.flightsList}>
-          <FlightList flights={flights} />
+          <FlightList flights={flights} sessionId={sessionId} />
         </div>
       </div>
     </GeneralLayout>

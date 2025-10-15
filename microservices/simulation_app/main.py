@@ -7,6 +7,7 @@ import logging
 import os
 import json
 from google.cloud import pubsub_v1
+import threading
 
 
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
@@ -37,28 +38,19 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 )
 
-
-
 # SCHEDULER : Calls my function (simulator) every x seconds
 measurement_interval = 2.5
+sessions = {}
+sessions_lock = threading.Lock()
+
 scheduler = BackgroundScheduler()
-scheduler_active = False
-docs = []
-
-
+scheduler.start()
 
 # PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions
 project_id = "connected-aircraft-ist"
 
 data_topic_id = "leafyAirlineData"
 path_topic_id = "leafyAirlinePath"
-
-# Path to your service account key file = JSON File generated only once when creating the service account key
-# To access : GCP Console - IAM & Admin - Service Accounts - Select your service account - Keys - Add Key - Create new key - JSON
-
-# service_account_file = "json_keys/connected-aircraft-ist-4fa26b67848a.json"
-# data_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
-# path_publisher = pubsub_v1.PublisherClient.from_service_account_file(service_account_file)
 
 # Use this to avoid using service accounts
 data_publisher = pubsub_v1.PublisherClient()
@@ -68,7 +60,7 @@ data_topic = data_publisher.topic_path(project_id, data_topic_id)
 path_topic = path_publisher.topic_path(project_id, path_topic_id)
 
 # GENERAL LIMITS
-doc_limit = 200
+# doc_limit = 200
 
 
 # FUNCTIONS
@@ -77,24 +69,40 @@ def publish_data(simulator : DataSimulator):
 
     (finished, data)= simulator.generate_data()
 
-    if len(docs) <= doc_limit:
-        docs.append(data)
+    data_bytes = json.dumps(data).encode("utf-8")
+    data_publisher.publish(data_topic, data_bytes)
+    # print(f"[{simulator.SID}] Data published")
+
+    # IMPORTANT - IF THREADING ISSUES, UNCOMMENT THIS AND COMMENT BELOW
+    # if finished:
+
+    #     sid = simulator.SID
+    #     if sid in sessions:
+    #         try:
+    #             sessions[sid]["scheduler"].remove_job(sid)
+    #             del sessions[sid]
+    #             logging.info(f"Session {sid} finished — job removed and session cleared.")
+    #         except Exception as e:
+    #             logging.error(f"Error stopping finished session {sid}: {e}")
+
+
+    # return {"status": "New data published"}
 
     if finished:
-
-        global scheduler
-        logging.info("ARRIVED TO DESTINATION")
-        logging.info("Scheduler stopped due to finished flight")
-        scheduler.pause()
-        
-    data = json.dumps(data).encode("utf-8")
-
-    # Un comment when ready to publish the message to the Pub/Sub topic
-    future = data_publisher.publish(data_topic, data)
-    logging.info(future)
-
-    print("Data published: ", data)
-
+        sid = simulator.SID
+        # Use scheduler.remove_job directly and protect sessions dict with a lock
+        with sessions_lock:
+            if sid in sessions:
+                try:
+                    # remove job by id
+                    scheduler.remove_job(sid)
+                except Exception as e:
+                    logging.error(f"Error removing job {sid}: {e}")
+                try:
+                    del sessions[sid]
+                    logging.info(f"Session {sid} finished — job removed and session cleared.")
+                except KeyError:
+                    logging.error(f"Tried to delete session {sid} but it was already removed.")
     return {"status": "New data published"}
 
 def publish_path(flight_id, path_data):
@@ -107,13 +115,10 @@ def publish_path(flight_id, path_data):
            }
     
     data = json.dumps(msg).encode("utf-8")
-    future = path_publisher.publish(path_topic, data)
+    path_publisher.publish(path_topic, data)
 
-    # Un comment when ready to publish the message to the Pub/Sub topic
-    
-    logging.info(future)
 
-    print("Path published: ", data)
+    # print("Path published: ", data)
 
     return {"status": "New path published"}
 
@@ -127,6 +132,7 @@ async def start_scheduler(flight_info:dict):
     for the selected flight.
     This data will be provided in the POST call that will trigger this function
     and it will be a dictionary containing:
+        - session_id
         - flight_id
         - dep_code
         - arr_code
@@ -138,10 +144,15 @@ async def start_scheduler(flight_info:dict):
     This function will first find the new path for our flight (taking
     disruption into account). 
     Then it will instantiate the DataSimulator for our current flight
-    anf finally will start the scheduler that will begin to produce data
+    and finally will start the scheduler that will begin to produce data
     calling the generate_data function from our simulator every 5 seconds
     '''
-    logging.info("Data received")
+
+    session_id = flight_info["session_id"]
+    logging.info(f"Start request for session {session_id}")
+
+    if session_id in sessions:
+        return {"status": f"Session {session_id} already running"}
 
     # Find the path between the departure and arrival locations
     (disrupted, path_data) = find_path(flight_info)
@@ -149,43 +160,54 @@ async def start_scheduler(flight_info:dict):
     # Publish the initial and new path in path topic
     publish_path(flight_info["flight_id"], path_data)
 
+    # Check session id
+    # logging.info("Session ID: %s", flight_info["session_id"])
+
     # Create our Data Simulator for this flight
-    simulator = DataSimulator(flight_info["flight_id"],
+    simulator = DataSimulator(session_ID = session_id,
+                              flight_ID = flight_info["flight_id"],
                               disruption = disrupted,
                               path_atrib = path_data, 
                               seconds_per_iter= 300)
     
-    logging.info("Simulator created")
 
-    global scheduler, scheduler_active
+    # Store simulator in global sessions
+    sessions[session_id] = simulator
 
-    if not scheduler_active:
+    # Add new independent job for this session
+    scheduler.add_job(
+        publish_data,
+        "interval",
+        seconds=measurement_interval,
+        args=[simulator],
+        id=session_id,  # unique job per session
+        replace_existing=True,
+    )
 
-        scheduler.add_job(publish_data, 'interval', 
-                            seconds = measurement_interval ,
-                            args = (simulator,)) 
-        scheduler.start()
-        scheduler_active = True
-        logging.info("Scheduler started")
+    logging.info(f"✅ Scheduler job started for session {session_id}")
+    return {"status": f"Scheduler started for session {session_id}"}
 
-        return {"status": "Scheduler started"}
+
+@app.get("/reset-scheduler/{session_id}")
+async def reset_scheduler(session_id: str):
+
+    if session_id not in sessions:
+        return {"status": f"No active session found for {session_id}"}
+
+    try:
+        scheduler.remove_job(session_id)
+        del sessions[session_id]
+        logging.info(f"🛑 Session {session_id} reset and job removed.")
+        return {"status": f"Session {session_id} reset complete"}
+    except Exception as e:
+        logging.error(f"Error resetting session {session_id}: {e}")
+        return {"status": f"Error resetting session {session_id}: {e}"}
     
-    else:
-        return {"status": "Scheduler is already running"}
 
-@app.get("/reset-scheduler")
-async def reset_scheduler():
-
-    global scheduler, scheduler_active
-    if scheduler_active:
-
-        scheduler.shutdown()
-        scheduler_active = False
-
-
-    scheduler = BackgroundScheduler()
-
-    return {"status": "Reset complete"}
+@app.get("/list-sessions")
+async def list_sessions():
+    """Optional helper to debug running simulators"""
+    return {"active_sessions": list(sessions.keys())}
 
 
 if __name__ == "__main__":

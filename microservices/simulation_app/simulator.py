@@ -97,8 +97,9 @@ class CoordinateTransformer:
 
 class DataSimulator:
 
-    def __init__(self, flight_ID : str, disruption : bool,  path_atrib: dict, seconds_per_iter: int):
-        
+    def __init__(self, session_ID : str, flight_ID : str, disruption : bool,  path_atrib: dict, seconds_per_iter: int):
+
+        self.SID = session_ID
         self.FID = flight_ID
         self.disruption = disruption
 
@@ -204,6 +205,7 @@ class DataSimulator:
         Returns:
         1. finished : Boolean that states if we've reached our arrival point
         2. Simulated data : dict containing
+            - session_id
             - flight_id
             - ts 
             - disrupted : Boolean that shows if the route was disrupted
@@ -224,7 +226,7 @@ class DataSimulator:
 
         if not self.arrived:
 
-            print('\nNew measurements: ')
+            # print('\nNew measurements: ')
 
             # Distance to next point in km
             distance_to_headed = self.get_real_distance(self.prev_location, self.headed_point)
@@ -250,8 +252,8 @@ class DataSimulator:
             distance_to_arrival = self.dist_to_arrival(new_loc)
             new_dist_to_head = self.get_real_distance(new_loc, self.headed_point)
 
-            print('Distance to headed: ', new_dist_to_head)
-            print('Distance to arrival: ', distance_to_arrival)
+            # print('Distance to headed: ', new_dist_to_head)
+            # print('Distance to arrival: ', distance_to_arrival)
         
             new_ts = datetime.now(pytz.utc)
 
@@ -263,8 +265,11 @@ class DataSimulator:
             self.prev_speed = new_speed
             self.timestamp = new_ts
 
+            print("Session ", self.SID," - Dist to arr: ", distance_to_arrival)
+
 
         return (self.arrived, {
+            "session_id": self.SID,
             "flight_id": self.FID,
             "ts": new_ts.isoformat(),
 

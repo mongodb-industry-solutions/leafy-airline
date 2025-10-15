@@ -22,8 +22,13 @@ const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
-  const { flightId } = router.query; 
-  const [flightData, setFlightData] = useState([]);
+  const { flightId, sessionId } = router.query; 
+
+  console.log("FlightLayout received flightId:", flightId);
+  // console.log("FlightLayout received sessionId:", sessionId);
+  
+  const [sessionIdState, setSessionIdState] = useState(sessionId || null);
+  const [flightIdState, setFlightIdState] = useState(flightId || null);
   const [selectedFlight, setSelectedFlight] = useState(null);
   const [apiKey, setApiKey] = useState("");
   const [delayTime, setDelayTime] = useState(null);
@@ -37,6 +42,7 @@ const FlightLayout = ({ children }) => {
 
   const [simulationStarted, setSimulationStarted] = useState(false);
   const [fetchingStarted, setFetchingStarted] = useState(false); 
+  const [simulationEnded, setSimulationEnded] = useState(false);
 
   const [loading, setLoading] = useState(false); 
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
@@ -55,45 +61,40 @@ const FlightLayout = ({ children }) => {
 
   async function fetchData() {
     try {
-      const res = await fetch("/api/flights");
-      const data = await res.json();
-      setFlightData(data);
+      // Fetch data from flight_info API with flightId filter
+      if (flightIdState) {
 
-      // Debugging 
-      console.log("All Flights Data:", data);
+        // console.log("Fetching data for flightId:", flightIdState);
 
-      if (flightId) {
-        console.log("Flight ID from query:", flightId);
-
-        const flight = data.find(
-          (flight) =>
-            flight._id && flight._id.toString() === flightId.toString()
-        );
-        if (flight) {
-          console.log("Flight Data");
-          console.log(flight);
-          setSelectedFlight(flight);
-
-          if (simulationStarted) {
-            getNewPath(flight);
-            getNewDisrup(flight);
+        const res = await fetch("/api/flight_info",
+          { method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ flight_id: flightIdState })
           }
-        } else {
-          console.error("No flight found with ID:", flightId);
+        );
+
+        const flight = await res.json();
+        setSelectedFlight(flight);
+
+        if (simulationStarted) {
+          getNewPath(flight);
+          getNewDisrup(flight);
         }
+      } else {
+        console.error("flightId is not defined in the query parameters.");
       }
-    } catch (error) {
+        
+      } catch (error) {
       console.error("Error fetching data:", error);
     }
   }
 
+  // Fetch Google Maps API key from backend
   useEffect(() => {
     async function fetchApiKey() {
       try {
         const res = await fetch("/api/googleMapsKey");
         const data = await res.json();
-
-        console.log("Google Maps API Key:", data.apiKey);
         setApiKey(data.apiKey);
       } catch (error) {
         console.error("Error fetching API key:", error);
@@ -102,19 +103,27 @@ const FlightLayout = ({ children }) => {
     fetchApiKey();
   }, []);
 
+  // Update params when we get the apiKey
   useEffect(() => {
     if (apiKey) {
       fetchData();
     }
-  }, [flightId, simulationStarted, apiKey]);
+  }, [flightIdState, simulationStarted, apiKey]);
 
+
+  // Connect to WebSocket server when apiKey is available
   useEffect(() => {
     if (apiKey) {
       // Connect to WebSocket server
-      const socket = io(); // Connect to the WebSocket server
+      // const socket = io(); 
+
+      // Pass session_id as a query parameter to identify the session 
+      const socket = io({
+        query: { session_id: sessionIdState },
+      });
 
       socket.on("alert", (alert) => {
-        console.log("Alert received:", alert);
+        // console.log("Alert received:", alert);
         if (alert && alert.input.Delay_Time !== undefined) {
           setDelayTime(alert.input.Delay_Time); // Round the delay time before setting it
         }
@@ -143,6 +152,7 @@ const FlightLayout = ({ children }) => {
     }
   }, [apiKey]);
 
+  //  Update sumCost whenever totalExpectedFuelCost or delayCost changes
   useEffect(() => {
     if (apiKey) {
       if (totalExpectedFuelCost !== null && delayCost !== null) {
@@ -157,14 +167,21 @@ const FlightLayout = ({ children }) => {
     }
   }, [totalExpectedFuelCost, delayCost, apiKey]);
 
+
   useEffect(() => {
     if (!fetchingStarted) return;
 
     const interval = setInterval(async () => {
       try {
-        const response = await fetch("/api/fetchNewestDocument");
+
+        // console.log("Fetching newest document for session:", sessionIdState);
+        const response = await fetch("/api/fetchNewestDocument", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ session_id: sessionIdState }),
+        });
+
         const data = await response.json();
-        console.log("Fetched Data:", data);
         if (
           data &&
           data.mostRecentLat !== undefined &&
@@ -175,29 +192,53 @@ const FlightLayout = ({ children }) => {
             lng: data.mostRecentLong,
           };
 
+          console.log("Latest position:", newPosition);
+
           if (prevAirplanePosition) {
+            // Check if simulation has ended (no movement)
+            const sameLat = newPosition.lat === prevAirplanePosition.lat;
+            const sameLng = newPosition.lng === prevAirplanePosition.lng;
+
+            if (sameLat && sameLng && !simulationEnded) {
+              console.log("Simulation has ended.");
+              setSimulationEnded(true);
+              clearInterval(interval); // stop polling
+              return;
+            }
+
+            // If plane moved, update heading and continue
             const heading = calculateHeading(prevAirplanePosition, newPosition);
             setAirplanePosition({ ...newPosition, heading });
           } else {
             setAirplanePosition(newPosition);
           }
 
-          setFlightPath((prevPath) => [...prevPath, newPosition]); // Append to flight path
-          setPrevAirplanePosition(newPosition); // Update previous position
+          setFlightPath((prevPath) => [...prevPath, newPosition]);
+          setPrevAirplanePosition(newPosition);
         }
+
       } catch (error) {
         console.error("Error fetching the newest document:", error);
       }
-    }, 2500); // Fetch every 2.5 seconds
+    }, 3000); // Fetch every 2.5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [fetchingStarted, prevAirplanePosition]);
 
   const performAggregation = async () => {
-    // Trigger Aggregation API after starting the simulation
+    
+    // console.log("Performing aggregation for session:", sessionIdState);
+
+
+    console.time(`agg-${sessionIdState}`);
     const aggregationResponse = await fetch("/api/aggregate", {
-      method: "POST",
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ session_id: sessionIdState }),
     });
+
+    console.timeEnd(`agg-${sessionIdState}`);
+
     if (aggregationResponse.ok) {
       console.log("Aggregation triggered successfully.");
     } else {
@@ -209,11 +250,11 @@ const FlightLayout = ({ children }) => {
   };
 
   useEffect(() => {
-    if (simulationStarted) {
-      const aggregationInterval = setInterval(performAggregation, 2500); // 5 seconds in milliseconds
-      return () => clearInterval(aggregationInterval);
-    }
-  }, [simulationStarted]);
+  if (simulationStarted && !simulationEnded) {
+    const aggregationInterval = setInterval(performAggregation, 3000);
+    return () => clearInterval(aggregationInterval);
+  }
+}, [simulationStarted, simulationEnded]);
 
   const calculateHeading = (from, to) => {
     const lat1 = (from.lat * Math.PI) / 180;
@@ -247,12 +288,11 @@ const FlightLayout = ({ children }) => {
       lat: flight.disruption_coords.lat,
       lng: flight.disruption_coords.long,
     });
-    console.log("Disruption setted");
+    // console.log("Disruption setted");
     setDisrupEmpty(false);
   };
 
   const getNewPath = (flight) => {
-    console.log("Entered newpath");
     const path =
       flight && Array.isArray(flight.new_path) ? flight.new_path : [];
 
@@ -260,15 +300,17 @@ const FlightLayout = ({ children }) => {
     const resolvedPath = path.map((code) => airports_dict[code] || code);
 
     setNewPath(resolvedPath);
-    console.log(resolvedPath);
+    // console.log(resolvedPath);
   };
 
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
-    console.log("Starting sim");
+    // console.log("Starting simulation");
 
     const start_url = app_url + "/start-scheduler";
     const app_data = {
+      // Adding sessionId to the payload
+      session_id: sessionIdState,
       flight_id: flightId,
       dep_code: selectedFlight.dep_arp._id,
       arr_code: selectedFlight.arr_arp._id,
@@ -294,7 +336,6 @@ const FlightLayout = ({ children }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log(data);
 
       // // Trigger Aggregation API after starting the simulation
       // const aggregationResponse = await fetch('/api/aggregation', { method: 'POST' });
@@ -310,7 +351,7 @@ const FlightLayout = ({ children }) => {
       setTimeout(() => {
         setFetchingStarted(true);
         setLoading(false); // Set loading to false after delay
-      }, 3000); // 3 seconds delay
+      }, 5000); // 5 seconds delay
     } catch (error) {
       console.error("Error starting process:", error);
       setLoading(false); // Set loading to false if there is an error
@@ -318,7 +359,7 @@ const FlightLayout = ({ children }) => {
   };
 
   const resetSimulation = async () => {
-    const reset_url = app_url + "/reset-scheduler";
+    const reset_url = `${app_url}/reset-scheduler/${sessionIdState}`;
 
     try {
       const response = await fetch(reset_url, {
@@ -328,7 +369,6 @@ const FlightLayout = ({ children }) => {
         },
       });
       const data = await response.json();
-      console.log(data);
 
       // Clear flight path and stop fetching
       setFlightPath([]);
@@ -354,6 +394,7 @@ const FlightLayout = ({ children }) => {
 
       // Reset the simulation status
       setSimulationStarted(false);
+      setSimulationEnded(false);
       setNewPath([]);
       setDisruption({});
       setDisrupEmpty(true);
@@ -379,13 +420,11 @@ const FlightLayout = ({ children }) => {
   };
 
   const openModal = (imageSrc) => {  
-    console.log("Opening modal for image:", imageSrc);
     setModalImage(imageSrc);
     setIsModalOpen(true);
   };  
   
   const closeModal = () => {  
-    console.log("Closing modal");
     setModalImage(null); 
     setIsModalOpen(false);  
   };  
@@ -596,6 +635,10 @@ const FlightLayout = ({ children }) => {
                   {loading && (
                     <div className={styles.loadingOverlay}>Loading...</div>
                   )}
+
+                  {simulationEnded && !loading && (
+                    <div className={styles.loadingOverlay}>Simulation Ended</div>
+                  )}
                 </div>
               ) : (
                 <p>Loading map...</p>
@@ -604,6 +647,7 @@ const FlightLayout = ({ children }) => {
                 <Button
                   className={styles.simulationButton}
                   onClick={startSimulation}
+                  disabled={simulationStarted}
                 >
                   Start Simulation
                 </Button>
