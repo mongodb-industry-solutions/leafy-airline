@@ -57,10 +57,15 @@ export async function runAggregation(session_id) {
     const result = await collection.aggregate(pipeline).toArray();
     // console.log(`Aggregation for session ${session_id} completed`);
 
+    // Wrap to avoid empty batch error
+    if (result.length === 0) {
+      console.log(`No documents to insert for session ${session_id}`);
+      return;
+    }
     await output.insertMany(result, { ordered: false });
-    console.log(
-      `Inserted/updated ${result.length} docs for session ${session_id}`
-    );
+    // console.log(
+    //   `Inserted/updated ${result.length} docs for session ${session_id}`
+    // );
 
   } catch (error) {
     console.error(`Error during aggregation for ${session_id}:`, error);
