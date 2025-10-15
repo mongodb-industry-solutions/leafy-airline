@@ -4,8 +4,12 @@ FROM node:18.18
 # Set the working directory.
 WORKDIR /usr/src/app
 
+
 # Copy application dependency manifests to the container image.
 COPY /airplanedashboard/package*.json ./
+
+ARG NEXT_PUBLIC_SIMULATION_APP_URL
+ENV NEXT_PUBLIC_SIMULATION_APP_URL=$NEXT_PUBLIC_SIMULATION_APP_URL
 
 # Install dependencies.
 RUN npm install
