@@ -2,10 +2,10 @@
 import { Server } from 'socket.io';
 import clientPromise from '../../lib/mongo';
 
-const uri = process.env.MONGO_URI;
-const options = { useNewUrlParser: true,
-                  useUnifiedTopology: true,
-                  serverSelectionTimeoutMS: 5000 };
+// const uri = process.env.MONGO_URI;
+// const options = { useNewUrlParser: true,
+//                   useUnifiedTopology: true,
+//                   serverSelectionTimeoutMS: 5000 };
 
 let io;
 let changeStream;
