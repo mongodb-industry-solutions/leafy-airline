@@ -19,8 +19,12 @@ import airports_dict from "../resources/airports.js";
 
 // URL from the cloud run data-simulator microservice
 const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
+const googleAPI = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+const simulatedMode = process.env.SIMULATED_MODE || true; // Default to 'false' if not set
+
 // const app_url = "https://simulation-service-502454695591.europe-west1.run.app";
 console.log("App URL:", app_url);
+console.log("Simulated Mode:", simulatedMode);
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -58,8 +62,6 @@ const FlightLayout = ({ children }) => {
   // New modal for architecture images
   const [modalImage, setModalImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); 
-
-  const googleAPI = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   async function fetchData() {
     try {
@@ -308,8 +310,16 @@ const FlightLayout = ({ children }) => {
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
     // console.log("Starting simulation");
+    let start_url = "";
 
-    const start_url = app_url + "/start-scheduler";
+    // Different endpoint depending on simulatedMode
+    if (simulatedMode === true) {
+      console.log("Simulated Mode is ON - Using simulated endpoint`");
+      start_url = app_url + "/simulated/start-scheduler";
+    } else {
+      console.log("Simulated Mode is OFF - Using standard endpoint`");
+      start_url = app_url + "/start-scheduler";
+    }
     const app_data = {
       // Adding sessionId to the payload
       session_id: sessionIdState,
