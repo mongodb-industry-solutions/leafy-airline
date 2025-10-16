@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from simulator import DataSimulator
-from path_finder import find_path
 from apscheduler.schedulers.background import BackgroundScheduler
+
+from files.path_finder import find_path
+from files.simulator import DataSimulator
+
+import uvicorn
 import logging
 import os
 import json
@@ -212,7 +215,6 @@ async def list_sessions():
 
 
 if __name__ == "__main__":
-    import uvicorn
     port = int(os.environ.get("PORT", 8080))  # Use PORT env var if provided by Cloud Run
     uvicorn.run(app, host="0.0.0.0", port=port)
 

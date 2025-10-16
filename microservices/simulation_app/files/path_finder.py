@@ -2,7 +2,7 @@ import math
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
-from airports import airports
+from files.airports import airports
 
 
 # Previously added data
