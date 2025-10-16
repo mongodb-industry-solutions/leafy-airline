@@ -325,6 +325,7 @@ const FlightLayout = ({ children }) => {
         selectedFlight.arr_arp.geo_loc.long,
       ],
     };
+    console.log("Payload for starting simulation:", app_data);
 
     try {
       const response = await fetch(start_url, {
