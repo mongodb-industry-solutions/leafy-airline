@@ -75,6 +75,7 @@ MONGODB_DB = os.getenv("MONGODB_DB", "leafy_airline")
 mongo_client = None
 collection_flights = None
 collection_realtime = None
+collection_costs = None
 
 
 # FUNCTIONS
@@ -92,8 +93,118 @@ def connect_to_mongo():
     db = client[MONGODB_DB]
     collection_flights = db["flights"]
     collection_realtime = db["flight_realtimeCF"]
+    collection_costs = db["flight_costs1"]
 
-    return client, collection_flights, collection_realtime
+    return client, collection_flights, collection_realtime, collection_costs
+
+def predict_total_cost(flight_metrics: dict) -> float:
+    """
+    Predict the total cost of a flight based on its current metrics.
+
+    Args:
+        flight_metrics (dict): Must contain keys:
+            - Distance_to_Destination
+            - Estimated_Time_Left
+            - Delay_Time
+            - Extra_Length
+            - Speed
+
+    Returns:
+        float: Predicted total cost
+    """
+    distance = flight_metrics.get("Distance_to_Destination", 0)
+    est_time = flight_metrics.get("Estimated_Time_Left", 0)
+    delay_time = flight_metrics.get("Delay_Time", 0)
+    extra_length = flight_metrics.get("Extra_Length", 0)
+    speed = flight_metrics.get("Speed", 0)
+
+    # Base fuel cost: proportional to estimated time left
+    fuel_cost = 1200 * est_time
+
+    # Delay cost: proportional to delay time
+    delay_cost = delay_time * 100 * 60  # as before
+
+    # Extra fuel cost: proportional to extra distance or extra length
+    extra_fuel_cost = 1200 * (extra_length / 10)  # weight factor: 1/10 of extra length
+
+    # Optional: add a small penalty for high speed deviation (simulating inefficiency)
+    speed_penalty = 0
+    if speed > 900:  # km/h threshold
+        speed_penalty = (speed - 900) * 10
+
+    total_predicted_cost = fuel_cost + delay_cost + extra_fuel_cost + speed_penalty
+
+    return total_predicted_cost
+
+def compute_analytical_data(flight_data: dict):
+    """
+    Compute analytical costs and metrics from flight data and insert
+    the results into the global MongoDB collection_costs.
+    
+    Args:
+        flight_data (dict): Flight data dictionary with keys like:
+            session_id, flight_id, ts, velocity, extra_length, distance_to_arrival, location, etc.
+    
+    Returns:
+        inserted_id: ObjectId of the inserted MongoDB document
+    """
+    try:
+
+        ts = flight_data['ts']
+        distance_to_destination = flight_data['distance_to_arrival']
+        speed_m_s = flight_data['velocity']['speed']
+        extra_length = flight_data['extra_length']
+
+        # Compute derived metrics
+        estimated_time_left = distance_to_destination / speed_m_s if speed_m_s else 0
+        delay_time = extra_length / speed_m_s if speed_m_s else 0
+
+        delay_cost = delay_time * 100 * 60  # Cost formula (based on research data)
+        extra_fuel_cost = delay_time * 1200
+        fuel_cost_per_hour = 1200 * estimated_time_left
+        total_cost_per_hour = fuel_cost_per_hour + delay_cost
+        total_cost = fuel_cost_per_hour + delay_cost
+
+        lat = flight_data['location']['lat']
+        long = flight_data['location']['long']
+        speed_kmh = speed_m_s * 3.6  # convert m/s to km/h
+
+        # Build MongoDB document
+        input = {
+            '_id': ObjectId(),
+            'session_id': flight_data.get('session_id'),
+            'flight_id': flight_data.get('flight_id'),
+            'Timestamp': ts,
+            'Distance_to_Destination': distance_to_destination,
+            'Estimated_Time_Left': estimated_time_left,
+            'Delay_Time': delay_time,
+            'Delay_Cost': delay_cost,
+            'Fuel_Cost_per_Hour': fuel_cost_per_hour,
+            'Extra_Fuel_Cost': extra_fuel_cost,
+            'Total_Cost_per_Hour': total_cost_per_hour,
+            'Latitude': lat,
+            'Longitude': long,
+            'Speed': speed_kmh,
+            'Extra_Length': extra_length,
+            'Total_Cost': total_cost,
+        }
+
+        # Create formatted predictions for the total cost
+        formatted_predictions = [predict_total_cost(input)]
+
+        document = {
+            'session_id' : flight_data["session_id"],
+            'input': input,
+            'predictions': formatted_predictions
+        }
+
+
+        return document
+
+    except Exception as e:
+        return None
+
+
 
 def publish_data(simulator : DataSimulator):
 
@@ -194,11 +305,18 @@ def publish_data_simulated(simulator : DataSimulator):
     
     # 4. Insert the document into the collection
     try:
-        global collection_realtime
+        global collection_realtime, collection_costs
+
+        # Insert data in flight_realtimeCF collection
         result = collection_realtime.insert_one(new_data)
         print(f"SIMULATED MODE: Inserted document with id {result.inserted_id} for session {data['session_id']}")
 
-        logging.info(f"Inserted document with id {result.inserted_id} for session {data['session_id']}")
+        # Insert data in flight_costs collection
+        document = compute_analytical_data(data)
+        if document:
+            result = collection_costs.insert_one(document)
+            print(f"SIMULATED MODE: Inserted analytical document with id {result.inserted_id} for session {data['session_id']}")
+
     except Exception as e:
         logging.error(f"Error inserting document for session {data['session_id']}: {e}")
 
@@ -263,8 +381,8 @@ def publish_path_simulated(flight_id, path_data):
 @app.on_event("startup")
 async def startup_db_client():
     """Connect to MongoDB when the FastAPI app starts."""
-    global mongo_client, collection_flights, collection_realtime
-    mongo_client, collection_flights, collection_realtime = connect_to_mongo()
+    global mongo_client, collection_flights, collection_realtime, collection_costs
+    mongo_client, collection_flights, collection_realtime, collection_costs = connect_to_mongo()
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
