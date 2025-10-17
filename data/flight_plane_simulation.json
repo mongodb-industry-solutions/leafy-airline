@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$date": "2025-10-14T14:47:20.000Z"
+  },
+  "count": 1,
+  "mostRecentLat": 42.07432225812411,
+  "mostRecentLong": -71.53992794388161,
+  "mostRecentTs": {
+    "$date": "2025-10-14T14:47:25.178Z"
+  },
+  "session_id": "sample_doc"
+},
+{
+  "_id": {
+    "$date": "2025-10-14T14:47:20.000Z"
+  },
+  "count": 1,
+  "mostRecentLat": 42.07432225812411,
+  "mostRecentLong": -71.53992794388161,
+  "mostRecentTs": {
+    "$date": "2025-10-14T14:47:25.178Z"
+  },
+  "session_id": "sample_doc"
+}]

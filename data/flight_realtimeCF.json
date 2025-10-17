@@ -1,0 +1,33 @@
+[{
+  "ts": {
+    "$date": "2025-10-17T09:12:06.187Z"
+  },
+  "_id": {
+    "$oid": "68f20866fda930a13ed8bedc"
+  },
+  "session_id": "sample_doc",
+  "CF_insertion": "Correct",
+  "flight_id": "668e41ee3f23ded5fecd6cd6",
+  "location": {
+    "lat": 33.6407,
+    "long": -84.4279
+  },
+  "hasArrived": true
+},
+{
+  "ts": {
+    "$date": "2025-10-17T09:12:03.686Z"
+  },
+  "_id": {
+    "$oid": "68f20863fda930a13ed8bed9"
+  },
+  "session_id": "sample_doc",
+  "CF_insertion": "Correct",
+  "flight_id": "668e41ee3f23ded5fecd6cd6",
+  "location": {
+    "lat": 33.6407,
+    "long": -84.4279
+  },
+  "hasArrived": true
+}
+]

@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "68f20866fda930a13ed8bede"
+  },
+  "session_id": "5348641b-058d-4103-92d4-a131f5bbfb1b",
+  "input": {
+    "_id": {
+      "$oid": "68f20866fda930a13ed8bedd"
+    },
+    "session_id": "sample_doc",
+    "flight_id": "668e41ee3f23ded5fecd6cd6",
+    "Timestamp": "2025-10-17T09:12:06.187295+00:00",
+    "Distance_to_Destination": 0,
+    "Estimated_Time_Left": 0,
+    "Delay_Time": 0.00008296955516925663,
+    "Delay_Cost": 0.4978173310155398,
+    "Fuel_Cost_per_Hour": 0,
+    "Extra_Fuel_Cost": 0.09956346620310796,
+    "Total_Cost_per_Hour": 0.4978173310155398,
+    "Latitude": 33.6407,
+    "Longitude": -84.4279,
+    "Speed": 360,
+    "Extra_Length": 0.008296955516925664,
+    "Total_Cost": 0.4978173310155398
+  },
+  "predictions": [
+    1.4934519930466195
+  ]
+}]
