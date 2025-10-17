@@ -283,7 +283,7 @@ def publish_data_simulated(simulator : DataSimulator):
                  "CF_insertion" : "Correct"}
 
     '''
-    print("SIMULATED MODE: Generating new data for session:", simulator.SID)
+    # print("SIMULATED MODE: Generating new data for session:", simulator.SID)
 
     # 1. Call the generate_data function from the simulator
     (finished, data)= simulator.generate_data()
@@ -309,13 +309,13 @@ def publish_data_simulated(simulator : DataSimulator):
 
         # Insert data in flight_realtimeCF collection
         result = collection_realtime.insert_one(new_data)
-        print(f"SIMULATED MODE: Inserted document with id {result.inserted_id} for session {data['session_id']}")
+        # print(f"SIMULATED MODE: Inserted document with id {result.inserted_id} for session {data['session_id']}")
 
         # Insert data in flight_costs collection
         document = compute_analytical_data(data)
         if document:
             result = collection_costs.insert_one(document)
-            print(f"SIMULATED MODE: Inserted analytical document with id {result.inserted_id} for session {data['session_id']}")
+            # print(f"SIMULATED MODE: Inserted analytical document with id {result.inserted_id} for session {data['session_id']}")
 
     except Exception as e:
         logging.error(f"Error inserting document for session {data['session_id']}: {e}")
@@ -355,7 +355,7 @@ def publish_path_simulated(flight_id, path_data):
     # 2. Update the flights collection with this information
     try:
         global collection_flights
-        print("SIMULATED MODE: Before updating flight document")
+        # print("SIMULATED MODE: Before updating flight document")
         result = collection_flights.update_one(
             {"_id": ObjectId(flight_id)},
             {"$set": {
@@ -480,7 +480,7 @@ async def start_scheduler_simulated(flight_info:dict):
     if session_id in sessions:
         return {"status": f"Session {session_id} already running"}
     
-    print("SIMULATED MODE: Flight info received:", flight_info)
+    print("SIMULATED MODE ACTIVATED: Starting simulation")
 
     # 1. Find the path between the departure and arrival locations
     (disrupted, path_data) = find_path(flight_info)
