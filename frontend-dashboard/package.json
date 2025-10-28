@@ -3,7 +3,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "mongo-seed": "node scripts/mongo-seed.js"
+
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
