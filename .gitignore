@@ -9,3 +9,5 @@ cost_calculator/json-keys-for-connect-aircraft-ist
 **/.venv
 .env*
 .DS_Store
+
+makefile
