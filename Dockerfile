@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 
 # Copy application dependency manifests to the container image.
-COPY /airplanedashboard/package*.json ./
+COPY /frontend-dashboard/package*.json ./
 
 ARG NEXT_PUBLIC_SIMULATION_APP_URL
 ENV NEXT_PUBLIC_SIMULATION_APP_URL=$NEXT_PUBLIC_SIMULATION_APP_URL
@@ -15,7 +15,7 @@ ENV NEXT_PUBLIC_SIMULATION_APP_URL=$NEXT_PUBLIC_SIMULATION_APP_URL
 RUN npm install
 
 # Copy the rest of the application code to the working directory.
-COPY airplanedashboard/ .
+COPY frontend-dashboard/ .
 
 # Build the app.
 RUN npm run build
