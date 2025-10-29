@@ -19,6 +19,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# MONGODB INFO
+MONGO_URI = os.getenv("MONGO_URI")
+MONGODB_DB = os.getenv("MONGODB_DB", "leafy_airline")
+SIMULATED_MODE = os.getenv("SIMULATED_MODE", "false").lower() == "true"
+
+mongo_client = None
+collection_flights = None
+collection_realtime = None
+collection_costs = None
+
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
 
@@ -56,26 +66,20 @@ sessions_lock = threading.Lock()
 scheduler = BackgroundScheduler()
 scheduler.start()
 
-# PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions
-project_id = "connected-aircraft-ist"
+# PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions - ONLY IF NOT SIMULATED MODE
 
-data_topic_id = "leafyAirlineData"
-path_topic_id = "leafyAirlinePath"
+if not SIMULATED_MODE:
+    project_id = "connected-aircraft-ist"
 
-# Use this to avoid using service accounts
-data_publisher = pubsub_v1.PublisherClient()
-path_publisher = pubsub_v1.PublisherClient()
+    data_topic_id = "leafyAirlineData"
+    path_topic_id = "leafyAirlinePath"
 
-data_topic = data_publisher.topic_path(project_id, data_topic_id)
-path_topic = path_publisher.topic_path(project_id, path_topic_id)
+    # Use this to avoid using service accounts
+    data_publisher = pubsub_v1.PublisherClient()
+    path_publisher = pubsub_v1.PublisherClient()
 
-# MONGODB INFO
-MONGO_URI = os.getenv("MONGO_URI")
-MONGODB_DB = os.getenv("MONGODB_DB", "leafy_airline")
-mongo_client = None
-collection_flights = None
-collection_realtime = None
-collection_costs = None
+    data_topic = data_publisher.topic_path(project_id, data_topic_id)
+    path_topic = path_publisher.topic_path(project_id, path_topic_id)
 
 
 # FUNCTIONS
