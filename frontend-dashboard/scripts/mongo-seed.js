@@ -1,13 +1,25 @@
-import "dotenv/config";
-import fs from "fs/promises";
-import path from "path";
-import { MongoClient } from "mongodb";
 
+// import fs from "fs/promises";
+// import path from "path";
+// import { MongoClient } from "mongodb";
+// import { config as loadDotenv } from "dotenv";
 
-// Configuration  
+// require("dotenv").config();
+
+const fs = require("fs/promises");
+const path = require("path");
+const { MongoClient } = require("mongodb");
+require("dotenv").config({ path: "../.env.local" });
+
+// Load environment variables from .env file
+// loadDotenv();
+
+// Configuration
 // Take the MongoDB connection string and database name from environment variables or replace with your own values
 const uri = process.env.MONGO_URI;
-const databaseName = process.env.MONGODB_DB || 'airline_database';        
+const databaseName = process.env.MONGODB_DB || 'airline_database';
+
+console.log(`Using MongoDB URI: ${uri}`);
 
 
 async function logStep(msg) {
