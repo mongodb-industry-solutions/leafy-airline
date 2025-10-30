@@ -21,7 +21,15 @@ import airports_dict from "../resources/airports.js";
 // URL from the cloud run data-simulator microservice
 const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
 const googleAPI = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-const simulatedMode = Boolean(process.env.NEXT_PUBLIC_SIMULATED_MODE); // Default to 'false' if not set
+const simulatedVar = process.env.NEXT_PUBLIC_SIMULATED_MODE; // Default to 'false' if not set
+let simulatedMode;
+
+//  Convert simulatedVar to boolean
+if (simulatedVar === 'true') {
+  simulatedMode = true;
+} else {
+  simulatedMode = false;
+}
 
 // const app_url = "https://simulation-service-502454695591.europe-west1.run.app";
 console.log("App URL:", app_url);

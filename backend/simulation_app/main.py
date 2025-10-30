@@ -22,7 +22,6 @@ load_dotenv()
 # MONGODB INFO
 MONGO_URI = os.getenv("MONGO_URI")
 MONGODB_DB = os.getenv("MONGODB_DB", "leafy_airline")
-SIMULATED_MODE = os.getenv("SIMULATED_MODE", "false").lower() == "true"
 
 mongo_client = None
 collection_flights = None
@@ -66,20 +65,24 @@ sessions_lock = threading.Lock()
 scheduler = BackgroundScheduler()
 scheduler.start()
 
-# PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions - ONLY IF NOT SIMULATED MODE
+# PUBSUB INFO - leafyAirlineData + leafyAirlinePath Subscriptions
 
-if not SIMULATED_MODE:
-    project_id = "connected-aircraft-ist"
+project_id = "connected-aircraft-ist"
+data_topic_id = "leafyAirlineData"
+path_topic_id = "leafyAirlinePath"
+data_publisher = None
+path_publisher = None
+data_topic = None
+path_topic = None
 
-    data_topic_id = "leafyAirlineData"
-    path_topic_id = "leafyAirlinePath"
+# if not SIMULATED_MODE:
 
-    # Use this to avoid using service accounts
-    data_publisher = pubsub_v1.PublisherClient()
-    path_publisher = pubsub_v1.PublisherClient()
+#     # Use this to avoid using service accounts
+#     data_publisher = pubsub_v1.PublisherClient()
+#     path_publisher = pubsub_v1.PublisherClient()
 
-    data_topic = data_publisher.topic_path(project_id, data_topic_id)
-    path_topic = path_publisher.topic_path(project_id, path_topic_id)
+#     data_topic = data_publisher.topic_path(project_id, data_topic_id)
+#     path_topic = path_publisher.topic_path(project_id, path_topic_id)
 
 
 # FUNCTIONS
@@ -419,6 +422,16 @@ async def start_scheduler(flight_info:dict):
     calling the generate_data function from our simulator every 5 seconds
     '''
 
+    global data_publisher, path_publisher, data_topic, path_topic
+
+    # If global pubsub variables are None, initialize them
+    if data_publisher is None or path_publisher is None:
+        logging.info("Initializing Pub/Sub clients and topics")
+        data_publisher = pubsub_v1.PublisherClient()
+        path_publisher = pubsub_v1.PublisherClient()
+        data_topic = data_publisher.topic_path(project_id, data_topic_id)
+        path_topic = path_publisher.topic_path(project_id, path_topic_id)
+    
     session_id = flight_info["session_id"]
     logging.info(f"Start request for session {session_id}")
 
