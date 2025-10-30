@@ -18,22 +18,6 @@ import Image from "next/image";
 import airports_dict from "../resources/airports.js";
 
 
-// URL from the cloud run data-simulator microservice
-const app_url = process.env.NEXT_PUBLIC_SIMULATION_APP_URL;
-const googleAPI = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-const simulatedVar = process.env.NEXT_PUBLIC_SIMULATED_MODE; // Default to 'false' if not set
-let simulatedMode;
-
-//  Convert simulatedVar to boolean
-if (simulatedVar === 'true') {
-  simulatedMode = true;
-} else {
-  simulatedMode = false;
-}
-
-// const app_url = "https://simulation-service-502454695591.europe-west1.run.app";
-console.log("App URL:", app_url);
-console.log("Simulated Mode:", simulatedMode);
 
 const FlightLayout = ({ children }) => {
   const router = useRouter();
@@ -71,6 +55,31 @@ const FlightLayout = ({ children }) => {
   // New modal for architecture images
   const [modalImage, setModalImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); 
+
+  // Getting environment variables from server side
+  const [envConfig, setEnvConfig] = useState(null);
+
+  useEffect(() => {
+    async function fetchEnvConfig() {
+      try {
+        const res = await fetch("/api/envConfig");
+        if (!res.ok) throw new Error("Failed to fetch environment config");
+        const data = await res.json();
+        setEnvConfig(data);
+      } catch (err) {
+        console.error("Error loading environment config:", err);
+      }
+    }
+
+    fetchEnvConfig();
+  }, []);
+
+  useEffect(() => {
+    if (!envConfig) return;
+    console.log("App URL:", envConfig.app_url);
+    console.log("Simulated Mode:", envConfig.simulatedMode);
+  }, [envConfig]);
+
 
   async function fetchData() {
     try {
@@ -268,6 +277,21 @@ const FlightLayout = ({ children }) => {
     return () => clearInterval(aggregationInterval);
   }
 }, [simulationStarted, simulationEnded]);
+
+// Wait until config is loaded
+  if (!envConfig) return <p>Loading environment configuration...</p>;
+
+  // Destructure variables for easier use
+  const {
+    app_url,
+    simulatedMode,
+    maps_api_key,
+    mongo_uri,
+    mongodb_db,
+  } = envConfig;
+  // console.log("App URL:", app_url);
+  // console.log("Simulated Mode:", simulatedMode);
+
 
   const calculateHeading = (from, to) => {
     const lat1 = (from.lat * Math.PI) / 180;
