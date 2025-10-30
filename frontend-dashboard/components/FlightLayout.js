@@ -226,9 +226,10 @@ const FlightLayout = ({ children }) => {
             
             if (sameLat && sameLng && !simulationEnded) {
               setEqualSteps((prev) => prev + 1);
+              console.log(`Equal steps: ${equalSteps + 1}`);
 
-              // If position is the same for 4 consecutive times, end simulation
-              if (equalSteps + 1 >= 4) {
+              // If position is the same for 3 consecutive times, end simulation
+              if (equalSteps + 1 >= 3) {
                 console.log("Simulation has ended.");
                 setSimulationEnded(true);
                 setEqualSteps(0);
