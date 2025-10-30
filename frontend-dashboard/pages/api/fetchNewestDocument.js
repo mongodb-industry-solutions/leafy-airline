@@ -35,7 +35,9 @@ export default async function handler(req, res) {
       return res.status(200).json(newestDocument[0]);
     } else {
       console.log(`No documents found for session ${session_id}`);
-      return res.status(404).json({ message: `No data found for session ${session_id}` });
+      // Handle this as controlled error
+      // return res.status(404).json({ message: `No data found for session ${session_id}` });
+      return res.status(200).json({message: `No data found for session ${session_id}`});
     }
 
   } catch (error) {

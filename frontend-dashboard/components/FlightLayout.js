@@ -45,7 +45,7 @@ const FlightLayout = ({ children }) => {
 
   const [loading, setLoading] = useState(false); 
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
-  const [prevTimestamp, setPrevTimestamp] = useState(null);
+  const [equalSteps, setEqualSteps] = useState(0);
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
 
@@ -214,37 +214,35 @@ const FlightLayout = ({ children }) => {
             lat: data.mostRecentLat,
             lng: data.mostRecentLong,
           };
-
-          const newTimestamp = data.mostRecentTs;
           
 
           console.log("Latest position:", newPosition);
 
-          if (prevAirplanePosition && prevTimestamp) {
+          if (prevAirplanePosition) {
 
-            // Check if simulation has ended - Only proceed if timestamp has changed
+            // Compare previous position for 3 consecutive times
+            const sameLat = prevAirplanePosition.lat === newPosition.lat;
+            const sameLng = prevAirplanePosition.lng === newPosition.lng;
+            
+            if (sameLat && sameLng && !simulationEnded) {
+              setEqualSteps((prev) => prev + 1);
 
-            if (newTimestamp !== prevTimestamp) {
-              // Compare previous and new positions
-              const sameLat = prevAirplanePosition.lat === newPosition.lat;
-              const sameLng = prevAirplanePosition.lng === newPosition.lng;
-              
-              if (sameLat && sameLng && !simulationEnded) {
-              console.log("Simulation has ended.");
-              setSimulationEnded(true);
-              clearInterval(interval); // stop polling
-              return;
-            }
+              // If position is the same for 4 consecutive times, end simulation
+              if (equalSteps + 1 >= 4) {
+                console.log("Simulation has ended.");
+                setSimulationEnded(true);
+                setEqualSteps(0);
+                clearInterval(interval); // stop polling
+                return;
+              }
           }
 
             // If plane moved, update heading and continue
             const heading = calculateHeading(prevAirplanePosition, newPosition);
             setAirplanePosition({ ...newPosition, heading });
-            setPrevTimestamp(newTimestamp);
 
           } else {
             setAirplanePosition(newPosition);
-            setPrevTimestamp(newTimestamp);
           }
 
           setFlightPath((prevPath) => [...prevPath, newPosition]);
