@@ -45,6 +45,7 @@ const FlightLayout = ({ children }) => {
 
   const [loading, setLoading] = useState(false); 
   const [prevAirplanePosition, setPrevAirplanePosition] = useState(null);
+  const [prevTimestamp, setPrevTimestamp] = useState(null);
   const [totalExpectedFuelCost, setTotalExpectedFuelCost] = useState(null);
   const [sumCost, setSumCost] = useState(null);
 
@@ -214,25 +215,36 @@ const FlightLayout = ({ children }) => {
             lng: data.mostRecentLong,
           };
 
+          const newTimestamp = data.mostRecentTs;
+          
+
           console.log("Latest position:", newPosition);
 
-          if (prevAirplanePosition) {
-            // Check if simulation has ended (no movement)
-            const sameLat = newPosition.lat === prevAirplanePosition.lat;
-            const sameLng = newPosition.lng === prevAirplanePosition.lng;
+          if (prevAirplanePosition && prevTimestamp) {
 
-            if (sameLat && sameLng && !simulationEnded) {
+            // Check if simulation has ended - Only proceed if timestamp has changed
+
+            if (newTimestamp !== prevTimestamp) {
+              // Compare previous and new positions
+              const sameLat = prevAirplanePosition.lat === newPosition.lat;
+              const sameLng = prevAirplanePosition.lng === newPosition.lng;
+              
+              if (sameLat && sameLng && !simulationEnded) {
               console.log("Simulation has ended.");
               setSimulationEnded(true);
               clearInterval(interval); // stop polling
               return;
             }
+          }
 
             // If plane moved, update heading and continue
             const heading = calculateHeading(prevAirplanePosition, newPosition);
             setAirplanePosition({ ...newPosition, heading });
+            setPrevTimestamp(newTimestamp);
+
           } else {
             setAirplanePosition(newPosition);
+            setPrevTimestamp(newTimestamp);
           }
 
           setFlightPath((prevPath) => [...prevPath, newPosition]);
