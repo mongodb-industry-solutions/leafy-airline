@@ -31,19 +31,11 @@ collection_costs = None
 # INITIALIZE THE APP WITH COMMAND : fastapi dev main.py
 app = FastAPI()
 
-origins = [
-    # "http://localhost:3000",
-    # "https://airplanedashboard-65jcrv6puq-ew.a.run.app",
-    # "https://airplanedashboard-test-502454695591.europe-west1.run.app"
-    "*"
-    # Add other origins if needed
-]
 
 app.add_middleware(
     CORSMiddleware,
-    # allow_origins=["*"],
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
