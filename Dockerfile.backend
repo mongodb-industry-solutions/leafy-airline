@@ -15,7 +15,7 @@ COPY backend/simulation_app/ .
 
 # COPY backend/simulation_app/.env .env
 
-# Use the PORT environment variable provided by Cloud Run, default to 8080 if not set
-ENV PORT=8080
+# Use the PORT environment variable provided by Cloud Run, default to 8000 if not set
+ENV PORT=8000
 
 CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]
