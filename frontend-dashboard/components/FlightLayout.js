@@ -329,8 +329,6 @@ const FlightLayout = ({ children }) => {
     app_url,
     simulatedMode,
     maps_api_key,
-    mongo_uri,
-    mongodb_db,
   } = envConfig;
   // console.log("App URL:", app_url);
   // console.log("Simulated Mode:", simulatedMode);
