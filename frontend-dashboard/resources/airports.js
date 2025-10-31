@@ -55,7 +55,7 @@ const airports_dict = {
     'ORD': 'Chicago, ORD',
     'DFW': 'Dallas/Fort Worth, DFW',
     'JFK': 'New York (JFK), JFK',
-    'DEN': 'Denver, DEN',
+    // 'DEN': 'Denver, DEN',
     'SFO': 'San Francisco, SFO',
     'SEA': 'Seattle, SEA',
     'MIA': 'Miami, MIA',

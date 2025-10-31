@@ -56,8 +56,8 @@ airports = {
     'LAX': (33.9416, -118.4085),   # Los Angeles International Airport
     'ORD': (41.9742, -87.9073),    # O'Hare International Airport (Chicago)
     'DFW': (32.8968, -97.0380),    # Dallas/Fort Worth International Airport
-    'JFK': (40.6413, -73.7781),    # John F. Kennedy International Airport (New York)
-    'DEN': (39.8561, -104.6737),   # Denver International Airport
+    # 'JFK': (40.6413, -73.7781),    # John F. Kennedy International Airport (New York)
+    # 'DEN': (39.8561, -104.6737),   # Denver International Airport
     'SFO': (37.6213, -122.3790),   # San Francisco International Airport
     'SEA': (47.4502, -122.3088),   # Seattle-Tacoma International Airport
     'MIA': (25.7957, -80.2870),    # Miami International Airport

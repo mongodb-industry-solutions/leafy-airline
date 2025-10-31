@@ -211,22 +211,6 @@ def publish_data(simulator : DataSimulator):
 
     data_bytes = json.dumps(data).encode("utf-8")
     data_publisher.publish(data_topic, data_bytes)
-    # print(f"[{simulator.SID}] Data published")
-
-    # IMPORTANT - IF THREADING ISSUES, UNCOMMENT THIS AND COMMENT BELOW
-    # if finished:
-
-    #     sid = simulator.SID
-    #     if sid in sessions:
-    #         try:
-    #             sessions[sid]["scheduler"].remove_job(sid)
-    #             del sessions[sid]
-    #             logging.info(f"Session {sid} finished — job removed and session cleared.")
-    #         except Exception as e:
-    #             logging.error(f"Error stopping finished session {sid}: {e}")
-
-
-    # return {"status": "New data published"}
 
     if finished:
         sid = simulator.SID

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useRef} from "react";
 import { useRouter } from "next/router";
 import styles from "./GeneralStyle.module.css"; // Ensure this path is correct
 import footerStyles from "./Footer.module.css";
@@ -22,6 +22,7 @@ import airports_dict from "../resources/airports.js";
 const FlightLayout = ({ children }) => {
   const router = useRouter();
   const { flightId, sessionId } = router.query; 
+  const animationRef = useRef(null);
 
   console.log("FlightLayout received flightId:", flightId);
   // console.log("FlightLayout received sessionId:", sessionId);
@@ -97,6 +98,7 @@ const FlightLayout = ({ children }) => {
         );
 
         const flight = await res.json();
+        console.log("Fetched flight data:", flight);
         setSelectedFlight(flight);
 
         if (simulationStarted) {
@@ -239,8 +241,35 @@ const FlightLayout = ({ children }) => {
           }
 
             // If plane moved, update heading and continue
+            // const heading = calculateHeading(prevAirplanePosition, newPosition);
+            // setAirplanePosition({ ...newPosition, heading });
+
+            if (animationRef.current) {
+              cancelAnimationFrame(animationRef.current);
+            }
+
             const heading = calculateHeading(prevAirplanePosition, newPosition);
-            setAirplanePosition({ ...newPosition, heading });
+            const start = prevAirplanePosition;
+            const end = newPosition;
+            const duration = 3000; // match your fetch interval
+            const startTime = performance.now();
+
+            const animate = (now) => {
+              const elapsed = now - startTime;
+              const fraction = Math.min(elapsed / duration, 1);
+              const interpolated = {
+                lat: start.lat + (end.lat - start.lat) * fraction,
+                lng: start.lng + (end.lng - start.lng) * fraction,
+              };
+
+              setAirplanePosition({ ...interpolated, heading });
+
+              if (fraction < 1) {
+                animationRef.current = requestAnimationFrame(animate);
+              }
+            };
+
+            animationRef.current = requestAnimationFrame(animate);
 
           } else {
             setAirplanePosition(newPosition);
@@ -342,7 +371,7 @@ const FlightLayout = ({ children }) => {
 
   const getNewPath = (flight) => {
     const path =
-      flight && Array.isArray(flight.new_path) ? flight.new_path : [];
+      flight && Array.isArray(flight.new_path_airps) ? flight.new_path_airps : [];
 
     // Map each path value to its city and code from the airports dictionary
     const resolvedPath = path.map((code) => airports_dict[code] || code);
@@ -427,6 +456,11 @@ const FlightLayout = ({ children }) => {
       });
       const data = await response.json();
 
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+
       // Clear flight path and stop fetching
       setFlightPath([]);
       setFetchingStarted(false);
@@ -485,6 +519,12 @@ const FlightLayout = ({ children }) => {
     setModalImage(null); 
     setIsModalOpen(false);  
   };  
+
+
+  const interpolatePosition = (start, end, fraction) => ({
+    lat: start.lat + (end.lat - start.lat) * fraction,
+    lng: start.lng + (end.lng - start.lng) * fraction,
+  });
 
   return (
     <div className={styles.container}>
@@ -670,21 +710,22 @@ const FlightLayout = ({ children }) => {
                           <Polyline
                             path={flightPath}
                             options={{
-                              strokeColor: "#023430",
-                              strokeOpacity: 0.8,
+                              strokeColor: "#0a9396",
+                              strokeOpacity: 0.7,
                               strokeWeight: 2,
                               icons: [
                                 {
                                   icon: {
-                                    path: google.maps.SymbolPath
-                                      .FORWARD_OPEN_ARROW,
+                                    path: "M 0,-1 0,1", // small dot
+                                    strokeOpacity: 1,
+                                    scale: 2,
                                   },
-                                  offset: "100%",
-                                  repeat: "20px",
+                                  offset: "0",
+                                  repeat: "15px",
                                 },
                               ],
                             }}
-                          />
+                            />
                         </>
                       )}
                     </GoogleMap>
