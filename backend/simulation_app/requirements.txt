@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+apscheduler
+numpy
+matplotlib
+networkx
+pyproj
+pymongo
+google-cloud
+google-cloud-pubsub
+pytz
+datetime
+dotenv

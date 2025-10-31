@@ -1,0 +1,325 @@
+[
+    {
+  "dep_time": {
+    "$date": "2024-07-14T12:00:00.000Z"
+  },
+  "arr_time": {
+    "$date": "2024-07-14T15:00:00.000Z"
+  },
+  "dep_arp": {
+    "_id": "BOS",
+    "city": "Boston",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 42.360082,
+      "long": -71.05888
+    }
+  },
+  "arr_arp": {
+    "_id": "ATL",
+    "city": "Atlanta",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 33.749001,
+      "long": -84.387978
+    }
+  },
+  "airline": "East Coast Airlines",
+  "plane": "Boeing 787",
+  "ui_telemetry": {
+    "timestamp": {
+      "$date": "2024-07-14T12:00:00.000Z"
+    },
+    "avg_speed": 550,
+    "loc_vector": {
+      "start": {
+        "lat": 42.360082,
+        "long": -71.05888
+      },
+      "end": {
+        "lat": 33.749001,
+        "long": -84.387978
+      }
+    }
+  },
+  "flight_number": "ATL-157",
+  "initial_path": [
+    "BOS",
+    "ATL"
+  ],
+  "new_path": [
+    "BOS",
+    "LGA",
+    "ATL"
+  ],
+  "disruption_coords": {
+    "lat": 38.24259344794864,
+    "long": -78.11798999155637
+  },
+  "initial_path_airps": [
+    "BOS",
+    "ATL"
+  ],
+  "new_path_airps": [
+    "BOS",
+    "LGA",
+    "ATL"
+  ]
+},
+{
+  "dep_time": {
+    "$date": "2024-07-19T13:00:00.000Z"
+  },
+  "arr_time": {
+    "$date": "2024-07-19T16:00:00.000Z"
+  },
+  "dep_arp": {
+    "_id": "SAN",
+    "city": "San Diego",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 32.715736,
+      "long": -117.161087
+    }
+  },
+  "arr_arp": {
+    "_id": "PHX",
+    "city": "Phoenix",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 33.448376,
+      "long": -112.074036
+    }
+  },
+  "airline": "Desert Air",
+  "plane": "Bombardier CRJ900",
+  "ui_telemetry": {
+    "timestamp": {
+      "$date": "2024-07-15T13:00:00.000Z"
+    },
+    "avg_speed": 530,
+    "loc_vector": {
+      "start": {
+        "lat": 32.715736,
+        "long": -117.161087
+      },
+      "end": {
+        "lat": 33.448376,
+        "long": -112.074036
+      }
+    }
+  },
+  "flight_number": "PHX-189",
+  "initial_path": [
+    "SAN",
+    "PHX"
+  ],
+  "new_path": [
+    "SAN",
+    "LAX",
+    "PHX"
+  ],
+  "disruption_coords": {
+    "lat": 33.10789008207128,
+    "long": -114.62816242096973
+  }
+},
+
+{
+  "dep_time": {
+    "$date": "2024-07-11T09:00:00.000Z"
+  },
+  "arr_time": {
+    "$date": "2024-07-11T12:00:00.000Z"
+  },
+  "dep_arp": {
+    "_id": "ORD",
+    "city": "Chicago",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 41.878113,
+      "long": -87.629799
+    }
+  },
+  "arr_arp": {
+    "_id": "SFO",
+    "city": "San Francisco",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 37.774929,
+      "long": -122.419418
+    }
+  },
+  "airline": "Skyline Airlines",
+  "plane": "Airbus A320",
+  "ui_telemetry": {
+    "timestamp": {
+      "$date": "2024-07-11T09:00:00.000Z"
+    },
+    "avg_speed": 540.2,
+    "loc_vector": {
+      "start": {
+        "lat": 41.878113,
+        "long": -87.629799
+      },
+      "end": {
+        "lat": 37.774929,
+        "long": -122.419418
+      }
+    }
+  },
+  "flight_number": "SFO-199",
+  "disruption_coords": {
+    "lat": 41.14960640210537,
+    "long": -105.56082525288254
+  },
+  "initial_path": [
+    "ORD",
+    "SFO"
+  ],
+  "new_path": [
+    "ORD",
+    "DEN",
+    "SFO"
+  ],
+  "simulation_id": null,
+  "initial_path_airps": [
+    "ORD",
+    "SFO"
+  ],
+  "new_path_airps": [
+    "ORD",
+    "DEN",
+    "SFO"
+  ]
+},
+{
+  "dep_time": {
+    "$date": "2024-07-22T10:00:00.000Z"
+  },
+  "arr_time": {
+    "$date": "2024-07-22T13:00:00.000Z"
+  },
+  "dep_arp": {
+    "_id": "DFW",
+    "city": "Dallas",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 32.776665,
+      "long": -96.796989
+    }
+  },
+  "arr_arp": {
+    "_id": "MIA",
+    "city": "Miami",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 25.76168,
+      "long": -80.19182
+    }
+  },
+  "airline": "Sunset Airways",
+  "plane": "Boeing 747",
+  "ui_telemetry": {
+    "timestamp": {
+      "$date": "2024-07-12T10:00:00.000Z"
+    },
+    "avg_speed": 560,
+    "loc_vector": {
+      "start": {
+        "lat": 32.776665,
+        "long": -96.796989
+      },
+      "end": {
+        "lat": 25.76168,
+        "long": -80.19182
+      }
+    }
+  },
+  "flight_number": "MIA-150",
+  "disruption_coords": {
+    "lat": 29.5270316981395,
+    "long": -88.20717353362234
+  },
+  "initial_path": [
+    "DFW",
+    "MIA"
+  ],
+  "new_path": [
+    "DFW",
+    "IAH",
+    "MIA"
+  ],
+  "initial_path_airps": [
+    "DFW",
+    "MIA"
+  ],
+  "new_path_airps": [
+    "DFW",
+    "IAH",
+    "MIA"
+  ]
+},
+{
+  "dep_time": {
+    "$date": "2024-07-13T11:00:00.000Z"
+  },
+  "arr_time": {
+    "$date": "2024-07-13T14:00:00.000Z"
+  },
+  "dep_arp": {
+    "_id": "SEA",
+    "city": "Seattle",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 47.606209,
+      "long": -122.332069
+    }
+  },
+  "arr_arp": {
+    "_id": "DEN",
+    "city": "Denver",
+    "country": "USA",
+    "geo_loc": {
+      "lat": 39.739236,
+      "long": -104.990251
+    }
+  },
+  "airline": "Mountain Air",
+  "plane": "Embraer E195",
+  "ui_telemetry": {
+    "timestamp": {
+      "$date": "2024-07-13T11:00:00.000Z"
+    },
+    "avg_speed": 520.7,
+    "loc_vector": {
+      "start": {
+        "lat": 47.606209,
+        "long": -122.332069
+      },
+      "end": {
+        "lat": 39.739236,
+        "long": -104.990251
+      }
+    }
+  },
+  "flight_number": "DEN-190",
+  "initial_path": [
+    "SEA",
+    "DEN"
+  ],
+  "new_path": [
+    "SEA",
+    "LAS",
+    "DEN"
+  ],
+  "disruption_coords": {
+    "lat": 44.000329713547266,
+    "long": -113.08758113994968
+  }
+}
+
+
+
+
+]

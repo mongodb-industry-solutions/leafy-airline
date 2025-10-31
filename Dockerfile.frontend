@@ -1,0 +1,26 @@
+# Use the official Node.js image with the required version.
+FROM node:18.18
+
+# Set the working directory.
+WORKDIR /usr/src/app
+
+# Copy application dependency manifests to the container image.
+COPY /frontend-dashboard/package*.json ./
+
+# Install dependencies.
+RUN npm install
+
+# Copy the rest of the application code to the working directory.
+COPY frontend-dashboard/ .
+
+# Build the app.
+RUN npm run build
+
+# Environment variable for port.
+ENV PORT=3000
+
+# Tell Docker about the port we'll run on.
+EXPOSE 3000
+
+# Run the web service on container startup.
+CMD ["npm", "start"]
