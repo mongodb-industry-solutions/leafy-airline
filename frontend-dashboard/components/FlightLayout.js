@@ -24,7 +24,7 @@ const FlightLayout = ({ children }) => {
   const { flightId, sessionId } = router.query; 
   const animationRef = useRef(null);
 
-  console.log("FlightLayout received flightId:", flightId);
+  // console.log("FlightLayout received flightId:", flightId);
   // console.log("FlightLayout received sessionId:", sessionId);
   
   const [sessionIdState, setSessionIdState] = useState(sessionId || null);
@@ -131,6 +131,9 @@ const FlightLayout = ({ children }) => {
   // Update params when we get the apiKey
   useEffect(() => {
     if (apiKey) {
+
+      console.log("SimulationStarted:", simulationStarted);
+      console.log("Fetching data...");
       fetchData();
     }
   }, [flightIdState, simulationStarted, apiKey]);
@@ -423,20 +426,13 @@ const FlightLayout = ({ children }) => {
       }
       const data = await response.json();
 
-      // // Trigger Aggregation API after starting the simulation
-      // const aggregationResponse = await fetch('/api/aggregation', { method: 'POST' });
-      // if (aggregationResponse.ok) {
-      //   console.log('Aggregation triggered successfully.');
-      // } else {
-      //   console.error('Failed to trigger aggregation. Status:', aggregationResponse.status);
-      // }
-
       setSimulationStarted(true);
 
       // Delay the start of fetching newest document
       setTimeout(() => {
         setFetchingStarted(true);
         setLoading(false); // Set loading to false after delay
+        fetchData(); // Fetch data immediately after starting fetching
       }, 5000); // 5 seconds delay
     } catch (error) {
       console.error("Error starting process:", error);
@@ -731,7 +727,7 @@ const FlightLayout = ({ children }) => {
                     </GoogleMap>
                   </LoadScript>
                   {loading && (
-                    <div className={styles.loadingOverlay}>Loading...</div>
+                    <div className={styles.loadingOverlay}>Loading, please wait until the simulation is ready...</div>
                   )}
 
                   {simulationEnded && !loading && (
