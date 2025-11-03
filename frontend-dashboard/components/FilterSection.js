@@ -106,14 +106,15 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
 
       {/* 🆕 Switch for time filters */}
       <div className={styles.switchRow}>
-        <label>
+         <label htmlFor="time-toggle">
+          Enable time filters
+        </label>
           <input
             type="checkbox"
             checked={enableTimeFilters}
+            className={styles.toggleSwitch}
             onChange={(e) => setEnableTimeFilters(e.target.checked)}
           />
-          Enable time filters
-        </label>
       </div>
 
       {enableTimeFilters && (
