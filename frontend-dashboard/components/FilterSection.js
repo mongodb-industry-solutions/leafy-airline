@@ -26,10 +26,10 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   const fetchResults = async (params) => {
     setLoading(true);
     try {
-      console.log('Params detected');
+      console.log('Params detected in fetchResults:', params);
       const queryString = new URLSearchParams(params).toString();
       const response = await fetch(`/api/filters?${queryString}`);
-      console.log(queryString);
+      // console.log(queryString);
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -55,18 +55,27 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
     if (selectedDeparture.length > 0) params['dep_arp._id'] = selectedDeparture;
     if (selectedArrival.length > 0) params['arr_arp._id'] = selectedArrival;
 
-    // ✅ only include time filters if enabled
+    // Time filters
     if (enableTimeFilters) {
       if (!selectedDate) {
         alert('Please select a date before applying time filters.');
         return;
       }
 
-      const dep_time = convertTimeToISO(departureTime);
-      const arr_time = convertTimeToISO(arrivalTime);
+      // Get dep_time start and end in UTC
+      const dep_time_start = convertTimeToUTC(departureTime);
+      const dep_time_end = convertTimeToUTC("23:50");
 
-      params['dep_time'] = dep_time;
-      params['arr_time'] = arr_time;
+      const arr_time_start = convertTimeToUTC("00:00");
+      const arr_time_end = convertTimeToUTC(arrivalTime);
+
+      console.log('Converted Departure Time UTC:', dep_time_start, 'to', dep_time_end);
+      console.log('Converted Arrival Time UTC:', arr_time_start, 'to', arr_time_end);
+
+      params['dep_time_start'] = dep_time_start;;
+      params['dep_time_end'] = dep_time_end;
+      params['arr_time_start'] = arr_time_start;
+      params['arr_time_end'] = arr_time_end;
     }
 
     setFilters(params);
@@ -92,10 +101,13 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
     setter(value || dates_list[0]);
   };
 
-  const convertTimeToISO = (timeString) => {
+  const convertTimeToUTC = (timeString) => {
+
     const [day, month, year] = String(selectedDate).split('-');
     const [hours, minutes] = timeString.split(':');
     const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00.000`);
+
+    console.log('Converted Date Object:', date.toISOString());
     return date.toISOString();
   };
 
