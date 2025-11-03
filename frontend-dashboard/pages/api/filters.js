@@ -2,13 +2,13 @@ import clientPromise from "../../lib/mongo";
 
 const endOfDay = (dateStr) => {
   const date = new Date(dateStr);
-  date.setHours(23, 50, 0, 0);
+  date.setUTCHours(23, 50, 0, 0);
   return date;
 };  
 
 const startOfDay = (dateStr) => {
   const date = new Date(dateStr);
-  date.setHours(0, 0, 0, 0);
+  date.setUTCHours(0, 0, 0, 0);
   return date;
 }
   
@@ -20,6 +20,7 @@ export default async function handler(req, res) {
   
   const params = req.query;  
   const matchStage = {}; // Initial `$match` stage for filtering documents  
+  console.log('Received query parameters:', params);
   
   // Adding filters based on query parameters  
   if (params.dep_time) {  
@@ -92,6 +93,9 @@ export default async function handler(req, res) {
     ];  
   
     const results = await collection.aggregate(aggregationPipeline).toArray();  
+
+    console.log("Aggregation:", JSON.stringify(aggregationPipeline, null, 2));
+    console.log('Aggregation results:', JSON.stringify(results, null, 2));
   
     res.status(200).json(results[0]); // Only one document is returned by `$facet` 
     // console.log('Results sent:');

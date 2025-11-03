@@ -13,6 +13,8 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [enableTimeFilters, setEnableTimeFilters] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [departureTime, setDepartureTime] = useState('00:00');
   const [arrivalTime, setArrivalTime] = useState('23:50');
@@ -48,37 +50,24 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
   const applyFilters = () => {
     console.log('Applying filters');
 
-    // Get the parsed time only if date is selected
-    const dep_time = selectedDate !== '' ? convertTimeToISO(departureTime) : null;
-    const arr_time = selectedDate !== '' ? convertTimeToISO(arrivalTime) : null;
-    // const dep_time_UTC = selectedDate !== '' ? convertLocalToUTC(selectedDate, departureTime) : null;
-    // const arr_time_UTC = selectedDate !== '' ? convertLocalToUTC(selectedDate, arrivalTime) : null;
-
-    // If no date selected, rise open a designed modal
-    if (selectedDate === '') {
-      alert('Please select a date before applying time filters.');
-      return;
-    }
-
-    // Checking if the params have to be included or not
     const params = {};
 
-    if (selectedDeparture.length > 0) {
-      params['dep_arp._id'] = selectedDeparture;
-    }
+    if (selectedDeparture.length > 0) params['dep_arp._id'] = selectedDeparture;
+    if (selectedArrival.length > 0) params['arr_arp._id'] = selectedArrival;
 
-    if (selectedArrival.length > 0) {
-      params['arr_arp._id'] = selectedArrival;
-    }
+    // ✅ only include time filters if enabled
+    if (enableTimeFilters) {
+      if (!selectedDate) {
+        alert('Please select a date before applying time filters.');
+        return;
+      }
 
-    if (dep_time !== null) {
+      const dep_time = convertTimeToISO(departureTime);
+      const arr_time = convertTimeToISO(arrivalTime);
+
       params['dep_time'] = dep_time;
-    }
-    if (arr_time !== null) {
       params['arr_time'] = arr_time;
     }
-
-    console.log('Params to be sent:', params);
 
     setFilters(params);
     fetchResults(params);
@@ -115,31 +104,47 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
       <h2>Filters</h2>
       <SeparationBar />
 
-      <Select
-        className={styles.filterSelect}
-        label="Flight date"
-        placeholder="Select the date"
-        value={selectedDate}
-        size={Size.Default}
-        onChange={(e) => handleDateChange(setSelectedDate, e)}
-      >
-        {dates_list.map((option) => (
-          <Option key={option.value} value={option.value}>{option.label}</Option>
-        ))}
-      </Select>
+      {/* 🆕 Switch for time filters */}
+      <div className={styles.switchRow}>
+        <label>
+          <input
+            type="checkbox"
+            checked={enableTimeFilters}
+            onChange={(e) => setEnableTimeFilters(e.target.checked)}
+          />
+          Enable time filters
+        </label>
+      </div>
 
-      <SeparationBar />
-      <TimeSlider
-        label="Departure Time: "
-        state={departureTime}
-        setter={setDepartureTime}
-      />
-      <TimeSlider
-        label="Arrival Time: "
-        state={arrivalTime}
-        setter={setArrivalTime}
-      />
-      <SeparationBar />
+      {enableTimeFilters && (
+        <>
+          <Select
+            className={styles.filterSelect}
+            label="Flight date"
+            placeholder="Select the date"
+            value={selectedDate}
+            size={Size.Default}
+            onChange={(e) => setSelectedDate(e)}
+          >
+            {dates_list.map((option) => (
+              <Option key={option.value} value={option.value}>{option.label}</Option>
+            ))}
+          </Select>
+
+          <SeparationBar />
+          <TimeSlider
+            label="Departure Time: "
+            state={departureTime}
+            setter={setDepartureTime}
+          />
+          <TimeSlider
+            label="Arrival Time: "
+            state={arrivalTime}
+            setter={setArrivalTime}
+          />
+          <SeparationBar />
+        </>
+      )}
 
       <Select
         className={styles.filterSelect}
@@ -147,7 +152,7 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
         placeholder="Select departure airport"
         value={selectedDeparture}
         size={Size.Default}
-        onChange={(e) => handleDepartureChange(e)}
+        onChange={(e) => setSelectedDeparture(e)}
       >
         {departureOptions.map((option) => (
           <Option key={option.value} value={option.value}>{option.label}</Option>
@@ -160,7 +165,7 @@ function FilterSection({ response, setResponse, dates_list, departureOptions, ar
         placeholder="Select arrival airport"
         value={selectedArrival}
         size={Size.Default}
-        onChange={(e) => handleArrivalChange(e)}
+        onChange={(e) => setSelectedArrival(e)}
       >
         {arrivalOptions.map((option) => (
           <Option key={option.value} value={option.value}>{option.label}</Option>
