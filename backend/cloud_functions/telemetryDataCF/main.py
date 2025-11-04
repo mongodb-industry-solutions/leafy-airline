@@ -33,10 +33,17 @@
 #     data_dict = json.loads(json_str)
 #     print(data_dict)
 
+#     dist_th = 75
+
+
 #     # Work with the dictionary fields
+#     session_id = data_dict.get("session_id")
 #     flight_id = data_dict.get("flight_id")
 #     timestamp_str = data_dict.get("ts")
 #     location = data_dict.get("location")
+
+#     dist_to_arrival = data_dict.get("distance_to_arrival")
+#     arrived = False if (dist_to_arrival >= dist_th) else True
 
 #     # Parse ts data
 #     timestamp = datetime.fromisoformat(timestamp_str)
@@ -44,8 +51,10 @@
 
 #     # Create the new dict thats going to be sent to mongo
 #     new_data = {"ts": timestamp_utc,
+#                  "session_id" : session_id,
 #                  "flight_id" : flight_id, 
 #                  "location" : location,
+#                  "hasArrived" : arrived,
 #                  "CF_insertion" : "Correct"}
 
 #     print("New processed message: ", new_data )
