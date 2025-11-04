@@ -9,6 +9,9 @@
 # from pymongo import MongoClient
 # from bson import ObjectId
 # import certifi
+# from flask import Request
+# import functions_framework
+
 
 # # Initialize logging
 # logging.basicConfig(level=logging.INFO)
@@ -32,6 +35,13 @@
 # collection = db[MONGO_COLLECTION]
 
 # def convert_message_to_df_row(message):
+
+#     logger.info("Entered convert message function")
+
+#     session_id = message['session_id']
+
+#     logger.info(f"Detected session_id {session_id}")
+    
 #     ts = message['ts']
 #     distance_to_destination = message['distance_to_arrival']
 #     estimated_time_left = distance_to_destination / message['velocity']['speed']
@@ -63,16 +73,35 @@
 #         '_id': ObjectId()
 #     }
 
-#     return row
+#     return row, session_id
 
-# def predict_and_store(event, context):
+# @functions_framework.http
+# def predict_and_store(request: Request):
 #     try:
-#         pubsub_message = event['data']
-#         message_data = base64.b64decode(pubsub_message).decode('utf-8')
+#         envelope = request.get_json(silent=True)
+#         if not envelope:
+#             logging.error("No JSON payload received")
+#             return ("Bad Request: no JSON payload", 400)
 
-#         # Parse the input data
+#         # Eventarc Pub/Sub events are nested like this:
+#         # {
+#         #   "message": {
+#         #       "data": "base64-encoded-string",
+#         #       "messageId": "...",
+#         #       "publishTime": "..."
+#         #   },
+#         #   "subscription": "..."
+#         # }
+#         pubsub_message = envelope.get("message", {})
+#         if "data" not in pubsub_message:
+#             logging.error("Missing 'data' field in message")
+#             return ("Bad Request: missing data field", 400)
+
+#         message_data = base64.b64decode(pubsub_message["data"]).decode("utf-8")
 #         input_data = json.loads(message_data)
-#         df_row = convert_message_to_df_row(input_data)
+
+
+#         df_row, session_id = convert_message_to_df_row(input_data)
 
 #          # Extract delay_cost and extra_fuel_cost before making predictions
 #         delay_cost = df_row['Delay_Cost']
@@ -116,9 +145,12 @@
 
 #         # Write to MongoDB
 #         document = {
+#             'session_id' : session_id,
 #             'input': df_row,
 #             'predictions': formatted_predictions
 #         }
+
+#         logger.info(f"Inserting new document: {document}")
 
 #         collection.insert_one(document)
 #         logger.info("Document inserted into MongoDB")

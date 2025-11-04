@@ -90,3 +90,60 @@ position: relative;
 width: 200px;
 }
 
+
+/* Container for the switch */
+.switchRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Hide the native checkbox */
+.toggleSwitch {
+  position: relative;
+  width: 46px;
+  height: 24px;
+  appearance: none;
+  background-color: #d3d3d3;
+  outline: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* The circle inside the switch */
+.toggleSwitch::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* When checked */
+.toggleSwitch:checked {
+  background-color: #00684A;
+}
+
+.toggleSwitch:checked::before {
+  transform: translateX(22px);
+}
+
+/* Optional hover effect */
+.toggleSwitch:hover {
+  background-color: #bfbfbf;
+}
+
+.toggleSwitch:checked:hover {
+  background-color: #00684A;
+}
+

@@ -1,6 +1,12 @@
-# Leafy Air: A Flight Management App
+# Leafy Air - Real-Time Flight Management Platform
 
-This is a **Next.js** application integrated with **MongoDB** and deployed using **Google Cloud Platform (GCP)** services. The app is designed to efficiently manage flights, focusing on real-time data updates to handle flight delays and other critical events.
+Leafy Air is an **event-driven, microservice-based platform** designed to optimize airline operations through real-time data processing and predictive analytics. The system enables airlines to proactively manage flight disruptions, minimize delay propagation, and improve passenger satisfaction.
+
+Built on **Google Cloud Platform**, the architecture integrates **Pub/Sub, Cloud Functions, Cloud Run, MongoDB, and Vertex AI** to deliver scalable, responsive, and intelligent flight management. Real-time telemetry and operational data flow seamlessly through the system, triggering automated analytics, cost calculations, and route adjustments in response to dynamic flight conditions.
+
+By leveraging machine learning and event-driven design, Leafy Air provides airlines with the agility and insight needed to enhance operational efficiency and resilience in an unpredictable environment.
+
+
 ![image](https://github.com/user-attachments/assets/9d932c22-db0c-425e-aeaf-852aa3fe9cd7)
 
 ## Features
@@ -12,7 +18,7 @@ This is a **Next.js** application integrated with **MongoDB** and deployed using
 - **Google Cloud Platform:** Deploy and scale your application using GCP services like Cloud Run.
 
 
-## Getting Started - Local Deployment
+## Getting Started : Fast Setup Instructions
 
 ### *Prerequisites*
 
@@ -30,29 +36,21 @@ npm --version
 node --version
 ```
 
-
-<!-- Include division -->
 ---
 
-<!-- ### First steps :  -->
-### *Step 1 : Github Repository and Local Setup*
+### *Step 1 : Github Repository and environment setup*
 
-To begin your journey, open your preferred IDE and create a new terminal. Then navigate through your files into the directory in which you want to begin the setup process and where you would like to locate the project. Once you are located in your preferred directory, follow these simple steps:
+Open your preferred IDE and create a new terminal. Navigate through your files into the directory in which you want to begin the setup process and follow these simple steps:
 
-1. **Clone the repository and browse to the dashboard directory:**
+**Clone the repository:**
+
+   Execute the following command to clone the Leafy Air repository:
 
    ```bash
    git clone https://github.com/mongodb-industry-solutions/leafy_airline/
-   cd airplanedashboard
    ```
 
-2. **Install dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables:**
+**Set up environment variables:**
 
    Create a `.env.local` file in the root directory and add the following variables:
 
@@ -62,379 +60,172 @@ To begin your journey, open your preferred IDE and create a new terminal. Then n
    MONGODB_DB=your-mongodb-database-name
 
    <!-- GCP API Keys -->
-   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-google-maps-api-key
-   NEXT_PUBLIC_SIMULATION_APP_URL=your-simulation-app-url
+   GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+   SIMULATION_APP_URL=localhost:8000
+   SIMULATED_MODE=true
    ```
-   Replace the placeholder values with your actual MongoDB connection string, database name, Google Maps API key, and the URL of your simulation app. We will explain how to access these values in the next steps.
 
-   **Important:** Take into account these variables should not be included between "" or any other symbol.
-
-<!-- 4. **Run the development server:**
+   Now, navigate to the `backend/microservices/simulation_app` directory and create a `.env.local` file there as well. Add the following variables:
 
    ```bash
-   npm run dev
+   MONGO_URI=your-mongodb-connection-string
+   MONGODB_DB=your-mongodb-database-name
    ```
 
-   Open [http://localhost:3000](http://localhost:3000) in your browser to see the app. -->
+**Add variables to makefile:**
 
-Now that you already have your local repository, let's begin setting up microservices and your GCP project.
+   Open the `Makefile` located in the root directory and replace the following variables with your own values:
+
+   ```Makefile
+   MONGO_URI=your-mongodb-connection-string
+   MONGODB_DB=your-mongodb-database-name
+   GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+   SIMULATION_APP_URL=localhost:8000
+   SIMULATED_MODE=true
+   ```
+
 
 ---
-### *Step 2: MongoDB Integration*  
-  
-This app uses MongoDB to store flight data and handle real-time updates. You can connect to a local MongoDB instance or a cloud database (e.g., MongoDB Atlas).  
-  
-To create the database with all the needed collections and documents, you can use the provided `mongo-seed.js` script located in the root folder of the project.  
-  
-#### **Steps to set up the MongoDB database:**  
-  
-1. **Install MongoDB and dependencies**:  
-  
-   Ensure you have **MongoDB installed and running locally or connected to a cloud-based MongoDB instance** (such as MongoDB Atlas). Next, install the required dependency for the seed script:  
-     
-   ```bash  
-   npm install mongodb  
-   npm install dotenv  
-   ```
+### *Step 2: Container Setup*  
 
-   This will install the MongoDB driver necessary for the script to interact with the database.  
-  
-2. **Run the seed script**:  
-  
-   Make sure your MongoDB server is running locally or reachable via a connection string. Then, update the `MONGO_URI` and `MONGODB_DB` variables in the `.env.local` file with your MongoDB connection string and desired database name. Finally, open a new terminal and execute the following command :  
-  
-   ```bash  
-   node mongo-seed.js  
-   ```  
-  
-   This script will create a database named `flightDB` with the necessary collections and sample data:  
-   - `flight_costs`  
-   - `flight_plane_simulation`  
-   - `flight_realtime` (a time series collection)  
-   - `flights`  
-  
-3. **Verify the data (Optional)**:  
-  
-   Use a MongoDB client (like MongoDB Compass or the MongoDB shell) to connect to your database and verify that the collections and documents have been created successfully. Open the database `flightDB` and inspect the collections; you should find the seeded sample data.  
-  
-  
-#### **Helpful Tips**:  
-- If using MongoDB Compass, verify that the database and collections have been created by navigating to the database `flightDB`.  
-- Test your connection by running queries against the seeded collections to ensure your application can interact with the database.  
-  
-With the database set up, your application is ready to store and manage flight data efficiently!  
+There are **3 different ways** to set up the containers for the application, depending on your preferences and needs. In this section we will explain how to choose the best option for you and how to set it up.
 
----
 
-### *Step 3 : GCP Integration*
+### Option 1: Local Docker Container Deployment (Recommended)
+This option is recommended for local testing and development. It allows you to run the application in isolated containers on your local machine using Docker. It will not require any GCP resources to be used, therefore, it is the fastest and most efficient way to get the app running.
 
-#### What will you be using Google Cloud Services for?
+<!-- Highlight -->
+> **Important:** 
+> This option is specifically used for simulated mode. Therefore, the environment variable `SIMULATED_MODE` must be set to `true` in both the `.env.local` file and the `Makefile`.
 
-- **Cloud Run:** Deploy the app as a containerized service on Cloud Run.
-- **Google Cloud Build:** Automatically build and deploy your app using Cloud Build triggers.
-- **Cloud Storage:** Store static assets and other files.
+1. Open Docker in your machine and ensure it is running.
 
-After you cloned your repo, you will need to complete the following steps to set GCP up:
+2. In your terminal, navigate to the root directory of the cloned repository and run the following commands:
 
-### Project Setup
+```bash
+make seed-local       # seed local DB with initial data - only needed once
+make build            # build and run containers
+```
 
-1. **Create your project:**
+3. Access the application at `http://localhost:3000`.
 
-   Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a new project.
+4. To stop and clean up the containers, use the following commands:
+```bash
+make stop             # stop containers
+make clean            # down containers, remove images & volumes
+```
 
-2. **Enable Required APIs:**
 
-   Once you have created your project, navigate to the "APIs & Services" section on the menu located on the left part of your Project Console. Then, use the "Enable APIs and services" button to enable the following APIs:
 
-   - Cloud Run Admin API
-   - Cloud Build API
-   - Clound Functions API
-   - Cloud Pub/Sub API
-   - Artifact Registry API
-   - Maps JavaScript API
-   - Secret Manager API
-   - Dataform API
-   - Compute Engine API
-   - Notebooks API
-   - Vertex AI API
-   - Cloud Storage (optional for storing assets)
+### Option 2: Local Manual Setup (Without Docker)
+This option is for users who prefer to set up the application manually without using Docker. It requires installing all dependencies and running the application directly on your local machine.
 
-3. **Obtain your API keys**
+1. In your terminal, navigate to the root directory of the cloned repository.
 
-   On the left bar on the "API & Services" tab, navigate to Credentials and click on "Create credentials -> API Keys"
-   Rename this key to your preference and copy its value on the .env file we asked you to create on the root folder. This will be the "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY" constant
-
-4. **Install Google Cloud SDK:**
-
-   Now follow the instructions to install the [Google Cloud SDK](https://cloud.google.com/sdk).
-
-5. **Authenticate with GCP:**
-
-   Open the command prompt and authenticate your local environment with your GCP account:
-
-   ```bash
-   gcloud auth login
-   ```
-
-   Set your project:
-
-   ```bash
-   gcloud config set project your-gcp-project-id
-   ```
-
-### Integrations
-
-Now that you have created your project in GCP, lets configure come of the vital parts of this project. The plane simulation runs due to the application's integrations with GCP services such as Cloud Functions, Vertex AI, and Pub/Sub topics. Follow the next steps to set up these services:
-
-####  *Pub/Sub Topic*
-
-This demo manages data by using PubSub topics to distribute the data between the different microservices. Consequently, setting up the neccessary PubSub topics is crucial for this deployment to work correctly.
-
-The demo works using 2 main topics:
-
-- **Real-time data topic**:
-
-  This topic will manage the plane simulated data (or real plane data if available). This data should be published in the topic in real-time , as it will be used for analytical purposes in the application.
-
-- **Application data topic**:
-
-  This topic will manage the application data for route and disruption status, which are static for mostly all the flight (minus minor changes or optimization). This data should be the published only when it is altered rather than every second.
-
-To set up both topics , *follow these steps for each of them*:
-
-1. Navigate to the **GCP Console**.
-2. Access the **Navigation Menu** on the left side of the tab and go to **Pub/Sub**. You can also search for this service in the searchbar located on top of this same tab.
-3. Click **Create Topic** and include your desired configuration
-
-Now, your new topic should be created. You can check by accessing **Pub/Sub** -> **Topics** and reviewing the topics list.
-
-At this point, a default subscription should have also been automatically created for the topic. You can decide to keep this default subscription or either create a new one by clicking the desired topic in the list and then cliking **Create Subscription**
-
-At least one subscription must be created for each topic in order to set PubSub integrations correctly.
-
-**_Integral connection to the app_**
-
-Now that the topics and subscriptions are created, you will have to take some things into account to correctly set all GCP integrations:
-
-1. Ensure that your data source publishes data correctly in both topics
-2. Create Cloud Functions triggered by messages in the topics by following the steps in the **Cloud Functions** section
-
-#### *Vertex AI Model*
-
-The Vertex AI model is responsible for producing the analytical data required by your application. Follow these steps to train and deploy the model:
-
-1. **Training the Model**:
-
-   - Navigate to the **GCP Console**.
-   - Go to **Vertex AI** -> **Colab Enterprise**.
-   - Use the notebook available in the repository at `microservices/notebooks/published_leafyAirline_MLmodel.ipynb` to train and upload the model to the model registry.
-
-2. **Deploying the Model**:
-
-   - Follow the [Vertex AI deployment guide](https://cloud.google.com/vertex-ai/docs/general/deployment) to deploy the model to an endpoint.
-   - Once deployed, the model will be ready to receive input data and provide predictions.
-
-3. **Integrating with Cloud Functions**:
-   - Set up a Cloud Function to send input data to the deployed Vertex AI model and receive predictions.
-   - The predictions can then be written into a MongoDB collection for further use.
-
-#### *Cloud Functions*
-
-The Cloud Functions are responsible for handling the data flow between your application, Pub/Sub topic, the Vertex AI model, and MongoDB. Follow these steps to configure the Cloud Functions:
-
-**Cloud Function #1: Data Ingestion and Prediction (Analytical Data Flow)**
-
-1. **Create the Cloud Function**:
-
-   - In the **GCP Console** search bar, type `Cloud Run functions`.
-   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
-
-2. **Configure the Trigger**:
-
-   - Select **Trigger type** as `Cloud Pub/Sub`.
-   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic.
-
-3. **Set Environment Variables**:
-
-   - Set the following environment variables:
-     - `MONGO_DATABASE`
-     - `MONGO_COLLECTION`
-   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
-
-4. **Deploy the Cloud Function**:
-   - Click **Next** to proceed to the code section.
-   - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `microservices/cloud_functions/analyticalDataCF` directory.
-     - **Important** : Include both main.py and requirements.txt
-   - Click **Deploy** and wait for the function to build and deploy.
-
-Once these steps are completed, your Cloud Function will be able to send data to the Vertex AI model, receive predictions, and store them in a MongoDB collection.
-
-**Cloud Function #2: Real-time Telemetry data**
-
-This service will be in charge of processing real-time continuous data published in the specified Pub/Sub topic. To set it up follow the next steps:
-
-1. **Create the Cloud Function**:
-
-   - In the **GCP Console** search bar, type `Cloud Run functions`.
-   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
-
-2. **Configure the Trigger**:
-
-   - Select **Trigger type** as `Cloud Pub/Sub`.
-   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic. (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
-
-3. **Set Environment Variables**:
-
-   - Set the following environment variables:
-     - `MONGO_DATABASE`
-     - `MONGO_COLLECTION`
-   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
-
-4. **Deploy the Cloud Function**:
-   - Click **Next** to proceed to the code section.
-   - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `microservices/cloud_functions/telemetryDataCF` directory.
-     - **Important** : Include both main.py and requirements.txt
-   - Click **Deploy** and wait for the function to build and deploy.
-
-**Cloud Function #3: Application Data**
-
-This service will be in charge of processing application data such as new route and disruption location. This data will only be published in the specified Pub/Sub topic when a change occurs, whilst other topics use a real-time continuous data publishing approach. To set it up follow the next steps:
-
-1. **Create the Cloud Function**:
-
-   - In the **GCP Console** search bar, type `Cloud Run functions`.
-   - Click on **Create Function** on the top bar. This will take you to the Configuration page.
-
-2. **Configure the Trigger**:
-
-   - Select **Trigger type** as `Cloud Pub/Sub`.
-   - This configuration will trigger the Cloud Function whenever a message is published to the specified Pub/Sub topic (It is important that the topic selection aligns with it's use, not all topics with the same data or same purpose)
-
-3. **Set Environment Variables**:
-
-   - Set the following environment variables:
-     - `MONGO_DATABASE`
-     - `MONGO_COLLECTION`
-   - Optionally, add `MONGO_URI` as an environment variable, though it is recommended to store it as a Secret. Follow the [Secret Manager guide](https://cloud.google.com/functions/docs/configuring/secrets) to create a secret for `MONGO_URI`.
-
-4. **Deploy the Cloud Function**:
-   - Click **Next** to proceed to the code section.
-   - Choose `Python` as the runtime language.
-   - Introduce the code from the repository, found in the `microservices/cloud_functions/applicationDataCF` directory.
-     - **Important** : Include both main.py and requirements.txt
-   - Click **Deploy** and wait for the function to build and deploy.
-
-<!-- 
-6. **Dockerize Your App:**
-
-   Create a `Dockerfile` in the root of your project:
-
-   ```Dockerfile
-   # Use an official Node.js runtime as a parent image
-   FROM node:14
-
-   # Set the working directory in the container
-   WORKDIR /usr/src/app
-
-   # Copy the package.json and install dependencies
-   COPY package*.json ./
-   RUN npm install
-
-   # Copy the rest of the application code
-   COPY . .
-
-   # Build the Next.js app
-   RUN npm run build
-
-   # Expose the port the app runs on
-   EXPOSE 8080
-
-   # Command to run the app
-   CMD ["npm", "start"]
-   ```
-
-6. **Build and Deploy with Cloud Run:**
-
-   Use Cloud Build to build and deploy your app to Cloud Run:
-
-   ```bash
-   gcloud builds submit --tag gcr.io/your-gcp-project-id/flight-management-app
-   ```
-
-   Deploy the container image to Cloud Run:
-
-   ```bash
-   gcloud run deploy flight-management-app --image gcr.io/your-gcp-project-id/flight-management-app --platform managed --region your-region --allow-unauthenticated
-   ```
-
-7. **Access Your App:**
-
-   Once deployed, Cloud Run will provide a URL to access your app. Open it in your browser to see the deployed version. -->
-
-<!-- ## Usage
-
-- **Add Flights:** Navigate to the flight management section to add new flights.
-- **Update Flight Status:** Real-time updates allow users to modify flight statuses, including delays.
-- **View Flight Information:** Users can view detailed information about each flight.
-- **Receive Notifications:** Set up notifications to alert users of flight delays. -->
-
-
---- 
-
-### *Step 4: Data simulation*
-
-The last step required to fully enjoy this demo requires setting up the plane data simulation app. Follow these nexts steps to do so:
-
-1. **Open new window and browse**
-
-   Firstly, open a new window of your preferred IDE, open the project you just cloned and navigate to the **"simulation app"** directory (included in the microservices folder).
-
-2. **Set up environment variables:**
-
-   Create a `.env.local` file in the root directory and add the following variables:
-
+2. Backend Setup:
+   - Navigate to the `backend/simulation_app` directory:
      ```bash
-     <!-- ORIGINS: Routes from which the simulation app will get requested data -->
-   ORIGINS = ["your-local-app-url","your-cloud-app-url"]
+     cd backend/simulation_app
+     ```
+   - Install dependencies:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - Start the backend server:
+     ```bash
+     fastapi dev main.py
+     ```
 
-   <!-- GCP Variables -->
-   PROJECT_ID = "your-GCP-project-id"
-   DATA_TOPIC_ID = "your-data-topic-name"
-   PATH_TOPIC_ID = "your-path-topic-name"
-   ```
-   The last three variables can be found on the Console and Pub/Sub tab in your GCP project, therefore, make sure to follow the previous steps regarding GCP Integration to be sure you are able to access every needed value.
-
-3. **Install required resources**
-
-   Create a new terminal, browse to the simulation app directory and install all dependencies running:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-
-4. **Run the app**
-
-   Finally, use the same terminal to run the following command and start the simulation app:
-
-   ```bash
-   fastapi dev main.py
-   ```
-
-
---- 
-<!-- 
-## Deployment
-
-To deploy this application, GCP's Cloud Run is recommended for its ability to scale containerized applications automatically. Follow the instructions in the [GCP Integration](#gcp-integration) section to set up and deploy your app. -->
+3. Frontend Setup:
+   - Open a new terminal window and navigate to the `frontend-dashboard` directory:
+     ```bash
+     cd frontend-dashboard
+     ```
+   - Install dependencies:
+     ```bash
+       npm install
+       ```
+   - Start the frontend server:
+     ```bash
+     npm run dev
+     ```
+4. Access the application dashboard at `http://localhost:3000`.
 
 
-## In the end your app should look like this:
+
+> **Important:**
+>
+>This option can be used for both simulated and non-simulated modes. Therefore, the environment variable `SIMULATED_MODE` can be set to either `true` or `false` in both the `.env.local` file and the `Makefile`, depending on your preference.
+>
+> If you choose to run in non-simulated mode, ensure that you have your GCP resources set up as described in the [GCP Integration](./README_GCP.md) file.
+
+
+
+
+### Option 3: Full GCP Cloud Run Deployment
+
+This option is for users who want to deploy the application on Google Cloud Platform using Cloud Run. It allows for scalable and managed deployment of the application in the cloud. However, this option requires a GCP account and may incur costs based on usage.
+
+1. Follow the steps in the [GCP Integration](./README_GCP.md) file to set up your GCP project and resources.
+2. Once you have created your project, replace these placeholders in the [Makefile](./Makefile) with your own values:
+
+```Makefile
+PROJECT_ID=your-gcp-project-id
+REGION=your-gcp-region
+BACKEND_IMAGE=your-backend-image-name
+FRONTEND_IMAGE=your-frontend-image-name
+```
+
+3. Execute the following command in your terminal to build and deploy the application to Cloud Run:
+
+```bash
+make cloud-all
+```
+
+As a result, the application will be deployed to Cloud Run, and you will receive a URL to access it. Both the frontend and backend services will be hosted on Cloud Run as separate services , which can be reviewed and managed through the GCP Console.
+
+
+
+
+
+
+## Architecture and benefits
+
+Leafy Air is built on an **event-driven microservice architecture** that enables real-time, scalable, and intelligent flight management. The system processes live operational, telemetry, and analytical data streams to detect disruptions, calculate new routes, and assess cost and performance impacts instantly.  
+
+### Core Components
+- **Pub/Sub** – Backbone for asynchronous, decoupled communication between microservices, ensuring reliable and real-time event delivery.  
+- **Cloud Functions** – React to specific data events, automating ingestion, transformation, and aggregation tasks without manual infrastructure management.  
+- **Cloud Run Microservices** – Host the **Real-Time Data Simulator** and **Path Finder**, providing modular and containerized services for scalable flight simulation and route recalculation.  
+- **MongoDB** – Stores both static and time-series flight data, supporting flexible schema design and high-throughput aggregation for real-time insights and analytics.  
+- **Vertex AI** – Powers advanced predictive modeling (e.g., cost estimation and disruption forecasting), enhancing proactive operational decision-making.  
+- **Google Maps API** – Integrates geospatial visualization and route tracking for enhanced situational awareness.  
+
+### Data Flow
+1. **Telemetry and flight data** are published as events via Pub/Sub.  
+2. **Cloud Functions** process incoming data and trigger operational or analytical workflows.  
+3. **Cloud Run microservices** handle real-time simulation and route adjustment.  
+4. **MongoDB** captures operational and analytical data for reporting and monitoring.  
+5. **Vertex AI** continuously learns from data patterns to improve predictions and recommendations.  
+
+### Benefits
+- ⚡ **Real-Time Responsiveness** – Immediate reaction to disruptions through asynchronous event handling.  
+- ☁️ **Scalability & Flexibility** – Modular microservices scale independently to meet demand.  
+- 🤖 **Operational Intelligence** – AI-driven analytics reduce costs and enhance decision-making.  
+- 🧩 **Reliability** – Decoupled architecture ensures continuous operation even during component failures.  
+
+
+
+
+
+## Conclusion
+
+Congratulations! You have successfully set up and deployed the Leafy Air application. You can now explore its features and functionalities to manage flights in real-time.
+
+Once all services are running, you can access the Leafy Air dashboard by navigating to `http://localhost:3000` in your web browser (or the Cloud Run URL if deployed on GCP). It should look similar to the screenshots below:
 
 ![Screenshot 2024-08-23 at 15 35 22](https://github.com/user-attachments/assets/cfcec7f3-e591-4933-849d-bbba10e9fc94)
 ![Screenshot 2024-08-23 at 15 36 56](https://github.com/user-attachments/assets/ddaede1d-5b05-46e0-9a5b-fef12fb20d23)
 
----
 
-**Happy Coding!** ✈️
+

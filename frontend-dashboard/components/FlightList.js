@@ -27,15 +27,15 @@ function FlightList({flights, sessionId}) {
       const departDate = new Date(flight_info.dep_time);
       const arrivalDate = new Date(flight_info.arr_time);
 
-      const departTime = String(departDate.getUTCHours()).padStart(2, '0') + ':' + String(departDate.getUTCMinutes()).padStart(2, '0');
-      const departDay = String(departDate.getUTCDate()).padStart(2, '0');
-      const departMonth = String(departDate.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth() returns a zero-based index
-      const departYear = departDate.getUTCFullYear();
+      const departTime = String(departDate.getHours()).padStart(2, '0') + ':' + String(departDate.getMinutes()).padStart(2, '0');
+      const departDay = String(departDate.getDate()).padStart(2, '0');
+      const departMonth = String(departDate.getMonth() + 1).padStart(2, '0'); // getMonth() returns a zero-based index
+      const departYear = departDate.getFullYear();
 
-      const arrivalTime = String(arrivalDate.getUTCHours()).padStart(2, '0') + ':' + String(arrivalDate.getUTCMinutes()).padStart(2, '0');
-      const arrivalDay = String(arrivalDate.getUTCDate()).padStart(2, '0');
-      const arrivalMonth = String(arrivalDate.getUTCMonth() + 1).padStart(2, '0');
-      const arrivalYear = arrivalDate.getUTCFullYear();
+      const arrivalTime = String(arrivalDate.getHours()).padStart(2, '0') + ':' + String(arrivalDate.getMinutes()).padStart(2, '0');
+      const arrivalDay = String(arrivalDate.getDate()).padStart(2, '0');
+      const arrivalMonth = String(arrivalDate.getMonth() + 1).padStart(2, '0');
+      const arrivalYear = arrivalDate.getFullYear();
 
       const formattedArrivalDate = `${arrivalDay}-${arrivalMonth}-${arrivalYear}`;
       const formattedDepartDate = `${departDay}-${departMonth}-${departYear}`;

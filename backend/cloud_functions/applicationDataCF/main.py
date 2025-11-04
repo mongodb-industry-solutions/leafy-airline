@@ -47,7 +47,7 @@
 #         # Find the document in the MongoDB collection and update the path field
 #         result = collection.update_one(
 #             {"_id": ObjectId(flight_id)},
-#             {"$set": {"initial_path": initial_path, "new_path": new_path,"disruption_coords": {"lat" : disrup_coordinates[0],
+#             {"$set": {"initial_path": initial_path, "new_path_airps": new_path,"disruption_coords": {"lat" : disrup_coordinates[0],
 #                                                                                                "long": disrup_coordinates[1]}}}
 #         )
 
