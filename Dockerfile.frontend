@@ -17,10 +17,10 @@ COPY frontend-dashboard/ .
 RUN npm run build
 
 # Environment variable for port.
-ENV PORT=3000
+ENV PORT=8080
 
 # Tell Docker about the port we'll run on.
-EXPOSE 3000
+EXPOSE 8080
 
 # Run the web service on container startup.
 CMD ["npm", "start"]

@@ -361,6 +361,10 @@ def publish_path_simulated(flight_id, path_data):
 
 # ENDPOINTS FOR FAST API APP 
 
+@app.get("/")
+async def root():
+    return {"status": "healthy", "service": "leafy-airline-backend"}
+
 @app.on_event("startup")
 async def startup_db_client():
     """Connect to MongoDB when the FastAPI app starts."""
@@ -518,7 +522,5 @@ async def list_sessions():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # Use PORT env var if provided by Cloud Run
+    port = int(os.environ.get("PORT", 8080))  # Use PORT env var if provided by Cloud Run
     uvicorn.run(app, host="0.0.0.0", port=port)
-
-

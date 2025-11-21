@@ -1,0 +1,39 @@
+env:
+  NODE_ENV: staging
+  # Backend API URL for frontend to connect to backend health check - get <service-name> using kubectl get services
+  SIMULATION_APP_URL: http://leafy-airline-backend-web-app:80  # or http://localhost:8000 if multicontainer pod is setup and backend is running on 8000
+  SIMULATED_MODE: "true"
+
+## Single Pod Containers
+envSecrets:
+  # MongoDB Configuration
+  MONGO_URI: leafy-airline-secret
+  MONGODB_DB: leafy-airline-secret  
+  GOOGLE_MAPS_API_KEY: leafy-airline-secret
+
+## should be used in case of multiple sidecar containers
+# sidecarContainers:
+#   - name: backend
+#     image: 275662791714.dkr.ecr.us-east-1.amazonaws.com/kanopy-session-backend:latest
+#     env:
+#       # MongoDB connection (from Kubernetes secret)
+#       - name: MONGODB_URI
+#         valueFrom:
+#           secretKeyRef:
+#             name: session-temp-kanopy
+#             key: MONGODB_URI
+
+#       - name: DATABASE_NAME
+#         valueFrom:
+#           secretKeyRef:
+#             name: session-temp-kanopy
+#             key: DATABASE_NAME
+
+#       # Voyage AI API Key (embeddings)
+#       - name: VOYAGE_API_KEY
+#         valueFrom:
+#           secretKeyRef:
+#             name: session-temp-kanopy
+#             key: VOYAGE_API_KEY
+    
+## ----------------------------- Cloud Specific Configurations -----------------------------

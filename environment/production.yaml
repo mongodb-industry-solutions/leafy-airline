@@ -1,0 +1,77 @@
+env:
+  NODE_ENV: prod
+  # AWS region for IRSA (no credentials needed)
+  AWS_REGION: us-east-1
+  # Backend API URL for frontend to connect to backend health check
+  BACKEND_URL: http://<service-name>:80 # or http://localhost:8000 if multicontainer pod is setup and backend is running on 8000
+
+## Single Pod Containers
+envSecrets:
+  # MongoDB Configuration
+  MONGODB_URI: <secret-group>
+  DATABASE_NAME: <secret-group> 
+  VOYAGE_API_KEY: <secret-group>
+  
+## should be used in case of multi-pod container i.e: both frontend and backend in one pod
+# sidecarContainers:
+#   - name: backend
+#     image: 275662791714.dkr.ecr.us-east-1.amazonaws.com/kanopy-session-backend:latest
+#     env:
+#       # MongoDB connection (from Kubernetes secret)
+#       - name: MONGODB_URI
+#         valueFrom:
+#           secretKeyRef:
+#             name: session-temp-kanopy
+#             key: MONGODB_URI
+
+#       - name: DATABASE_NAME
+#         valueFrom:
+#           secretKeyRef:
+#             name: session-temp-kanopy
+#             key: DATABASE_NAME
+
+#       # Voyage AI API Key (embeddings)
+#       - name: VOYAGE_API_KEY
+#         valueFrom:
+#           secretKeyRef:
+#             name: session-temp-kanopy
+#             key: VOYAGE_API_KEY
+
+## ----------------------------- Cloud Specific Configurations (For AWS only line 42 to 46 needed)-----------------------------
+
+## Add IRSA configuration here, this is for AWS
+serviceAccount:
+  enabled: true
+  irsa:
+    accountId: "275662791714"
+    roleName: "kanopy-prod-cicd-irsa"
+
+## For GCP this, example setup here is for manufacturing
+
+# serviceAccount:
+#  enabled: true
+#  name: <service-account> # commit and helm should create Service account 
+# ## kubectl get pods -n ${KSA_NAMESPACE} -o jsonpath='{.items[0].spec.serviceAccountName}' | grep <demo-pod-name>
+
+
+# # Mount GCP credential config and service account token
+# extraVolumes:
+#  - name: gcp-creds
+#    configMap:
+#      name: <config-map-name>
+#  - name: gcp-token
+#    projected:
+#      sources:
+#      - serviceAccountToken:
+#          path: token
+#          expirationSeconds: 3600
+#          audience: "//iam.googleapis.com/projects/<USER_PROJECT_NUMBER>/locations/global/workloadIdentityPools/<WIF_POOL_ID>/providers/<WIF_PROVIDER_ID>"
+
+
+# extraVolumeMounts:
+#  - name: gcp-creds
+#    mountPath: /etc/gcp
+#    readOnly: true
+#  - name: gcp-token
+#    mountPath: /var/run/service-account
+#    readOnly: true
