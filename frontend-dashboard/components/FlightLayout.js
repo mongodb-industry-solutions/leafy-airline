@@ -16,6 +16,7 @@ import {
 import io from "socket.io-client"; // Import socket.io-client
 import Image from "next/image";
 import airports_dict from "../resources/airports.js";
+import SimulationAPIClient from "../utils/api/simulation-client.js";
 
 
 
@@ -384,16 +385,16 @@ const FlightLayout = ({ children }) => {
   const startSimulation = async () => {
     setLoading(true); // Set loading to true
     // console.log("Starting simulation");
-    let start_url = "";
+    // let start_url = "";
 
-    // Different endpoint depending on simulatedMode
-    if (simulatedMode === true) {
-      console.log("Simulated Mode is ON - Using simulated endpoint`");
-      start_url = app_url + "/simulated/start-scheduler";
-    } else {
-      console.log("Simulated Mode is OFF - Using standard endpoint`");
-      start_url = app_url + "/start-scheduler";
-    }
+    // // Different endpoint depending on simulatedMode
+    // if (simulatedMode === true) {
+    //   console.log("Simulated Mode is ON - Using simulated endpoint`");
+    //   start_url = app_url + "/simulated/start-scheduler";
+    // } else {
+    //   console.log("Simulated Mode is OFF - Using standard endpoint`");
+    //   start_url = app_url + "/start-scheduler";
+    // }
     const app_data = {
       // Adding sessionId to the payload
       session_id: sessionIdState,
@@ -411,18 +412,21 @@ const FlightLayout = ({ children }) => {
     };
     console.log("Payload for starting simulation:", app_data);
 
-    try {
-      const response = await fetch(start_url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(app_data),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
+    // try {
+    //   const response = await fetch(start_url, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(app_data),
+    //   });
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error! status: ${response.status}`);
+    //   }
+    //   const data = await response.json();
+
+      // Use API client instead of direct backend call
+      const data = await SimulationAPIClient.startScheduler(app_data, simulatedMode);
 
       setSimulationStarted(true);
 
@@ -432,23 +436,28 @@ const FlightLayout = ({ children }) => {
         setLoading(false); // Set loading to false after delay
         fetchData(); // Fetch data immediately after starting fetching
       }, 5000); // 5 seconds delay
-    } catch (error) {
-      console.error("Error starting process:", error);
-      setLoading(false); // Set loading to false if there is an error
-    }
+
+
+    // } catch (error) {
+    //   console.error("Error starting process:", error);
+    //   setLoading(false); // Set loading to false if there is an error
+    // }
   };
 
   const resetSimulation = async () => {
     const reset_url = `${app_url}/reset-scheduler/${sessionIdState}`;
 
-    try {
-      const response = await fetch(reset_url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
+    // try {
+    //   const response = await fetch(reset_url, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   const data = await response.json();
+      try {
+        // Use API client instead of direct backend call
+        const data = await SimulationAPIClient.resetScheduler(sessionIdState);
 
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);

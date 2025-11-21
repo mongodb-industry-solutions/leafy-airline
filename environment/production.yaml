@@ -2,8 +2,8 @@ env:
   NODE_ENV: prod
   # AWS region for IRSA (no credentials needed)
   AWS_REGION: us-east-1
-  # Backend API URL for frontend to connect to backend health check
-  BACKEND_URL: http://<service-name>:80 # or http://localhost:8000 if multicontainer pod is setup and backend is running on 8000
+  SIMULATION_APP_URL: http://leafy-airline-backend-prod-web-app:80
+  SIMULATED_MODE: "false"
 
 ## Single Pod Containers
 envSecrets:
