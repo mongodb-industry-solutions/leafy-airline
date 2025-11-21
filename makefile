@@ -2,6 +2,7 @@
 # Project Configuration
 # ====================================================
 
+
 # General
 PROJECT_ID = your-gcp-project-id
 REGION = your-gcp-project-region
