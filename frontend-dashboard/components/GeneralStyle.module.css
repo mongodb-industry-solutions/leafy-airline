@@ -9,6 +9,7 @@
     height: 100vh;
     font-family: 'Lexend Deca', sans-serif;
     padding-bottom: 0px;
+    min-height: 100vh;
   }
   
 .header {
@@ -53,10 +54,8 @@
   flex: 1; /* Allow it to expand to fill the remaining space */  
   display: flex; /* Enables flexible alignment */  
   flex-direction: column; /* Align children top to bottom */
-  
-  /* NEW */
-  height: calc(100vh - 95px); /* Adjust height to fit the viewport minus header/footer */  
-  /* overflow: hidden;    */
+
+  overflow: auto; 
 }
 
 .intro_container{
