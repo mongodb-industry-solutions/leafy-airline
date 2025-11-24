@@ -14,10 +14,7 @@
 
 .card {
     z-index: 1000;
-    position: absolute;
-    top: 100%;
-    left: 0%;
-    transform: translateX(-50%);
+    position: fixed;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -25,13 +22,15 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 
     width: auto;
     height: auto;     /* Allow card to expand based on content */
     min-width: 125px;
+    max-width: 300px;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
     transform: scale(0);
-    transform-origin: top;
+    transform-origin: top left;
 
     font-family: 'Lexend Deca', sans-serif;
     font-size : 12px;
@@ -41,4 +40,5 @@
     opacity: 1;
     visibility: visible;
     transform: scale(1);
+    pointer-events: auto;
 }
