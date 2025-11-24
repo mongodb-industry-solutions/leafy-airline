@@ -3,14 +3,14 @@ env:
   # AWS region for IRSA (no credentials needed)
   AWS_REGION: us-east-1
   SIMULATION_APP_URL: http://leafy-airline-backend-prod-web-app:80
-  SIMULATED_MODE: "false"
+  SIMULATED_MODE: "true"
 
 ## Single Pod Containers
 envSecrets:
   # MongoDB Configuration
-  MONGODB_URI: <secret-group>
-  DATABASE_NAME: <secret-group> 
-  VOYAGE_API_KEY: <secret-group>
+  MONGO_URI: leafy-airline-secret
+  MONGODB_DB: leafy-airline-secret  
+  GOOGLE_MAPS_API_KEY: leafy-airline-secret
   
 ## should be used in case of multi-pod container i.e: both frontend and backend in one pod
 # sidecarContainers:
